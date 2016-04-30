@@ -11,11 +11,11 @@ class OfferTranslation extends Model
 
     public function offer()
     {
-        return $this->hasOne('App\Offer', 'offer_id', 'id');
+        return $this->hasOne('App\Offer', 'id', 'offer_id');
     }
 
     public function language()
     {
-        return $this->hasOne('App\Language', 'language_id', 'id');
+        return $this->hasOne('App\Language', 'id', 'language_id');
     }
 }
