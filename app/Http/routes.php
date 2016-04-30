@@ -20,12 +20,21 @@ Route::group(['middleware' => ['web']], function () {
 });
 
 $api->group(['middleware' => ['api']], function ($api) {
-
+    /**
+     * @var \Dingo\Api\Routing\Router $api
+     */
     $api->controller('auth', 'Auth\AuthController');
+
+    $api->get('language', 'Cms\LanguageController@index');
+    $api->get('language/published', 'Cms\LanguageController@published');
+
+    $api->get('filter', 'Cms\FilterController@index');
 
 });
 
 //protected routes with JWT (must be logged in)
 $api->group(['middleware' => ['api', 'api.auth']], function ($api) {
-
+    /**
+     * @var \Dingo\Api\Routing\Router $api
+     */
 });
