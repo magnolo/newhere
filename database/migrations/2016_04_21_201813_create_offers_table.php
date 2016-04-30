@@ -1,0 +1,55 @@
+<?php
+
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
+
+class CreateOffersTable extends Migration
+{
+    const TABLE = 'nh_offer';
+
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create(self::TABLE, function (Blueprint $table) {
+            $table->increments('id');
+
+            $table->integer('ngo_id');
+
+            $table->string('street')->nullable();
+            $table->string('streetnumber')->nullable();
+            $table->string('streetnumberadditional')->nullable();
+            $table->string('zip')->nullable();
+            $table->string('city')->nullable();
+            $table->float('latitude')->nullable();
+            $table->float('longitude')->nullable();
+
+            $table->string('phone', 25)->nullable();
+            $table->string('email', 50)->nullable();
+            $table->string('website', 50)->nullable();
+
+            $table->integer('age_from')->default(0);
+            $table->integer('age_to')->default(99);
+
+            $table->dateTime('valid_from')->nullable();
+            $table->dateTime('valid_until')->nullable();
+
+            $table->boolean('disabled')->default(false);
+            $table->dateTime('deleted')->nullable();
+            $table->timestamps();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::drop(self::TABLE);
+    }
+}
