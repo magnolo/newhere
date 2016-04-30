@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers\Cms;
 
-use App\Http\Requests,
+use Illuminate\Http\Request,
+    App\Http\Requests,
     App\Http\Controllers\Controller;
 
 class LanguageController extends Controller
@@ -19,5 +20,35 @@ class LanguageController extends Controller
             ->where('published', true)
             ->get();
         return response()->json($languages);
+    }
+
+    public function update(Request $request, $id)
+    {
+        $this->validate($request, [
+            'enabled'    => 'int',
+            'published' => 'int',
+        ]);
+
+        $language = \App\Language::find((int)$id);
+        if (!$language) {
+            return response()->error('Language not found', 404);
+        }
+        
+        $modified = false;
+        if (isset($request->enabled)) {
+            $language->enabled = (bool)$request->enabled;
+            $modified = true;
+        }
+
+        if (isset($request->published)) {
+            $language->published = (bool)$request->published;
+            $modified = true;
+        }
+
+        if ($modified) {
+            $language->save();
+        }
+
+        return response()->json($language);
     }
 }
