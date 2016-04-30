@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class FilterSeeder extends Seeder
+class FilterTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.

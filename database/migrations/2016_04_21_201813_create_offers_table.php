@@ -31,8 +31,8 @@ class CreateOffersTable extends Migration
             $table->string('email', 50)->nullable();
             $table->string('website', 50)->nullable();
 
-            $table->integer('age_from')->default(0);
-            $table->integer('age_to')->default(99);
+            $table->integer('age_from')->default(0)->nullable();
+            $table->integer('age_to')->default(99)->nullable();
 
             $table->dateTime('valid_from')->nullable();
             $table->dateTime('valid_until')->nullable();
