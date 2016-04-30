@@ -27,5 +27,5 @@ class Filter extends Model
     /**
      * @var boolean
      */
-    public $disabled;
+    public $enabled;
 }

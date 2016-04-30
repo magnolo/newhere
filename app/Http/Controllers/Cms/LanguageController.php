@@ -15,7 +15,7 @@ class LanguageController extends Controller
 
     public function published()
     {
-        $languages = \App\Language::where('disabled', false)
+        $languages = \App\Language::where('enabled', true)
             ->where('published', true)
             ->get();
         return response()->json($languages);

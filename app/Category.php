@@ -27,7 +27,7 @@ class Category extends Model
     /**
      * @var bool
      */
-    public $disabled;
+    public $enabled;
 
     public function translations() {
         return $this->hasMany('App\CategoryTranslation', 'category_id', 'id');

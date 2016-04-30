@@ -19,7 +19,7 @@ class CreateLanguagesTable extends Migration
             $table->string('language', 5)->unique();
             $table->boolean('default_language')->default(false);
             $table->boolean('published')->default(false);
-            $table->boolean('disabled')->default(true);
+            $table->boolean('enabled')->default(false);
             $table->timestamps();
         });
     }

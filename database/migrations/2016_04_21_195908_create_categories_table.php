@@ -19,7 +19,7 @@ class CreateCategoriesTable extends Migration
             $table->integer('parent')->nullable();
 
             $table->string('icon', 20);
-            $table->boolean('disabled')->default(false);
+            $table->boolean('enabled')->default(true);
             $table->timestamps();
 
             $table->foreign('parent')

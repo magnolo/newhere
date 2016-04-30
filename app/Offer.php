@@ -87,7 +87,7 @@ class Offer extends Model
     /**
      * @var bool
      */
-    public $disabled;
+    public $enabled;
 
     /**
      * @var \DateTime|null

@@ -27,5 +27,5 @@ class Language extends Model
     /**
      * @var bool
      */
-    public $disabled;
+    public $enabled;
 }

@@ -18,7 +18,7 @@ class CreateFiltersTable extends Migration
             $table->increments('id');
             $table->string('filterkey', 20)->unique();
             $table->string('icon', 20);
-            $table->boolean('disabled')->default(false);
+            $table->boolean('enabled')->default(true);
             $table->timestamps();
         });
     }
