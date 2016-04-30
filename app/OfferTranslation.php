@@ -9,36 +9,6 @@ class OfferTranslation extends Model
     protected $table = 'nh_offer_translation';
     protected $fillable = ['language_id', 'version', 'title', 'description', 'opening_hours'];
 
-    /**
-     * @var int
-     */
-    public $id;
-
-    /**
-     * @var int
-     */
-    public $language_id;
-
-    /**
-     * @var int
-     */
-    public $version;
-
-    /**
-     * @var string
-     */
-    public $title;
-
-    /**
-     * @var string
-     */
-    public $description;
-
-    /**
-     * @var string
-     */
-    public $opening_hours;
-
     public function offer()
     {
         return $this->hasOne('App\Offer', 'offer_id', 'id');
