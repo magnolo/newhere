@@ -13,17 +13,17 @@ class FilterSeeder extends Seeder
     {
         DB::table('nh_filter')->insert(
             [
-                ['filterkey' => 'family', 'icon' => 'family', 'disabled' => false],
-                ['filterkey' => 'men', 'icon' => 'men', 'disabled' => false],
-                ['filterkey' => 'women', 'icon' => 'women', 'disabled' => false],
-                ['filterkey' => 'children', 'icon' => 'child', 'disabled' => false],
-                ['filterkey' => 'babies', 'icon' => 'baby', 'disabled' => false],
-                ['filterkey' => 'limp', 'icon' => 'limp', 'disabled' => false],
-                ['filterkey' => 'partially-blind', 'icon' => 'blind', 'disabled' => false],
-                ['filterkey' => 'partially-deaf', 'icon' => 'deaf', 'disabled' => false],
-                ['filterkey' => 'free', 'icon' => 'free', 'disabled' => false],
-                ['filterkey' => 'queer', 'icon' => 'queer', 'disabled' => false],
-                ['filterkey' => 'vegan', 'icon' => 'vegan', 'disabled' => false],
+                ['filterkey' => 'family', 'icon' => 'family', 'enabled' => true],
+                ['filterkey' => 'men', 'icon' => 'men', 'enabled' => true],
+                ['filterkey' => 'women', 'icon' => 'women', 'enabled' => true],
+                ['filterkey' => 'children', 'icon' => 'child', 'enabled' => true],
+                ['filterkey' => 'babies', 'icon' => 'baby', 'enabled' => true],
+                ['filterkey' => 'limp', 'icon' => 'limp', 'enabled' => true],
+                ['filterkey' => 'partially-blind', 'icon' => 'blind', 'enabled' => true],
+                ['filterkey' => 'partially-deaf', 'icon' => 'deaf', 'enabled' => true],
+                ['filterkey' => 'free', 'icon' => 'free', 'enabled' => true],
+                ['filterkey' => 'queer', 'icon' => 'queer', 'enabled' => true],
+                ['filterkey' => 'vegan', 'icon' => 'vegan', 'enabled' => true],
             ]
         );
     }

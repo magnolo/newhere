@@ -22,7 +22,7 @@ class CreateCategoriesTable extends Migration
             $table->boolean('enabled')->default(true);
             $table->timestamps();
 
-            $table->foreign('parent')
+            $table->foreign('parent', sprintf('%1$s_parent_foreign', self::TABLE))
                 ->references('id')
                 ->on(self::TABLE)
                 ->onDelete('cascade');
@@ -36,6 +36,9 @@ class CreateCategoriesTable extends Migration
      */
     public function down()
     {
+        Schema::table(self::TABLE, function (Blueprint $table) {
+            $table->dropForeign(sprintf('%1$s_parent_foreign', self::TABLE));
+        });
         Schema::drop(self::TABLE);
     }
 }

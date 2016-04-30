@@ -24,12 +24,12 @@ class CreateOfferCategoryTable extends Migration
 
             $table->timestamps();
 
-            $table->foreign('offer_id')
+            $table->foreign('offer_id', sprintf('%1$s_offer_id_foreign', self::TABLE))
                 ->references('id')
                 ->on('nh_offer')
                 ->onDelete('cascade');
 
-            $table->foreign('category_id')
+            $table->foreign('category_id', sprintf('%1$s_category_id_foreign', self::TABLE))
                 ->references('id')
                 ->on('nh_category')
                 ->onDelete('cascade');
@@ -43,6 +43,10 @@ class CreateOfferCategoryTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::table(self::TABLE, function (Blueprint $table) {
+            $table->dropForeign(sprintf('%1$s_offer_id_foreign', self::TABLE));
+            $table->dropForeign(sprintf('%1$s_category_id_foreign', self::TABLE));
+        });
+        Schema::drop(self::TABLE);
     }
 }

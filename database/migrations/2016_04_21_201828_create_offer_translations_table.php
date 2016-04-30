@@ -29,12 +29,12 @@ class CreateOfferTranslationsTable extends Migration
 
             $table->unique(['offer_id', 'language_id']);
 
-            $table->foreign('offer_id')
+            $table->foreign('offer_id', sprintf('%1$s_offer_id_foreign', self::TABLE))
                 ->references('id')
                 ->on('nh_offer')
                 ->onDelete('cascade');
 
-            $table->foreign('language_id')
+            $table->foreign('language_id', sprintf('%1$s_language_id_foreign', self::TABLE))
                 ->references('id')
                 ->on('nh_language')
                 ->onDelete('cascade');
@@ -48,6 +48,10 @@ class CreateOfferTranslationsTable extends Migration
      */
     public function down()
     {
+        Schema::table(self::TABLE, function (Blueprint $table) {
+            $table->dropForeign(sprintf('%1$s_offer_id_foreign', self::TABLE));
+            $table->dropForeign(sprintf('%1$s_language_id_foreign', self::TABLE));
+        });
         Schema::drop(self::TABLE);
     }
 }

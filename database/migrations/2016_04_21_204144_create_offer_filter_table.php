@@ -24,12 +24,12 @@ class CreateOfferFilterTable extends Migration
 
             $table->timestamps();
 
-            $table->foreign('offer_id')
+            $table->foreign('offer_id', sprintf('%1$s_offer_id_foreign', self::TABLE))
                 ->references('id')
                 ->on('nh_offer')
                 ->onDelete('cascade');
 
-            $table->foreign('filter_id')
+            $table->foreign('filter_id', sprintf('%1$s_filter_id_foreign', self::TABLE))
                 ->references('id')
                 ->on('nh_filter')
                 ->onDelete('cascade');
@@ -43,6 +43,10 @@ class CreateOfferFilterTable extends Migration
      */
     public function down()
     {
+        Schema::table(self::TABLE, function (Blueprint $table) {
+            $table->dropForeign(sprintf('%1$s_filter_id_foreign', self::TABLE));
+            $table->dropForeign(sprintf('%1$s_offer_id_foreign', self::TABLE));
+        });
         Schema::drop(self::TABLE);
     }
 }

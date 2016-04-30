@@ -25,12 +25,12 @@ class CreateCategoryTranslationsTable extends Migration
 
             $table->unique(['category_id', 'language_id']);
 
-            $table->foreign('category_id')
+            $table->foreign('category_id', sprintf('%1$s_category_id_foreign', self::TABLE))
                 ->references('id')
                 ->on('nh_category')
                 ->onDelete('cascade');
 
-            $table->foreign('language_id')
+            $table->foreign('language_id', sprintf('%1$s_language_id_foreign', self::TABLE))
                 ->references('id')
                 ->on('nh_language')
                 ->onDelete('cascade');
@@ -44,6 +44,10 @@ class CreateCategoryTranslationsTable extends Migration
      */
     public function down()
     {
+        Schema::table(self::TABLE, function (Blueprint $table) {
+            $table->dropForeign(sprintf('%1$s_category_id_foreign', self::TABLE));
+            $table->dropForeign(sprintf('%1$s_language_id_foreign', self::TABLE));
+        });
         Schema::drop(self::TABLE);
     }
 }
