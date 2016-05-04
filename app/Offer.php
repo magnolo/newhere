@@ -21,11 +21,16 @@ class Offer extends Model
 
     public function filters()
     {
-        return $this->belongsToMany('App\Filter', 'nh_offer_filter', 'offer_id', 'filter_id');
+        return $this->belongsToMany('App\Filter', 'offer_filters', 'offer_id', 'filter_id');
     }
 
     public function categories()
     {
-        return $this->belongsToMany('App\Category', 'nh_offer_category', 'offer_id', 'category_id');
+        return $this->belongsToMany('App\Category', 'offer_categories', 'offer_id', 'category_id');
+    }
+
+    public function countries()
+    {
+        return $this->belongsToMany('App\Country', 'offer_countries', 'offer_id', 'country_id');
     }
 }
