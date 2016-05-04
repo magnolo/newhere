@@ -1,0 +1,26 @@
+<div class="cms-category-list-component">
+    <div data-ng-click="vm.newCategory()">Neue Kategorie</div>
+
+    <div ui-tree data-drag-enabled="false">
+    <ul ui-tree-nodes="" ng-model="vm.categories">
+        <li ng-repeat="category in vm.categories | translation:'de'" ui-tree-node>
+            <div class="category-item" ui-tree-handle layout="row" layout-align="start stretch">
+                <div class="label" flex="60" ng-click="vm.selectCategory(category)">{{category.translation.title}}</div>
+                <div flex>
+                    <md-switch ng-model="category.enabled" ng-change="vm.toggleEnabled(category)" aria-label="Kategorie aktivieren/deaktivieren?"></md-switch>
+                </div>
+            </div>
+            <ul ui-tree-nodes="" ng-if="category.children.length" ng-model="category.children">
+                <li data-ng-repeat="subCategory in category.children | translation:'de'">
+                    <div class="category-item" ui-tree-handle layout="row" layout-align="start stretch">
+                        <div class="label" flex="55" ng-click="vm.selectCategory(subCategory)">{{subCategory.translation.title}}</div>
+                        <div flex>
+                            <md-switch ng-model="category.enabled" ng-change="vm.toggleEnabled(category)" aria-label="Kategorie aktivieren/deaktivieren?"></md-switch>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </li>
+    </ul>
+    </div>
+</div>

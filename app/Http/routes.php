@@ -31,6 +31,10 @@ $api->group(['middleware' => ['api']], function ($api) {
 
     $api->get('filter', 'Cms\FilterController@index');
 
+    $api->get('category', 'Cms\CategoryController@index');
+    $api->get('category/{id}', ['uses' => 'Cms\CategoryController@show']);
+    $api->post('category', 'Cms\CategoryController@create');
+    $api->post('category/{id}', ['uses' => 'Cms\CategoryController@update']);
 });
 
 //protected routes with JWT (must be logged in)

@@ -76,6 +76,15 @@ export function RoutesConfig($stateProvider, $urlRouterProvider) {
 				}
 			}
 		})
+		.state('cms.category', {
+			url: '/cms/category',
+			data: {},
+			views: {
+				'main@': {
+					templateUrl: getCmsView('category')
+				}
+			}
+		})
 		.state('cms.language', {
 			url: '/cms/language',
 			data: {},
