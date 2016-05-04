@@ -5,6 +5,10 @@ export function RoutesConfig($stateProvider, $urlRouterProvider) {
 		return `./views/app/pages/${viewName}/${viewName}.page.html`;
 	};
 
+	var getCmsView = (viewName) => {
+		return `./views/app/pages/cms/${viewName}/${viewName}.page.html`;
+	};
+
 	$urlRouterProvider.otherwise('/');
 
 	$stateProvider
@@ -46,5 +50,40 @@ export function RoutesConfig($stateProvider, $urlRouterProvider) {
                     templateUrl: getView('register')
                 }
             }
-        });
+        })
+			
+		//
+		// CMS
+		//
+		.state('cms', {
+			abstract: true,
+			views: {
+				header: {
+					templateUrl: getCmsView('header')
+				},
+				footer: {
+					templateUrl: getCmsView('footer')
+				},
+				main: {}
+			}
+		})
+		.state('cms.dashboard', {
+			url: '/cms/dashboard',
+			data: {},
+			views: {
+				'main@': {
+					templateUrl: getCmsView('dashboard')
+				}
+			}
+		})
+		.state('cms.language', {
+			url: '/cms/language',
+			data: {},
+			views: {
+				'main@': {
+					templateUrl: getCmsView('language')
+				}
+			}
+		})
+	;
 }
