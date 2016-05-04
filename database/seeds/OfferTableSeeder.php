@@ -2,6 +2,8 @@
 
 use Illuminate\Database\Seeder;
 
+use App\Offer, App\OfferTranslation;
+
 class OfferTableSeeder extends Seeder
 {
     /**
@@ -19,27 +21,25 @@ class OfferTableSeeder extends Seeder
         $future = clone $now;
         $future->modify('+30days');
 
-        DB::table('nh_offer')->insert(
-            [
+        $offers = [
                 ['street' => 'Karlsplatz', 'streetnumber' => 1, 'streetnumberadditional' => null, 'zip' => '1234', 'city' => 'Wien', 'phone' => '01/123456789', 'email' => 'foo@bar.com', 'age_from' => null, 'age_to' => null, 'valid_from' => null, 'valid_until' => null, 'ngo_id' => 1],
                 ['street' => 'Karlsplatz', 'streetnumber' => 2, 'streetnumberadditional' => null, 'zip' => '1234', 'city' => 'Wien', 'phone' => '01/123456789', 'email' => 'foo@bar.com', 'age_from' => 18, 'age_to' => 99, 'valid_from' => null, 'valid_until' => null, 'ngo_id' => 1],
                 ['street' => 'Karlsplatz', 'streetnumber' => 3, 'streetnumberadditional' => null, 'zip' => '1234', 'city' => 'Wien', 'phone' => '01/123456789', 'email' => 'foo@bar.com', 'age_from' => null, 'age_to' => null, 'valid_from' => $now->format('Y-m-d'), 'valid_until' => $future->format('Y-m-d'), 'ngo_id' => 1],
                 ['street' => 'Karlsplatz', 'streetnumber' => 4, 'streetnumberadditional' => null, 'zip' => '1234', 'city' => 'Wien', 'phone' => '01/123456789', 'email' => 'foo@bar.com', 'age_from' => 18, 'age_to' => 99, 'valid_from' => $now->format('Y-m-d'), 'valid_until' => $future->format('Y-m-d'), 'ngo_id' => 1],
                 ['street' => 'Karlsplatz', 'streetnumber' => 5, 'streetnumberadditional' => null, 'zip' => '1234', 'city' => 'Wien', 'phone' => '01/123456789', 'email' => 'foo@bar.com', 'age_from' => null, 'age_to' => null, 'valid_from' => $past->format('Y-m-d'), 'valid_until' => $now->format('Y-m-d'), 'ngo_id' => 1],
                 ['street' => 'Karlsplatz', 'streetnumber' => 6, 'streetnumberadditional' => null, 'zip' => '1234', 'city' => 'Wien', 'phone' => '01/123456789', 'email' => 'foo@bar.com', 'age_from' => null, 'age_to' => null, 'valid_from' => $past->format('Y-m-d'), 'valid_until' => $future->format('Y-m-d'), 'ngo_id' => 1],
-            ]
-        );
+            ];
+        Offer::insert($offers);
 
-        DB::table('nh_offer_translation')->insert(
-            [
+        $offerTranslations = [
                 ['language_id' => 1, 'offer_id' => 1, 'title' => 'Lorem ipsum', 'description' => 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. '],
                 ['language_id' => 2, 'offer_id' => 1, 'title' => 'Lorem ipsum', 'description' => 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. '],
-
                 ['language_id' => 1, 'offer_id' => 2, 'title' => 'Lorem ipsum', 'description' => 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. '],
-            ]
-        );
+        ];
+        OfferTranslation::insert($offerTranslations);
 
-        DB::table('nh_offer_filter')->insert(
+
+        DB::table('offer_filters')->insert(
             [
                 ['filter_id' => 1, 'offer_id' => 1],
                 ['filter_id' => 2, 'offer_id' => 1],
@@ -48,11 +48,11 @@ class OfferTableSeeder extends Seeder
             ]
         );
 
-        DB::table('nh_offer_category')->insert(
+        DB::table('offer_categories')->insert(
             [
                 ['category_id' => 1, 'offer_id' => 1],
-                ['category_id' => 3, 'offer_id' => 1],
-                ['category_id' => 4, 'offer_id' => 2],
+                // ['category_id' => 3, 'offer_id' => 1],
+                // ['category_id' => 4, 'offer_id' => 2],
                 ['category_id' => 1, 'offer_id' => 3],
                 ['category_id' => 1, 'offer_id' => 4],
                 ['category_id' => 1, 'offer_id' => 5],

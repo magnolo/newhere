@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class OfferTranslation extends Model
 {
-    protected $table = 'nh_offer_translation';
+    protected $table = 'offer_translations';
     protected $fillable = ['language_id', 'version', 'title', 'description', 'opening_hours'];
 
     public function offer()

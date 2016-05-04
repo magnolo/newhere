@@ -5,7 +5,7 @@ use Illuminate\Database\Migrations\Migration;
 
 class CreateOffersTable extends Migration
 {
-    const TABLE = 'nh_offer';
+    const TABLE = 'offers';
 
     /**
      * Run the migrations.

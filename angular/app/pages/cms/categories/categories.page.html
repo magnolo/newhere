@@ -1,0 +1,25 @@
+<md-content class="Page-container">
+    <div class="cms-category-container " flex>
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>
+                    <span>Kategorien</span>
+                </h2>
+                <span flex></span>
+                <md-button ui-sref="cms.categories.details({id:'new'})" class="md-raised" layout="row" layout-align="center center">
+                    <i class="material-icons">add</i>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <div layout="column" layout-gt-sm="row">
+            <div flex="20" class="" layout-align="center center">
+                <cms-categories-list></cms-categories-list>
+            </div>
+            <div flex="80" class="" layout-align="center center">
+                <div ui-view="details">
+                    <cms-category-form></cms-category-form>
+                </div>
+            </div>
+        </div>
+    </div>
+</md-content>

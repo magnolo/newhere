@@ -2,24 +2,23 @@
 
 namespace App;
 
+use \Dimsav\Translatable\Translatable;
 use Illuminate\Database\Eloquent\Model;
 
 class Category extends Model
 {
-    protected $table = 'nh_category';
-    protected $fillable = ['icon', 'disabled'];
+    use Translatable;
 
-    public function translations() {
-        return $this->hasMany('App\CategoryTranslation', 'category_id', 'id');
-    }
+    public $translatedAttributes = ['title', 'description'];
+    protected $fillable = ['icon', 'disabled', 'title', 'description'];
 
     public function children()
     {
-        return $this->hasMany('App\Category', 'parent', 'id');
+        return $this->hasMany('App\Category', 'parent_id', 'id')->with('children');
     }
 
     public function parent()
     {
-        return $this->hasOne('App\Category', 'id', 'parent');
+        return $this->hasOne('App\Category', 'id', 'parent_id');
     }
 }

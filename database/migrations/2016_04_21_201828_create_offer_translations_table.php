@@ -5,7 +5,7 @@ use Illuminate\Database\Migrations\Migration;
 
 class CreateOfferTranslationsTable extends Migration
 {
-    const TABLE = 'nh_offer_translation';
+    const TABLE = 'offer_translations';
 
     /**
      * Run the migrations.
@@ -31,12 +31,12 @@ class CreateOfferTranslationsTable extends Migration
 
             $table->foreign('offer_id', sprintf('%1$s_offer_id_foreign', self::TABLE))
                 ->references('id')
-                ->on('nh_offer')
+                ->on('offers')
                 ->onDelete('cascade');
 
             $table->foreign('language_id', sprintf('%1$s_language_id_foreign', self::TABLE))
                 ->references('id')
-                ->on('nh_language')
+                ->on('languages')
                 ->onDelete('cascade');
         });
     }

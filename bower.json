@@ -20,6 +20,7 @@
     "satellizer": "^0.14.0",
     "angular-leaflet-directive": "^0.10.0",
     "angular-material-data-table": "~0.10.*",
-    "angular-ui-tree": "~2.15.*"
+    "angular-ui-tree": "~2.15.*",
+    "angular-drag-and-drop-lists": "^1.4.0"
   }
 }

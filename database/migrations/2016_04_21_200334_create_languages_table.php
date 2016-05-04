@@ -5,7 +5,7 @@ use Illuminate\Database\Migrations\Migration;
 
 class CreateLanguagesTable extends Migration
 {
-    const TABLE = 'nh_language';
+    const TABLE = 'languages';
 
     /**
      * Run the migrations.

@@ -5,7 +5,7 @@ use Illuminate\Database\Migrations\Migration;
 
 class CreateFiltersTable extends Migration
 {
-    const TABLE = 'nh_filter';
+    const TABLE = 'filters';
 
     /**
      * Run the migrations.

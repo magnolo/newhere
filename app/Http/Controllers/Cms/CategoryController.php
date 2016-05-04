@@ -3,33 +3,28 @@
 namespace App\Http\Controllers\Cms;
 
 use Illuminate\Http\Request,
+    App,
     DB,
     App\Http\Requests,
-    App\Http\Controllers\Controller;
+    App\Http\Controllers\Controller,
+    App\Category,
+    App\Language;
 
 class CategoryController extends Controller
 {
-    private $categoryService;
-
-    public function __construct(\App\Services\Category $categoryService)
-    {
-        $this->categoryService = $categoryService;
-    }
 
     public function index()
     {
-        $categories = \App\Category::all();
-        return response()->json($this->getCategoryService()->prepareForResponse($categories));
+        $categories = Category::where('parent_id',null)->orderBy('id', 'ASC')->get();
+        $categories->load('children');
+        return response()->json($categories);
     }
 
     public function show($id)
     {
-        $category = \App\Category::find((int)$id);
-        if (!$category) {
-            return response()->error('Category not found', 404);
-        }
-
-        return response()->json($this->getCategoryService()->prepareForResponse($category));
+        $category = Category::findOrFail((int)$id);
+        $category->language = App::getLocale();
+        return response()->json($category);
     }
 
     public function create(Request $request)
@@ -41,26 +36,21 @@ class CategoryController extends Controller
             'description' => 'required'
         ]);
 
-        $language = \App\Language::where('language', $request->get('language'))->first();
-        if (!$language) {
-            return response()->error('Language not found', 404);
-        }
-
         DB::beginTransaction();
 
-        $category = new \App\Category();
+        $locale = $request->get('language');
+        $category = new Category();
         $category->icon = $request->get('icon');
+        $category->parent_id = $request->get('parent_id');
         $category->save();
 
-        $categoryTranslation = new \App\CategoryTranslation();
-        $categoryTranslation->title = $request->get('title');
-        $categoryTranslation->description = $request->get('description');
-        $categoryTranslation->language_id = $language->id;
-        $category->translations()->save($categoryTranslation);
+        $category->translateOrNew($locale)->title = $request->get('title');
+        $category->translateOrNew($locale)->description = $request->get('description');
+        $category->save();
 
         DB::commit();
 
-        return response()->json($this->getCategoryService()->prepareForResponse($category));
+        return response()->json($category);
     }
 
     public function update(Request $request, $id)
@@ -72,52 +62,35 @@ class CategoryController extends Controller
             'description' => 'required'
         ]);
 
-        $language = \App\Language::where('language', $request->get('language'))->first();
-        if (!$language) {
-            return response()->error('Language not found', 404);
-        }
 
-        $category = \App\Category::find((int)$id);
+        $category = Category::find((int)$id);
         if (!$category) {
             return response()->error('Category not found', 404);
         }
 
-        $translations = $category->translations()->getResults();
-        $categoryTranslation = null;
-        foreach ($translations as $t) {
-            if ($t->language()->first()->language == $language->language) {
-                $categoryTranslation = $t;
-                break;
-            }
-        }
-
         DB::beginTransaction();
 
+        $locale = $request->get('language');
         $category->icon = $request->get('icon');
+        $category->parent_id = $request->get('parent_id');
+        $category->translateOrNew($locale)->title = $request->get('title');
+        $category->translateOrNew($locale)->description = $request->get('description');
         $category->save();
-
-        if (!$categoryTranslation) {
-            $categoryTranslation = new \App\CategoryTranslation();
-            $categoryTranslation->title = $request->get('title');
-            $categoryTranslation->description = $request->get('description');
-            $categoryTranslation->language_id = $language->id;
-            $category->translations()->save($categoryTranslation);
-        } else {
-            $categoryTranslation->title = $request->get('title');
-            $categoryTranslation->description = $request->get('description');
-            $categoryTranslation->save();
-        }
 
         DB::commit();
 
-        return response()->json($this->getCategoryService()->prepareForResponse($category));
+        return response()->success(compact('category'));
     }
 
-    /**
-     * @return \App\Services\Category
-     */
-    protected function getCategoryService()
-    {
-        return $this->categoryService;
+    public function toggleEnabled(Request $request, $id){
+      $this->validate($request, [
+          'enabled'  => 'required',
+      ]);
+
+      $category = Category::findOrFail((int)$id);
+      $category->enabled = $request->get('endabled');
+
+      return response()->success(compact('category'));
+
     }
 }

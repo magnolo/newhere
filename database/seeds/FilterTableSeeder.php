@@ -2,6 +2,8 @@
 
 use Illuminate\Database\Seeder;
 
+use App\Filter;
+
 class FilterTableSeeder extends Seeder
 {
     /**
@@ -11,8 +13,7 @@ class FilterTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('nh_filter')->insert(
-            [
+        $data = [
                 ['filterkey' => 'family', 'icon' => 'family', 'enabled' => true],
                 ['filterkey' => 'men', 'icon' => 'men', 'enabled' => true],
                 ['filterkey' => 'women', 'icon' => 'women', 'enabled' => true],
@@ -24,7 +25,10 @@ class FilterTableSeeder extends Seeder
                 ['filterkey' => 'free', 'icon' => 'free', 'enabled' => true],
                 ['filterkey' => 'queer', 'icon' => 'queer', 'enabled' => true],
                 ['filterkey' => 'vegan', 'icon' => 'vegan', 'enabled' => true],
-            ]
-        );
+            ];
+
+        Filter::insert($data);
+
+
     }
 }

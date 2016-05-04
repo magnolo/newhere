@@ -5,8 +5,8 @@ use Illuminate\Database\Migrations\Migration;
 
 class CreateOfferCategoryTable extends Migration
 {
-    const TABLE = 'nh_offer_category';
-    
+    const TABLE = 'offer_categories';
+
     /**
      * Run the migrations.
      *
@@ -26,12 +26,12 @@ class CreateOfferCategoryTable extends Migration
 
             $table->foreign('offer_id', sprintf('%1$s_offer_id_foreign', self::TABLE))
                 ->references('id')
-                ->on('nh_offer')
+                ->on('offers')
                 ->onDelete('cascade');
 
             $table->foreign('category_id', sprintf('%1$s_category_id_foreign', self::TABLE))
                 ->references('id')
-                ->on('nh_category')
+                ->on('categories')
                 ->onDelete('cascade');
         });
     }

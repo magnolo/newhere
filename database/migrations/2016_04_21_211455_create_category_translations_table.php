@@ -5,7 +5,7 @@ use Illuminate\Database\Migrations\Migration;
 
 class CreateCategoryTranslationsTable extends Migration
 {
-    const TABLE = 'nh_category_translation';
+    const TABLE = 'category_translations';
 
     /**
      * Run the migrations.
@@ -14,7 +14,24 @@ class CreateCategoryTranslationsTable extends Migration
      */
     public function up()
     {
-        Schema::create(self::TABLE, function (Blueprint $table) {
+
+      Schema::create(self::TABLE, function(Blueprint $table)
+      {
+          $table->increments('id');
+          $table->integer('category_id')->unsigned();
+          $table->string('title');
+          $table->text('description');
+          $table->integer('version')->default(1);
+          $table->string('locale')->index();
+          $table->timestamps();
+
+          $table->unique(['category_id','locale']);
+          $table->foreign('category_id')
+            ->references('id')
+            ->on('categories')
+            ->onDelete('cascade');
+      });
+      /*Schema::create(self::TABLE, function (Blueprint $table) {
             $table->increments('id');
             $table->integer('category_id');
             $table->integer('language_id');
@@ -27,14 +44,14 @@ class CreateCategoryTranslationsTable extends Migration
 
             $table->foreign('category_id', sprintf('%1$s_category_id_foreign', self::TABLE))
                 ->references('id')
-                ->on('nh_category')
+                ->on('categories')
                 ->onDelete('cascade');
 
             $table->foreign('language_id', sprintf('%1$s_language_id_foreign', self::TABLE))
                 ->references('id')
-                ->on('nh_language')
+                ->on('languages')
                 ->onDelete('cascade');
-        });
+        });*/
     }
 
     /**
@@ -44,9 +61,9 @@ class CreateCategoryTranslationsTable extends Migration
      */
     public function down()
     {
+
         Schema::table(self::TABLE, function (Blueprint $table) {
-            $table->dropForeign(sprintf('%1$s_category_id_foreign', self::TABLE));
-            $table->dropForeign(sprintf('%1$s_language_id_foreign', self::TABLE));
+           $table->dropForeign(sprintf('%1$s_category_id_foreign', self::TABLE));
         });
         Schema::drop(self::TABLE);
     }

@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Filter extends Model
 {
-    protected $table = 'nh_filter';
+    protected $table = 'filters';
     protected $fillable = ['filterkey', 'icon', 'disabled'];
-    
+
 }

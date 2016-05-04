@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="{!! elixir('css/vendor.css') !!}">
     <link rel="stylesheet" href="{!! elixir('css/app.css') !!}">
     <link href='https://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'>
-
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <title>Laravel Angular Material Starter</title>
 
     <!--[if lte IE 10]>

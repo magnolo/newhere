@@ -51,12 +51,13 @@ export function RoutesConfig($stateProvider, $urlRouterProvider) {
                 }
             }
         })
-			
+
 		//
 		// CMS
 		//
 		.state('cms', {
 			abstract: true,
+			url:'/cms',
 			views: {
 				header: {
 					templateUrl: getCmsView('header')
@@ -68,7 +69,7 @@ export function RoutesConfig($stateProvider, $urlRouterProvider) {
 			}
 		})
 		.state('cms.dashboard', {
-			url: '/cms/dashboard',
+			url: '/dashboard',
 			data: {},
 			views: {
 				'main@': {
@@ -76,17 +77,26 @@ export function RoutesConfig($stateProvider, $urlRouterProvider) {
 				}
 			}
 		})
-		.state('cms.category', {
-			url: '/cms/category',
+		.state('cms.categories', {
+			url: '/categories',
 			data: {},
 			views: {
 				'main@': {
+					templateUrl: getCmsView('categories')
+				}
+			}
+		})
+		.state('cms.categories.details', {
+			url: '/:id',
+			data: {},
+			views: {
+				'details': {
 					templateUrl: getCmsView('category')
 				}
 			}
 		})
-		.state('cms.language', {
-			url: '/cms/language',
+		.state('cms.languages', {
+			url: '/languages',
 			data: {},
 			views: {
 				'main@': {

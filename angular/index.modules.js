@@ -2,6 +2,7 @@ angular.module('app', [
     'app.run',
 	'app.filters',
 	'app.services',
+  'app.directives',
 	'app.components',
 	'app.routes',
 	'app.config',
@@ -13,8 +14,8 @@ angular.module('app.routes', []);
 angular.module('app.filters', []);
 angular.module('app.services', []);
 angular.module('app.config', []);
+angular.module('app.directives', []);
 angular.module('app.components', [
 	'ui.router', 'md.data.table', 'ngMaterial', 'angular-loading-bar',
-	'restangular', 'ngStorage', 'satellizer', 'ui.tree'
+	'restangular', 'ngStorage', 'satellizer', 'ui.tree', 'dndLists'
 ]);
-

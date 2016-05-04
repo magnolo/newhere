@@ -1,36 +1,23 @@
 class CmsCategoryFormController{
-    constructor($rootScope, CategoryService, API, ToastService){
+    constructor( $stateParams, CategoryService, ToastService){
         'ngInject';
 
-        this.$rootScope = $rootScope;
         this.ToastService = ToastService;
         this.CategoryService = CategoryService;
+        this.categories = CategoryService.categories;
+        this.category = {
+          title:'',
+          description:''
+        };
 
-        this.category;
-
-        $rootScope.$on('category::selected', (e, category) => {
-            this.category = angular.copy(category);
-        });
-
-        $rootScope.$on('category::new', (e) => {
-            this.category = {};
-        });
+        if($stateParams.id != 'new'){
+          this.CategoryService.one($stateParams.id);
+          this.category = this.CategoryService.category;
+        }
     }
 
     save() {
-        var id = this.category.id || undefined;
-        this.CategoryService.save(
-            this.category,
-            id,
-            (category) => {
-                this.category = category;
-                this.ToastService.show('Saved successfully.');
-                this.$rootScope.$emit('category::reload');
-            },
-            (response) => {
-                this.ToastService.show('Error while saving.');
-            }
-        );
+      this.CategoryService.save(this.category);
     }
 }
 
@@ -40,5 +27,3 @@ export const CmsCategoryFormComponent = {
     controllerAs: 'vm',
     bindings: {}
 }
-
-

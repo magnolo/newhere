@@ -5,7 +5,7 @@ use Illuminate\Database\Migrations\Migration;
 
 class CreateNgosTable extends Migration
 {
-    const TABLE = 'nh_ngo';
+    const TABLE = 'ngos';
 
     /**
      * Run the migrations.
@@ -35,7 +35,7 @@ class CreateNgosTable extends Migration
 
             $table->string('username')->unique();
             $table->string('password', 60);
-            
+
             $table->timestamps();
         });
     }

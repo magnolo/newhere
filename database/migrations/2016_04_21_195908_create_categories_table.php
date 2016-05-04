@@ -5,7 +5,7 @@ use Illuminate\Database\Migrations\Migration;
 
 class CreateCategoriesTable extends Migration
 {
-    const TABLE = 'nh_category';
+    const TABLE = 'categories';
 
     /**
      * Run the migrations.
@@ -16,17 +16,17 @@ class CreateCategoriesTable extends Migration
     {
         Schema::create(self::TABLE, function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('parent')->nullable();
-
+            $table->integer('parent_id')->nullable();
             $table->string('icon', 20);
             $table->boolean('enabled')->default(true);
             $table->timestamps();
 
-            $table->foreign('parent', sprintf('%1$s_parent_foreign', self::TABLE))
+            $table->foreign('parent_id')
                 ->references('id')
                 ->on(self::TABLE)
                 ->onDelete('cascade');
         });
+
     }
 
     /**
@@ -37,8 +37,9 @@ class CreateCategoriesTable extends Migration
     public function down()
     {
         Schema::table(self::TABLE, function (Blueprint $table) {
-            $table->dropForeign(sprintf('%1$s_parent_foreign', self::TABLE));
+            $table->dropForeign(sprintf('%1$s_parent_id_foreign', self::TABLE));
         });
         Schema::drop(self::TABLE);
+
     }
 }

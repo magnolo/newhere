@@ -11,6 +11,9 @@ import './index.config';
 import './index.filters';
 
 //Components
+import './index.directives';
+
+//Components
 import './index.components';
 
 //Services

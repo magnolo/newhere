@@ -2,6 +2,8 @@
 
 use Illuminate\Database\Seeder;
 
+use App\Language;
+
 class LanguageTableSeeder extends Seeder
 {
     /**
@@ -11,8 +13,7 @@ class LanguageTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('nh_language')->insert(
-            [
+        $data = [
                 ['language' => 'de', 'default_language' => true, 'published' => false, 'enabled' => true],
                 ['language' => 'en', 'default_language' => false, 'published' => false, 'enabled' => true],
                 ['language' => 'aa', 'default_language' => false, 'published' => false, 'enabled' => false],
@@ -148,7 +149,9 @@ class LanguageTableSeeder extends Seeder
                 ['language' => 'yo', 'default_language' => false, 'published' => false, 'enabled' => false],
                 ['language' => 'zh', 'default_language' => false, 'published' => false, 'enabled' => false],
                 ['language' => 'zu', 'default_language' => false, 'published' => false, 'enabled' => false],
-            ]
-        );
+            ];
+
+          Language::insert($data);
+
     }
 }

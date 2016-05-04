@@ -5,7 +5,7 @@ use Illuminate\Database\Migrations\Migration;
 
 class CreateOfferFilterTable extends Migration
 {
-    const TABLE = 'nh_offer_filter';
+    const TABLE = 'offer_filters';
 
     /**
      * Run the migrations.
@@ -26,12 +26,12 @@ class CreateOfferFilterTable extends Migration
 
             $table->foreign('offer_id', sprintf('%1$s_offer_id_foreign', self::TABLE))
                 ->references('id')
-                ->on('nh_offer')
+                ->on('offers')
                 ->onDelete('cascade');
 
             $table->foreign('filter_id', sprintf('%1$s_filter_id_foreign', self::TABLE))
                 ->references('id')
-                ->on('nh_filter')
+                ->on('filters')
                 ->onDelete('cascade');
         });
     }
