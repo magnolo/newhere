@@ -1,0 +1,42 @@
+<md-toolbar class="md-table-toolbar md-default">
+    <div layout="row" layout-align="end center">
+        <md-input-container>
+            <label>Suchen</label>
+            <input ng-model="vm.filter.language" />
+        </md-input-container>
+    </div>
+
+    <div layout="row" layout-align="end center">
+        <md-checkbox ng-model="vm.filter.enabled" aria-label="Zeige nur aktivierte" ng-false-value="''">
+            Zeige nur aktivierte
+        </md-checkbox>
+        <md-checkbox ng-model="vm.filter.published" aria-label="Zeige nur veröffentlichte" ng-false-value="''">
+            Zeige nur veröffentlichte
+        </md-checkbox>
+    </div>
+</md-toolbar>
+
+<md-table-container>
+    <table md-table>
+        <thead md-head md-order="vm.query.order" md-on-reorder="vm.onOrderChange">
+        <tr md-row>
+            <th md-column md-order-by="language">Sprache</th>
+            <th md-column md-order-by="enabled">Aktiviert</th>
+            <th md-column md-order-by="published">Veröffentlicht</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="language in vm.languages | filter: vm.filter | limitTo: vm.query.limit : (vm.query.page-1)*vm.query.limit">
+            <td>{{language.language}}</td>
+            <td>
+                <md-switch ng-model="language.enabled" ng-change="vm.toggleEnabled(language)" aria-label="Sprache aktivieren/deaktivieren?"></md-switch>
+            </td>
+            <td>
+                <md-switch ng-model="language.published" ng-change="vm.togglePublished(language)" aria-label="Sprache veröffentlichen?"></md-switch>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</md-table-container>
+
+<md-table-pagination md-limit="vm.query.limit" md-page="vm.query.page" md-total="{{vm.languages.length}}" md-on-paginate="vm.onPaginationChange"></md-table-pagination>
