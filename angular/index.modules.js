@@ -14,7 +14,7 @@ angular.module('app.filters', []);
 angular.module('app.services', []);
 angular.module('app.config', []);
 angular.module('app.components', [
-	'ui.router', 'ngMaterial', 'angular-loading-bar',
-	'restangular', 'ngStorage', 'satellizer'
+	'ui.router', 'md.data.table', 'ngMaterial', 'angular-loading-bar',
+	'restangular', 'ngStorage', 'satellizer', 'ui.tree'
 ]);
 
