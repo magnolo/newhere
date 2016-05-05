@@ -1,34 +1,38 @@
-<div layout-padding>
-<form ng-submit="vm.save()">
-    <div>
-        <md-input-container class="CmsCategoryForm-inputContainer">
+<div class="white-bg">
+<form ng-submit="vm.save()" name="categoryForm">
+    <div layout="row" layout-padding>
+        <md-input-container class="md-block">
             <label>Icon</label>
-            <input type="text"  ng-model="vm.category.icon" placeholder="choose an icon...">
+            <input type="text"  ng-model="vm.category.icon" required>
         </md-input-container>
-    </div>
-    <div>
         <md-input-container class="CmsCategoryForm-inputContainer">
             <label>Parent Category</label>
             <md-select ng-model="vm.category.parent_id">
-                <md-option ng-repeat="category in vm.categories" ng-value="{{category.id}}">{{category.title}}</md-option>
+                <md-option ng-repeat="category in vm.categories" ng-value="category.id">{{category.title}}</md-option>
             </md-select>
         </md-input-container>
+        <span flex></span>
+        <div layout="column" layout-align="center center">
+        <md-button type="submit" class="md-primary md-raised" ng-disabled="!categoryForm.$dirty || categoryForm.$invalid">Save</md-button>
+      </div>
     </div>
+    <md-tabs md-dynamic-height class="md-primary">
+         <md-tab label="{{language.language}}" ng-repeat="language in vm.languages">
+           <md-content class="md-padding white-bg">
+             <div>
+                 <md-input-container class="md-block">
+                     <label>Title</label>
+                     <input type="text" ng-model="vm.category.title" required >
+                 </md-input-container>
+             </div>
+             <h4 class="md-subhead">Description</h4>
+             <div ng-model="vm.category.description" text-angular>
 
-    <div>
-        <md-input-container class="CmsCategoryForm-inputContainer">
-            <label>Title</label>
-            <input type="text" ng-model="vm.category.title" required placeholder="name me...">
-        </md-input-container>
-    </div>
+             </div>
+           </md-content>
+         </md-tab>
+      </md-tabs>
 
-    <div>
-        <md-input-container class="CmsCategoryForm-inputContainer">
-            <label>Description</label>
-            <textarea ng-model="vm.category.description" placeholder="what am i about..?"></textarea>
-        </md-input-container>
-    </div>
 
-    <md-button type="submit" class="CmsCategoryForm-submit md-primary md-raised">Save</md-button>
-</form>
+    </form>
 </div>

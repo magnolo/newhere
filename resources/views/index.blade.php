@@ -17,7 +17,7 @@
 <body>
 
     <div ui-view="header"></div>
-    <div ui-view="main"></div>
+    <div ui-view="main" class="main" layout="row"></div>
     <div ui-view="footer"></div>
 
     <script src="{!! elixir('js/vendor.js') !!}"></script>

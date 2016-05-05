@@ -1,8 +1,7 @@
 ngDescribe({
-    name: 'Test cms-languages component',
+    name: 'Test LanguageService',
     modules: 'app',
-    inject: 'API',
-    element: '<cms-languages></cms-languages>',
+    inject: 'LanguageService',
     tests: function (deps) {
 
         it('basic test', () => {

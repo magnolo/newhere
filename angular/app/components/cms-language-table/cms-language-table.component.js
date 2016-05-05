@@ -1,30 +1,24 @@
 class CmsLanguageTableController{
-    constructor($filter, API, ToastService){
+    constructor($filter, LanguageService){
         'ngInject';
-        var CmsLanguageTableController = this;
-        
-        this.$filter = $filter;
-        this.API = API;
-        this.languageAPI = API.all('language');
-        this.ToastService = ToastService;
 
-        this.languages = [];
+        this.$filter = $filter;
+        this.LanguageService = LanguageService;
+        this.languages = this.LanguageService.getAll();
+
         this.query = {
             order: '-language',
             limit: 10,
             page: 1
         };
+        this.search = {
+          show:false,
+          query: ''
+        }
         this.filter = {
             enabled: '',
-            published: ''
+            published: '',
         };
-
-        this.languageAPI.getList()
-            .then(
-                (list) => {
-                    this.languages = this.$filter('orderBy')(list, [this.query.order], true);
-                }
-            );
 
         this.onOrderChange = (order) => {
             return this.languages = this.$filter('orderBy')(this.languages, [order], true);
@@ -34,29 +28,16 @@ class CmsLanguageTableController{
             //console.log(page, limit);
         };
     }
-
-    toggleEnabled(language) {
-        language.customPOST({enabled: language.enabled ? 1 : 0})
-            .then(
-                (response) => {
-                    this.ToastService.show('Language updated.');
-                },
-                (response) => {
-                    language.enabled = !language.enabled;    
-                }
-            );
+    removeFilter(){
+      this.search = {
+        show:false,
+        query: ''
+      }
     }
+    save(language) {
 
-    togglePublished(language) {
-        language.customPOST({published: language.published ? 1 : 0})
-            .then(
-                (response) => {
-                    this.ToastService.show('Language updated.');
-                },
-                (response) => {
-                    language.published = !language.published;
-                }
-            );
+      language.save();
+      //this.LanguageService.update(language);
     }
 }
 
@@ -66,5 +47,3 @@ export const CmsLanguageTableComponent = {
     controllerAs: 'vm',
     bindings: {}
 }
-
-

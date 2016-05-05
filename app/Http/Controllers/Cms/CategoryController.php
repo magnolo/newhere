@@ -12,10 +12,14 @@ use Illuminate\Http\Request,
 
 class CategoryController extends Controller
 {
+    public function __construct(){
+        App::setLocale(app('request')->header('language'));
+    }
 
-    public function index()
+    public function index(Request $request)
     {
-        $categories = Category::where('parent_id',null)->orderBy('id', 'ASC')->get();
+
+        $categories = Category::where('parent_id',null)->withTranslation()->orderBy('id', 'ASC')->get();
         $categories->load('children');
         return response()->json($categories);
     }
@@ -47,6 +51,11 @@ class CategoryController extends Controller
         $category->translateOrNew($locale)->title = $request->get('title');
         $category->translateOrNew($locale)->description = $request->get('description');
         $category->save();
+
+        if($locale !== "de"){
+            $category->translateOrNew('de')->title = $request->get('title');
+            $category->save();
+        }
 
         DB::commit();
 

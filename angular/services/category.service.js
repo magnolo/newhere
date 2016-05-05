@@ -1,11 +1,11 @@
 // just a temporary try...
 export class CategoryService{
-    constructor(API, ToastService, $state){
+    constructor(API, ToastService, LanguageService,  $state){
         'ngInject';
-        var CategoryService = this;
 
         this.API = API;
         this.ToastService = ToastService;
+        this.LanguageService = LanguageService;
         this.$state = $state;
         this.categories = [];
         this.category = {};
@@ -36,7 +36,7 @@ export class CategoryService{
         var data = {
             title: category.title,
             description: category.description,
-            language: 'de',
+            language: this.LanguageService.activeLanguage(),
             icon: category.icon,
             parent_id: category.parent_id
         };

@@ -1,10 +1,12 @@
 class CmsCategoryFormController{
-    constructor( $stateParams, CategoryService, ToastService){
+    constructor( $stateParams, CategoryService, LanguageService, ToastService){
         'ngInject';
 
         this.ToastService = ToastService;
         this.CategoryService = CategoryService;
         this.categories = CategoryService.categories;
+        this.LanguageService = LanguageService;
+        this.languages = this.LanguageService.getActive();
         this.category = {
           title:'',
           description:''

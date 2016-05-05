@@ -25,9 +25,9 @@ $api->group(['middleware' => ['api']], function ($api) {
      */
     $api->controller('auth', 'Auth\AuthController');
 
-    $api->get('language', 'Cms\LanguageController@index');
-    $api->get('language/published', 'Cms\LanguageController@published');
-    $api->post('language/{id}', 'Cms\LanguageController@update');
+    $api->get('languages', 'Cms\LanguageController@index');
+    $api->get('languages/published', 'Cms\LanguageController@published');
+    $api->put('languages/{id}', 'Cms\LanguageController@update');
 
     $api->get('filter', 'Cms\FilterController@index');
 

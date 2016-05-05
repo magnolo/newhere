@@ -17,5 +17,5 @@ angular.module('app.config', []);
 angular.module('app.directives', []);
 angular.module('app.components', [
 	'ui.router', 'md.data.table', 'ngMaterial', 'angular-loading-bar',
-	'restangular', 'ngStorage', 'satellizer', 'ui.tree', 'dndLists'
+	'restangular', 'ngStorage', 'satellizer', 'ui.tree', 'dndLists','angular.filter','textAngular'
 ]);
