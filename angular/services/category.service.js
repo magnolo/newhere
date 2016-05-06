@@ -36,6 +36,7 @@ export class CategoryService{
 
     }
     one(id, success, error){
+      console.log(id);
       if(!id) return false;
       if (this.category.id == id) {
           success(this.category);
@@ -67,7 +68,7 @@ export class CategoryService{
             parent_id: category.parent_id
         };
         this.API.all('categories').post(data).then((response)=>{
-          category.id = response.id;
+        //category.id = response.id;
           this.ToastService.show('Saved successfully');
           this.$state.go('cms.categories.details', {id: response.id});
           this.categories.push(category);

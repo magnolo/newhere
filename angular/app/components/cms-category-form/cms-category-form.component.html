@@ -1,4 +1,4 @@
-<div class="white-bg">
+
 <form ng-submit="vm.save()" name="categoryForm">
     <div layout="row" layout-padding>
         <md-input-container class="md-block">
@@ -13,26 +13,32 @@
         </md-input-container>
         <span flex></span>
         <div layout="column" layout-align="center center">
-        <md-button type="submit" class="md-primary md-raised" ng-disabled="!categoryForm.$dirty || categoryForm.$invalid">Save</md-button>
+        <md-button type="submit" class="md-primary md-raised">Save</md-button>
       </div>
     </div>
-    <md-tabs md-dynamic-height class="md-primary">
-         <md-tab label="{{language.language}}" ng-repeat="language in vm.languages">
-           <md-content class="md-padding white-bg">
-             <div>
-                 <md-input-container class="md-block">
-                     <label>Title</label>
-                     <input type="text" ng-model="vm.category.title" required >
-                 </md-input-container>
-             </div>
-             <h4 class="md-subhead">Description</h4>
-             <div ng-model="vm.category.description" text-angular>
-
-             </div>
-           </md-content>
-         </md-tab>
+    <md-tabs md-dynamic-height class="md-primary" ng-if="vm.category.translations.length">
+        <md-tab label="{{translation.locale}}" ng-repeat="translation in vm.category.translations">
+          <md-content class="md-padding white-bg">
+            <div>
+                <md-input-container class="md-block">
+                    <label>Title</label>
+                    <input type="text" ng-model="translation.title" required >
+                </md-input-container>
+            </div>
+            <h4 class="md-subhead">Description</h4>
+            <text-angular ng-model="translation.description" ></text-angular>
+          </md-content>
+        </md-tab>
       </md-tabs>
-
+      <md-content class="md-padding white-bg" ng-if="!vm.category.translations.length">
+        <div>
+            <md-input-container class="md-block">
+                <label>Title</label>
+                <input type="text" ng-model="vm.category.title" required >
+            </md-input-container>
+        </div>
+        <h4 class="md-subhead">Description</h4>
+        <text-angular ng-model="vm.category.description" ></text-angular>
+      </md-content>
 
     </form>
-</div>

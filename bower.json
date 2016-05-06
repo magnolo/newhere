@@ -24,11 +24,12 @@
     "angular-drag-and-drop-lists": "^1.4.0",
     "angular-filter": "^0.5.8",
     "textAngular": "^1.5.1",
-    "bootstrap-css-only": "^3.3.6"
+    "bootstrap-css-only": "^3.3.6",
+    "angular-sanitize": "^1.5.5"
   },
-  "overrides":{
-    "font-awesome":{
-      "main":[
+  "overrides": {
+    "font-awesome": {
+      "main": [
         "css/font-awesome.css"
       ]
     }

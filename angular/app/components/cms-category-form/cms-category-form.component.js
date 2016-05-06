@@ -10,12 +10,16 @@ class CmsCategoryFormController{
         this.LanguageService.getActive((languages) => {
           this.languages = languages;
         });
+        this.CategoryService.fetchAll((categories) => {
+          this.categories = categories;
+        })
         this.category = {
           title:'',
-          description:''
+          description:'',
+          translations:[]
         };
 
-    
+
 
         if($stateParams.id != 'new'){
           this.CategoryService.one($stateParams.id, (category) =>{

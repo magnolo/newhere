@@ -27,11 +27,10 @@ class CategoryController extends Controller
     public function show($id)
     {
         $category = Category::findOrFail((int)$id);
-      //$category = $cat->translate('en', true);
-        $category->language = App::getLocale();
-        //$category->translations = $category->translations();
-
-        //dd($cat->getTranslation());
+        $languages = Language::where('enabled', true)->get();
+        foreach($languages as $language){
+           $category->translate($language->language);
+        }
         return response()->json($category);
     }
 
@@ -69,10 +68,10 @@ class CategoryController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'language'    => 'required|min:2|max:2',
+          //  'language'    => 'required|min:2|max:2',
             'icon' => 'required|min:1|max:20',
-            'title' => 'required|max:255',
-            'description' => 'required'
+            //'title' => 'required|max:255',
+            'translations' => 'required'
         ]);
 
 
@@ -86,9 +85,13 @@ class CategoryController extends Controller
         $locale = $request->get('language');
         $category->icon = $request->get('icon');
         $category->parent_id = $request->get('parent_id');
-        $category->translateOrNew($locale)->title = $request->get('title');
-        $category->translateOrNew($locale)->description = $request->get('description');
+
+        foreach($request->get('translations') as $transalation){
+          $category->translateOrNew($transalation['locale'])->title = $transalation['title'];
+          $category->translateOrNew($transalation['locale'])->description = $transalation['description'];
+        }
         $category->save();
+
 
         DB::commit();
 
