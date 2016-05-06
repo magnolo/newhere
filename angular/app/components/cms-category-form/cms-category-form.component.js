@@ -29,9 +29,10 @@ class CmsCategoryFormController{
     }
     addTranslation(language){
       var exists = false;
-      angular.forEach(this.category.translations, (translation) =>{
+      angular.forEach(this.category.translations, (translation, key) =>{
           if(translation.locale == language){
             exists = true;
+            this.activeTransTab = key;
           }
       });
       if(!exists){
@@ -39,7 +40,7 @@ class CmsCategoryFormController{
           title:'',
           description:'',
           locale: language
-        })
+        });
       }
 
     }
