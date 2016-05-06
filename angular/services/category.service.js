@@ -3,8 +3,11 @@ export class CategoryService{
     constructor(API, ToastService, LanguageService, Restangular, $state){
         'ngInject';
 
-        this.categories = [];
-        this.category ={};
+        this._promise;
+        this._callbacks = new Array();
+
+        this.categories;
+        this.category = {};
 
         this.API = API;
         this.ToastService = ToastService;
@@ -14,13 +17,20 @@ export class CategoryService{
 
     }
     fetchAll(success, error, force){
-      if(this.categories.length && ! force){
+      if(angular.isDefined(this.categories) && !force){
         success(this.categories);
       }
+      else if(angular.isDefined(this._promise)){
+        this._callbacks.push(success);
+      }
       else{
-        this.API.all('categories').getList().then((list) => {
+        this._callbacks.push(success);
+        this._promise = this.API.all('categories').getList().then((list) => {
           this.categories = list;
-          success(this.categories);
+          angular.forEach(this._callbacks, (callback) => {
+            callback(this.categories);
+          })
+          this._promise = null;
         }, error);
       }
 

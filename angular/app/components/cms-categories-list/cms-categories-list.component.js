@@ -4,7 +4,7 @@ class CmsCategoriesListController {
         var CmsCategoriesListController = this;
 
         this.CategoryService = CategoryService;
-        this.categories = this.CategoryService.fetchAll((categories) =>{
+        this.CategoryService.fetchAll((categories) =>{
           this.categories = categories;
         });
 

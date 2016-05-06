@@ -37,7 +37,7 @@ class CmsLanguageTableController{
       }
     }
     save(language) {
-      language.save();
+      this.LanguageService.update(language);
     }
 }
 

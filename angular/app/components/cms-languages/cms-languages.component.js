@@ -3,7 +3,9 @@ class CmsLanguagesController{
         'ngInject';
 
         this.LanguageService = LanguageService;
-        this.languages = LanguageService.getActive();
+        LanguageService.getActive((languages) =>  {
+          this.languages = languages;
+        });
         this.language = this.LanguageService.activeLanguage();
     }
     onChange(doneFn){

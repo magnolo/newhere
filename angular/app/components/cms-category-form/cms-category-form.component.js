@@ -4,13 +4,18 @@ class CmsCategoryFormController{
 
         this.ToastService = ToastService;
         this.CategoryService = CategoryService;
-        this.categories = CategoryService.categories;
         this.LanguageService = LanguageService;
-        this.languages = this.LanguageService.getActive();
+
+
+        this.LanguageService.getActive((languages) => {
+          this.languages = languages;
+        });
         this.category = {
           title:'',
           description:''
         };
+
+    
 
         if($stateParams.id != 'new'){
           this.CategoryService.one($stateParams.id, (category) =>{
