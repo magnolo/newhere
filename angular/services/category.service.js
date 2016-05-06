@@ -52,7 +52,7 @@ export class CategoryService{
       if(category.id && category.id != 'new'){
         return this.category.save().then((response)=>{
           this.ToastService.show('Saved successfully');
-          angular.forEach(this.categories, function(item){
+          angular.forEach(this.categories, (item) =>{
             if(item.id == category.id){
               angular.copy(category, item);
             }

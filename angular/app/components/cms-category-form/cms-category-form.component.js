@@ -27,7 +27,22 @@ class CmsCategoryFormController{
           });
         }
     }
+    addTranslation(language){
+      var exists = false;
+      angular.forEach(this.category.translations, (translation) =>{
+          if(translation.locale == language){
+            exists = true;
+          }
+      });
+      if(!exists){
+        this.category.translations.push({
+          title:'',
+          description:'',
+          locale: language
+        })
+      }
 
+    }
     save() {
       this.CategoryService.save(this.category);
     }
