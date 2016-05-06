@@ -13,8 +13,9 @@ class CmsCategoryFormController{
         };
 
         if($stateParams.id != 'new'){
-          this.CategoryService.one($stateParams.id);
-          this.category = this.CategoryService.category;
+          this.CategoryService.one($stateParams.id, (category) =>{
+            this.category = category;
+          });
         }
     }
 

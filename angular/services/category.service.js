@@ -1,25 +1,41 @@
 // just a temporary try...
 export class CategoryService{
-    constructor(API, ToastService, LanguageService,  $state){
+    constructor(API, ToastService, LanguageService, Restangular, $state){
         'ngInject';
+
+        this.categories = [];
+        this.category ={};
 
         this.API = API;
         this.ToastService = ToastService;
         this.LanguageService = LanguageService;
+        this.Restangular = Restangular;
         this.$state = $state;
-        this.categories = [];
-        this.category = {};
+
     }
-    fetchAll(){
-      return this.API.all('categories').getList().then((list) => {
-        angular.copy(list, this.categories);
-      });
+    fetchAll(success, error, force){
+      if(this.categories.length && ! force){
+        success(this.categories);
+      }
+      else{
+        this.API.all('categories').getList().then((list) => {
+          this.categories = list;
+          success(this.categories);
+        }, error);
+      }
+
     }
-    one(id){
-      if(!id) return;
-      return this.API.one('categories', id).get().then((item) => {
-        angular.copy(item, this.category);
-      });
+    one(id, success, error){
+      if(!id) return false;
+      if (this.category.id == id) {
+          success(this.category);
+      }
+      else {
+        this.API.one('categories', id).get().then((item) => {
+          this.category = item;
+          success(this.category);
+        },error);
+      }
     }
     save(category){
       if(category.id && category.id != 'new'){
@@ -40,11 +56,11 @@ export class CategoryService{
             icon: category.icon,
             parent_id: category.parent_id
         };
-        return this.API.all('categories').post(data).then((response)=>{
+        this.API.all('categories').post(data).then((response)=>{
           category.id = response.id;
           this.ToastService.show('Saved successfully');
           this.$state.go('cms.categories.details', {id: response.id});
-          this.fetchAll();
+          this.categories.push(category);
           return this.category = category;
         });
       }

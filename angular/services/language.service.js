@@ -11,14 +11,16 @@ export class LanguageService{
         this.selectedLanguage = '';
     }
 
-    fetchAll(doneFn){
-      return this.API.all('languages').getList().then((list) => {
-        angular.copy(list, this.languages);
-        if(typeof doneFn == "function"){
-          doneFn();
-        }
-        return this.languages;
-      })
+    fetchAll(success, error, force){
+      if(this.languages.length && !force){
+        success(this.languages);
+      }
+      else{
+       this.API.all('languages').getList().then((list) => {
+          this.languages = list
+          success(this.languages);
+        })
+      }
     }
     fetchPublished(doneFn){
       return this.API.all('languages/published').getList().then((list) => {
@@ -27,12 +29,6 @@ export class LanguageService{
         }
         return angular.copy(list, this.languages);
       })
-    }
-    getAll(){
-      if(!this.languages.length){
-        this.fetchAll();
-      }
-      return this.languages;
     }
     getActive(){
       if(!this.languages.length){

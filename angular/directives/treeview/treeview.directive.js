@@ -1,7 +1,7 @@
 class TreeviewController {
     constructor() {
         'ngInject';
-        console.log(this);
+        
         this.selection = [];
         //
     }
@@ -94,7 +94,7 @@ export function TreeviewDirective(RecusionsHelperService){
         },
         replace: true ,
         compile: function(element) {
-          console.log(this);
+
                return RecusionsHelperService.compile(element, function(scope, iElement, iAttrs, controller, transcludeFn) {
                    angular.extend(options, scope.vm.options)
                });

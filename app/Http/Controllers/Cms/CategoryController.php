@@ -27,7 +27,11 @@ class CategoryController extends Controller
     public function show($id)
     {
         $category = Category::findOrFail((int)$id);
+      //$category = $cat->translate('en', true);
         $category->language = App::getLocale();
+        //$category->translations = $category->translations();
+
+        //dd($cat->getTranslation());
         return response()->json($category);
     }
 

@@ -4,7 +4,9 @@ class CmsLanguageTableController{
 
         this.$filter = $filter;
         this.LanguageService = LanguageService;
-        this.languages = this.LanguageService.getAll();
+        this.LanguageService.fetchAll((languages) => {
+          this.languages = languages;
+        });
 
         this.query = {
             order: '-language',
@@ -35,9 +37,7 @@ class CmsLanguageTableController{
       }
     }
     save(language) {
-
       language.save();
-      //this.LanguageService.update(language);
     }
 }
 

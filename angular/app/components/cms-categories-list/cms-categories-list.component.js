@@ -4,8 +4,10 @@ class CmsCategoriesListController {
         var CmsCategoriesListController = this;
 
         this.CategoryService = CategoryService;
-        this.CategoryService.fetchAll();
-        this.categories = CategoryService.categories;
+        this.categories = this.CategoryService.fetchAll((categories) =>{
+          this.categories = categories;
+        });
+
         this.options = {
           allowMove:true,
           allowDrag:true,
