@@ -28,7 +28,7 @@
             <md-button type="submit" class="md-primary md-raised" ng-disabled="categoryForm.$invalid">Save</md-button>
         </div>
     </div>
-    <md-tabs md-dynamic-height  md-autoselect class="md-primary" ng-if="vm.category.translations.length">
+    <md-tabs md-dynamic-height  md-autoselect md-selected="vm.activeTransTab" class="md-primary" ng-if="vm.category.translations.length">
         <md-tab label="{{translation.locale}}" ng-repeat="translation in vm.category.translations">
             <md-content class="md-padding white-bg">
                 <div>
