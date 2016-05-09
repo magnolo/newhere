@@ -1,10 +1,11 @@
 class UserMenuController{
-    constructor($auth,$state){
+    constructor($auth,$state, ToastService){
         'ngInject';
 
         //
         this.$auth = $auth;
         this.$state = $state;
+        this.ToastService = ToastService;
     }
 
     logout(){

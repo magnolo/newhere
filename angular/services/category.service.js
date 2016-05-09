@@ -89,7 +89,6 @@ export class CategoryService{
             parent_id: category.parent_id
         };
         this.API.all('categories').post(data).then((response)=>{
-        //category.id = response.id;
           this.ToastService.show('Saved successfully');
           this.$state.go('cms.categories.details', {id: response.id});
           this.categories.push(category);
