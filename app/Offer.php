@@ -27,7 +27,7 @@ class Offer extends Model
 
     public function countries()
     {
-        return $this->belongsToMany('App\Country', 'offer_countries', 'offer_id', 'country_id');
+        return $this->belongsToMany('Webpatser\Countries\Countries', 'offer_countries', 'offer_id', 'country_id');
     }
-    
+
 }

@@ -18,9 +18,14 @@ class CategoryController extends Controller
 
     public function index(Request $request)
     {
+        if($request->get('all')){
+          $categories = Category::withTranslation()->orderBy('id', 'ASC')->get();
+        }
+        else{
+          $categories = Category::where('parent_id',null)->withTranslation()->orderBy('id', 'ASC')->get();
+          $categories->load('children');
+        }
 
-        $categories = Category::where('parent_id',null)->withTranslation()->orderBy('id', 'ASC')->get();
-        $categories->load('children');
         return response()->json($categories);
     }
 
@@ -68,9 +73,7 @@ class CategoryController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-          //  'language'    => 'required|min:2|max:2',
             'icon' => 'required|min:1|max:20',
-            //'title' => 'required|max:255',
             'translations' => 'required'
         ]);
 
@@ -89,10 +92,10 @@ class CategoryController extends Controller
         foreach($request->get('translations') as $transalation){
           $category->translateOrNew($transalation['locale'])->title = $transalation['title'];
           $category->translateOrNew($transalation['locale'])->description = $transalation['description'];
+
         }
         $category->save();
-
-
+        
         DB::commit();
 
         return response()->success(compact('category'));

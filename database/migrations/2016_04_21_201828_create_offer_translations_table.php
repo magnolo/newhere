@@ -34,6 +34,10 @@ class CreateOfferTranslationsTable extends Migration
                 ->on('offers')
                 ->onDelete('cascade');
 
+            // $table->foreign('language_code')
+            //           ->references('language')
+            //           ->on('languages')
+            //           ->onDelete('cascade');
         });
     }
 
@@ -46,7 +50,7 @@ class CreateOfferTranslationsTable extends Migration
     {
         Schema::table(self::TABLE, function (Blueprint $table) {
             $table->dropForeign(sprintf('%1$s_offer_id_foreign', self::TABLE));
-            $table->dropForeign(sprintf('%1$s_language_id_foreign', self::TABLE));
+            // $table->dropForeign(sprintf('%1$s_language_code_foreign', self::TABLE));
         });
         Schema::drop(self::TABLE);
     }
