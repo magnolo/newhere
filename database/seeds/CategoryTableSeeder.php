@@ -29,6 +29,8 @@ class CategoryTableSeeder extends Seeder
 
         $category->translateOrNew('de')->title = "Deutsch Parent";
         $category->translateOrNew('de')->description = "Testscription";
+        $category->translateOrNew('en')->title = "English Parent";
+        $category->translateOrNew('en')->description = "Testscription English";
 
         $category->save();
 
@@ -39,6 +41,8 @@ class CategoryTableSeeder extends Seeder
 
         $category2->translateOrNew('de')->title = "Deutsch Child";
         $category2->translateOrNew('de')->description = "Testscription";
+        $category2->translateOrNew('en')->title = "English Child";
+        $category2->translateOrNew('en')->description = "Testscription English";
 
         $category2->save();
 

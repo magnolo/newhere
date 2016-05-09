@@ -6,7 +6,7 @@ use Illuminate\Database\Migrations\Migration;
 class CreateOfferCountriesTable extends Migration
 {
     const TABLE = 'offer_countries';
-    
+
     /**
      * Run the migrations.
      *
@@ -31,7 +31,7 @@ class CreateOfferCountriesTable extends Migration
 
             $table->foreign('country_id', sprintf('%1$s_country_id_foreign', self::TABLE))
                 ->references('id')
-                ->on('countries')
+                ->on(\Config::get('countries.table_name'))
                 ->onDelete('cascade');
         });
     }
