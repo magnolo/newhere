@@ -104,5 +104,15 @@ export function RoutesConfig($stateProvider, $urlRouterProvider) {
 				}
 			}
 		})
+		.state('cms.roles',{
+			url:'/roles',
+			data:{},
+			views: {
+				'main@': {
+					templateUrl: getCmsView('roles')
+				}
+			}
+		})
+
 	;
 }

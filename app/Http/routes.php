@@ -36,6 +36,8 @@ $api->group(['middleware' => ['api']], function ($api) {
     $api->post('categories', 'Cms\CategoryController@create');
     $api->put('categories/{id}', ['uses' => 'Cms\CategoryController@update']);
     $api->put('categories/{id}/toggleEnabled', 'Cms\CategoryController@toggleEnabled');
+
+    $api->get('roles', 'Cms\RoleController@index');
 });
 
 //protected routes with JWT (must be logged in)
