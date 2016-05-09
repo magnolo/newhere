@@ -5,8 +5,11 @@ export class CategoryService{
 
         this._promise;
         this._callbacks = new Array();
+        this._promiseFlat;
+        this._callbacksFlat = new Array();
 
         this.categories;
+        this.flattenedCategories;
         this.category = {};
 
         this.API = API;
@@ -16,7 +19,7 @@ export class CategoryService{
         this.$state = $state;
 
     }
-    fetchAll(success, error, force){
+    all(success, error, force){
       if(angular.isDefined(this.categories) && !force){
         success(this.categories);
       }
@@ -34,6 +37,24 @@ export class CategoryService{
         }, error);
       }
 
+    }
+    flattened(success, error, force){
+      if(angular.isDefined(this.flattenedCategories) && !force){
+        success(this.flattenedCategories);
+      }
+      else if(angular.isDefined(this._promiseFlat)){
+        this._callbacksFlat.push(success);
+      }
+      else{
+        this._callbacksFlat.push(success);
+        this._promiseFlat = this.API.all('categories?all=true').getList().then((response) => {
+          this.flattenedCategories = response;
+          angular.forEach(this._callbacksFlat, (callback) => {
+            callback(this.flattenedCategories);
+          })
+          this._promiseFlat = null;
+        }, error);
+      }
     }
     one(id, success, error){
 
