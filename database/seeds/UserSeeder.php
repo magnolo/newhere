@@ -14,16 +14,20 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        //
         $superAdmin = Role::where('name', 'superadmin')->firstOrFail();
-
         $user = new User();
-
         $user->email = "super@admin.at";
         $user->password = Hash::make('admin');
         $user->name = "Administrator";
-
         $user->save();
         $user->attachRole($superAdmin);
+
+        $organisation = Role::where('name', 'organisation')->firstOrFail();
+        $ngo = new User;
+        $ngo->email = "wwf@ngo.at";
+        $ngo->password = Hash::make('ngouser');
+        $ngo->name = "WWF";
+        $ngo->save();
+        $ngo->attachRole($organisation);
     }
 }
