@@ -25,8 +25,8 @@ export class CategoryService{
       }
       else{
         this._callbacks.push(success);
-        this._promise = this.API.all('categories').getList().then((list) => {
-          this.categories = list;
+        this._promise = this.API.all('categories').getList().then((response) => {
+          this.categories = response;
           angular.forEach(this._callbacks, (callback) => {
             callback(this.categories);
           })
@@ -36,14 +36,14 @@ export class CategoryService{
 
     }
     one(id, success, error){
-      console.log(id);
+
       if(!id) return false;
       if (this.category.id == id) {
           success(this.category);
       }
       else {
-        this.API.one('categories', id).get().then((item) => {
-          this.category = item;
+        this.API.one('categories', id).get().then((response) => {
+          this.category = response.data.category;
           success(this.category);
         },error);
       }

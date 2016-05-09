@@ -36,7 +36,7 @@ class CategoryController extends Controller
         foreach($languages as $language){
            $category->translate($language->language);
         }
-        return response()->json($category);
+        return response()->success(compact('category'));
     }
 
     public function create(Request $request)
@@ -95,7 +95,7 @@ class CategoryController extends Controller
 
         }
         $category->save();
-        
+
         DB::commit();
 
         return response()->success(compact('category'));
