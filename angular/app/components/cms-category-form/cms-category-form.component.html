@@ -8,7 +8,7 @@
             <label>Parent Category</label>
             <md-select ng-model="vm.category.parent_id">
                 <md-option ng-value="null">None</md-option>
-                <md-option ng-repeat="category in vm.categories" ng-value="category.id">{{category.title}}</md-option>
+                <md-option ng-if="category.id != vm.category.id" ng-repeat="category in vm.categories" ng-value="category.id">{{category.title}}</md-option>
             </md-select>
         </md-input-container>
         <span flex></span>

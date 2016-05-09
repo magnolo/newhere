@@ -70,7 +70,10 @@ export function RoutesConfig($stateProvider, $urlRouterProvider) {
 		})
 		.state('cms.dashboard', {
 			url: '/dashboard',
-			data: {},
+			data: {
+				auth:true,
+				roles:['admin', 'superadmin', 'organisation', 'moderator']
+			},
 			views: {
 				'main@': {
 					templateUrl: getCmsView('dashboard')
@@ -79,7 +82,10 @@ export function RoutesConfig($stateProvider, $urlRouterProvider) {
 		})
 		.state('cms.categories', {
 			url: '/categories',
-			data: {},
+			data: {
+				auth:true,
+				roles:['admin', 'superadmin']
+			},
 			views: {
 				'main@': {
 					templateUrl: getCmsView('categories')
@@ -88,7 +94,10 @@ export function RoutesConfig($stateProvider, $urlRouterProvider) {
 		})
 		.state('cms.categories.details', {
 			url: '/:id',
-			data: {},
+			data: {
+				auth:true,
+					roles:['admin', 'superadmin']
+			},
 			views: {
 				'details': {
 					templateUrl: getCmsView('category')
@@ -97,12 +106,28 @@ export function RoutesConfig($stateProvider, $urlRouterProvider) {
 		})
 		.state('cms.languages', {
 			url: '/languages',
-			data: {},
+			data: {
+				auth:true,
+					roles:['admin', 'superadmin']
+			},
 			views: {
 				'main@': {
 					templateUrl: getCmsView('language')
 				}
 			}
 		})
+		.state('cms.roles',{
+			url:'/roles',
+			data:{
+				auth:true,
+				roles:['admin', 'superadmin']
+			},
+			views: {
+				'main@': {
+					templateUrl: getCmsView('roles')
+				}
+			}
+		})
+
 	;
 }
