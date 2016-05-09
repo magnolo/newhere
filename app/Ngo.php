@@ -17,5 +17,7 @@ class Ngo extends Model
     {
         return $this->hasMany('App\Offer', 'ngo_id', 'id');
     }
-
+    public function users(){
+      return $this->belongsToMany('App\User', 'ngo_users');
+    }
 }

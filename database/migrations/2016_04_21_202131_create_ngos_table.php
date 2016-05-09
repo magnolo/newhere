@@ -22,14 +22,14 @@ class CreateNgosTable extends Migration
             $table->string('city')->nullable();
             $table->string('phone');
             $table->string('email');
-            $table->string('website');        
+            $table->string('website');
 
             $table->text('contact');
             $table->text('contact_email');
             $table->text('contact_phone');
 
-            $table->string('username')->unique();
-            $table->string('password', 60);
+            // $table->string('username')->unique();
+            // $table->string('password', 60);
 
             $table->timestamps();
         });
