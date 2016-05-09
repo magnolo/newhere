@@ -16,7 +16,7 @@ class CreateLanguagesTable extends Migration
     {
         Schema::create(self::TABLE, function (Blueprint $table) {
             $table->increments('id');
-            $table->string('language', 5)->unique();
+            $table->string('language', 5)->index();
             $table->boolean('default_language')->default(false);
             $table->boolean('published')->default(false);
             $table->boolean('enabled')->default(false);

@@ -11,7 +11,9 @@
         "barryvdh/laravel-cors": "0.7.x",
         "laravelangular/generators": "2.4.x",
         "dingo/api": "1.0.x@dev",
-        "dimsav/laravel-translatable": "^5.5"
+        "dimsav/laravel-translatable": "^5.5",
+        "zizaco/entrust": "5.2.x-dev",
+        "webpatser/laravel-countries": "dev-master"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
