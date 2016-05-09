@@ -36,7 +36,7 @@ class CategoryController extends Controller
         foreach($languages as $language){
            $category->translate($language->language);
         }
-        return response()->success(compact('category'));
+        return response()->json($category);
     }
 
     public function create(Request $request)

@@ -63,8 +63,8 @@ export class CategoryService{
           success(this.category);
       }
       else {
-        this.API.one('categories', id).get().then((response) => {
-          this.category = response.data.category;
+        this.API.one('categories', id).get().then((item) => {
+          this.category = item;
           success(this.category);
         },error);
       }
