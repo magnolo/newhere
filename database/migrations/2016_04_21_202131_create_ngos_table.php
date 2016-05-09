@@ -22,12 +22,7 @@ class CreateNgosTable extends Migration
             $table->string('city')->nullable();
             $table->string('phone');
             $table->string('email');
-            $table->string('website');
-
-            /**
-             * @todo needs to be translated?!
-             */
-            $table->text('description');
+            $table->string('website');        
 
             $table->text('contact');
             $table->text('contact_email');
