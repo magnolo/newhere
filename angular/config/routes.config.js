@@ -70,7 +70,9 @@ export function RoutesConfig($stateProvider, $urlRouterProvider) {
 		})
 		.state('cms.dashboard', {
 			url: '/dashboard',
-			data: {},
+			data: {
+				auth:true,
+			},
 			views: {
 				'main@': {
 					templateUrl: getCmsView('dashboard')

@@ -1,0 +1,33 @@
+<a hide-xs ng-if="!vm.isAuthenticated()" class="DemoHeader-link md-subhead" ui-sref="app.login">Login</a>
+<md-menu ng-if="vm.isAuthenticated()">
+    <md-button aria-label="Open user menu" class="md-icon-button" ng-click="$mdOpenMenu($event)">
+        <md-icon>menu</md-icon>
+    </md-button>
+    <md-menu-content width="3">
+        <md-menu-item>
+            <md-button>
+                <md-icon>person</md-icon>
+                Profile
+            </md-button>
+        </md-menu-item>
+        <md-menu-item>
+            <md-button>
+                <md-icon>library_books</md-icon>
+                Offers
+            </md-button>
+        </md-menu-item>
+        <md-menu-item>
+            <md-button>
+                <md-icon>business</md-icon>
+                Organisation
+            </md-button>
+        </md-menu-item>
+        <md-menu-divider></md-menu-divider>
+        <md-menu-item>
+            <md-button ng-click="vm.logout()">
+                <md-icon>vpn_key</md-icon>
+                Logout
+            </md-button>
+        </md-menu-item>
+    </md-menu-content>
+</md-menu>

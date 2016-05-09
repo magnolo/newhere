@@ -14,7 +14,7 @@ class AuthController extends Controller
     {
         $this->validate($request, [
             'email'    => 'required|email',
-            'password' => 'required|min:8',
+            'password' => 'required|min:5',
         ]);
 
         $credentials = $request->only('email', 'password');
@@ -29,7 +29,7 @@ class AuthController extends Controller
         }
 
         $user = Auth::user();
-
+        $user->load('roles');
         return response()->success(compact('user', 'token'));
     }
 
