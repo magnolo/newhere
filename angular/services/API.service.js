@@ -23,6 +23,7 @@ export class APIService {
 					if (token) {
 						headers.Authorization = 'Bearer ' + token;
 					}
+					headers.Language = $window.localStorage.language || 'de';
 				});
 		});
 	}

@@ -20,12 +20,27 @@ Route::group(['middleware' => ['web']], function () {
 });
 
 $api->group(['middleware' => ['api']], function ($api) {
-
+    /**
+     * @var \Dingo\Api\Routing\Router $api
+     */
     $api->controller('auth', 'Auth\AuthController');
 
+    $api->get('languages', 'Cms\LanguageController@index');
+    $api->get('languages/published', 'Cms\LanguageController@published');
+    $api->put('languages/{id}', 'Cms\LanguageController@update');
+
+    $api->get('filter', 'Cms\FilterController@index');
+
+    $api->get('categories', 'Cms\CategoryController@index');
+    $api->get('categories/{id}', ['uses' => 'Cms\CategoryController@show']);
+    $api->post('categories', 'Cms\CategoryController@create');
+    $api->put('categories/{id}', ['uses' => 'Cms\CategoryController@update']);
+    $api->put('categories/{id}/toggleEnabled', 'Cms\CategoryController@toggleEnabled');
 });
 
 //protected routes with JWT (must be logged in)
 $api->group(['middleware' => ['api', 'api.auth']], function ($api) {
-
+    /**
+     * @var \Dingo\Api\Routing\Router $api
+     */
 });

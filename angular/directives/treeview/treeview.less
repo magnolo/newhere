@@ -1,0 +1,62 @@
+.treeview {
+    position: relative;
+    margin-bottom:0em;
+    md-list-item {
+        min-height: 32px;
+        position: relative;
+
+        .md-list-item-text {
+            > p {
+                margin: 0.7em 0;
+            }
+
+        }
+        > div{
+          &:nth-child(2), ._md-secondary-container{
+            display:none;
+          }
+        }
+    }
+
+    &:not(:first-child) {
+        md-list-item {
+            padding-right: 0;
+            //font-size:14px;
+        }
+    }
+
+    .toggler {
+        margin: 0 0.3em;
+    }
+
+    .dndPlaceholder {
+        height: 44px;
+        list-style-type: none;
+        background-color: #efefef;
+        outline:1px dashed #ccc;
+        margin-left:1em;
+    }
+    .dndDragging{
+      background-color:rgba(0,107,185,1) !important;
+      color:#fff;
+      width:100%;
+      md-icon{
+        color:#fff;
+      }
+    }
+    .dndDraggingSource {
+        display: none;
+    }
+
+    .handle {
+        cursor: move;
+    }
+
+    &.dndDragover {
+        //outline:1px dashed #ccc;
+        .meanwhile {
+            opacity: 0.1;
+        }
+
+    }
+}

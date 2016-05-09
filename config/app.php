@@ -65,7 +65,7 @@ return [
     |
     */
 
-    'locale' => 'en',
+    'locale' => 'de',
 
     /*
     |--------------------------------------------------------------------------
@@ -78,7 +78,7 @@ return [
     |
     */
 
-    'fallback_locale' => 'en',
+    'fallback_locale' => 'de',
 
     /*
     |--------------------------------------------------------------------------
@@ -163,6 +163,7 @@ return [
         LaravelAngular\Generators\LaravelServiceProvider::class,
         Barryvdh\Cors\ServiceProvider::class,
 
+        Dimsav\Translatable\TranslatableServiceProvider::class,
     ],
 
     /*
