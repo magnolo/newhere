@@ -9,10 +9,9 @@
             </tr>
         </thead>
         <tbody md-body>
-            <tr ng-repeat="role in vm.filteredRoles = (vm.roles | filter: vm.filter) | limitTo: vm.query.limit : (vm.query.page-1)*vm.query.limit">
-                <td class="md-cell">{{role.display_name}}</td>
-                <td class="md-cell">{{role.users.length}}</td>
-
+            <tr md-row ng-repeat="role in vm.filteredRoles = (vm.roles | filter: vm.filter) | limitTo: vm.query.limit : (vm.query.page-1)*vm.query.limit">
+                <td md-cell>{{role.display_name}}</td>
+                <td md-cell>{{role.users.length}}</td>
             </tr>
         </tbody>
     </table>
