@@ -95,7 +95,7 @@ class CategoryController extends Controller
 
         }
         $category->save();
-        
+
         DB::commit();
 
         return response()->success(compact('category'));

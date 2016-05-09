@@ -1,15 +1,16 @@
-<md-content class="Page-Container DemoHeader white-bg">
+<md-content class="Page-Container DemoHeader">
 	<div layout="row">
-		<div flex="90" flex-offset="5" class="DemoHeader-container">
+		<div flex="95" flex-offset="5" class="DemoHeader-container">
 			<div layout="row" layout-align="space-between center">
-				<div>New Here CMS</div>
+				<div ui-sref="cms.dashboard">New Here CMS</div>
 				<span flex></span>
 				<div layout="row" layout-align="center stretch">
 					<a hide-xs class="DemoHeader-link md-subhead" ui-sref="cms.dashboard">Dashboard</a>
-					<a hide-xs class="DemoHeader-link md-subhead" ui-sref="cms.categories">Kategorien</a>
-					<a hide-xs class="DemoHeader-link md-subhead" ui-sref="cms.languages">Sprachen</a>
+					<a hide-xs class="DemoHeader-link md-subhead" ui-sref="cms.categories">Categories</a>
+					<a hide-xs class="DemoHeader-link md-subhead" ui-sref="cms.languages">Languages</a>
+					<!-- <a hide-xs class="DemoHeader-link md-subhead" ui-sref="cms.roles">Roles</a>  -->
 				</div>
-
+				<user-menu></user-menu>
 			</div>
 		</div>
 	</div>

@@ -1,4 +1,4 @@
-export function RoutesRun($rootScope, $state, $auth) {
+export function RoutesRun($rootScope, $state, $auth, $window, ToastService) {
     'ngInject';
 
 
@@ -9,6 +9,14 @@ export function RoutesRun($rootScope, $state, $auth) {
             if (!$auth.isAuthenticated()) {
                 event.preventDefault();
                 return $state.go('app.login');
+            }
+            else if(toState.data.roles){
+              var roles = $window.localStorage.roles;
+
+              if(toState.data.roles.indexOf(JSON.parse(roles)[0]) == -1){
+                event.preventDefault();
+                ToastService.error('No permission to go there!')
+              }
             }
         }
 

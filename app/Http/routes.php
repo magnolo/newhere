@@ -25,6 +25,10 @@ $api->group(['middleware' => ['api']], function ($api) {
      */
     $api->controller('auth', 'Auth\AuthController');
 
+});
+
+//protected routes with JWT (must be logged in)
+$api->group(['middleware' => ['api', 'api.auth']], function ($api) {
     $api->get('languages', 'Cms\LanguageController@index');
     $api->get('languages/published', 'Cms\LanguageController@published');
     $api->put('languages/{id}', 'Cms\LanguageController@update');
@@ -36,11 +40,6 @@ $api->group(['middleware' => ['api']], function ($api) {
     $api->post('categories', 'Cms\CategoryController@create');
     $api->put('categories/{id}', ['uses' => 'Cms\CategoryController@update']);
     $api->put('categories/{id}/toggleEnabled', 'Cms\CategoryController@toggleEnabled');
-});
 
-//protected routes with JWT (must be logged in)
-$api->group(['middleware' => ['api', 'api.auth']], function ($api) {
-    /**
-     * @var \Dingo\Api\Routing\Router $api
-     */
+    $api->get('roles', 'Cms\RoleController@index');
 });

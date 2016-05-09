@@ -10,7 +10,7 @@ class CmsCategoryFormController{
         this.LanguageService.getActive((languages) => {
           this.languages = languages;
         });
-        this.CategoryService.fetchAll((categories) => {
+        this.CategoryService.flattened((categories) => {
           this.categories = categories;
         })
         this.category = {

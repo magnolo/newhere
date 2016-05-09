@@ -14,7 +14,7 @@ class AuthController extends Controller
     {
         $this->validate($request, [
             'email'    => 'required|email',
-            'password' => 'required|min:8',
+            'password' => 'required|min:5',
         ]);
 
         $credentials = $request->only('email', 'password');
@@ -29,7 +29,7 @@ class AuthController extends Controller
         }
 
         $user = Auth::user();
-
+        $user->load('roles');
         return response()->success(compact('user', 'token'));
     }
 
@@ -46,6 +46,8 @@ class AuthController extends Controller
         $user->email = trim(strtolower($request->email));
         $user->password = bcrypt($request->password);
         $user->save();
+
+        $user->attachRole(Role::where('name', 'user')->findOrFail());
 
         $token = JWTAuth::fromUser($user);
 

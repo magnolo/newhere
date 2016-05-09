@@ -5,8 +5,11 @@ export class CategoryService{
 
         this._promise;
         this._callbacks = new Array();
+        this._promiseFlat;
+        this._callbacksFlat = new Array();
 
         this.categories;
+        this.flattenedCategories;
         this.category = {};
 
         this.API = API;
@@ -16,7 +19,7 @@ export class CategoryService{
         this.$state = $state;
 
     }
-    fetchAll(success, error, force){
+    all(success, error, force){
       if(angular.isDefined(this.categories) && !force){
         success(this.categories);
       }
@@ -25,8 +28,8 @@ export class CategoryService{
       }
       else{
         this._callbacks.push(success);
-        this._promise = this.API.all('categories').getList().then((list) => {
-          this.categories = list;
+        this._promise = this.API.all('categories').getList().then((response) => {
+          this.categories = response;
           angular.forEach(this._callbacks, (callback) => {
             callback(this.categories);
           })
@@ -35,8 +38,26 @@ export class CategoryService{
       }
 
     }
+    flattened(success, error, force){
+      if(angular.isDefined(this.flattenedCategories) && !force){
+        success(this.flattenedCategories);
+      }
+      else if(angular.isDefined(this._promiseFlat)){
+        this._callbacksFlat.push(success);
+      }
+      else{
+        this._callbacksFlat.push(success);
+        this._promiseFlat = this.API.all('categories?all=true').getList().then((response) => {
+          this.flattenedCategories = response;
+          angular.forEach(this._callbacksFlat, (callback) => {
+            callback(this.flattenedCategories);
+          })
+          this._promiseFlat = null;
+        }, error);
+      }
+    }
     one(id, success, error){
-      console.log(id);
+
       if(!id) return false;
       if (this.category.id == id) {
           success(this.category);
@@ -68,7 +89,6 @@ export class CategoryService{
             parent_id: category.parent_id
         };
         this.API.all('categories').post(data).then((response)=>{
-        //category.id = response.id;
           this.ToastService.show('Saved successfully');
           this.$state.go('cms.categories.details', {id: response.id});
           this.categories.push(category);

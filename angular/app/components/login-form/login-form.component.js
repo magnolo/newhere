@@ -1,8 +1,10 @@
 class LoginFormController {
-	constructor($auth, ToastService) {
+	constructor($auth, $state, $window, ToastService) {
 		'ngInject';
 
+		this.$window = $window;
 		this.$auth = $auth;
+		this.$state = $state;
 		this.ToastService = ToastService;
 
 		this.email = '';
@@ -17,9 +19,15 @@ class LoginFormController {
 
 		this.$auth.login(user)
 			.then((response) => {
+				var roles = [];
 				this.$auth.setToken(response.data);
-
+				angular.forEach(response.data.data.user.roles, function(role){
+					roles.push(role.name);
+				});
+				console.log(roles);
+				this.$window.localStorage.roles = JSON.stringify(roles);
 				this.ToastService.show('Logged in successfully.');
+				this.$state.go('cms.dashboard');
 			})
 			.catch(this.failedLogin.bind(this));
 	}

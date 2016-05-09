@@ -1,0 +1,19 @@
+<md-card>
+<md-table-container>
+    <table md-table>
+        <thead md-head md-order="vm.query.order" md-on-reorder="vm.onOrderChange">
+            <tr md-row>
+                <th md-column md-order-by="language">Role</th>
+                <th md-column md-order-by="enabled">Users</th>
+
+            </tr>
+        </thead>
+        <tbody md-body>
+            <tr md-row ng-repeat="role in vm.filteredRoles = (vm.roles | filter: vm.filter) | limitTo: vm.query.limit : (vm.query.page-1)*vm.query.limit">
+                <td md-cell>{{role.display_name}}</td>
+                <td md-cell>{{role.users.length}}</td>
+            </tr>
+        </tbody>
+    </table>
+</md-table-container>
+</md-card>
