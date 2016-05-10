@@ -16,7 +16,24 @@ class LanguageController extends Controller
         return response()->json($languages);
     }
 
-    public function published()
+    public function defaultLanguage()
+    {
+        $language = \App\Language::where('default_language', true)->first();
+        if (!$language) {
+            return response()->error('No default language found', 404);
+        }
+
+        return response()->json($language);
+    }
+
+    public function enabledIndex()
+    {
+        $languages = \App\Language::where('enabled', true)
+            ->get();
+        return response()->json($languages);
+    }
+
+    public function publishedIndex()
     {
         $languages = Language::where('enabled', true)
             ->where('published', true)

@@ -34,7 +34,9 @@ $api->group(['middleware' => ['api', 'api.auth']], function ($api) {
      */
     
     $api->get('languages', 'Cms\LanguageController@index');
-    $api->get('languages/published', 'Cms\LanguageController@published');
+    $api->get('languages/published', 'Cms\LanguageController@publishedIndex');
+    $api->get('languages/enabled', 'Cms\LanguageController@enabledIndex');
+    $api->get('languages/default', 'Cms\LanguageController@defaultLanguage');
     $api->put('languages/{id}', 'Cms\LanguageController@update');
 
     $api->get('filter', 'Cms\FilterController@index');
