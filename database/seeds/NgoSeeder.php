@@ -18,11 +18,10 @@ class NgoSeeder extends Seeder
         $ngo = new Ngo();
 
         $ngo->organisation = "WWF";
-        $ngo->street = "world wide 5";
+        $ngo->street = "World Wide";
+        $ngo->street_number = "5";
         $ngo->zip = "1010";
         $ngo->city = "Wien";
-        $ngo->phone = "01316546";
-        $ngo->email = "wwf@ngo.at";
         $ngo->website = "www.wwf.at";
         $ngo->contact = "WWF Chief";
         $ngo->contact_email ="wwf@ngo.at";

@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Ngo;
+use App\Role;
 use Auth;
+use Illuminate\Support\Facades\DB;
 use JWTAuth;
 use App\User;
 use Illuminate\Http\Request;
@@ -33,24 +36,77 @@ class AuthController extends Controller
         return response()->success(compact('user', 'token'));
     }
 
+    /**
+     * Standard Registration
+     * @param Request $request
+     * @return mixed
+     */
     public function postRegister(Request $request)
     {
+        if ($request->has('organisation')) {
+            //redirect to NGO registration
+            return $this->registerNgo($request);
+        }
+
         $this->validate($request, [
             'name'       => 'required|min:3',
             'email'      => 'required|email|unique:users',
             'password'   => 'required|min:8',
         ]);
 
-        $user = new User;
-        $user->name = trim($request->name);
-        $user->email = trim(strtolower($request->email));
-        $user->password = bcrypt($request->password);
-        $user->save();
-
+        $user = $this->saveUser($request->name, $request->email, $request->password);
         $user->attachRole(Role::where('name', 'user')->findOrFail());
 
         $token = JWTAuth::fromUser($user);
-
         return response()->success(compact('user', 'token'));
+    }
+
+    /**
+     * NGO Registration
+     * @param Request $request
+     * @return mixed
+     */
+    public function registerNgo(Request $request)
+    {
+        $this->validate($request, [
+            'organisation'    => 'required',
+            'email'      => 'required|email|unique:users',
+            'password'   => 'required|min:8',
+            'description'    => 'max:200'
+        ]);
+
+        DB::beginTransaction();
+
+        $ngoUser = $this->saveUser($request->get('organisation'), $request->email, $request->password);
+        $organisationRole = Role::where('name', 'organisation')->firstOrFail();
+        $ngoUser->attachRole($organisationRole);
+
+        $ngo = new Ngo();
+        $ngo->organisation = $request->get('organisation');
+        $ngo->website = $request->get('website');
+        $ngo->contact = $request->get('contact');
+        $ngo->contact_email = $request->get('contact_email');
+        $ngo->contact_phone = $request->get('contact_phone');
+        $ngo->street = $request->get('street');
+        $ngo->street_number = $request->get('street_number');
+        $ngo->zip = $request->get('zip');
+        $ngo->city = $request->get('city');
+        $ngo->save();
+        $ngo->users()->attach($ngoUser);
+
+        DB::commit();
+
+        $token = JWTAuth::fromUser($ngoUser);
+        return response()->success(compact('user', 'token'));
+    }
+
+    private function saveUser($name, $email, $password) {
+        $user = new User;
+        $user->name = trim($name);
+        $user->email = trim(strtolower($email));
+        $user->password = bcrypt($password);
+        $user->save();
+
+        return $user;
     }
 }

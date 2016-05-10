@@ -51,6 +51,16 @@ export function RoutesConfig($stateProvider, $urlRouterProvider) {
                 }
             }
         })
+		.state('app.ngo', {
+			url: '/ngo',
+			data: {},//{auth: true} would require JWT auth for this route
+			views: {
+				'main@': {
+					templateUrl: getView('ngo-register')
+				}
+			}
+		})
+
 
 		//
 		// CMS

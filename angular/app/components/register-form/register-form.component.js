@@ -1,28 +1,22 @@
 class RegisterFormController {
-	constructor($auth, ToastService) {
+	constructor($auth, ToastService, $state) {
 		'ngInject';
 
 		this.$auth = $auth;
 		this.ToastService = ToastService;
+		this.$state = $state;
 
-		this.name = '';
-		this.email = '';
-		this.password = '';
+		this.ngo = {};
 	}
 
 	register() {
-		var user = {
-			name: this.name,
-			email: this.email,
-			password: this.password
-		};
-
-		this.$auth.signup(user)
+		this.$auth.signup(this.ngo)
 			.then((response) => {
 				//remove this if you require email verification
 				this.$auth.setToken(response.data);
 
 				this.ToastService.show('Successfully registered.');
+				this.$state.go('app.login');
 			})
 			.catch(this.failedRegistration.bind(this));
 	}

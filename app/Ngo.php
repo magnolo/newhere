@@ -9,9 +9,7 @@ class Ngo extends Model
 {
     protected $table = 'ngos';
     public $translatedAttributes = ['description'];
-    protected $fillable = ['organisation', 'street', 'zip', 'city', 'phone', 'email', 'website', 'description', 'contact', 'contact_email'];
-
-    protected $hidden = ['password'];
+    protected $fillable = ['organisation', 'street', 'street_number','zip', 'city', 'website', 'contact', 'contact_email', 'contact_phone'];
 
     public function offers()
     {
