@@ -1,24 +1,29 @@
 @import "./angular/material/project";
+@import "./angular/material/colors";
 
 .Footer{
     text-align: center;
-    background-color: @background;
+    background-color: @blue;
     border-top: 1px solid @border;
     padding-top: 40px;
     padding-bottom: 40px;
-    color: @grey;
-    font-weight: 300;
+    color: @white;
+    font-weight: 400;
 }
 
 .Footer-text{
     padding-top: 10px;
-    opacity: 0.8;
-    color: @grey;
+
+    color: @white;
+    a{
+      color:#fff;
+      font-weight:bold;
+    }
 }
 
 .Footer-link{
     text-decoration: none;
-    color: @grey !important;
+    color: @white;
     font-weight: 400;
 }
 
