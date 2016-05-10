@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use Auth;
 use JWTAuth;
 use App\User;
+use Mail;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -29,6 +30,9 @@ class AuthController extends Controller
         }
 
         $user = Auth::user();
+        if($user->confirmed != 1){
+          return response()->error('Your account has not been verified. Did you get mail?',401);
+        }
         $user->load('roles');
         return response()->success(compact('user', 'token'));
     }
@@ -38,8 +42,10 @@ class AuthController extends Controller
         $this->validate($request, [
             'name'       => 'required|min:3',
             'email'      => 'required|email|unique:users',
-            'password'   => 'required|min:8',
+            'password'   => 'required|min:6',
         ]);
+
+        $confirmation_code = str_random(30);
 
         $user = new User;
         $user->name = trim($request->name);
@@ -51,6 +57,26 @@ class AuthController extends Controller
 
         $token = JWTAuth::fromUser($user);
 
+        Mail::send('email.verify', $confirmation_code, function($message) {
+            $message->to($user->email, $user->name)
+                ->subject('Verify your email address');
+        });
+
         return response()->success(compact('user', 'token'));
+    }
+
+    public function getConfirmation($confirmation_code){
+      if(!$confirmation_code){
+        throw new InvalidConfirmationCodeException;
+      }
+      $user = User::whereConfirmationCode($confirmation_code)->first();
+      if(!$user){
+          throw new InvalidConfirmationCodeException;
+      }
+      $user->confirmed = 1;
+      $user->confirmation_code = null;
+      $user->save();
+
+      return response()->success(compact('user'));
     }
 }
