@@ -1,43 +1,56 @@
 @import "./angular/material/project";
+@import "./angular/material/colors";
 
-.DemoHeader {
+.nHeader {
     height: 64px;
-    background-color: white;
+    background-color: @desert;
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     z-index: 10;
+    color:@white;
+    ul{
+      padding:0px;
+      margin:0px;
+      li{
+        display: inline;
+        &::after{
+          content:'/';
+          margin-left:3px;
+        }
+        &:last-child{
+          &::after{
+            content:''
+          }
+        }
+      }
+    }
 }
 
-.DemoHeader-container{
+.nHeader-container{
     height: 100%;
 }
 
-.DemoHeader-logo {
+.nHeader-logo {
     width: 171px;
     height: 41px;
     padding-top: 13px;
 }
 
-.DemoHeader-link{
+.nHeader-link{
     text-decoration: none;
-    color: @black !important;
+    color: @white !important;
     padding: 0 20px;
     display: inline-block;
     transition: 250ms background-color;
     line-height: 64px;
 }
 
-.DemoHeader-link:hover{
+.nHeader-link:hover{
     background-color: @background;
 }
 
-.DemoHeader-github{
-    margin-top: 17px;
-    margin-left: 10px;
-}
-
-.DemoHeader-spacer{
+.nHeader-spacer{
     padding-top: 64px;
 }
