@@ -24,17 +24,12 @@ class CreateNgosTable extends Migration
             $table->string('email');
             $table->string('website');
 
-            /**
-             * @todo needs to be translated?!
-             */
-            $table->text('description');
-
             $table->text('contact');
             $table->text('contact_email');
             $table->text('contact_phone');
 
-            $table->string('username')->unique();
-            $table->string('password', 60);
+            // $table->string('username')->unique();
+            // $table->string('password', 60);
 
             $table->timestamps();
         });
