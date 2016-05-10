@@ -24,7 +24,6 @@ class LoginFormController {
 				angular.forEach(response.data.data.user.roles, function(role){
 					roles.push(role.name);
 				});
-				console.log(roles);
 				this.$window.localStorage.roles = JSON.stringify(roles);
 				this.ToastService.show('Logged in successfully.');
 				this.$state.go('cms.dashboard');
@@ -34,6 +33,11 @@ class LoginFormController {
 
 	failedLogin(response) {
 		if (response.status === 422) {
+			for (var error in response.data.errors) {
+				return this.ToastService.error(response.data.errors[error][0]);
+			}
+		}
+		else if(response.data.errors){
 			for (var error in response.data.errors) {
 				return this.ToastService.error(response.data.errors[error][0]);
 			}
