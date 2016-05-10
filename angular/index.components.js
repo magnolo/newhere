@@ -1,3 +1,4 @@
+import {NgoFormComponent} from './app/components/ngo-form/ngo-form.component';
 import {UserMenuComponent} from './app/components/user-menu/user-menu.component';
 import {CmsRolesTableComponent} from './app/components/cms-roles-table/cms-roles-table.component';
 import {CmsMainComponent} from './app/components/cms-main/cms-main.component';
@@ -9,6 +10,7 @@ import {LoginFormComponent} from './app/components/login-form/login-form.compone
 import {RegisterFormComponent} from './app/components/register-form/register-form.component';
 
 angular.module('app.components')
+	.component('ngoForm', NgoFormComponent)
 	.component('userMenu', UserMenuComponent)
 	.component('cmsRolesTable', CmsRolesTableComponent)
 	.component('cmsMain', CmsMainComponent)
