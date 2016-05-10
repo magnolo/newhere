@@ -19,6 +19,7 @@ class UserSeeder extends Seeder
         $user->email = "super@admin.at";
         $user->password = Hash::make('admin');
         $user->name = "Administrator";
+        $user->confirmed = 1;
         $user->save();
         $user->attachRole($superAdmin);
 
@@ -27,6 +28,7 @@ class UserSeeder extends Seeder
         $ngo->email = "wwf@ngo.at";
         $ngo->password = Hash::make('ngouser');
         $ngo->name = "WWF";
+        $ngo->confirmed = 1;
         $ngo->save();
         $ngo->attachRole($organisation);
     }

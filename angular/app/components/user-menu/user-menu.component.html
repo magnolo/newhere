@@ -1,13 +1,22 @@
-<a hide-xs ng-if="!vm.isAuthenticated()" class="DemoHeader-link md-subhead" ui-sref="app.login">Login</a>
-<a hide-xs ng-if="!vm.isAuthenticated()" class="DemoHeader-link md-subhead" ui-sref="app.ngo">NGO?</a>
+<!-- <a hide-xs ng-if="!vm.isAuthenticated()" class="DemoHeader-link md-subhead" ui-sref="app.login">Login</a> -->
+<md-menu ng-if="!vm.isAuthenticated()">
+    <md-button class="md-primary" aria-label="Open user menu" ng-click="$mdOpenMenu($event)">
+        <md-icon md-menu-origin>exit_to_app</md-icon>&nbsp;Login
+    </md-button>
+    <md-menu-content width="4">
+        <md-content layout-padding>
+        <login-form></login-form>
+      </md-content>
+    </md-menu-content>
+</md-menu>
 <md-menu ng-if="vm.isAuthenticated()">
     <md-button aria-label="Open user menu" class="md-icon-button" ng-click="$mdOpenMenu($event)">
-        <md-icon>menu</md-icon>
+        <md-icon md-menu-origin>menu</md-icon>
     </md-button>
     <md-menu-content width="3">
         <md-menu-item>
             <md-button>
-                <md-icon>person</md-icon>
+                <md-icon md-menu-align-target>person</md-icon>
                 Profile
             </md-button>
         </md-menu-item>
@@ -26,7 +35,7 @@
         <md-menu-divider></md-menu-divider>
         <md-menu-item>
             <md-button ng-click="vm.logout()">
-                <md-icon>vpn_key</md-icon>
+                <md-icon >power_settings_new</md-icon>
                 Logout
             </md-button>
         </md-menu-item>
