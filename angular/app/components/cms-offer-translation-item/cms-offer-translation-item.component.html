@@ -1,5 +1,5 @@
 <span class="offer-translation-item">
-    <span ng-if="vm.translation.title != ''" ng-click="vm.translate(vm.offer, vm.translation)">
+    <span ng-if="vm.translation.title != ''" ng-click="vm.translate($event, vm.offer, vm.translation)">
         <span class="title">
             {{vm.translation.title | limitTo: 15}}<span ng-if="vm.translation.title.length > 15">...</span>
         </span>
@@ -10,5 +10,5 @@
             Version: {{vm.translation.version}}
         </span>
     </span>
-    <md-button ng-if="vm.translation.title == ''" ng-click="vm.translate(vm.offer, null)">Translate</md-button>
+    <md-button ng-if="vm.translation.title == ''" ng-click="vm.translate($event, vm.offer, null)">Translate</md-button>
 </span>
