@@ -1,47 +1,43 @@
 
 class CmsOfferTranslationItemController{
-    constructor(DialogService){
+    constructor(OfferTranslationService, DialogService){
         'ngInject';
 
         this.DialogService = DialogService;
+        this.OfferTranslationService = OfferTranslationService;
+        this.originalTranslation;
     }
 
     $onInit(){
-
+        this.originalTranslation = angular.copy(this.translation);
     }
 
-    translate(event, offer, translation) {
-        this.DialogService.fromTemplate('translation',{
-          controller: () => this,
-          controllerAs: 'vm'
+    translate() {
+        this.DialogService.fromTemplate('translation', {
+            controller: () => this,
+            controllerAs: 'vm',
+            clickOutsideToClose: true,
+            escapeToClose: true
         });
-        // this.$mdDialog.show({
-        //         /**
-        //          * @todo Controller?!?!
-        //          */
-        //         controller: controller,
-        //         templateUrl: './views/app/components/cms-offer-translation-dialog/cms-offer-translation-dialog.component.html',
-        //         parent: angular.element(document.body),
-        //         targetEvent: event,
-        //         clickOutsideToClose:true,
-        //         escapeToClose: true,
-        //         fullscreen: false
-        //     })
-        //     .then(function(answer) {
-        //         //$scope.status = 'You said the information was "' + answer + '".';
-        //     }, function() {
-        //
-        //     });
     }
 
     save() {
-        console.log('Save');
-        console.log(this);
-        this.DialogService.hide();
+        this.OfferTranslationService.saveOrUpdate(
+            this.offer,
+            this.translation,
+            this.language,
+            (title, description, opening_hours, version) => {
+                this.translation.title = title;
+                this.translation.description = description;
+                this.translation.opening_hours = opening_hours;
+                this.translation.version = version;
+                this.DialogService.hide();
+            }
+        );
     }
 
     cancel() {
-        console.log('Cancel');
+        this.translation = this.originalTranslation;
         this.DialogService.hide();
     }
 }

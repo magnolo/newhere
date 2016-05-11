@@ -1,11 +1,7 @@
 export class OfferTranslationService{
-    constructor(API, ToastService, $window, $filter){
+    constructor(API, ToastService){
         'ngInject';
 
-        this.$filter = $filter;
-        this.$window = $window;
-        this._promise;
-        this._callbacks = new Array();
         this.API = API;
         this.ToastService = ToastService;
 
@@ -29,7 +25,6 @@ export class OfferTranslationService{
     }
 
     fetchUntranslated(success, error, force) {
-
         if (this.untranslatedOffers.length && !force) {
             success(this.untranslatedOffers);
         } else {
@@ -38,6 +33,24 @@ export class OfferTranslationService{
                 success(this.untranslatedOffers);
             });
         }
+    }
+    
+    saveOrUpdate(offer, translation, language, success, error) {
+        offer.customPUT({
+            language: language.language,
+            title: translation.title,
+            description: translation.description,
+            opening_hours: translation.opening_hours
+        }).then((offer) => {
+            this.ToastService.show('Saved successfully');
+            var translation;
+            angular.forEach(offer.translations, function (t, ignore) {
+                if (t.locale == language.language) {
+                    translation = t;
+                }
+            });
+            success(translation.title, translation.description, translation.opening_hours, translation.version);
+        });
     }
 }
 
