@@ -50,4 +50,14 @@ export class UserService {
         });
       }
     }
+    bulkRemove(list, success, error){
+      var ids = [];
+      angular.forEach(list, (item) => {
+        ids.push(item.id);
+      });
+      this.API.several('users', ids).remove().then((response) => {
+          this.ToastService.show(response.data.deletedRows+' item(s) successfully deleted!');
+         success(response.data.users);
+      });
+    }
 }

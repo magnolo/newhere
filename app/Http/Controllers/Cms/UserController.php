@@ -109,4 +109,11 @@ class UserController extends Controller
       return response()->success(compact('user'));
 
     }
+    function bulkRemove($ids){
+      $usersQ = User::whereIn('id', explode(',', $ids));
+      $users = $usersQ->get();
+      $deletedRows = $usersQ->delete();
+
+      return response()->success(compact('users', 'deletedRows'));
+    }
 }

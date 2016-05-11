@@ -9,7 +9,7 @@
                 <md-icon class="material-icons">search</md-icon>
                 <input ng-model="vm.filter.name" type="text">
             </md-input-container>
-            <span flex></span>
+
             <div layout="row" layout-align="end center" ng-cloak style="font-size:16px">
                 <md-input-container>
                     <label>Confirmed</label>
@@ -20,6 +20,10 @@
                     </md-select>
                 </md-input-container>
             </div>
+            <span flex></span>
+            <md-button ng-if="vm.selectedUsers.length" class="md-raised md-icon-button md-warn" ng-click="vm.remove()" layout="row" layout-align="center center">
+                <i class="material-icons">delete</i>
+            </md-button>
             <md-button class="md-raised md-icon-button md-primary" ng-click="vm.add()" layout="row" layout-align="center center">
                 <i class="material-icons">add</i>
             </md-button>
@@ -46,7 +50,7 @@
                     <td md-cell><strong>{{user.name}}</strong></td>
                     <td md-cell>{{user.email}}</td>
                     <td md-cell>
-                        <md-switch  class="md-primary" ng-model="user.confirmed" ng-change="vm.save(user, 'confirmed')" aria-label="User aktivieren/deaktivieren?"></md-switch>
+                        <md-switch  class="md-primary" ng-model="user.confirmed" ng-change="vm.save(user)" aria-label="User aktivieren/deaktivieren?"></md-switch>
                     </td>
                     <td md-cell>
                         <md-chips ng-model="user.roles" readonly="true">
