@@ -1,0 +1,30 @@
+<md-dialog>
+    <form ng-submit="vm.save()">
+
+      <md-toolbar>
+          <div class="md-toolbar-tools">
+              <h2>{{vm.offer.title}} / {{ vm.language.language || 'de' }}</h2>
+              <span flex></span>
+              <md-button class="md-icon-button" ng-click="vm.cancel()">
+                    <md-icon>close</md-icon>
+              </md-button>
+          </div>
+      </md-toolbar>
+
+      <md-dialog-content>
+          <div class="md-dialog-content">
+            <md-input-container class="md-block">
+               <label>Title</label>
+               <input ng-model="vm.translation.title">
+             </md-input-container>
+             <h4 class="md-subhead">Description</h4>
+             <text-angular ng-model="vm.translation.description"></text-angular>
+          </div>
+      </md-dialog-content>
+
+        <md-dialog-actions>
+            <md-button type="button" ng-click="vm.cancel()">Cancel</md-button>
+            <md-button class="md-primary md-raised" type="submit">Save</md-button>
+        </md-dialog-actions>
+    </form>
+</md-dialog>

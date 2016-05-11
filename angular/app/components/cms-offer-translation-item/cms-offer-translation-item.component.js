@@ -1,44 +1,48 @@
+
 class CmsOfferTranslationItemController{
-    constructor($mdDialog){
+    constructor(DialogService){
         'ngInject';
 
-        this.$mdDialog = $mdDialog;
+        this.DialogService = DialogService;
     }
 
     $onInit(){
+
     }
 
     translate(event, offer, translation) {
-        console.log(offer);
-        console.log(translation);
-
-        this.$mdDialog.show({
-                /**
-                 * @todo Controller?!?!
-                 */
-                controller: CmsOfferTranslationDialogController,
-                templateUrl: './views/app/components/cms-offer-translation-dialog/cms-offer-translation-dialog.component.html',
-                parent: angular.element(document.body),
-                targetEvent: event,
-                clickOutsideToClose:true,
-                escapeToClose: true,
-                fullscreen: false
-            })
-            .then(function(answer) {
-                //$scope.status = 'You said the information was "' + answer + '".';
-            }, function() {
-                
-            });
+        this.DialogService.fromTemplate('translation',{
+          controller: () => this,
+          controllerAs: 'vm'
+        });
+        // this.$mdDialog.show({
+        //         /**
+        //          * @todo Controller?!?!
+        //          */
+        //         controller: controller,
+        //         templateUrl: './views/app/components/cms-offer-translation-dialog/cms-offer-translation-dialog.component.html',
+        //         parent: angular.element(document.body),
+        //         targetEvent: event,
+        //         clickOutsideToClose:true,
+        //         escapeToClose: true,
+        //         fullscreen: false
+        //     })
+        //     .then(function(answer) {
+        //         //$scope.status = 'You said the information was "' + answer + '".';
+        //     }, function() {
+        //
+        //     });
     }
 
     save() {
         console.log('Save');
-        this.$mdDialog.hide();
+        console.log(this);
+        this.DialogService.hide();
     }
 
     cancel() {
         console.log('Cancel');
-        this.$mdDialog.cancel();
+        this.DialogService.hide();
     }
 }
 
@@ -47,13 +51,8 @@ export const CmsOfferTranslationItemComponent = {
     controller: CmsOfferTranslationItemController,
     controllerAs: 'vm',
     bindings: {
-        offer: '<',
-        translation: '<',
-        language: '<'
-    },
-    scope: {
-        offer: '<',
-        translation: '<',
-        language: '<'
+        offer: '=',
+        translation: '=',
+        language: '='
     }
 }

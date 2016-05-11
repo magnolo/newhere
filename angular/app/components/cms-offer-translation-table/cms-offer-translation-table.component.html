@@ -11,10 +11,10 @@
             </thead>
             <tbody md-body>
             <tr ng-repeat="untranslatedOffer in vm.untranslatedOffers">
-                <td class="md-cell" ng-init="o = vm.getTranslation(untranslatedOffer, vm.defaultLanguage)">
+                <td md-cell ng-init="o = vm.getTranslation(untranslatedOffer, vm.defaultLanguage)">
                     <cms-offer-translation-item translation="o" language="language" offer="untranslatedOffer"></cms-offer-translation-item>
                 </td>
-                <td class="md-cell" ng-repeat="language in vm.enabledLanguages | filter: {default_language: false}" ng-init="o = vm.getTranslation(untranslatedOffer, language)">
+                <td md-cell ng-repeat="language in vm.enabledLanguages | filter: {default_language: false}" ng-init="o = vm.getTranslation(untranslatedOffer, language)">
                     <cms-offer-translation-item translation="o" language="language" offer="untranslatedOffer"></cms-offer-translation-item>
                 </td>
             </tr>
