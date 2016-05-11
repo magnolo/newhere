@@ -1,3 +1,4 @@
+import {UserService} from './services/user.service';
 import {RoleService} from './services/role.service';
 import {LanguageService} from './services/language.service';
 import {RecusionsHelperService} from './services/recusionsHelper.service';
@@ -7,6 +8,7 @@ import {DialogService} from './services/dialog.service';
 import {ToastService} from './services/toast.service';
 
 angular.module('app.services')
+	.service('UserService', UserService)
 	.service('RoleService', RoleService)
 	.service('LanguageService', LanguageService)
 	.factory('RecusionsHelperService', RecusionsHelperService)
