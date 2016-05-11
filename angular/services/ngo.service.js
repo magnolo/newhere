@@ -1,10 +1,11 @@
 export class NgoService{
-    constructor(API, $q, ToastService){
+    constructor(API, $q, ToastService, $state){
         'ngInject';
 
         this.API = API;
         this.ToastService = ToastService;
         this.$q = $q;
+        this.$state = $state;
 
     }
 
@@ -24,6 +25,13 @@ export class NgoService{
         return ngo.save().then((response) => {
             this.ToastService.show('NGO updated.');
         })
+    }
+
+    create(ngo) {
+        this.API.all('ngos').post(ngo).then(()=>{
+            this.ToastService.show('Saved successfully');
+            this.$state.go('cms.ngos');
+        });
     }
 }
 

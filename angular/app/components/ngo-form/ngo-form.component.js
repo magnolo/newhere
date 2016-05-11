@@ -1,8 +1,9 @@
 class NgoFormController{
-    constructor($auth, ToastService, $state, LanguageService) {
+    constructor($auth, NgoService, ToastService, $state, LanguageService) {
         'ngInject';
 
         this.$auth = $auth;
+        this.NgoService = NgoService;
         this.ToastService = ToastService;
         this.$state = $state;
         this.$LanguageService = LanguageService;
@@ -12,18 +13,21 @@ class NgoFormController{
 
     register() {
         this.ngo.language = this.$LanguageService.activeLanguage();
-        this.$auth.signup(this.ngo)
-            .then((response) => {
-                //remove this if you require email verification
-                this.$auth.setToken(response.data);
+        if (!this.cms) {
+            this.$auth.signup(this.ngo)
+                .then((response) => {
+                    //remove this if you require email verification
+                    this.$auth.setToken(response.data);
 
-                this.ToastService.show('Successfully registered.');
-                this.$state.go('app.login');
-            })
-            .catch(this.failedRegistration.bind(this));
+                    this.ToastService.show('Successfully registered.');
+                    this.$state.go('app.login');
+                })
+                .catch(this.failedRegistration.bind(this));
+        } else {
+            this.NgoService.create(this.ngo);
+        }
+
     }
-
-
 
     failedRegistration(response) {
         if (response.status === 422) {
@@ -40,5 +44,7 @@ export const NgoFormComponent = {
     templateUrl: './views/app/components/ngo-form/ngo-form.component.html',
     controller: NgoFormController,
     controllerAs: 'vm',
-    bindings: {}
+    bindings: {
+        cms: '='
+    }
 }
