@@ -95,6 +95,12 @@ class AuthController extends Controller
         $ngo->street_number = $request->get('street_number');
         $ngo->zip = $request->get('zip');
         $ngo->city = $request->get('city');
+
+        //Standard Translation
+        if ($request->has('description')) {
+            $locale = $request->get('language');
+            $ngo->translateOrNew($locale)->description = $request->get('description');
+        }
         $ngo->save();
         $ngo->users()->attach($ngoUser);
 

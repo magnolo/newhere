@@ -1,15 +1,17 @@
 class NgoFormController{
-    constructor($auth, ToastService, $state) {
+    constructor($auth, ToastService, $state, LanguageService) {
         'ngInject';
 
         this.$auth = $auth;
         this.ToastService = ToastService;
         this.$state = $state;
+        this.$LanguageService = LanguageService;
 
         this.ngo = {};
     }
 
     register() {
+        this.ngo.language = this.$LanguageService.activeLanguage();
         this.$auth.signup(this.ngo)
             .then((response) => {
                 //remove this if you require email verification

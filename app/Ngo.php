@@ -7,6 +7,8 @@ use \Dimsav\Translatable\Translatable;
 
 class Ngo extends Model
 {
+    use Translatable;
+
     protected $table = 'ngos';
     public $translatedAttributes = ['description'];
     protected $fillable = ['organisation', 'street', 'street_number','zip', 'city', 'website', 'contact', 'contact_email', 'contact_phone'];
