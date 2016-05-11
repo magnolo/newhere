@@ -1,0 +1,40 @@
+<md-card>
+    <md-toolbar class="md-table-toolbar md-default" layout-padding>
+
+        <div layout="row" layout-align="space-between start">
+            <md-input-container class="md-icon-float md-block">
+                <label>Search</label>
+                <md-icon class="material-icons">search</md-icon>
+                <input ng-model="vm.listFilter.search" type="text">
+            </md-input-container>
+            <span flex></span>
+            <div layout="row" layout-align="end center" ng-cloak style="font-size:16px">
+                <md-checkbox ng-model="vm.listFilter.unpublished" aria-label="Show only unpublished" ng-false-value="''">
+                    show unpublished
+                </md-checkbox>
+            </div>
+        </div>
+    </md-toolbar>
+
+    <md-table-container>
+        <table md-table>
+            <thead md-head md-order="vm.query.order" md-on-reorder="vm.onOrderChange">
+            <tr md-row>
+                <th md-column md-order-by="name">NGO Name</th>
+                <th md-column md-order-by="published">Published</th>
+            </tr>
+            </thead>
+            <tbody md-body>
+            <tr ng-repeat="ngo in vm.ngos">
+                <td class="md-cell">{{ngo.organisation}}</td>
+                <td class="md-cell">
+                    <md-switch ng-model="ngo.published" ng-change="vm.update(ngo, 'published')" aria-label="Publish/Unpublish NGO"></md-switch>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </md-table-container>
+    <!--
+        <md-table-pagination md-limit="vm.query.limit" md-page="vm.query.page" md-total="{{vm.filteredLanguages.length}}" md-on-paginate="vm.onPaginationChange"></md-table-pagination>
+    -->
+    </md-card>
