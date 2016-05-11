@@ -2,7 +2,10 @@ class CmsUsersTableController{
     constructor(UserService, RoleService, DialogService, $filter){
         'ngInject';
 
-
+        this.users = [];
+        this.user;
+        this.roles = [];
+        this.filter = {};
         this.$filter = $filter;
         this.DialogService = DialogService;
         this.UserService = UserService;
@@ -36,10 +39,7 @@ class CmsUsersTableController{
 
 
     $onInit(){
-      this.users = [];
-      this.user;
-      this.roles = [];
-      this.filter = {};
+
     }
     exists(role, list){
       var exists = false;

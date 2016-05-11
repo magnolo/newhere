@@ -1,14 +1,40 @@
-.u-center{
+@import "colors";
+@import "project";
+.u-center {
     text-align: center;
 }
-.cursor{
-  cursor: pointer;
+.cursor {
+    cursor: pointer;
 }
-.flip-hor{
-  transform:rotate(180deg);
+.flip-hor {
+    transform: rotate(180deg);
 }
-.btn-big{
-  font-size:2em;
-  padding:.5em 1em;
-  text-transform: none;
+.btn-big {
+    font-size: 2em;
+    padding: 0.5em 1em;
+    text-transform: none;
+}
+md-toolbar.md-table-toolbar:not(.md-menu-toolbar).md-default .md-button.md-primary {
+    color: #fff;
+}
+md-toolbar.md-table-toolbar.md-default {
+    md-input-container {
+      label{
+        font-size:14px;
+      }
+        md-icon {
+            color: @grey;
+            fill: @grey;
+        }
+        &.md-input-focused {
+            md-icon {
+                color: @blue;
+                fill: @blue;
+            }
+        }
+    }
+    md-checkbox{
+      margin-top:16px;
+      font-size:14px;
+    }
 }
