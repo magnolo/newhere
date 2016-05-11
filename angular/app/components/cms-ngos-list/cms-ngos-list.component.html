@@ -9,32 +9,36 @@
             </md-input-container>
             <span flex></span>
             <div layout="row" layout-align="end center" ng-cloak style="font-size:16px">
-                <md-checkbox ng-model="vm.listFilter.unpublished" aria-label="Show only unpublished" ng-false-value="''">
-                    show unpublished
-                </md-checkbox>
+                <md-switch ng-model="vm.listFilter.showOnlyUnpublished" aria-label="Publish/Unpublish NGO">Show
+                    unpublished only
+                </md-switch>
             </div>
         </div>
     </md-toolbar>
 
     <md-table-container>
         <table md-table>
-            <thead md-head md-order="vm.query.order" md-on-reorder="vm.onOrderChange">
+            <thead md-head md-order="vm.listOrderByColumn" md-on-reorder="vm.onOrderChange">
             <tr md-row>
-                <th md-column md-order-by="name">NGO Name</th>
+                <th md-column md-order-by="organisation">NGO Name</th>
                 <th md-column md-order-by="published">Published</th>
             </tr>
             </thead>
             <tbody md-body>
-            <tr ng-repeat="ngo in vm.ngos">
+            <tr ng-repeat="ngo in vm.filteredNgos =
+            (vm.ngos | filter: vm.listFilter.search
+                     | ngoPublished: vm.listFilter.showOnlyUnpublished)
+                     | limitTo: vm.listPagination.limit : (vm.listPagination.page-1)*vm.listPagination.limit">
                 <td class="md-cell">{{ngo.organisation}}</td>
                 <td class="md-cell">
-                    <md-switch ng-model="ngo.published" ng-change="vm.update(ngo, 'published')" aria-label="Publish/Unpublish NGO"></md-switch>
+                    <md-switch ng-model="ngo.published" ng-change="vm.update(ngo, 'published')"
+                               aria-label="Publish/Unpublish NGO"></md-switch>
                 </td>
             </tr>
             </tbody>
         </table>
     </md-table-container>
-    <!--
-        <md-table-pagination md-limit="vm.query.limit" md-page="vm.query.page" md-total="{{vm.filteredLanguages.length}}" md-on-paginate="vm.onPaginationChange"></md-table-pagination>
-    -->
-    </md-card>
+
+    <md-table-pagination md-limit="vm.listPagination.limit" md-page="vm.listPagination.page" md-total="{{vm.filteredNgos.length}}"></md-table-pagination>
+
+</md-card>

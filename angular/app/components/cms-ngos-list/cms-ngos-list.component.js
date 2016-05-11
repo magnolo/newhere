@@ -1,24 +1,33 @@
 class CmsNgosListController{
-    constructor(NgoService){
+    constructor(NgoService, $filter){
         'ngInject';
         var vm = this;
+        this.$filter = $filter;
         this.NgoService = NgoService;
         this.NgoService.fetchAll().then(function(response) {
-            console.log(response);
             vm.ngos = response;
         });
 
         this.listFilter = {
-            unpublished: '',
+            showOnlyUnpublished: '',
             search: ''
+        };
+
+        this.listPagination = {
+            limit: 10,
+            page: 1
+        };
+
+        this.listOrderByColumn = '-organisation';
+        this.onOrderChange = (order) => {
+            console.log("onOrderChange " + order);
+            return vm.ngos = this.$filter('orderBy')(vm.ngos, [order], true);
         };
     }
 
     update(ngo) {
         this.NgoService.update(ngo);
     }
-
-
 
     $onInit(){
     }
