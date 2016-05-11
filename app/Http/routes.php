@@ -42,4 +42,13 @@ $api->group(['middleware' => ['api', 'api.auth']], function ($api) {
     $api->put('categories/{id}/toggleEnabled', 'Cms\CategoryController@toggleEnabled');
 
     $api->get('roles', 'Cms\RoleController@index');
+
+    $api->get('users', 'Cms\UserController@index');
+    $api->get('users/role/{role}', 'Cms\UserController@byRole');
+    $api->get('users/ngo/{id}', 'Cms\UserController@byNgo');
+    $api->get('users/{id}', 'Cms\UserController@show');
+    $api->post('users', 'Cms\UserController@create');
+    $api->put('users/{id}', 'Cms\UserController@update');
+    $api->delete('users/{id}', 'Cms\UserController@bulkRemove');
+
 });

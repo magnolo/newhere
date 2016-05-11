@@ -138,6 +138,17 @@ export function RoutesConfig($stateProvider, $urlRouterProvider) {
 				}
 			}
 		})
-
+		.state('cms.users',{
+			url:'/users',
+			data:{
+				auth:true,
+				roles:['admin', 'superadmin']
+			},
+			views: {
+				'main@': {
+					templateUrl: getCmsView('users')
+				}
+			}
+		})
 	;
 }
