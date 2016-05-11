@@ -34,6 +34,17 @@ export class OfferTranslationService{
             });
         }
     }
+
+    fetchAll(success, error, force) {
+        if (this.untranslatedOffers.length && !force) {
+            success(this.untranslatedOffers);
+        } else {
+            this.API.all('offer-translations').getList().then((list) => {
+                this.untranslatedOffers = list;
+                success(this.untranslatedOffers);
+            });
+        }
+    }
     
     saveOrUpdate(offer, translation, language, success, error) {
         offer.customPUT({
