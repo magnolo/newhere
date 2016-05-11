@@ -6,6 +6,8 @@ class CmsUsersTableController{
         this.user;
         this.roles = [];
         this.filter = {};
+        this.selectedUsers = [];
+
         this.$filter = $filter;
         this.DialogService = DialogService;
         this.UserService = UserService;
@@ -26,8 +28,6 @@ class CmsUsersTableController{
           show:false,
           query: ''
         }
-
-
         this.onOrderChange = (order) => {
             return this.users = this.$filter('orderBy')(this.users, [order], true);
         };
@@ -37,10 +37,6 @@ class CmsUsersTableController{
         };
     }
 
-
-    $onInit(){
-
-    }
     exists(role, list){
       var exists = false;
       angular.forEach(list,(item) =>{

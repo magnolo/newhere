@@ -29,7 +29,7 @@
     </md-toolbar>
 
     <md-table-container>
-        <table md-table>
+        <table md-table md-row-select multiple ng-model="vm.selectedUsers">
             <thead md-head md-order="vm.query.order" md-on-reorder="vm.onOrderChange">
                 <tr md-row>
                     <th md-column class="icon"></th>
@@ -37,11 +37,11 @@
                     <th md-column md-order-by="email">Email</th>
                     <th md-column md-order-by="confirmed">Confirmed</th>
                     <th md-column md-order-by="roles">Roles</th>
-                    <th md-column md-order-by="roles">Ngo</th>
+                    <th md-column md-order-by="ngos">Ngo</th>
                 </tr>
             </thead>
             <tbody md-body>
-                <tr ng-repeat="user in vm.filteredUser = (vm.users | filter: vm.filter) | limitTo: vm.query.limit : (vm.query.page-1)*vm.query.limit">
+                <tr md-row md-select="user" ng-repeat="user in vm.filteredUser = (vm.users | filter: vm.filter) | limitTo: vm.query.limit : (vm.query.page-1)*vm.query.limit">
                     <td md-cell><md-button ng-click="vm.edit(user)" class="md-icon-button"><md-icon>edit</md-icon></md-button></td>
                     <td md-cell><strong>{{user.name}}</strong></td>
                     <td md-cell>{{user.email}}</td>
@@ -67,5 +67,5 @@
         </table>
     </md-table-container>
 
-    <md-table-pagination md-limit="vm.query.limit" md-page="vm.query.page" md-total="{{vm.filteredLanguages.length}}" md-on-paginate="vm.onPaginationChange"></md-table-pagination>
+    <md-table-pagination md-limit="vm.query.limit" md-limit-options="[5,10,15, 25, 50]" md-page="vm.query.page" md-total="{{vm.filteredUser.length}}" md-on-paginate="vm.onPaginationChange" md-page-select></md-table-pagination>
 </md-card>

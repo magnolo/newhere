@@ -37,6 +37,13 @@ md-toolbar.md-table-toolbar.md-default {
       margin-top:16px;
       font-size:14px;
     }
+
+}
+md-checkbox.md-default-theme.md-checked ._md-icon, md-checkbox.md-checked ._md-icon{
+  background-color:@blue;
+  &::after{
+    border-color:@white;
+  }
 }
 md-chips[readonly='true']{
   md-chips-wrap{
@@ -51,5 +58,13 @@ table.md-table{
         width:20px;
       }
     }
+  }
+}
+md-table-pagination{
+  .label{
+    color:@grey;
+    margin-top:.5em;
+    font-size:14px;
+    font-weight:normal;
   }
 }
