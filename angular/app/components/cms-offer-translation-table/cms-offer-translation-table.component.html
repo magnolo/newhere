@@ -13,11 +13,23 @@
             <tbody md-body>
             <tr ng-repeat="untranslatedOffer in vm.untranslatedOffers">
                 <td md-cell>{{untranslatedOffer.id}}</td>
-                <td md-cell ng-init="o = vm.getTranslation(untranslatedOffer, vm.defaultLanguage)">
-                    <cms-offer-translation-item translation="o" language="vm.defaultLanguage" offer="untranslatedOffer"></cms-offer-translation-item>
+                <td md-cell ng-init="sourceTranslation = vm.getTranslation(untranslatedOffer, vm.defaultLanguage)">
+                    <cms-offer-translation-item
+                        translation="sourceTranslation"
+                        source-translation="sourceTranslation"
+                        language="vm.defaultLanguage"
+                        source-language="vm.defaultLanguage"
+                        offer="untranslatedOffer">
+                    </cms-offer-translation-item>
                 </td>
                 <td md-cell ng-repeat="language in vm.enabledLanguages | filter: {default_language: false}" ng-init="o = vm.getTranslation(untranslatedOffer, language)">
-                    <cms-offer-translation-item translation="o" language="language" offer="untranslatedOffer"></cms-offer-translation-item>
+                    <cms-offer-translation-item
+                        translation="o"
+                        source-translation="sourceTranslation"
+                        language="language"
+                        source-language="vm.defaultLanguage"
+                        offer="untranslatedOffer">
+                    </cms-offer-translation-item>
                 </td>
             </tr>
             </tbody>

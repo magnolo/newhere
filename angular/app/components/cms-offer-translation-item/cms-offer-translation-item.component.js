@@ -13,6 +13,9 @@ class CmsOfferTranslationItemController{
     }
 
     translate() {
+        this.sourceTranslation = angular.copy(this.sourceTranslation);
+        this.sourceLanguage = angular.copy(this.sourceLanguage);
+
         this.DialogService.fromTemplate('translation', {
             controller: () => this,
             controllerAs: 'vm',
@@ -49,6 +52,8 @@ export const CmsOfferTranslationItemComponent = {
     bindings: {
         offer: '=',
         translation: '=',
-        language: '='
+        language: '=',
+        sourceTranslation: '<',
+        sourceLanguage: '<'
     }
 }

@@ -1,26 +1,45 @@
 <md-dialog>
     <form ng-submit="vm.save()">
-
-      <md-toolbar>
-          <div class="md-toolbar-tools">
-              <h2>{{vm.offer.title}} / {{ vm.language.language || 'de' }}</h2>
-              <span flex></span>
-              <md-button class="md-icon-button" ng-click="vm.cancel()">
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>{{vm.sourceTranslation.title}}</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="vm.cancel()">
                     <md-icon>close</md-icon>
-              </md-button>
-          </div>
-      </md-toolbar>
+                </md-button>
+            </div>
+        </md-toolbar>
 
-      <md-dialog-content>
-          <div class="md-dialog-content">
-            <md-input-container class="md-block">
-               <label>Title</label>
-               <input ng-model="vm.translation.title">
-             </md-input-container>
-             <h4 class="md-subhead">Description</h4>
-             <text-angular ng-model="vm.translation.description"></text-angular>
-          </div>
-      </md-dialog-content>
+        <md-dialog-content>
+            <div class="md-dialog-content" layout="row">
+                <div>
+                    <h3>{{ vm.sourceLanguage.language || 'de' }}</h3>
+                    <md-input-container class="md-block">
+                        <label>Title</label>
+                        <input ng-model="vm.sourceTranslation.title" readonly>
+                    </md-input-container>
+
+                    <h4 class="md-subhead">Description</h4>
+                    <text-angular ng-model="vm.sourceTranslation.description" ta-disabled="true"></text-angular>
+
+                    <h4 class="md-subhead">Opening Hours</h4>
+                    <text-angular ng-model="vm.sourceTranslation.opening_hours" ta-disabled="true"></text-angular>
+                </div>
+                <div>
+                    <h3>{{ vm.language.language || 'de' }}</h3>
+                    <md-input-container class="md-block">
+                        <label>Title</label>
+                        <input ng-model="vm.translation.title" required>
+                    </md-input-container>
+
+                    <h4 class="md-subhead">Description</h4>
+                    <text-angular ng-model="vm.translation.description"></text-angular>
+
+                    <h4 class="md-subhead">Opening Hours</h4>
+                    <text-angular ng-model="vm.translation.opening_hours"></text-angular>
+                </div>
+            </div>
+        </md-dialog-content>
 
         <md-dialog-actions>
             <md-button type="button" ng-click="vm.cancel()">Cancel</md-button>
