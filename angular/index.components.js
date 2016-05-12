@@ -1,4 +1,5 @@
 import {CmsNgosListComponent} from './app/components/cms-ngos-list/cms-ngos-list.component';
+import {CmsUsersTableComponent} from './app/components/cms-users-table/cms-users-table.component';
 import {NgoFormComponent} from './app/components/ngo-form/ngo-form.component';
 import {UserMenuComponent} from './app/components/user-menu/user-menu.component';
 import {CmsRolesTableComponent} from './app/components/cms-roles-table/cms-roles-table.component';
@@ -12,6 +13,7 @@ import {RegisterFormComponent} from './app/components/register-form/register-for
 
 angular.module('app.components')
 	.component('cmsNgosList', CmsNgosListComponent)
+	.component('cmsUsersTable', CmsUsersTableComponent)
 	.component('ngoForm', NgoFormComponent)
 	.component('userMenu', UserMenuComponent)
 	.component('cmsRolesTable', CmsRolesTableComponent)
