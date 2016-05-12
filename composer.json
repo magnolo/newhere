@@ -4,6 +4,18 @@
     "keywords": ["laravel", "angular", "material", "starter", "ui-router", "api", "angular-material"],
     "license": "MIT",
     "type": "project",
+    "repositories": [{
+        "type": "package",
+        "package": {
+            "name": "magnolo/imageupload",
+            "version": "5.2",
+            "source": {
+                "url": "https://github.com/magnolo/laravel-imageupload.git",
+                "type": "git",
+                "reference": "master"
+            }
+        }
+    }],
     "require": {
         "php": ">=5.5.9",
         "laravel/framework": "5.2.*",
@@ -13,7 +25,8 @@
         "dingo/api": "1.0.x@dev",
         "dimsav/laravel-translatable": "^5.5",
         "zizaco/entrust": "5.2.x-dev",
-        "webpatser/laravel-countries": "dev-master"
+        "webpatser/laravel-countries": "dev-master",
+        "orchestra/imagine": "3.2.x"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
@@ -40,12 +53,12 @@
             "php -r \"copy('.env.example', '.env');\""
         ],
         "post-create-project-cmd": [
-           "php -r \"unlink('code_of_conduct.md');\"",
-           "php -r \"unlink('CHANGELOG.md');\"",
-           "php -r \"unlink('.codeclimate.yml');\"",
-           "php -r \"unlink('.travis.yml');\"",
-           "php artisan key:generate",
-           "php artisan jwt:generate"
+            "php -r \"unlink('code_of_conduct.md');\"",
+            "php -r \"unlink('CHANGELOG.md');\"",
+            "php -r \"unlink('.codeclimate.yml');\"",
+            "php -r \"unlink('.travis.yml');\"",
+            "php artisan key:generate",
+            "php artisan jwt:generate"
         ],
         "post-install-cmd": [
             "php artisan clear-compiled",

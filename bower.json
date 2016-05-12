@@ -25,7 +25,8 @@
     "angular-filter": "^0.5.8",
     "textAngular": "^1.5.1",
     "bootstrap-css-only": "^3.3.6",
-    "angular-sanitize": "^1.5.5"
+    "angular-sanitize": "^1.5.5",
+    "ng-flow": "~2"
   },
   "overrides": {
     "font-awesome": {
