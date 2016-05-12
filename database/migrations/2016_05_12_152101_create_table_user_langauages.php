@@ -38,7 +38,7 @@ class CreateTableUserLangauages extends Migration
      */
     public function down()
     {
-      Schema::table(self::TABLE, function (Blueprint $table) {
+      Schema::table('user_languages', function (Blueprint $table) {
           $table->dropForeign('user_languages_user_id_foreign');
           $table->dropForeign('user_languages_language_id_foreign');
       });
