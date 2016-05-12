@@ -1,5 +1,5 @@
 class CmsUsersTableController {
-    constructor(UserService, RoleService, DialogService, $filter) {
+    constructor(UserService, RoleService, LanguageService, DialogService, $filter) {
         'ngInject';
 
         this.users = [];
@@ -7,6 +7,7 @@ class CmsUsersTableController {
         this.roles = [];
         this.filter = {};
         this.selectedUsers = [];
+        this.languages = [];
 
         this.$filter = $filter;
         this.DialogService = DialogService;
@@ -18,6 +19,10 @@ class CmsUsersTableController {
         this.RoleService.all((list) => {
             this.roles = list;
         });
+        this.LanguageService = LanguageService;
+        this.LanguageService.getActive((list) => {
+          this.languages = list;
+        })
 
         this.query = {
             order: '-name',
@@ -37,25 +42,35 @@ class CmsUsersTableController {
         };
     }
 
-    exists(role, list) {
+    exists(item, list) {
         var exists = false;
-        angular.forEach(list, (item) => {
-            if (item.id == role.id) {
+        angular.forEach(list, (entry) => {
+            if (item.id == entry.id) {
                 exists = true;
             }
         })
         return exists;
     }
-    toggleRole(role, list) {
-        if (this.exists(role, list)) {
-            angular.forEach(list, (item, key) => {
-                if (item.id == role.id) {
+    toggle(item, list) {
+        if (this.exists(item, list)) {
+            angular.forEach(list, (entry, key) => {
+                if (item.id == entry.id) {
                     list.splice(key, 1);
                 }
             })
         } else {
-            list.push(role);
+            list.push(item);
         }
+    }
+    userType(type){
+      if(!this.user) return;
+      var exists = false;
+      angular.forEach(this.user.roles, (role) => {
+        if(role.name == type){
+          exists = true;
+        }
+      });
+      return exists;
     }
     add() {
         this.user = {

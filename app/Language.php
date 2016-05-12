@@ -9,4 +9,7 @@ class Language extends Model
     protected $table = 'languages';
     protected $fillable = ['language', 'default_language', 'published', 'disabled'];
 
+    public function users(){
+      return $this->belongsToMany('App\User', 'user_languages');
+    }
 }
