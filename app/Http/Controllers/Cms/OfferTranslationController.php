@@ -5,15 +5,19 @@ namespace App\Http\Controllers\Cms;
 use Illuminate\Http\Request;
 
 use App\Http\Requests,
-    App\Http\Controllers\Controller;
+    App\Http\Controllers\Controller,
+    Auth;
 
 class OfferTranslationController extends Controller
 {
     public function index()
     {
-        $offers = \App\Offer::whereNull('deleted')->get();
+        list($activeLanguages, $activeLanguageCount) = $this->loadLanguages();
 
-        $activeLanguages = \App\Language::where('enabled', true)->get();
+        /**
+         * @todo check for verified offers
+         */
+        $offers = \App\Offer::whereNull('deleted')->get();
 
         foreach ($offers as $offer) {
             /**
@@ -32,17 +36,15 @@ class OfferTranslationController extends Controller
 
     public function untranslatedIndex()
     {
-        $offers = \App\Offer::whereNull('deleted')->get();
-
-        /**
-         * @todo: if translator is logged in, check only his language(s)
-         */
-        $activeLanguages = \App\Language::where('enabled', true)->get();
+        list($activeLanguages, $activeLanguageCount) = $this->loadLanguages();
         $defaultLanguage = \App\Language::where('default_language', true)->first();
 
         $untranslatedOffers = [];
 
-        $activeLanguageCount = $activeLanguages->count() - 1;
+        /**
+         * @todo check for verified offers
+         */
+        $offers = \App\Offer::whereNull('deleted')->get();
 
         foreach ($offers as $idx => $offer) {
             /**
@@ -123,4 +125,68 @@ class OfferTranslationController extends Controller
 
         return response()->json($offer);
     }
+
+    private function loadLanguages()
+    {
+        /**
+         * @var \App\User $user
+         */
+        $user = Auth::user();
+        $user->load('roles');
+
+        $allLanguages = true;
+
+        foreach ($user->roles as $role) {
+            if (in_array($role->name, ['moderator'])) {
+                $allLanguages = false;
+                break;
+            }
+        }
+
+        $decreaseCount = 0;
+        if ($allLanguages) {
+            $languages = \App\Language::where('enabled', true)->get();
+            $decreaseCount = 1;
+        } else {
+            $languages = $user->languages()->get();
+            foreach ($languages as $language) {
+                if ($language->default_language) {
+                    $decreaseCount = 1;
+                    break;
+                }
+            }
+        }
+
+        return [
+            $languages,
+            $languages->count() - $decreaseCount
+        ];
+    }
+
+    /*public function test()
+    {
+        $offer = new \App\Offer();
+        $offer->ngo_id = 1;
+        $offer->street = 'Dorfstraße';
+        $offer->streetnumber = '1';
+        $offer->streetnumberadditional = null;
+        $offer->zip = '1234';
+        $offer->city = 'Dorf';
+        $offer->latitude = 1.00;
+        $offer->longitude = 1.00;
+        $offer->phone = '01/123456789';
+        $offer->email = 'foo@example.com';
+        $offer->website = 'http://www.example.com';
+
+        //$offer = \App\Offer::find(1);
+
+        $offer->translateOrNew('de')->version = 1;
+        $offer->translateOrNew('de')->title = 'Mega Angebot!';
+        $offer->translateOrNew('de')->description = 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna';
+        $offer->translateOrNew('de')->opening_hours = 'Mo-Fr 19:00-21:30';
+
+        $offer->save();
+
+        return response()->json($offer);
+    }*/
 }
