@@ -17,6 +17,7 @@ Route::group(['middleware' => ['web']], function () {
 
     Route::get('/unsupported-browser', 'AngularController@unsupported');
 
+
 });
 
 $api->group(['middleware' => ['api']], function ($api) {
@@ -24,7 +25,8 @@ $api->group(['middleware' => ['api']], function ($api) {
      * @var \Dingo\Api\Routing\Router $api
      */
     $api->controller('auth', 'Auth\AuthController');
-
+    $api->get('images/upload', 'ImageController@test');
+    $api->post('images/upload', 'ImageController@uploadImage');
 });
 
 //protected routes with JWT (must be logged in)
