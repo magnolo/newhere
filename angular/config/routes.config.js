@@ -51,6 +51,16 @@ export function RoutesConfig($stateProvider, $urlRouterProvider) {
                 }
             }
         })
+		.state('app.ngo', {
+			url: '/ngo',
+			data: {},//{auth: true} would require JWT auth for this route
+			views: {
+				'main@': {
+					templateUrl: getView('ngo-register')
+				}
+			}
+		})
+
 
 		//
 		// CMS
@@ -128,6 +138,18 @@ export function RoutesConfig($stateProvider, $urlRouterProvider) {
 				}
 			}
 		})
+		.state('cms.users',{
+			url:'/users',
+			data:{
+				auth:true,
+				roles:['admin', 'superadmin']
+			},
+			views: {
+				'main@': {
+					templateUrl: getCmsView('users')
+				}
+			}
+		})
 		.state('cms.offer-translations',{
 			url:'/offer-translations',
 			data:{
@@ -140,6 +162,5 @@ export function RoutesConfig($stateProvider, $urlRouterProvider) {
 				}
 			}
 		})
-
 	;
 }

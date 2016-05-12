@@ -1,6 +1,85 @@
-.u-center{
+@import "colors";
+@import "project";
+.u-center {
     text-align: center;
 }
-.cursor{
-  cursor: pointer;
+.cursor {
+    cursor: pointer;
+}
+.flip-hor {
+    transform: rotate(180deg);
+}
+.btn-big {
+    font-size: 2em;
+    padding: 0.5em 1em;
+    text-transform: none;
+}
+md-toolbar.md-table-toolbar:not(.md-menu-toolbar).md-default .md-button{
+  &.md-primary, &.md-warn {
+    color: #fff;
+  }
+}
+md-input-container{
+  &.bigger{
+    font-size:2em;
+    margin-top:2em;
+    label{
+      font-weight:400;
+    }
+
+  }
+}
+md-toolbar.md-table-toolbar.md-default {
+    md-input-container {
+      label{
+        font-size:14px;
+      }
+        md-icon {
+            color: @grey;
+            fill: @grey;
+        }
+        &.md-input-focused {
+            md-icon {
+                color: @blue;
+                fill: @blue;
+            }
+        }
+    }
+    md-checkbox{
+      margin-top:16px;
+      font-size:14px;
+    }
+
+}
+md-checkbox.md-default-theme.md-checked ._md-icon, md-checkbox.md-checked ._md-icon{
+  background-color:@blue;
+  &::after{
+    border-color:@white;
+  }
+}
+md-chips[readonly='true']{
+  md-chips-wrap{
+    box-shadow:0 0 0 rgba(0,0,0,0);
+  }
+
+}
+table.md-table{
+  th{
+    &.md-column{
+      &.icon{
+        width:20px;
+      }
+    }
+  }
+}
+md-table-pagination{
+  .label{
+    color:@grey;
+    margin-top:.5em;
+    font-size:14px;
+    font-weight:normal;
+  }
+}
+md-toast{
+  position:fixed;
 }

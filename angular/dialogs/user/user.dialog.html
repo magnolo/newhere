@@ -1,0 +1,57 @@
+<md-dialog>
+    <form ng-submit="vm.save()">
+
+        <md-toolbar>
+          <div class="md-toolbar-tools">
+            <h2>User</h2>
+            <span flex></span>
+            <md-switch  class="md-primary" ng-model="vm.user.confirmed" aria-label="User aktivieren/deaktivieren?"></md-switch>
+
+          </div>
+        </md-toolbar>
+
+        <md-dialog-content>
+            <div class="md-dialog-content">
+              <div layout-gt-sm="row">
+                <md-input-container class="md-block" flex-gt-sm>
+                    <label>Name</label>
+                    <input type="text" ng-model="vm.user.name" required>
+                </md-input-container>
+                <md-input-container class="md-block" flex-gt-sm>
+                    <label>Email</label>
+                    <input type="email" ng-model="vm.user.email" required>
+                </md-input-container>
+              </div>
+              <div  layout-gt-sm="row">
+                <md-input-container class="md-block" flex-gt-sm>
+                    <label>Password</label>
+                    <input type="password" ng-model="vm.user.password">
+                </md-input-container>
+                <md-input-container class="md-block" flex-gt-sm>
+                    <label>Repeat Password</label>
+                    <input type="password" ng-model="vm.user.re_password">
+                </md-input-container>
+              </div>
+              <h4>Roles</h4>
+                <div flex="100" ng-repeat="role in vm.roles">
+              <md-checkbox ng-checked="vm.exists(role, vm.user.roles)" ng-click="vm.toggle(role, vm.user.roles)">
+               {{ role.display_name }}
+              </md-checkbox>
+
+            </div>
+            <divn ng-if="vm.userType('moderator')">
+              <h4>Languages</h4>
+                <div flex="100" ng-repeat="lang in vm.languages">
+              <md-checkbox ng-checked="vm.exists(lang, vm.user.languages)" ng-click="vm.toggle(lang, vm.user.languages)">
+               {{ lang.language }}
+              </md-checkbox>
+            </div>
+             </div>
+        </md-dialog-content>
+
+        <md-dialog-actions>
+            <md-button type="button" ng-click="vm.cancel()">Cancel</md-button>
+            <md-button class="md-primary md-raised" type="submit">Save</md-button>
+        </md-dialog-actions>
+    </form>
+</md-dialog>
