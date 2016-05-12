@@ -162,17 +162,5 @@ export function RoutesConfig($stateProvider, $urlRouterProvider) {
 				}
 			}
 		})
-		.state('cms.ngos.add',{
-			url:'/add',
-			data:{
-				auth:true,
-				roles:['admin', 'superadmin']
-			},
-			views: {
-				'main@': {
-					templateUrl: getCmsView('ngos-add')
-				}
-			}
-		})
 	;
 }

@@ -1,15 +1,16 @@
 class CmsNgosListController{
-    constructor(NgoService, $filter){
+    constructor(NgoService, $filter, $state, DialogService){
         'ngInject';
         var vm = this;
         this.$filter = $filter;
+        this.$state = $state;
+        this.DialogService = DialogService;
         this.NgoService = NgoService;
         this.NgoService.fetchAll().then(function(response) {
             vm.ngos = response;
         });
 
         this.listFilter = {
-            showOnlyUnpublished: '',
             search: ''
         };
 
@@ -27,6 +28,13 @@ class CmsNgosListController{
 
     update(ngo) {
         this.NgoService.update(ngo);
+    }
+
+    add() {
+        this.DialogService.fromTemplate('ngo', {
+            controller: () => this,
+            controllerAs: 'vm'
+        });
     }
 
     $onInit(){

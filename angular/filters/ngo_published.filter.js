@@ -1,11 +1,11 @@
 export function NgoPublishedFilter(){
     'ngInject';
 
-    return function( ngos, showOnlyUnpublished ) {
-        if (showOnlyUnpublished) {
+    return function( ngos, published ) {
+        if (!angular.isUndefined(published)) {
             var filteredNgos = [];
             angular.forEach(ngos, function(ngo) {
-                if (!ngo.published) {
+                if (ngo.published === published) {
                     filteredNgos.push(ngo);
                 }
             });

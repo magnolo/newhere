@@ -29,6 +29,10 @@ class NgoFormController{
 
     }
 
+    cancel() {
+        this.NgoService.cancel(this.cms);
+    }
+
     failedRegistration(response) {
         if (response.status === 422) {
             for (var error in response.data.errors) {

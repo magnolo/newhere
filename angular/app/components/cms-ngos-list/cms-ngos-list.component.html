@@ -7,11 +7,24 @@
                 <md-icon class="material-icons">search</md-icon>
                 <input ng-model="vm.listFilter.search" type="text">
             </md-input-container>
+
+            <div layout="row" layout-align="end center" ng-cloak style="font-size:16px">
+                <md-input-container>
+                    <label>Published</label>
+                    <md-select ng-model="vm.listFilter.published">
+                        <md-option ng-value="">All</md-option>
+                        <md-option ng-value="true">Yes</md-option>
+                        <md-option ng-value="false">No</md-option>
+                    </md-select>
+                </md-input-container>
+            </div>
+
+
             <span flex></span>
             <div layout="row" layout-align="end center" ng-cloak style="font-size:16px">
-                <md-switch ng-model="vm.listFilter.showOnlyUnpublished" aria-label="Publish/Unpublish NGO">Show
-                    unpublished only
-                </md-switch>
+                <md-button class="md-raised md-icon-button md-primary" ng-click="vm.add()" layout="row" layout-align="center center">
+                    <i class="material-icons">add</i>
+                </md-button>
             </div>
         </div>
     </md-toolbar>
@@ -27,7 +40,7 @@
             <tbody md-body>
             <tr ng-repeat="ngo in vm.filteredNgos =
             (vm.ngos | filter: vm.listFilter.search
-                     | ngoPublished: vm.listFilter.showOnlyUnpublished)
+                     | ngoPublished: vm.listFilter.published)
                      | limitTo: vm.listPagination.limit : (vm.listPagination.page-1)*vm.listPagination.limit">
                 <td class="md-cell">{{ngo.organisation}}</td>
                 <td class="md-cell">
