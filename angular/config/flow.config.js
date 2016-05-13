@@ -12,6 +12,6 @@ export function FlowConfig(flowFactoryProvider) {
         singleFile: true
     };
     flowFactoryProvider.on('catchAll', function(event) {
-        console.log('catchAll', arguments);
+      //  console.log('catchAll', arguments);
     });
 }
