@@ -16,7 +16,7 @@
         <md-button class="md-raised" class="md-primary" flow-btn="">
           <md-icon>file_upload</md-icon>
         </md-button>
-        <md-button class="md-raised" ng-show="$flow.files.length" ng-click="$flow.cancel()"><md-icon>close</md-icon></md-button>
+        <md-button class="md-raised" ng-show="$flow.files.length" ng-click="vm.resetImage($flow)"><md-icon>close</md-icon></md-button>
     </div>
 
     <md-progress-linear md-mode="determinate" ng-if="$flow.files[0].isUploading()" value="{{ ($flow.files[0].sizeUploaded() / $flow.files[0].size * 100) }}"></md-progress-linear>
