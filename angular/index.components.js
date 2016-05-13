@@ -1,3 +1,4 @@
+import {NgoDetailComponent} from './app/components/ngo-detail/ngo-detail.component';
 import {CmsNgosListComponent} from './app/components/cms-ngos-list/cms-ngos-list.component';
 import {CmsOfferTranslationItemComponent} from './app/components/cms-offer-translation-item/cms-offer-translation-item.component';
 import {CmsOfferTranslationTableComponent} from './app/components/cms-offer-translation-table/cms-offer-translation-table.component';
@@ -15,6 +16,7 @@ import {LoginFormComponent} from './app/components/login-form/login-form.compone
 import {RegisterFormComponent} from './app/components/register-form/register-form.component';
 
 angular.module('app.components')
+	.component('ngoDetail', NgoDetailComponent)
 	.component('cmsNgosList', CmsNgosListComponent)
 	.component('cmsOfferTranslationItem', CmsOfferTranslationItemComponent)
 	.component('cmsOfferTranslationTable', CmsOfferTranslationTableComponent)

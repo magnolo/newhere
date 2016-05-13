@@ -1,0 +1,48 @@
+<div layout="row" layout-align="end center" ng-cloak style="font-size:16px">
+    <md-button class="md-raised md-icon-button md-primary" ng-click="vm.edit()" layout="row"
+               layout-align="center center">
+        <i class="material-icons">edit</i>
+    </md-button>
+</div>
+
+<form>
+    <fieldset disabled="disabled">
+        <div layout-gt-xs="row" >
+            <md-input-container class="md-block bigger" flex-gt-xs>
+                <input ng-model="vm.ngo.organisation">
+            </md-input-container>
+        </div>
+
+        <div layout-gt-xs="row">
+            <md-input-container ng-if="vm.ngo.street" class="md-block" flex-gt-sm>
+                <label>Addresse</label>
+                <input ng-model="vm.ngo.fullAddress">
+            </md-input-container>
+
+            <md-input-container ng-if="vm.ngo.website" class="md-block">
+                <label>Website</label>
+                <input ng-model="vm.ngo.website">
+            </md-input-container>
+        </div>
+
+        <div layout-gt-sm="row">
+            <md-input-container ng-if="vm.ngo.contact" class="md-block" flex-gt-sm>
+                <label>Kontakt</label>
+                <input ng-model="vm.ngo.contact">
+            </md-input-container>
+            <md-input-container ng-if="vm.ngo.contact_email" class="md-block" flex-gt-sm>
+                <label>Kontakt Email</label>
+                <input ng-model="vm.ngo.contact_email">
+            </md-input-container>
+            <md-input-container ng-if="vm.ngo.contact_phone" class="md-block" flex-gt-sm>
+                <label>Kontakt Telefon</label>
+                <input ng-model="vm.ngo.contact_phone">
+            </md-input-container>
+        </div>
+
+        <md-input-container ng-if="vm.ngo.description" class="md-block">
+            <label>Beschreibung</label>
+            <textarea ng-model="vm.ngo.description" rows="3"></textarea>
+        </md-input-container>
+    </fieldset>
+</form>
