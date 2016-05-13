@@ -5,18 +5,20 @@
             <input ng-model="vm.ngo.organisation" required>
         </md-input-container>
     </div>
-    <md-checkbox ng-if="vm.cms" ng-model="vm.ngo.useCmsAccount" aria-label="Use current account" ng-false-value="''">
-        Use current account
-    </md-checkbox>
-    <div layout-gt-sm="row">
-        <md-input-container class="md-block" flex-gt-sm>
-            <label>Email</label>
-            <input ng-model="vm.ngo.email" type="email" ng-required="!(vm.cms && vm.ngo.useCmsAccount)" ng-disabled="vm.cms && vm.ngo.useCmsAccount">
-        </md-input-container>
-        <md-input-container class="md-block" flex-gt-sm>
-            <label>Password</label>
-            <input ng-model="vm.ngo.password" type="password" ng-required="!(vm.cms && vm.ngo.useCmsAccount)" ng-disabled="vm.cms && vm.ngo.useCmsAccount">
-        </md-input-container>
+    <div ng-if="!vm.ngo.editMode">
+        <md-checkbox ng-if="vm.cms" ng-model="vm.ngo.useCmsAccount" aria-label="Use current account" ng-false-value="''">
+            Use current account
+        </md-checkbox>
+        <div layout-gt-sm="row">
+            <md-input-container class="md-block" flex-gt-sm>
+                <label>Email</label>
+                <input ng-model="vm.ngo.email" type="email" ng-required="!(vm.cms && vm.ngo.useCmsAccount)" ng-disabled="vm.cms && vm.ngo.useCmsAccount">
+            </md-input-container>
+            <md-input-container class="md-block" flex-gt-sm>
+                <label>Password</label>
+                <input ng-model="vm.ngo.password" type="password" ng-required="!(vm.cms && vm.ngo.useCmsAccount)" ng-disabled="vm.cms && vm.ngo.useCmsAccount">
+            </md-input-container>
+        </div>
     </div>
     <md-input-container class="md-block">
         <label>Website</label>
@@ -44,7 +46,7 @@
         </md-input-container>
         <md-input-container class="md-block" flex-gt-sm>
             <label>Street Number</label>
-            <input ng-model="vm.ngo.street_number" type="number" placeholder="1">
+            <input ng-model="vm.ngo.street_number" type="text" placeholder="1">
         </md-input-container>
         <md-input-container class="md-block" flex-gt-sm>
             <label>City</label>
@@ -60,7 +62,6 @@
         <textarea ng-model="vm.ngo.description" md-maxlength="200" rows="3"></textarea>
     </md-input-container>
 
-    <md-button ng-if="vm.cms" type="submit" class="md-primary md-raised" ng-disabled="ngoForm.$invalid">Add NGO</md-button>
-    <md-button ng-if="!vm.cms" type="submit" class="md-primary md-raised" ng-disabled="ngoForm.$invalid">Register</md-button>
+    <md-button type="submit" class="md-primary md-raised" ng-disabled="ngoForm.$invalid">Save</md-button>
     <md-button class="md-primary" ng-click="vm.cancel()">Cancel</md-button>
 </form>

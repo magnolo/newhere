@@ -93,9 +93,9 @@ class NgoController extends Controller
         return response()->success(compact('ngo'));
     }
 
-    public function update(Request $request, $id) {
+    public function togglePublished(Request $request, $id) {
         $this->validate($request, [
-            'published' => 'boolean'
+            'published' => 'required'
         ]);
 
         $ngo = Ngo::find((int)$id);
@@ -112,6 +112,39 @@ class NgoController extends Controller
         if ($modified) {
             $ngo->save();
         }
+
+        return response()->success(compact('ngo'));
+    }
+
+    public function update(Request $request, $id) {
+        $this->validate($request, [
+            'organisation' => 'required',
+            'description' => 'max:200'
+        ]);
+
+        $ngo = Ngo::find((int)$id);
+        if (!$ngo) {
+            return response()->error('NGO not found', 404);
+        }
+
+        DB::beginTransaction();
+        $ngo->organisation = $request->get('organisation');
+        $ngo->website = $request->get('website');
+        $ngo->contact = $request->get('contact');
+        $ngo->contact_email = $request->get('contact_email');
+        $ngo->contact_phone = $request->get('contact_phone');
+        $ngo->street = $request->get('street');
+        $ngo->street_number = $request->get('street_number');
+        $ngo->zip = $request->get('zip');
+        $ngo->city = $request->get('city');
+
+        //Standard Translation
+        if ($request->has('description')) {
+            $locale = $request->get('language');
+            $ngo->translateOrNew($locale)->description = $request->get('description');
+        }
+        $ngo->save();
+        DB::commit();
 
         return response()->success(compact('ngo'));
     }

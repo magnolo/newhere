@@ -26,11 +26,21 @@ class CmsNgosListController{
         };
     }
 
-    update(ngo) {
-        this.NgoService.update(ngo);
+    togglePublished(ngo) {
+        this.NgoService.togglePublished(ngo);
     }
 
     add() {
+        this.ngo = {};
+        this.DialogService.fromTemplate('ngo', {
+            controller: () => this,
+            controllerAs: 'vm'
+        });
+    }
+
+    edit(ngo) {
+        this.ngo = ngo;
+        this.ngo.editMode = true;
         this.DialogService.fromTemplate('ngo', {
             controller: () => this,
             controllerAs: 'vm'

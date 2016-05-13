@@ -25,6 +25,7 @@ export class NgoService{
     update(ngo) {
         return ngo.save().then((response) => {
             this.ToastService.show('NGO updated.');
+            this.DialogService.hide();
         })
     }
 
@@ -42,6 +43,20 @@ export class NgoService{
             this.ToastService.show('Saved successfully');
             this.DialogService.hide();
         });
+    }
+
+    togglePublished(ngo) {
+        this.API.one('ngos', ngo.id).customPUT({
+            published: ngo.published ? 1 : 0
+        },'togglePublished').then(
+            (success) => {
+                this.ToastService.show('NGO updated.');
+            },
+            (error) => {
+                this.ToastService.show('NGO update failed. Please try again');
+                ngo.published = !ngo.published;
+            }
+        );
     }
 }
 

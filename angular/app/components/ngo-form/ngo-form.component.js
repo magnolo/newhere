@@ -7,24 +7,27 @@ class NgoFormController{
         this.ToastService = ToastService;
         this.$state = $state;
         this.$LanguageService = LanguageService;
-
-        this.ngo = {};
     }
 
     register() {
         this.ngo.language = this.$LanguageService.activeLanguage();
-        if (!this.cms) {
-            this.$auth.signup(this.ngo)
-                .then((response) => {
-                    //remove this if you require email verification
-                    this.$auth.setToken(response.data);
 
-                    this.ToastService.show('Successfully registered.');
-                    this.$state.go('app.login');
-                })
-                .catch(this.failedRegistration.bind(this));
+        if (this.ngo.editMode) {
+            this.NgoService.update(this.ngo);
         } else {
-            this.NgoService.create(this.ngo);
+            if (!this.cms) {
+                this.$auth.signup(this.ngo)
+                    .then((response) => {
+                        //remove this if you require email verification
+                        this.$auth.setToken(response.data);
+
+                        this.ToastService.show('Successfully registered.');
+                        this.$state.go('app.login');
+                    })
+                    .catch(this.failedRegistration.bind(this));
+            } else {
+                this.NgoService.create(this.ngo);
+            }
         }
 
     }
@@ -49,6 +52,7 @@ export const NgoFormComponent = {
     controller: NgoFormController,
     controllerAs: 'vm',
     bindings: {
-        cms: '='
+        cms: '=',
+        ngo: '='
     }
 }

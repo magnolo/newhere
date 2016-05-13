@@ -33,6 +33,7 @@
         <table md-table>
             <thead md-head md-order="vm.listOrderByColumn" md-on-reorder="vm.onOrderChange">
             <tr md-row>
+                <th md-column class="icon"></th>
                 <th md-column md-order-by="organisation">NGO Name</th>
                 <th md-column md-order-by="published">Published</th>
             </tr>
@@ -42,9 +43,10 @@
             (vm.ngos | filter: vm.listFilter.search
                      | ngoPublished: vm.listFilter.published)
                      | limitTo: vm.listPagination.limit : (vm.listPagination.page-1)*vm.listPagination.limit">
+                <td md-cell><md-button ng-click="vm.edit(ngo)" class="md-icon-button"><md-icon>edit</md-icon></md-button></td>
                 <td class="md-cell">{{ngo.organisation}}</td>
                 <td class="md-cell">
-                    <md-switch ng-model="ngo.published" ng-change="vm.update(ngo, 'published')"
+                    <md-switch ng-model="ngo.published" ng-change="vm.togglePublished(ngo)"
                                aria-label="Publish/Unpublish NGO"></md-switch>
                 </td>
             </tr>
