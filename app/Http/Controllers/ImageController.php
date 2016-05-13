@@ -13,15 +13,8 @@ use App\Logic\Image\ImageRepository;
 class ImageController extends Controller
 {
     //
-
-
-    public function test(Request $request){
-      return response()->json($request->all());
-    }
     public function uploadImage(ImageRepository $imageRepository, Request $request){
         $image = $request->file('file');
-      //  $result = $this->upload($image);
-
         $result = $imageRepository->upload($image);
 
         $image = new Image();
@@ -36,6 +29,4 @@ class ImageController extends Controller
         return response()->json($image);
 
     }
-
-
 }
