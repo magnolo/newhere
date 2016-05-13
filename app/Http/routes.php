@@ -17,7 +17,6 @@ Route::group(['middleware' => ['web']], function () {
 
     Route::get('/unsupported-browser', 'AngularController@unsupported');
 
-    Route::get('/mailtest', 'EmailController@test');
 });
 
 $api->group(['middleware' => ['api']], function ($api) {
