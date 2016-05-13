@@ -63,4 +63,9 @@ $api->group(['middleware' => ['api', 'api.auth']], function ($api) {
     $api->put('users/{id}', 'Cms\UserController@update');
     $api->delete('users/{id}', 'Cms\UserController@bulkRemove');
 
+    $api->get('ngos', 'Cms\NgoController@index');
+    $api->get('ngos/{id}', 'Cms\NgoController@show');
+    $api->post('ngos', 'Cms\NgoController@create');
+    $api->put('ngos/{id}', 'Cms\NgoController@update');
+    $api->put('ngos/{id}/togglePublished', 'Cms\NgoController@togglePublished');
 });

@@ -162,5 +162,17 @@ export function RoutesConfig($stateProvider, $urlRouterProvider) {
 				}
 			}
 		})
+		.state('cms.ngos',{
+			url:'/ngos',
+			data:{
+				auth:true,
+				roles:['admin', 'superadmin']
+			},
+			views: {
+				'main@': {
+					templateUrl: getCmsView('ngos')
+				}
+			}
+		})
 	;
 }

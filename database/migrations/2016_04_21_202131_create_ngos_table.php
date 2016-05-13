@@ -25,6 +25,7 @@ class CreateNgosTable extends Migration
             $table->text('contact')->nullable();
             $table->text('contact_email')->nullable();
             $table->text('contact_phone')->nullable();
+            $table->boolean('published')->default(false);
             $table->timestamps();
         });
     }
