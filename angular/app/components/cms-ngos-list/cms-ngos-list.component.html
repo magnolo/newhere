@@ -36,6 +36,8 @@
                 <th md-column class="icon"></th>
                 <th md-column md-order-by="organisation">NGO Name</th>
                 <th md-column md-order-by="published">Published</th>
+                <th md-column>Offers</th>
+                <th md-column>Users</th>
             </tr>
             </thead>
             <tbody md-body>
@@ -48,6 +50,12 @@
                 <td class="md-cell">
                     <md-switch ng-model="ngo.published" ng-change="vm.togglePublished(ngo)"
                                aria-label="Publish/Unpublish NGO"></md-switch>
+                </td>
+                <td md-cell>
+                  {{ngo.offers.length}}
+                </td>
+                <td md-cell>
+                  {{ngo.users.length}}
                 </td>
             </tr>
             </tbody>
