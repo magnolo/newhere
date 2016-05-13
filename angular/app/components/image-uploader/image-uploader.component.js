@@ -3,13 +3,16 @@ class ImageUploaderController{
         'ngInject';
 
     }
-    fileAdded($file, $event, $flow){
-
-    }
     assignImage($file, $message, $flow){
+      if(!this.item) this.item = {};
       let image = JSON.parse($message);
       this.item.image = image;
       this.item.image_id = image.id;
+    }
+    resetImage($flow){
+      $flow.cancel();
+      this.item.image = null;
+      this.item.image_id = null;
     }
 }
 
