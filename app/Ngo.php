@@ -21,7 +21,7 @@ class Ngo extends Model
       return $this->belongsToMany('App\User', 'ngo_users');
     }
     public function image(){
-        return $this->hasOne('App\Image', 'image_id');
+        return $this->belongsTo('App\Image');
     }
 
 }
