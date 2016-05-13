@@ -1,0 +1,53 @@
+<md-card>
+    <md-toolbar class="md-table-toolbar md-default" layout-padding>
+        <div layout="row" layout-align="end start">
+            <md-checkbox ng-model="vm.showAll" aria-label="Alle anzeigen" ng-click="vm.reload(!vm.showAll)">
+                show all
+            </md-checkbox>
+        </div>
+    </md-toolbar>
+
+    <md-table-container ng-if="vm.untranslatedOffers.length">
+        <table md-table>
+            <thead md-head>
+            <tr md-row>
+                <th md-column>#</th>
+                <th md-column>{{vm.defaultLanguage.language}}</th>
+                <th md-column ng-repeat="language in vm.enabledLanguages | filter: {default_language: false}">
+                    {{language.language}}
+                </th>
+            </tr>
+            </thead>
+            <tbody md-body>
+            <tr ng-repeat="untranslatedOffer in vm.untranslatedOffers">
+                <td md-cell>{{untranslatedOffer.id}}</td>
+                <td md-cell ng-init="sourceTranslation = vm.getTranslation(untranslatedOffer, vm.defaultLanguage)">
+                    <cms-offer-translation-item
+                        translation="sourceTranslation"
+                        source-translation="sourceTranslation"
+                        language="vm.defaultLanguage"
+                        source-language="vm.defaultLanguage"
+                        offer="untranslatedOffer">
+                    </cms-offer-translation-item>
+                </td>
+                <td md-cell ng-repeat="language in vm.enabledLanguages | filter: {default_language: false}" ng-init="o = vm.getTranslation(untranslatedOffer, language)">
+                    <cms-offer-translation-item
+                        translation="o"
+                        source-translation="sourceTranslation"
+                        language="language"
+                        source-language="vm.defaultLanguage"
+                        offer="untranslatedOffer">
+                    </cms-offer-translation-item>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </md-table-container>
+
+    <md-content ng-if="vm.untranslatedOffers.length == 0">
+        <div flex layout="column" layout-align="center center" layout-padding>
+            <div class="md-display-1">Wow, everything seems to be translated!</div>
+            <div class="md-subhead">Wanna see all offers and their translations? Check show all.</div>
+        </div>
+    </md-content>
+</md-card>
