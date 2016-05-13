@@ -8,18 +8,20 @@ use App\Http\Requests;
 use App\User;
 use App\Role;
 use App\Ngo;
+use App\Language;
+
 use DB;
 
 class UserController extends Controller
 {
     //
     public function index(){
-      $users = User::with(['roles', 'ngos'])->get();
+      $users = User::with(['roles', 'ngos','languages'])->get();
       return response()->json($users);
     }
 
     public function show($id){
-      $user = User::findOrFail($id)->load(['roles', 'ngos']);
+      $user = User::findOrFail($id)->load(['roles', 'ngos','languages']);
       return response()->json($user);
     }
     public function byRole($role){
@@ -31,6 +33,11 @@ class UserController extends Controller
     public function byNgo($id){
       $ngo = Ngo::findOrFail($id);
       $users = $ngo->load('users');
+      return response()->json($users);
+    }
+    public function byLanuage($language){
+      $language = Language::where('language',$language)->firstOrFail;
+      $users = $language->load('users');
       return response()->json($users);
     }
     public function update(Request $request, $id){
@@ -59,10 +66,14 @@ class UserController extends Controller
         $ngo = Ngo::findOrFail($ngo['id']);
         $user->ngos()->attach($ngo);
       }
-
+      $user->languages()->detach();
+      foreach($request->get('languages') as $language){
+        $language = Language::where('language', $language['language'])->firstOrFail();
+        $user->languages()->attach($language);
+      }
       DB::commit();
 
-      $user->load('ngos', 'roles');
+      $user->load('ngos', 'roles', 'languages');
       return response()->success(compact(['user']));
     }
 
@@ -99,6 +110,12 @@ class UserController extends Controller
         foreach($request->get('ngos') as $ngo){
           $ngo = Ngo::findOrFail($ngo['id']);
           $user->ngos()->attach($ngo);
+        }
+      }
+      if($request->has('languages')){
+        foreach($request->get('languages') as $language){
+          $language = Language::where('language', $language['language'])->firstOrFail();
+          $user->languages()->attach($language);
         }
       }
 

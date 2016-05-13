@@ -20,4 +20,8 @@ class Ngo extends Model
     public function users(){
       return $this->belongsToMany('App\User', 'ngo_users');
     }
+    public function image(){
+        return $this->hasOne('App\Image', 'image_id');
+    }
+
 }

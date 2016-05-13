@@ -150,6 +150,18 @@ export function RoutesConfig($stateProvider, $urlRouterProvider) {
 				}
 			}
 		})
+		.state('cms.offer-translations',{
+			url:'/offer-translations',
+			data:{
+				auth:true,
+				roles:['admin', 'superadmin']
+			},
+			views: {
+				'main@': {
+					templateUrl: getCmsView('offer-translations')
+				}
+			}
+		})
 		.state('cms.ngos',{
 			url:'/ngos',
 			data:{

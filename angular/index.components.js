@@ -1,4 +1,7 @@
 import {CmsNgosListComponent} from './app/components/cms-ngos-list/cms-ngos-list.component';
+import {CmsOfferTranslationItemComponent} from './app/components/cms-offer-translation-item/cms-offer-translation-item.component';
+import {CmsOfferTranslationTableComponent} from './app/components/cms-offer-translation-table/cms-offer-translation-table.component';
+import {ImageUploaderComponent} from './app/components/image-uploader/image-uploader.component';
 import {CmsUsersTableComponent} from './app/components/cms-users-table/cms-users-table.component';
 import {NgoFormComponent} from './app/components/ngo-form/ngo-form.component';
 import {UserMenuComponent} from './app/components/user-menu/user-menu.component';
@@ -13,6 +16,9 @@ import {RegisterFormComponent} from './app/components/register-form/register-for
 
 angular.module('app.components')
 	.component('cmsNgosList', CmsNgosListComponent)
+	.component('cmsOfferTranslationItem', CmsOfferTranslationItemComponent)
+	.component('cmsOfferTranslationTable', CmsOfferTranslationTableComponent)
+	.component('imageUploader', ImageUploaderComponent)
 	.component('cmsUsersTable', CmsUsersTableComponent)
 	.component('ngoForm', NgoFormComponent)
 	.component('userMenu', UserMenuComponent)
