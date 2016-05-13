@@ -17,7 +17,6 @@ Route::group(['middleware' => ['web']], function () {
 
     Route::get('/unsupported-browser', 'AngularController@unsupported');
 
-
 });
 
 $api->group(['middleware' => ['api']], function ($api) {
@@ -25,14 +24,25 @@ $api->group(['middleware' => ['api']], function ($api) {
      * @var \Dingo\Api\Routing\Router $api
      */
     $api->controller('auth', 'Auth\AuthController');
+
+    $api->post('password', 'Auth\PasswordResetController@postPasswordReset');
+    $api->post('password/{token}', 'Auth\PasswordResetController@postNewPassword');
+
+
     $api->get('images/upload', 'ImageController@test');
     $api->post('images/upload', 'ImageController@uploadImage');
 });
 
 //protected routes with JWT (must be logged in)
 $api->group(['middleware' => ['api', 'api.auth']], function ($api) {
+    /**
+     * @var \Dingo\Api\Routing\Router $api
+     */
+
     $api->get('languages', 'Cms\LanguageController@index');
-    $api->get('languages/published', 'Cms\LanguageController@published');
+    $api->get('languages/published', 'Cms\LanguageController@publishedIndex');
+    $api->get('languages/enabled', 'Cms\LanguageController@enabledIndex');
+    $api->get('languages/default', 'Cms\LanguageController@defaultLanguage');
     $api->put('languages/{id}', 'Cms\LanguageController@update');
 
     $api->get('filter', 'Cms\FilterController@index');
@@ -42,6 +52,10 @@ $api->group(['middleware' => ['api', 'api.auth']], function ($api) {
     $api->post('categories', 'Cms\CategoryController@create');
     $api->put('categories/{id}', ['uses' => 'Cms\CategoryController@update']);
     $api->put('categories/{id}/toggleEnabled', 'Cms\CategoryController@toggleEnabled');
+
+    $api->get('offer-translations', 'Cms\OfferTranslationController@index');
+    $api->get('offer-translations/untranslated', 'Cms\OfferTranslationController@untranslatedIndex');
+    $api->put('offer-translations/{id}', 'Cms\OfferTranslationController@translate');
 
     $api->get('roles', 'Cms\RoleController@index');
 
@@ -53,4 +67,9 @@ $api->group(['middleware' => ['api', 'api.auth']], function ($api) {
     $api->put('users/{id}', 'Cms\UserController@update');
     $api->delete('users/{id}', 'Cms\UserController@bulkRemove');
 
+    $api->get('ngos', 'Cms\NgoController@index');
+    $api->get('ngos/{id}', 'Cms\NgoController@show');
+    $api->post('ngos', 'Cms\NgoController@create');
+    $api->put('ngos/{id}', 'Cms\NgoController@update');
+    $api->put('ngos/{id}/togglePublished', 'Cms\NgoController@togglePublished');
 });

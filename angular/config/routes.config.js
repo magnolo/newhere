@@ -60,7 +60,24 @@ export function RoutesConfig($stateProvider, $urlRouterProvider) {
 				}
 			}
 		})
-
+		.state('app.forgotpassword', {
+			url: '/forgotpassword',
+			data: {},//{auth: true} would require JWT auth for this route
+			views: {
+				'main@': {
+					templateUrl: getView('forgot-password')
+				}
+			}
+		})
+		.state('app.resetpassword', {
+			url: '/reset-password/{token}',
+			data: {},//{auth: true} would require JWT auth for this route
+			views: {
+				'main@': {
+					templateUrl: getView('reset-password')
+				}
+			}
+		})
 
 		//
 		// CMS
@@ -147,6 +164,30 @@ export function RoutesConfig($stateProvider, $urlRouterProvider) {
 			views: {
 				'main@': {
 					templateUrl: getCmsView('users')
+				}
+			}
+		})
+		.state('cms.offer-translations',{
+			url:'/offer-translations',
+			data:{
+				auth:true,
+				roles:['admin', 'superadmin']
+			},
+			views: {
+				'main@': {
+					templateUrl: getCmsView('offer-translations')
+				}
+			}
+		})
+		.state('cms.ngos',{
+			url:'/ngos',
+			data:{
+				auth:true,
+				roles:['admin', 'superadmin']
+			},
+			views: {
+				'main@': {
+					templateUrl: getCmsView('ngos')
 				}
 			}
 		})

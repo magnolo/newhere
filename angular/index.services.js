@@ -1,3 +1,5 @@
+import {NgoService} from './services/ngo.service';
+import {OfferTranslationService} from './services/offerTranslation.service';
 import {UserService} from './services/user.service';
 import {RoleService} from './services/role.service';
 import {LanguageService} from './services/language.service';
@@ -8,6 +10,8 @@ import {DialogService} from './services/dialog.service';
 import {ToastService} from './services/toast.service';
 
 angular.module('app.services')
+	.service('NgoService', NgoService)
+	.service('OfferTranslationService', OfferTranslationService)
 	.service('UserService', UserService)
 	.service('RoleService', RoleService)
 	.service('LanguageService', LanguageService)

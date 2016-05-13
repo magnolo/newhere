@@ -11,5 +11,6 @@ public/views
 public/js
 public/css
 public/build
+composer.lock
 public/uploads
 .DS_Store

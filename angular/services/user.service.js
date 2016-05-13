@@ -60,4 +60,16 @@ export class UserService {
          success(response.data.users);
       });
     }
+    forgotpassword(email, success){
+      this.API.all('password').post({email:email}).then((response) => {
+        this.ToastService.show('Klicke auf den Link in der Email, die wir soeben versendet haben!');
+        success(response);
+      })
+    }
+    setNewPassword(data, success){
+      this.API.all('password/'+data.token).post(data).then((response) =>{
+        this.ToastService.show('Das Passwort wurde erfolgreich gespeichert!');
+        success(response);
+      })
+    }
 }

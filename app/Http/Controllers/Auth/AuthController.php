@@ -11,9 +11,14 @@ use App\User;
 use Mail;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Logic\User\UserRepository;
 
 class AuthController extends Controller
 {
+    protected $userRepository;
+    public function __construct(UserRepository $userRepository){
+      $this->userRepository = $userRepository;
+    }
     public function postLogin(Request $request)
     {
         $this->validate($request, [
@@ -123,12 +128,7 @@ class AuthController extends Controller
         $user->confirmation_code = $confirmation_code;
         $user->save();
 
-        /*
-        Mail::send('email.verify', $confirmation_code, function($message) use($user) {
-            $message->to($user->email, $user->name)
-                ->subject('Verify your email address');
-        });
-        */
+        $this->userRepository->verifyMail($user);
 
         return $user;
     }
@@ -146,6 +146,16 @@ class AuthController extends Controller
         $user->confirmation_code = null;
         $user->save();
 
+        return redirect('/#/login');
         return response()->success(compact('user'));
     }
+
+    public function getVerify(){
+        $user = User::find(3);
+        $user->confirmation_code = str_random(30);
+        $user->save();
+
+        return $this->userRepository->verifyMail($user);
+    }
+
 }
