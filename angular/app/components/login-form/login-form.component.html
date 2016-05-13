@@ -3,14 +3,14 @@
 		<div>
 			<md-input-container class="md-block">
 				<label>Email</label>
-				<input type="email" ng-model="vm.email">
+				<input type="email" ng-model="vm.email" required>
 			</md-input-container>
 		</div>
 
 		<div>
 			<md-input-container class="md-block">
 				<label>Password</label>
-				<input type="password" ng-model="vm.password">
+				<input type="password" ng-model="vm.password" required>
 			</md-input-container>
 		</div>
 
@@ -18,7 +18,7 @@
 
 	</form>
 	<div layout="row" layout-align="space-around center">
-		<a href="#"  class="md-primary">Register</a>
-		<a href="#" md-no-ink class="md-primary">Forgot Password?</a>
+		<a ui-sref="app.ngo"  class="md-primary">Registrieren</a>
+		<a ui-sref="app.forgotpassword" md-no-ink class="md-primary">Passwort vergessen?</a>
 	</div>
 </div>

@@ -17,7 +17,7 @@ Route::group(['middleware' => ['web']], function () {
 
     Route::get('/unsupported-browser', 'AngularController@unsupported');
 
-
+    Route::get('/mailtest', 'EmailController@test');
 });
 
 $api->group(['middleware' => ['api']], function ($api) {
@@ -25,6 +25,11 @@ $api->group(['middleware' => ['api']], function ($api) {
      * @var \Dingo\Api\Routing\Router $api
      */
     $api->controller('auth', 'Auth\AuthController');
+
+    $api->post('password', 'Auth\PasswordResetController@postPasswordReset');
+    $api->post('password/{token}', 'Auth\PasswordResetController@postNewPassword');
+
+
     $api->get('images/upload', 'ImageController@test');
     $api->post('images/upload', 'ImageController@uploadImage');
 });
@@ -34,7 +39,7 @@ $api->group(['middleware' => ['api', 'api.auth']], function ($api) {
     /**
      * @var \Dingo\Api\Routing\Router $api
      */
-    
+
     $api->get('languages', 'Cms\LanguageController@index');
     $api->get('languages/published', 'Cms\LanguageController@publishedIndex');
     $api->get('languages/enabled', 'Cms\LanguageController@enabledIndex');

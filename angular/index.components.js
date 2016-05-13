@@ -1,3 +1,5 @@
+import {ResetpasswordFormComponent} from './app/components/resetpassword-form/resetpassword-form.component';
+import {ForgotpasswordFormComponent} from './app/components/forgotpassword-form/forgotpassword-form.component';
 import {CmsOfferTranslationItemComponent} from './app/components/cms-offer-translation-item/cms-offer-translation-item.component';
 import {CmsOfferTranslationTableComponent} from './app/components/cms-offer-translation-table/cms-offer-translation-table.component';
 import {ImageUploaderComponent} from './app/components/image-uploader/image-uploader.component';
@@ -14,6 +16,8 @@ import {LoginFormComponent} from './app/components/login-form/login-form.compone
 import {RegisterFormComponent} from './app/components/register-form/register-form.component';
 
 angular.module('app.components')
+	.component('resetpasswordForm', ResetpasswordFormComponent)
+	.component('forgotpasswordForm', ForgotpasswordFormComponent)
 	.component('cmsOfferTranslationItem', CmsOfferTranslationItemComponent)
 	.component('cmsOfferTranslationTable', CmsOfferTranslationTableComponent)
 	.component('imageUploader', ImageUploaderComponent)
