@@ -168,6 +168,7 @@ return [
         Webpatser\Countries\CountriesServiceProvider::class,
         //Matriphe\Imageupload\ImageuploadServiceProvider::class,
         Orchestra\Imagine\ImagineServiceProvider::class,
+        Snowfire\Beautymail\BeautymailServiceProvider::class,
     ],
 
     /*
