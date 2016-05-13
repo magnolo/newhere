@@ -3,19 +3,24 @@
 
 .upload-container{
   position:relative;
-  background-color:@grey-light;
+
   text-align: center;
   color:#fff;
   .material-icons{
     color:#fff;
   }
   .image-prev{
+    background-color:@white;
     min-height: 200px;
-      .material-icons{
-        font-size:4em;
-        width:auto;
-        height:auto;
-      }
+    border: 1px solid @grey-light;
+    &.no-image{
+      background-color:@grey-light;
+    }
+    .material-icons{
+      font-size:4em;
+      width:auto;
+      height:auto;
+    }
   }
   img{
     max-width: 100%;
