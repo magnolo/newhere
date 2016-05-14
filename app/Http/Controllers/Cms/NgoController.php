@@ -25,10 +25,13 @@ class NgoController extends Controller
      * @return mixed
      */
     private function getUserNgo($userId) {
-        $ngo = Ngo::whereHas('users', function($q) use ($userId)
-        {
-            $q->where('user_id', $userId);
-        })->first();
+        $ngo = Ngo::with('image')
+            ->with('offers')
+            ->with(array('users'=>function($query) use ($userId){
+                $query->where('user_id', $userId);
+            }))
+            ->first();
+
         return $ngo;
     }
 

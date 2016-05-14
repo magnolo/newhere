@@ -1,48 +1,48 @@
-<div layout="row" layout-align="end center" ng-cloak style="font-size:16px">
-    <md-button class="md-raised md-icon-button md-primary" ng-click="vm.edit()" layout="row"
-               layout-align="center center">
-        <i class="material-icons">edit</i>
-    </md-button>
+
+<div ng-if="vm.ngo" ng-cloak>
+    <div layout="row" layout-align="end center" ng-cloak style="font-size:16px">
+        <md-button class="md-raised md-icon-button md-primary" ng-click="vm.edit()" layout="row"
+                   layout-align="center center">
+            <i class="material-icons">edit</i>
+        </md-button>
+    </div>
+
+
+    <div ng-if="vm.ngo.image" layout="row" layout-align="center">
+        <img ng-src="{{'/' + vm.ngo.image.dir + '/' + vm.ngo.image.filename}}">
+    </div>
+
+
+    <div layout="column" layout-align="center start">
+        <h1>{{vm.ngo.organisation}}</h1>
+    </div>
+
+    <div layout-gt-sm="row" ng-cloak>
+        <div ng-if="vm.ngo.street" layout="column" layout-align="center start" flex-gt-xs>
+            <h4>Addresse</h4>
+            <p>{{vm.ngo.street + " " + vm.ngo.street_number + ", " + vm.ngo.zip + " " + vm.ngo.city}}</p>
+        </div>
+        <div ng-if="vm.ngo.website" layout="column" layout-align="center start" flex-gt-xs>
+            <h4>Website</h4>
+            <a ng-href="{{vm.ngo.website}}">{{vm.ngo.website}}</a>
+        </div>
+    </div>
+    <div layout-gt-sm="row">
+        <div ng-if="vm.ngo.contact" layout="column" layout-align="center start" flex-gt-xs>
+            <h4>Kontakt Person</h4>
+            <p>{{vm.ngo.contact}}</p>
+        </div>
+        <div ng-if="vm.ngo.contact_email" layout="column" layout-align="center start" flex-gt-xs>
+            <h4>Kontakt Email</h4>
+            <a href="mailto:{{vm.ngo.contact_email}}">{{vm.ngo.contact_email}}</a>
+        </div>
+        <div ng-if="vm.ngo.contact_phone" layout="column" layout-align="center start" flex-gt-xs>
+            <h4>Kontakt Nummer</h4>
+            <p>{{vm.ngo.contact_phone}}</p>
+        </div>
+    </div>
+    <div ng-if="vm.ngo.description" layout="column" layout-align="center start">
+        <h4>Beschreibung</h4>
+        <p>{{vm.ngo.description}}</p>
+    </div>
 </div>
-
-<form>
-    <fieldset disabled="disabled">
-        <div layout-gt-xs="row" >
-            <md-input-container class="md-block bigger" flex-gt-xs>
-                <input ng-model="vm.ngo.organisation">
-            </md-input-container>
-        </div>
-
-        <div layout-gt-xs="row">
-            <md-input-container ng-if="vm.ngo.street" class="md-block" flex-gt-sm>
-                <label>Addresse</label>
-                <input ng-model="vm.ngo.fullAddress">
-            </md-input-container>
-
-            <md-input-container ng-if="vm.ngo.website" class="md-block">
-                <label>Website</label>
-                <input ng-model="vm.ngo.website">
-            </md-input-container>
-        </div>
-
-        <div layout-gt-sm="row">
-            <md-input-container ng-if="vm.ngo.contact" class="md-block" flex-gt-sm>
-                <label>Kontakt</label>
-                <input ng-model="vm.ngo.contact">
-            </md-input-container>
-            <md-input-container ng-if="vm.ngo.contact_email" class="md-block" flex-gt-sm>
-                <label>Kontakt Email</label>
-                <input ng-model="vm.ngo.contact_email">
-            </md-input-container>
-            <md-input-container ng-if="vm.ngo.contact_phone" class="md-block" flex-gt-sm>
-                <label>Kontakt Telefon</label>
-                <input ng-model="vm.ngo.contact_phone">
-            </md-input-container>
-        </div>
-
-        <md-input-container ng-if="vm.ngo.description" class="md-block">
-            <label>Beschreibung</label>
-            <textarea ng-model="vm.ngo.description" rows="3"></textarea>
-        </md-input-container>
-    </fieldset>
-</form>
