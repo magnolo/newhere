@@ -18,8 +18,31 @@ class NgoController extends Controller
         return response()->json($ngos);
     }
 
-    public function show($id) {
-        $ngo = Ngo::findOrFail($id);
+    /**
+     * Returns ngo belonging to user who logged in
+     * TODO: how to handle amdins who have multiple NGOs?
+     * @param $userId
+     * @return mixed
+     */
+    private function getUserNgo($userId) {
+        $ngo = Ngo::with('image')
+            ->with('offers')
+            ->with(array('users'=>function($query) use ($userId){
+                $query->where('user_id', $userId);
+            }))
+            ->first();
+
+        return $ngo;
+    }
+
+
+    public function show() {
+        $user = Auth::user();
+        $ngo = $this->getUserNgo($user->id);
+        if (!$ngo) {
+            return response()->error('NGO not found', 404);
+        }
+
         return response()->json($ngo);
     }
 
