@@ -60,6 +60,24 @@ export function RoutesConfig($stateProvider, $urlRouterProvider) {
 				}
 			}
 		})
+		.state('app.forgotpassword', {
+			url: '/forgotpassword',
+			data: {},//{auth: true} would require JWT auth for this route
+			views: {
+				'main@': {
+					templateUrl: getView('forgot-password')
+				}
+			}
+		})
+		.state('app.resetpassword', {
+			url: '/reset-password/{token}',
+			data: {},//{auth: true} would require JWT auth for this route
+			views: {
+				'main@': {
+					templateUrl: getView('reset-password')
+				}
+			}
+		})
 		.state('app.ngo', {
 			url: '/ngo',
 			data: {
@@ -72,8 +90,6 @@ export function RoutesConfig($stateProvider, $urlRouterProvider) {
 				}
 			}
 		})
-
-
 
 		//
 		// CMS

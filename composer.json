@@ -26,7 +26,9 @@
         "dimsav/laravel-translatable": "^5.5",
         "zizaco/entrust": "5.2.x-dev",
         "webpatser/laravel-countries": "dev-master",
-        "orchestra/imagine": "3.2.x"
+        "orchestra/imagine": "3.2.x",
+        "snowfire/beautymail": "dev-master",
+        "caouecs/laravel-lang": "~3.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

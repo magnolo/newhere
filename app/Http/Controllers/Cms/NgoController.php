@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\DB;
 class NgoController extends Controller
 {
     public function index() {
-        $ngos = Ngo::all();
+        $ngos = Ngo::with(['image','users', 'offers'])->get();
         return response()->json($ngos);
     }
 
@@ -100,6 +100,7 @@ class NgoController extends Controller
         $ngo->street_number = $request->get('street_number');
         $ngo->zip = $request->get('zip');
         $ngo->city = $request->get('city');
+        $ngo->image_id = $request->get('image_id');
 
         //Standard Translation
         if ($request->has('description')) {
@@ -157,6 +158,7 @@ class NgoController extends Controller
         $ngo->street_number = $request->get('street_number');
         $ngo->zip = $request->get('zip');
         $ngo->city = $request->get('city');
+        $ngo->image_id = $request->get('image_id');
 
         //Standard Translation
         if ($request->has('description')) {
