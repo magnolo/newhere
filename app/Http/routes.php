@@ -31,6 +31,9 @@ $api->group(['middleware' => ['api']], function ($api) {
 
     $api->get('images/upload', 'ImageController@test');
     $api->post('images/upload', 'ImageController@uploadImage');
+
+
+
 });
 
 //protected routes with JWT (must be logged in)
@@ -72,4 +75,7 @@ $api->group(['middleware' => ['api', 'api.auth']], function ($api) {
     $api->post('ngos', 'Cms\NgoController@create');
     $api->put('ngos/{id}', 'Cms\NgoController@update');
     $api->put('ngos/{id}/togglePublished', 'Cms\NgoController@togglePublished');
+
+    $api->get('offers/autocomplete/{search}', 'Cms\OfferController@autocomplete');
+    $api->post('offer', 'Cms\OfferController@create');
 });

@@ -1,0 +1,71 @@
+<form name="offerForm" ng-submit="vm.save()">
+
+
+   <!--md-autocomplete
+             md-selected-item="vm.selectedItem"
+             md-search-text="vm.searchText"
+             md-items="item in vm.querySearch(vm.searchText)"
+             md-item-text="item.display"
+             md-min-length="2"
+             md-floating-label="Search"
+             placeholder="z.B. Stephansplatz 1, 1010 Wien">
+             <md-item-template>
+               <span md-highlight-text="searchText">{{item.display}}</span>
+             </md-item-template>
+           <md-not-found>
+             Keine passende Adresse gefunden!
+           </md-not-found>
+        </md-autocomplete-->
+
+    <md-input-container class="md-block">
+        <label>Titel</label>
+        <input ng-model="vm.offer.title" md-maxlength="200">
+    </md-input-container>
+    <md-input-container class="md-block">
+        <label>Beschreibung</label>
+        <textarea ng-model="vm.offer.description" md-maxlength="200" rows="3"></textarea>
+    </md-input-container>
+    <md-input-container class="md-block">
+        <label>Straße</label>
+        <input ng-model="vm.offer.street">
+    </md-input-container>
+    <md-input-container class="md-block">
+        <label>Hausnummer</label>
+        <input ng-model="vm.offer.streetnumber">
+    </md-input-container>
+    <md-input-container class="md-block">
+        <label>Adresszusatz</label>
+        <input ng-model="vm.offer.streetnumberadditional">
+    </md-input-container>
+    <md-input-container class="md-block">
+        <label>Stadt</label>
+        <input ng-model="vm.offer.city">
+    </md-input-container>
+    <md-input-container class="md-block">
+        <label>Postleitzahl</label>
+        <input ng-model="vm.offer.zip">
+    </md-input-container>
+    <md-input-container class="md-block">
+        <label>Email</label>
+        <input ng-model="vm.offer.email" type="email">
+    </md-input-container>
+    <md-input-container class="md-block">
+        <label>Telefonnummer</label>
+        <input ng-model="vm.offer.phone" ng-pattern="/^((\+\d{1,3}(-| )?\(?\d\)?(-| )?\d{1,5})|(\(?\d{2,6}\)?))(-| )?(\d{3,4})(-| )?(\d{4})(( x| ext)\d{1,5}){0,1}$/" >
+    </md-input-container>
+    <md-input-container class="md-block">
+        <label>Webseite</label>
+        <input ng-model="vm.offer.website" type="url">
+    </md-input-container>
+    <md-input-container class="md-block">
+        <label>Öffnungszeiten</label>
+        <textarea ng-model="vm.offer.opening_hours" md-maxlength="200" rows="5"></textarea>
+    </md-input-container>
+    <p>Angebot gültig von <md-datepicker ng-model="vm.offer.valid_from" md-placeholder="Enter date"></md-datepicker>
+bis
+<md-datepicker ng-model="vm.offer.valid_until" md-placeholder="Enter date"></md-datepicker>
+</p>
+    <md-button type="submit" class="md-primary md-raised" ng-disabled="offerForm.$invalid">Speichern</md-button>
+    <md-button class="md-primary" ng-click="vm.cancel()">Abbrechen</md-button>
+
+</form>
