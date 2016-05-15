@@ -10,7 +10,7 @@ class FilterController extends Controller
 {
     public function index()
     {
-        $filters = Filter::all();
+        $filters = Filter::where('parent_id', null)->with('children')->get();
         return response()->json($filters);
     }
 }
