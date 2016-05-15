@@ -72,4 +72,8 @@ $api->group(['middleware' => ['api', 'api.auth']], function ($api) {
     $api->post('ngos', 'Cms\NgoController@create');
     $api->put('ngos/{id}', 'Cms\NgoController@update');
     $api->put('ngos/{id}/togglePublished', 'Cms\NgoController@togglePublished');
+
+    $api->get('offers', 'Cms\OfferController@index');
+    $api->get('offers/{id}', 'Cms\OfferController@show');
+    $api->put('offers/{id}/toggleEnabled', 'Cms\OfferController@toggleEnabled');
 });
