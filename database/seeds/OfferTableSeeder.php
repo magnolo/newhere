@@ -2,7 +2,8 @@
 
 use Illuminate\Database\Seeder;
 
-use App\Offer, App\OfferTranslation;
+use App\Offer;
+use League\Csv\Reader;
 
 class OfferTableSeeder extends Seeder
 {
@@ -13,51 +14,42 @@ class OfferTableSeeder extends Seeder
      */
     public function run()
     {
-        $now = new \DateTime();
 
-        $past = clone $now;
-        $past->modify('-5days');
+        $reader = Reader::createFromPath(base_path().'/database/seeds/csvs/offers.csv');
+        $reader->setDelimiter(";");
+        $results = $reader->fetch();
+        foreach ($results as $key => $row) {
+        
+            $offer = new Offer();
+            $offer->ngo_id = 1;
+            if(!empty($row[6]))
+              $offer->street = $row[6];
+            if(!empty($row[7]))
+              $offer->streetnumber = $row[7];
+            if(!empty($row[10]))
+              $offer->zip = $row[10];
+            if(!empty($row[11]))
+              $offer->city = $row[11];
+            if(!empty($row[19]))
+              $offer->phone = $row[19];
+            if(!empty($row[17]))
+              $offer->email = $row[17];
+            if(!empty($row[18]))
+              $offer->website = $row[18];
 
-        $future = clone $now;
-        $future->modify('+30days');
-
-        $offers = [
-                ['street' => 'Karlsplatz', 'streetnumber' => 1, 'streetnumberadditional' => null, 'zip' => '1234', 'city' => 'Wien', 'phone' => '01/123456789', 'email' => 'foo@bar.com', 'age_from' => null, 'age_to' => null, 'valid_from' => null, 'valid_until' => null, 'ngo_id' => 1],
-                ['street' => 'Karlsplatz', 'streetnumber' => 2, 'streetnumberadditional' => null, 'zip' => '1234', 'city' => 'Wien', 'phone' => '01/123456789', 'email' => 'foo@bar.com', 'age_from' => 18, 'age_to' => 99, 'valid_from' => null, 'valid_until' => null, 'ngo_id' => 1],
-                ['street' => 'Karlsplatz', 'streetnumber' => 3, 'streetnumberadditional' => null, 'zip' => '1234', 'city' => 'Wien', 'phone' => '01/123456789', 'email' => 'foo@bar.com', 'age_from' => null, 'age_to' => null, 'valid_from' => $now->format('Y-m-d'), 'valid_until' => $future->format('Y-m-d'), 'ngo_id' => 1],
-                ['street' => 'Karlsplatz', 'streetnumber' => 4, 'streetnumberadditional' => null, 'zip' => '1234', 'city' => 'Wien', 'phone' => '01/123456789', 'email' => 'foo@bar.com', 'age_from' => 18, 'age_to' => 99, 'valid_from' => $now->format('Y-m-d'), 'valid_until' => $future->format('Y-m-d'), 'ngo_id' => 1],
-                ['street' => 'Karlsplatz', 'streetnumber' => 5, 'streetnumberadditional' => null, 'zip' => '1234', 'city' => 'Wien', 'phone' => '01/123456789', 'email' => 'foo@bar.com', 'age_from' => null, 'age_to' => null, 'valid_from' => $past->format('Y-m-d'), 'valid_until' => $now->format('Y-m-d'), 'ngo_id' => 1],
-                ['street' => 'Karlsplatz', 'streetnumber' => 6, 'streetnumberadditional' => null, 'zip' => '1234', 'city' => 'Wien', 'phone' => '01/123456789', 'email' => 'foo@bar.com', 'age_from' => null, 'age_to' => null, 'valid_from' => $past->format('Y-m-d'), 'valid_until' => $future->format('Y-m-d'), 'ngo_id' => 1],
-            ];
-        Offer::insert($offers);
-
-        $offerTranslations = [
-                ['language_id' => 1, 'offer_id' => 1, 'title' => 'Lorem ipsum', 'description' => 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. '],
-                ['language_id' => 2, 'offer_id' => 1, 'title' => 'Lorem ipsum', 'description' => 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. '],
-                ['language_id' => 1, 'offer_id' => 2, 'title' => 'Lorem ipsum', 'description' => 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. '],
-        ];
-        OfferTranslation::insert($offerTranslations);
+             $offer->save();
+            if(!empty($row[4]) && !empty($row[5])){
+            $offer->translateOrNew('de')->title = $row[4];
+            $offer->translateOrNew('de')->description = $row[5];
+              $offer->save();
+          }
+            if(!empty($row[22]) && !empty($row[23])){
+            $offer->translateOrNew('en')->title = $row[22];
+            $offer->translateOrNew('en')->description = $row[23];
+              $offer->save();
+          }
+        }
 
 
-        DB::table('offer_filters')->insert(
-            [
-                ['filter_id' => 1, 'offer_id' => 1],
-                ['filter_id' => 2, 'offer_id' => 1],
-                ['filter_id' => 5, 'offer_id' => 1],
-                ['filter_id' => 2, 'offer_id' => 2],
-            ]
-        );
-
-        DB::table('offer_categories')->insert(
-            [
-                ['category_id' => 1, 'offer_id' => 1],
-                // ['category_id' => 3, 'offer_id' => 1],
-                // ['category_id' => 4, 'offer_id' => 2],
-                ['category_id' => 1, 'offer_id' => 3],
-                ['category_id' => 1, 'offer_id' => 4],
-                ['category_id' => 1, 'offer_id' => 5],
-                ['category_id' => 1, 'offer_id' => 6],
-            ]
-        );
     }
 }
