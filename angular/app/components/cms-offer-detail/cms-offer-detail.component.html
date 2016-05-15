@@ -1,0 +1,40 @@
+<md-content class="Page-container" flex>
+    <div class="cms-detail-container" flex="90" flex-offset="5">
+        <h1 class="md-headline">Willkommen Martina</h1>
+
+        <md-grid-list
+                md-cols-xs="1" md-cols-sm="2" md-cols-md="4" md-cols-gt-md="6"
+                md-row-height-gt-md="1:1" md-row-height="2:2"
+                md-gutter="12px" md-gutter-gt-sm="8px">
+            <md-grid-tile class="gray"
+                          md-rowspan="2" md-colspan="2" md-colspan-sm="1" md-colspan-xs="1">
+                <md-grid-tile-header>
+                    <h3>Stammdaten</h3>
+                </md-grid-tile-header>
+                <div>
+                    <a href="" class="btn btn-default btn-sm pull-right" role="button">
+                        <span class="glyphicon glyphicon-pencil"></span>
+                    </a>
+
+                    <p md-row md-select="offerBase">
+                        {{offerBase.street}}
+
+                    </p>
+
+                </div>
+            </md-grid-tile>
+            <md-grid-tile class="gray"
+                          md-rowspan="2" md-colspan="2" md-colspan-sm="1" md-colspan-xs="1">
+                <md-grid-tile-header>
+                    <h3>NGO's</h3>
+                </md-grid-tile-header>
+                <div>
+                    <ul>
+                        <li>50 NGO's registriert</li>
+                        <li>10 NGO's warten auf Verifizierung</li>
+                    </ul>
+                </div>
+            </md-grid-tile>
+        </md-grid-list>
+    </div>
+</md-content>

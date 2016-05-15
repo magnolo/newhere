@@ -57,6 +57,9 @@ $api->group(['middleware' => ['api', 'api.auth']], function ($api) {
     $api->get('offer-translations/untranslated', 'Cms\OfferTranslationController@untranslatedIndex');
     $api->put('offer-translations/{id}', 'Cms\OfferTranslationController@translate');
 
+    $api->get('offer-detail', 'Cms\OfferDetailController@index');
+    $api->get('offer-detail/{id}', ['uses' => 'Cms\CategoryController@show']);
+
     $api->get('roles', 'Cms\RoleController@index');
 
     $api->get('users', 'Cms\UserController@index');

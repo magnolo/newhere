@@ -4,6 +4,7 @@ import {ForgotpasswordFormComponent} from './app/components/forgotpassword-form/
 import {CmsNgosListComponent} from './app/components/cms-ngos-list/cms-ngos-list.component';
 import {CmsOfferTranslationItemComponent} from './app/components/cms-offer-translation-item/cms-offer-translation-item.component';
 import {CmsOfferTranslationTableComponent} from './app/components/cms-offer-translation-table/cms-offer-translation-table.component';
+import {CmsOfferDetailComponent} from './app/components/cms-offer-detail/cms-offer-detail.component';
 import {ImageUploaderComponent} from './app/components/image-uploader/image-uploader.component';
 import {CmsUsersTableComponent} from './app/components/cms-users-table/cms-users-table.component';
 import {NgoFormComponent} from './app/components/ngo-form/ngo-form.component';
@@ -22,7 +23,8 @@ angular.module('app.components')
 	.component('forgotpasswordForm', ForgotpasswordFormComponent)
 	.component('cmsNgosList', CmsNgosListComponent)
 	.component('cmsOfferTranslationItem', CmsOfferTranslationItemComponent)
-	.component('cmsOfferTranslationTable', CmsOfferTranslationTableComponent)
+	.component('cmsOfferTranslationItem', CmsOfferTranslationItemComponent)
+	.component('cmsOfferDetail', CmsOfferDetailComponent)
 	.component('imageUploader', ImageUploaderComponent)
 	.component('cmsUsersTable', CmsUsersTableComponent)
 	.component('ngoForm', NgoFormComponent)

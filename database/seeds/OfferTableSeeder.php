@@ -1,8 +1,8 @@
 <?php
 
+use App\Offer;
+use App\OfferTranslation;
 use Illuminate\Database\Seeder;
-
-use App\Offer, App\OfferTranslation;
 
 class OfferTableSeeder extends Seeder
 {
@@ -32,9 +32,9 @@ class OfferTableSeeder extends Seeder
         Offer::insert($offers);
 
         $offerTranslations = [
-                ['language_id' => 1, 'offer_id' => 1, 'title' => 'Lorem ipsum', 'description' => 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. '],
-                ['language_id' => 2, 'offer_id' => 1, 'title' => 'Lorem ipsum', 'description' => 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. '],
-                ['language_id' => 1, 'offer_id' => 2, 'title' => 'Lorem ipsum', 'description' => 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. '],
+            ['language_id' => 1, 'offer_id' => 1, 'title' => 'Lorem ipsum', 'description' => 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. ', 'opening_hours' => '10 bis 12', 'locale' => 'Mafia'],
+            ['language_id' => 2, 'offer_id' => 1, 'title' => 'Lorem ipsum', 'description' => 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. ', 'opening_hours' => '10 bis 12', 'locale' => 'Mafia1'],
+            ['language_id' => 1, 'offer_id' => 2, 'title' => 'Lorem ipsum', 'description' => 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. ', 'opening_hours' => '10 bis 12', 'locale' => 'Mafia2'],
         ];
         OfferTranslation::insert($offerTranslations);
 
