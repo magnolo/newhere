@@ -127,8 +127,8 @@ class AuthController extends Controller
         $user->password = bcrypt($password);
         $user->confirmation_code = $confirmation_code;
         $user->save();
-
-        $this->userRepository->verifyMail($user);
+        
+        //$this->userRepository->verifyMail($user);
 
         return $user;
     }

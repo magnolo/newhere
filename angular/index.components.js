@@ -1,3 +1,4 @@
+import {NgoDetailComponent} from './app/components/ngo-detail/ngo-detail.component';
 
 import {ResetpasswordFormComponent} from './app/components/resetpassword-form/resetpassword-form.component';
 import {ForgotpasswordFormComponent} from './app/components/forgotpassword-form/forgotpassword-form.component';
@@ -19,6 +20,7 @@ import {RegisterFormComponent} from './app/components/register-form/register-for
 import {CmsOffersListComponent} from './app/components/cms-offers-list/cms-offers-list.component';
 
 angular.module('app.components')
+	.component('ngoDetail', NgoDetailComponent)
 	.component('resetpasswordForm', ResetpasswordFormComponent)
 	.component('forgotpasswordForm', ForgotpasswordFormComponent)
 	.component('cmsNgosList', CmsNgosListComponent)
