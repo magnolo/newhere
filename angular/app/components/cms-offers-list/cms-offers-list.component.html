@@ -5,7 +5,7 @@
             <md-input-container class="md-icon-float md-block">
                 <label>Search</label>
                 <md-icon class="material-icons">search</md-icon>
-                <input ng-model="vm.filter.id" type="text">
+                <input ng-model="vm.filter.title" type="text">
             </md-input-container>
 
             <div layout="row" layout-align="end center" ng-cloak style="font-size:16px">
@@ -37,7 +37,7 @@
             <thead md-head md-order="vm.query.order" md-on-reorder="vm.onOrderChange">
             <tr md-row>
                 <th md-column class="icon"></th>
-                <th md-column md-order-by="id">Offer</th>
+                <th md-column md-order-by="title">Offer</th>
                 <th md-column >Address</th>
                 <!--<th md-column md-order-by="ngo_id">NgoId</th>-->
                 <th md-column md-order-by="ngo">Ngo</th>
@@ -52,8 +52,8 @@
             <tbody md-body>
             <tr md-row md-select="offer" ng-repeat="offer in vm.filteredOffer = (vm.offers | filter: vm.filter) | limitTo: vm.query.limit : (vm.query.page-1)*vm.query.limit">
                 <td md-cell><md-button ng-click="vm.details(offer)" class="md-icon-button"><md-icon>info</md-icon></md-button></td>
-                <td md-cell><strong>{{offer.id}} {{offer.title}}</strong></td>
-                <td md-cell>{{offer.street}} {{offer.streetnumber}} {{offer.streetnumberadditional}}, {{offer.zip}} {{offer.city}}</td>
+                <td md-cell><strong>{{offer.title}}</strong></td>
+                <td md-cell>{{offer.street}} {{offer.streetnumber}} {{offer.streetnumberadditional}} {{offer.zip}} {{offer.city}}</td>
                 <!--<td md-cell>{{offer.ngo_id}}</td>-->
 
                 <td md-cell>
@@ -77,7 +77,6 @@
 
     </md-table-container>
 
-    <!--<md-table-pagination md-limit="vm.listPagination.limit" md-page="vm.listPagination.page" md-total="{{vm.filteredOffers.length}}"></md-table-pagination>-->
     <md-table-pagination md-limit="vm.query.limit" md-limit-options="[5,10,15, 25, 50]" md-page="vm.query.page" md-total="{{vm.filteredOffer.length}}" md-on-paginate="vm.onPaginationChange" md-page-select></md-table-pagination>
 
 </md-card>
