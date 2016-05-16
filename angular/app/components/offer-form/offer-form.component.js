@@ -1,8 +1,9 @@
-
-
-class OfferFormController{
-    constructor($auth, $http, OfferService, ToastService, $state, LanguageService) {
+class OfferFormController {
+    constructor($auth, $http, $q, OfferService, ToastService, $state, LanguageService) {
         'ngInject';
+
+        this.$q = $q;
+        this.aborter = $q.defer();
 
         this.$auth = $auth;
         this.$http = $http;
@@ -10,25 +11,33 @@ class OfferFormController{
         this.ToastService = ToastService;
         this.$state = $state;
         this.$LanguageService = LanguageService;
-        angular.element( document.querySelector( '#addressSearch' ) ).$valid = false;
+        angular.element(document.querySelector('#addressSearch')).$valid = false;
     }
 
-    querySearch (query) {
-      return this.$http.get('http://newhere.local.routes-vienna.work/api/offer/autocomplete/'+query).then(function(response){
-        return response.data; // usually response.data
-  })
+    querySearch(query) {
+        if (this.$http.pendingRequests.length) {
+            this.aborter.resolve();
+            this.aborter = this.$q.defer();
+        }
+        return this.$http.get('/api/offer/autocomplete/' + query, {
+            timeout: this.aborter.promise
+        }).then(function(response) {
+            return response.data; // usually response.data
+        });
+
     }
 
     selectedItemChange(item) {
-      this.offer.street = item.street;
-      this.offer.streetnumber = item.number;
-      this.offer.city = item.city;
-      this.offer.zip = item.zip;
-   }
+        if (!item) return;
+        this.offer.street = item.street;
+        this.offer.streetnumber = item.number;
+        this.offer.city = item.city;
+        this.offer.zip = item.zip;
+    }
 
     save() {
 
-       this.OfferService.create(this.offer);
+        this.OfferService.create(this.offer);
 
     }
 
