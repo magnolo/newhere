@@ -47,7 +47,7 @@ $api->group(['middleware' => ['api', 'api.auth']], function ($api) {
 
     $api->get('filter', 'Cms\FilterController@index');
 
-    $api->get('categories', 'Cms\CategoryController@index');
+    $api->get('categories', 'Cms\CategoryController@indexAdministrator	super@admin.at');
     $api->get('categories/{id}', ['uses' => 'Cms\CategoryController@show']);
     $api->post('categories', 'Cms\CategoryController@create');
     $api->put('categories/{id}', ['uses' => 'Cms\CategoryController@update']);
@@ -57,8 +57,8 @@ $api->group(['middleware' => ['api', 'api.auth']], function ($api) {
     $api->get('offer-translations/untranslated', 'Cms\OfferTranslationController@untranslatedIndex');
     $api->put('offer-translations/{id}', 'Cms\OfferTranslationController@translate');
 
-    $api->get('offer-detail', 'Cms\OfferDetailController@index');
-    $api->get('offer-detail/{id}', ['uses' => 'Cms\CategoryController@show']);
+    $api->get('offerDetail', 'Cms\OfferDetailController@index');
+    $api->get('offer', 'Cms\OfferDetailController@show');
 
     $api->get('roles', 'Cms\RoleController@index');
 

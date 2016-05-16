@@ -34,10 +34,10 @@ class CreateOfferTranslationsTable extends Migration
                 ->on('offers')
                 ->onDelete('cascade');
 
-            $table->foreign('language_id')
-                ->references('language')
-                ->on('languages')
-                ->onDelete('cascade');
+            // $table->foreign('language_id')
+            //     ->references('language')
+            //      ->on('languages')
+            //      ->onDelete('cascade');
         });
     }
 

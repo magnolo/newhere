@@ -1,40 +1,37 @@
-<md-content class="Page-container" flex>
-    <div class="cms-detail-container" flex="90" flex-offset="5">
-        <h1 class="md-headline">Willkommen Martina</h1>
+<md-table-container>
+    <table md-table md-row-select multiple ng-model="vm.selectedUsers">
+        <thead md-head md-order="vm.query.order" md-on-reorder="vm.onOrderChange">
+        <tr md-row>
+            <th md-column md-order-by="name">Titel</th>
+            <th md-column md-order-by="email">Beschreibung</th>
+            <th md-column md-order-by="language">Sprache</th>
+        </tr>
+        </thead>
+        <tbody md-body>
+        <tr md-row md-select="offers" ng-repeat="offers in vm.offerDetail">
+            <td md-cell><strong>{{offers.title}}</strong></td>
+            <td md-cell>{{offers.description}}</td>
+            <td md-cell>{{offers.locale}}</td>
+        </tr>
+        </tbody>
+    </table>
+</md-table-container>
 
-        <md-grid-list
-                md-cols-xs="1" md-cols-sm="2" md-cols-md="4" md-cols-gt-md="6"
-                md-row-height-gt-md="1:1" md-row-height="2:2"
-                md-gutter="12px" md-gutter-gt-sm="8px">
-            <md-grid-tile class="gray"
-                          md-rowspan="2" md-colspan="2" md-colspan-sm="1" md-colspan-xs="1">
-                <md-grid-tile-header>
-                    <h3>Stammdaten</h3>
-                </md-grid-tile-header>
-                <div>
-                    <a href="" class="btn btn-default btn-sm pull-right" role="button">
-                        <span class="glyphicon glyphicon-pencil"></span>
-                    </a>
+<md-table-container>
+    <table md-table md-row-select multiple ng-model="vm.selectedUsers">
+        <thead md-head md-order="vm.query.order" md-on-reorder="vm.onOrderChange">
+        <tr md-row>
+            <th md-column md-order-by="name">Strasse</th>
+            <th md-column md-order-by="email">Email</th>
+        </tr>
+        </thead>
+        <tbody md-body>
+        <tr md-row md-select="off" ng-repeat="off in vm.offer">
+            <td md-cell><strong>{{off.street}}</strong></td>
+            <td md-cell>{{off.email}}</td>
+        </tr>
+        </tbody>
+    </table>
+</md-table-container>
 
-                    <p md-row md-select="offerBase">
-                        {{offerBase.street}}
 
-                    </p>
-
-                </div>
-            </md-grid-tile>
-            <md-grid-tile class="gray"
-                          md-rowspan="2" md-colspan="2" md-colspan-sm="1" md-colspan-xs="1">
-                <md-grid-tile-header>
-                    <h3>NGO's</h3>
-                </md-grid-tile-header>
-                <div>
-                    <ul>
-                        <li>50 NGO's registriert</li>
-                        <li>10 NGO's warten auf Verifizierung</li>
-                    </ul>
-                </div>
-            </md-grid-tile>
-        </md-grid-list>
-    </div>
-</md-content>

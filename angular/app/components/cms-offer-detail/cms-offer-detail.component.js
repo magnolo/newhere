@@ -1,20 +1,22 @@
 class CmsOfferDetailController {
 
-    constructor(OfferDetailService) {
+    constructor(OfferDetailService, $filter, $state, DialogService) {
         'ngInject';
         this.OfferDetailService = OfferDetailService;
-        this.defaultLanguage = {};
-        this.offerBase;
-        this.offersExtended = [];
 
-        this.OfferDetailService.fetchDefaultLanguage((defaultLanguage) = > {
-            this.defaultLanguage = defaultLanguage;
-    })
-        ;
+        var vm = this;
+        this.filter = {};
+        this.$filter = $filter;
+        this.$state = $state;
+        this.DialogService = DialogService;
+        this.OfferDetailService.fetchAll().then(function (response) {
+            vm.offerDetail = response;
+        });
 
-    }
+        this.OfferDetailService.one().then(function (response) {
+            vm.offer = response;
+        });
 
-    $onInit() {
     }
 
 }

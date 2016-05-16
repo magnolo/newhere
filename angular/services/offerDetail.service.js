@@ -1,22 +1,38 @@
 export class OfferDetailService {
-    constructor(API, ToastService) {
+
+    constructor(API, $q, ToastService, $state, DialogService) {
         'ngInject';
 
         this.API = API;
         this.ToastService = ToastService;
-        this.offerBase;
-        this.offersExtended;
+        this.$q = $q;
+        this.$state = $state;
+        this.DialogService = DialogService;
 
-        this.defaultLanguage = {};
     }
 
-    fetchDefaultLanguage(success, error) {
-        this.API.all('languages').customGET('default').then((language) = > {
-            this.defaultLanguage = language;
-        success(this.defaultLanguage);
-    })
-        ;
+    fetchAll() {
+        var vm = this;
+        return this.$q(function (resolve) {
+            vm.API.all('offerDetail').getList().then(function (response) {
+                resolve(response)
+            }, function (error) {
+                console.log(error);
+                vm.ToastService.show("Fetching Offers failed");
+            });
+        });
     }
 
+    one() {
+        var vm = this;
+        return this.$q(function (resolve) {
+            vm.API.all('offer').getList().then(function (response) {
+                resolve(response)
+            }, function (error) {
+                console.log(error);
+                vm.ToastService.show("Fetching Offers failed");
+            });
+        });
+    }
 }
 

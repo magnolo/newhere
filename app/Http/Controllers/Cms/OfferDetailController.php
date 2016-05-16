@@ -20,19 +20,22 @@ class OfferDetailController extends Controller
     public function index()
     {
 
-        $offerBase = Offer::where("id", 1)->get();
-        $offersExtended = OfferTranslation::where("offer_id", 1)->get();
+        // $offerBase = Offer::where('id', 1)->get();
+        // $offerTranslations = OfferTranslation::where('offer_id', 1)->get();
+        // $offerTranslations = OfferTranslation::all();
+        // return response()->json($offerTranslations);
 
-        return response()->json($offerBase, $offersExtended);
+        $offerDetail = OfferTranslation::where('offer_id', 1)->get();
+        return response()->json($offerDetail);
 
     }
 
-    public function show($id)
+    public function show()
     {
-        $offerBase = Offer::where("id", $id)->get();
-        $offersExtended = OfferTranslation::where("offer_id", $id)->get();
+        $offer = Offer::where('id', 1)->get();
+        // $offersExtended = OfferTranslation::where("offer_id", $id)->get();
 
-        return response()->json($offerBase, $offersExtended);
+        return response()->json($offer);
     }
 
 
