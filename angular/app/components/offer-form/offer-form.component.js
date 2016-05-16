@@ -10,24 +10,25 @@ class OfferFormController{
         this.ToastService = ToastService;
         this.$state = $state;
         this.$LanguageService = LanguageService;
+        angular.element( document.querySelector( '#addressSearch' ) ).$valid = false;
     }
 
     querySearch (query) {
-      console.log("querySearch "+query);
-      return $http.get('http://newhere.local.routes-vienna.work/api/offer/autocomplete/hi').then(function(response){
+      return this.$http.get('http://newhere.local.routes-vienna.work/api/offer/autocomplete/'+query).then(function(response){
         return response.data; // usually response.data
   })
     }
 
+    selectedItemChange(item) {
+      this.offer.street = item.street;
+      this.offer.streetnumber = item.number;
+      this.offer.city = item.city;
+      this.offer.zip = item.zip;
+   }
+
     save() {
 
-      
-        this.offer.language = this.$LanguageService.activeLanguage();
-
-
        this.OfferService.create(this.offer);
-
-
 
     }
 

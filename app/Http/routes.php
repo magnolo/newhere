@@ -76,6 +76,6 @@ $api->group(['middleware' => ['api', 'api.auth']], function ($api) {
     $api->put('ngos/{id}', 'Cms\NgoController@update');
     $api->put('ngos/{id}/togglePublished', 'Cms\NgoController@togglePublished');
 
-    $api->get('offers/autocomplete/{search}', 'Cms\OfferController@autocomplete');
+    $api->get('offer/autocomplete/{search}', 'Cms\OfferController@autocomplete');
     $api->post('offer', 'Cms\OfferController@create');
 });
