@@ -92,6 +92,10 @@ class OfferController extends Controller
       DB::commit();
       return response()->success(compact('offer'));
    }
+   public function update(Request $request, $id){
+     $success = Offer::findOrFail($id)->update($request->all());
+     return response()->success(compact('success'));
+   }
    public function toggleEnabled(Request $request, $id) {
        $this->validate($request, [
            'enabled' => 'required'
@@ -114,5 +118,18 @@ class OfferController extends Controller
 
        return response()->success(compact('offer'));
    }
+   public function bulkAssign(Request $request, $ids){
+     $offersQ = Offer::whereIn('id', explode(',', $ids));
+     $offers = $offersQ->get();
+     $updatedRows = $offersQ->update([$request->get('field') => $request->get('value')]);
 
+     return response()->success(compact('offers', 'updatedRows'));
+   }
+   function bulkRemove($ids){
+     $offersQ = Offer::whereIn('id', explode(',', $ids));
+     $offers = $offersQ->get();
+     $deletedRows = $offersQ->delete();
+
+     return response()->success(compact('offers', 'deletedRows'));
+   }
 }

@@ -51,16 +51,17 @@ export class OfferService{
             this.DialogService.hide();
         });
     }
-
-
-
-        //this.API.all('offers').post(offer).then(()=>{
-        //    this.$state.go(this.$state.current, {}, {reload: true});
-        //    this.ToastService.show('Saved successfully');
-        //    this.DialogService.hide();
-        //});
-
-
+    save(offer){
+      offer.save().then(
+          (success) => {
+              this.ToastService.show('Offer updated.');
+          },
+          (error) => {
+              console.log(error);
+              this.ToastService.error('Offer update failed. Please try again');
+          }
+      );
+    }
     toggleEnabled(offer) {
         this.API.one('offers', offer.id).customPUT({
             enabled: offer.enabled ? 1 : 0
@@ -70,12 +71,11 @@ export class OfferService{
             },
             (error) => {
                 console.log(error);
-                this.ToastService.show('Offer update failed. Please try again');
+                this.ToastService.error('Offer update failed. Please try again');
                 offer.enabled = !offer.enabled;
             }
         );
     }
-
     bulkRemove(list, success, error){
         var ids = [];
         angular.forEach(list, (item) => {
@@ -85,5 +85,18 @@ export class OfferService{
             this.ToastService.show(response.data.deletedRows+' item(s) successfully deleted!');
             success(response.data.offers);
         });
+    }
+    bulkAssign(list, field, value, success, error){
+      var ids = [];
+      angular.forEach(list, (item) => {
+          ids.push(item.id);
+      });
+      this.API.several('offers', ids).patch({
+        field: field,
+        value: value
+      }).then((response) => {
+          this.ToastService.show('Offers successfully updated!');
+          success(response.data.offers);
+      });
     }
 }

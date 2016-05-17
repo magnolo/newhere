@@ -1,13 +1,25 @@
 <md-card>
-    <md-toolbar class="md-table-toolbar md-default" layout-padding>
-
+    <md-toolbar class="md-table-toolbar md-default" layout-padding ng-if="!vm.showfilter">
         <div layout="row" layout-align="space-between start">
-            <md-input-container class="md-icon-float md-block">
+            <h3>Offers</h3>
+            <span flex></span>
+            <div layout="row" layout-align="end center" ng-cloak style="font-size:16px">
+              <md-button ng-click="vm.showfilter = true" class="md-icon-button" layout="row" layout-align="center center">
+                  <i class="material-icons">filter_list</i>
+              </md-button>
+                <md-button class="md-raised md-icon-button md-primary" ui-sref="cms.new-offer" layout="row" layout-align="center center">
+                    <i class="material-icons">add</i>
+                </md-button>
+            </div>
+        </div>
+    </md-toolbar>
+    <md-toolbar class="md-table-toolbar md-default" layout-padding ng-if="vm.showfilter">
+        <div layout="row" layout-align="space-between start">
+            <md-input-container class="md-icon-float md-block no-error">
                 <label>Search</label>
                 <md-icon class="material-icons">search</md-icon>
                 <input ng-model="vm.filter.title" type="text">
             </md-input-container>
-
             <div layout="row" layout-align="end center" ng-cloak style="font-size:16px">
                 <md-input-container>
                     <label>Enabled</label>
@@ -18,18 +30,23 @@
                     </md-select>
                 </md-input-container>
             </div>
+            <div layout="row" layout-align="end center" ng-cloak style="font-size:16px">
+                <md-input-container>
+                    <label>NGO</label>
+                    <md-select ng-model="vm.filter.ngo_id">
+                      <md-option ng-value="">All</md-option>
+                      <md-option ng-repeat="ngo in vm.ngos" ng-value="ngo.id">{{ngo.organisation}}</md-option>
+                    </md-select>
+                </md-input-container>
+            </div>
             <span flex></span>
             <div layout="row" layout-align="end center" ng-cloak style="font-size:16px">
-                <md-button ng-if="vm.selectedOffers.length" class="md-raised md-icon-button md-warn" ng-click="vm.remove()" layout="row" layout-align="center center">
-                    <i class="material-icons">delete</i>
-                </md-button>
-                <md-button class="md-raised md-icon-button md-primary" ui-sref="cms.new-offer" layout="row" layout-align="center center">
-                    <i class="material-icons">add</i>
-                </md-button>
+              <md-button ng-click="vm.showfilter = false" class="md-icon-button" layout="row" layout-align="center center">
+                  <i class="material-icons">close</i>
+              </md-button>
             </div>
         </div>
     </md-toolbar>
-
     <md-table-container>
         <table md-table md-row-select multiple ng-model="vm.selectedOffers">
             <thead md-head md-order="vm.query.order" md-on-reorder="vm.onOrderChange">
@@ -40,9 +57,9 @@
                 <!--<th md-column md-order-by="ngo_id">NgoId</th>-->
                 <th md-column md-order-by="ngo">Ngo</th>
                 <th md-column md-order-by="enabled">Enabled</th>
-                <th md-column>Phone</th>
-                <th md-column>Email</th>
-                <th md-column>Website</th>
+                <th md-column class="icon">Phone</th>
+                <th md-column class="icon">Email</th>
+                <th md-column class="icon">Website</th>
             </tr>
             </thead>
             <tbody md-body>
@@ -53,26 +70,50 @@
                 <!--<td md-cell>{{offer.ngo_id}}</td>-->
 
                 <td md-cell>
-                    <md-chips readonly="true">
-                        <md-chip>
-                            <span>{{offer.ngo.organisation}}</span>
-                            <!--<span>{{$chip.organisation}}</span>-->
-                        </md-chip>
-                    </md-chips>
+                  <md-select ng-model="offer.ngo_id" aria-label="Select NGO" ng-change="vm.updateNgo(offer)">
+                    <md-option ng-repeat="ngo in vm.ngos" ng-value="ngo.id">{{ ngo.organisation}}</md-option>
+                  </md-select>
                 </td>
                 <td class="md-cell">
                     <md-switch ng-model="offer.enabled" ng-change="vm.toggleEnabled(offer)"
                                aria-label="Enable/Disable Offer"></md-switch>
                 </td>
-                <td md-cell>{{offer.phone}}</td>
-                <td md-cell>{{offer.email}}</td>
-                <td md-cell>{{offer.website}}</td>
+                <td md-cell>
+                  <div ng-if="offer.phone">
+                  <md-tooltip>{{offer.phone}}</md-tooltip>
+                  <a href="tel:{{offer.phone}}">
+                    <md-icon>phone</md-icon>
+                  </a>
+                </div>
+                </td>
+                <td md-cell><div ng-if="offer.email"><md-tooltip>{{offer.email}}</md-tooltip><a href="mailto:{{offer.email}}"><md-icon>mail</md-icon></a></div></td>
+                <td md-cell><div ng-if="offer.website"><md-tooltip>{{offer.website}}</md-tooltip><a href="{{offer.website}}" target="_blank"><md-icon>insert_link</md-icon></a></div></td>
             </tr>
             </tbody>
         </table>
 
     </md-table-container>
-
     <md-table-pagination md-limit="vm.query.limit" md-limit-options="[5,10,15, 25, 50]" md-page="vm.query.page" md-total="{{vm.filteredOffer.length}}" md-on-paginate="vm.onPaginationChange" md-page-select></md-table-pagination>
-
 </md-card>
+  <md-fab-speed-dial class="md-fling fixed bottom" ng-show="vm.selectedOffers.length" md-open="vm.menu.isOpen" md-direction="up">
+       <md-fab-trigger>
+         <md-button aria-label="menu" class="md-fab md-warn">
+           <md-icon>edit</md-icon>
+         </md-button>
+       </md-fab-trigger>
+       <md-fab-actions>
+         <md-button class="md-raised md-fab md-warn md-hue-2 md-mini" ng-click="vm.remove()" layout="row" layout-align="center center">
+             <i class="material-icons">delete</i>
+         </md-button>
+         <md-button class="md-raised md-fab  md-warn md-mini" ng-click="vm.bulkToggleEnabled(false)" layout="row" layout-align="center center">
+             <i class="material-icons">lock</i>
+         </md-button>
+         <md-button  class="md-raised md-fab  md-primary md-mini" ng-click="vm.bulkToggleEnabled(true)" layout="row" layout-align="center center">
+             <i class="material-icons">lock_open</i>
+         </md-button>
+         <md-button  class="md-raised md-fab  md-primary  md-mini" ng-click="vm.assignNgo()" layout="row" layout-align="center center">
+             <i class="material-icons">business</i>
+         </md-button>
+
+       </md-fab-actions>
+     </md-fab-speed-dial>

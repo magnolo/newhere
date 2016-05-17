@@ -1,0 +1,27 @@
+<md-dialog>
+    <form ng-submit="vm.assignSave()">
+
+        <md-toolbar>
+          <div class="md-toolbar-tools">
+            <h2>Assign Offers to Ngo</h2>
+          </div>
+        </md-toolbar>
+
+        <md-dialog-content>
+            <div class="md-dialog-content">
+                <p>{{ vm.selectedOffers.length }} offers slected</p>
+                <md-input-container flex>
+                    <label>Select NGO</label>
+                    <md-select ng-model="vm.ngo" aria-label="Choose NGO to assign offers">
+                      <md-option ng-repeat="ngo in vm.ngos" ng-value="ngo">{{ngo.organisation}}</md-option>
+                    </md-select>
+                </md-input-container>
+             </div>
+        </md-dialog-content>
+
+        <md-dialog-actions>
+            <md-button type="button" ng-click="vm.cancel()">Cancel</md-button>
+            <md-button class="md-primary md-raised" type="submit">Save</md-button>
+        </md-dialog-actions>
+    </form>
+</md-dialog>

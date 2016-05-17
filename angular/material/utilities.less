@@ -14,6 +14,12 @@
     padding: 0.5em 1em;
     text-transform: none;
 }
+md-toolbar.md-table-toolbar{
+  transition: all 0s;
+  h3{
+    margin-top:10px;
+  }
+}
 md-toolbar.md-table-toolbar:not(.md-menu-toolbar).md-default .md-button{
   &.md-primary, &.md-warn {
     color: #fff;
@@ -83,3 +89,20 @@ md-table-pagination{
 md-toast{
   position:fixed;
 }
+md-fab-speed-dial{
+  &.fixed{
+    position:fixed;
+    &.bottom{
+      bottom:1em;
+      right:1em;
+    }
+  }
+}
+md-input-container{
+  &.no-error{
+    .md-errors-spacer{
+      min-height:0px;
+    }
+  }
+
+ }
