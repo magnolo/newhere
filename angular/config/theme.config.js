@@ -18,4 +18,5 @@ export function ThemeConfig($mdThemingProvider) {
           .primaryPalette('grey')
           .accentPalette('deep-purple')
           .warnPalette('green')
+					.dark();
 }

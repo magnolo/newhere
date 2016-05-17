@@ -45,15 +45,15 @@ export function RoutesConfig($stateProvider, $urlRouterProvider) {
 				}
 			}
 		})
-        .state('app.register', {
-            url: '/register',
-            data: {},//{auth: true} would require JWT auth for this route
-            views: {
-                'main@': {
-                    templateUrl: getView('register')
-                }
-            }
-        })
+        // .state('app.register', {
+        //     url: '/register',
+        //     data: {},//{auth: true} would require JWT auth for this route
+        //     views: {
+        //         'main@': {
+        //             templateUrl: getView('register')
+        //         }
+        //     }
+        // })
 		.state('app.ngoRegister', {
 			url: '/ngoRegister',
 			data: {},//{auth: true} would require JWT auth for this route
