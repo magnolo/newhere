@@ -11,7 +11,7 @@ class Offer extends Model
 
     protected $table = 'offers';
     public $translatedAttributes = ['title', 'description', 'opening_hours'];
-    protected $fillable = ['ngo_id', 'street', 'streetnumber', 'streetnumberadditional', 'zip', 'city', 'latitude', 'longitude', 'phone', 'email', 'website', 'age_from', 'age_to', 'valid_from', 'valid_until', 'disabled', 'deleted'];
+    protected $fillable = ['ngo_id', 'street', 'streetnumber', 'streetnumberadditional', 'zip', 'city', 'latitude', 'longitude', 'phone', 'email', 'website', 'age_from', 'age_to', 'valid_from', 'valid_until', 'enabled', 'deleted'];
 
     public function ngo()
     {

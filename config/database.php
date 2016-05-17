@@ -67,14 +67,14 @@ return [
         ],
 
         'pgsql' => [
-            'driver' => 'pgsql',
-            'host' => env('DB_HOST', 'localhost'),
+            'driver'   => 'pgsql',
+            'host'     => env('DB_HOST', 'localhost'),
             'database' => env('DB_DATABASE', 'newhere'),
             'username' => env('DB_USERNAME', 'newhere'),
             'password' => env('DB_PASSWORD', 'development'),
-            'charset' => 'utf8',
-            'prefix' => '',
-            'schema' => 'public',
+            'charset'  => 'utf8',
+            'prefix'   => env('DB_PREFIX', ''),
+            'schema'   => 'public',
         ],
 
         'sqlsrv' => [

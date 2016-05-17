@@ -18,6 +18,7 @@ import {CmsCategoryFormComponent} from './app/components/cms-category-form/cms-c
 import {CmsCategoriesListComponent} from './app/components/cms-categories-list/cms-categories-list.component';
 import {LoginFormComponent} from './app/components/login-form/login-form.component';
 import {RegisterFormComponent} from './app/components/register-form/register-form.component';
+import {CmsOffersListComponent} from './app/components/cms-offers-list/cms-offers-list.component';
 
 angular.module('app.components')
 	.component('ngoDetail', NgoDetailComponent)
@@ -38,4 +39,5 @@ angular.module('app.components')
 	.component('cmsCategoryForm', CmsCategoryFormComponent)
 	.component('cmsCategoriesList', CmsCategoriesListComponent)
 	.component('loginForm', LoginFormComponent)
-	.component('registerForm', RegisterFormComponent);
+	.component('registerForm', RegisterFormComponent)
+	.component('cmsOffersList', CmsOffersListComponent);
