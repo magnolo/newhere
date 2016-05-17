@@ -191,7 +191,18 @@ export function RoutesConfig($stateProvider, $urlRouterProvider) {
 				}
 			}
 		})
-
+		.state('cms.category-translations',{
+			url:'/category-translations',
+			data:{
+				auth:true,
+				roles:['admin', 'superadmin']
+			},
+			views: {
+				'main@': {
+					templateUrl: getCmsView('category-translations')
+				}
+			}
+		})
 		.state('cms.ngos',{
 			url:'/ngos',
 			data:{
