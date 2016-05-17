@@ -2,6 +2,9 @@ class CmsOffersListController{
     constructor(OfferService, NgoService, $filter, $state, DialogService){
         'ngInject';
         var vm = this;
+        vm.menu = {
+          isOpen:false
+        };
         this.filter = {};
         this.$filter = $filter;
         this.$state = $state;
