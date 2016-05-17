@@ -40,7 +40,7 @@ export function RoutesConfig($stateProvider, $urlRouterProvider) {
 			url: '/login',
 			data: {},//{auth: true} would require JWT auth for this route
 			views: {
-				'main@': {
+				'main@app': {
 					templateUrl: getView('login')
 				}
 			}
@@ -58,7 +58,7 @@ export function RoutesConfig($stateProvider, $urlRouterProvider) {
 			url: '/ngoRegister',
 			data: {},//{auth: true} would require JWT auth for this route
 			views: {
-				'main@': {
+				'main@app': {
 					templateUrl: getView('ngo-register')
 				}
 			}
@@ -67,7 +67,7 @@ export function RoutesConfig($stateProvider, $urlRouterProvider) {
 			url: '/forgotpassword',
 			data: {},//{auth: true} would require JWT auth for this route
 			views: {
-				'main@': {
+				'main@app': {
 					templateUrl: getView('forgot-password')
 				}
 			}
@@ -76,7 +76,7 @@ export function RoutesConfig($stateProvider, $urlRouterProvider) {
 			url: '/reset-password/{token}',
 			data: {},//{auth: true} would require JWT auth for this route
 			views: {
-				'main@': {
+				'main@app': {
 					templateUrl: getView('reset-password')
 				}
 			}
@@ -88,7 +88,7 @@ export function RoutesConfig($stateProvider, $urlRouterProvider) {
 				roles:['organisation']
 			},
 			views: {
-				'main@': {
+				'main@app': {
 					templateUrl: getView('ngo')
 				}
 			}
