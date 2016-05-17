@@ -39,21 +39,18 @@ class CmsOffersListController{
     toggleEnabled(offer) {
         this.OfferService.toggleEnabled(offer);
     }
-
-    add() {
-        this.offer = {};
-        //this.DialogService.fromTemplate('offer', {
-        //    controller: () => this,
-        //    controllerAs: 'vm'
-        //});
-    }
-
-    details(offer) {
-        this.offer = offer;
-        //this.DialogService.fromTemplate('offer', {
-        //    controller: () => this,
-        //    controllerAs: 'vm'
-        //});
+    bulkToggleEnabled(enabled){
+      this.OfferService.bulkAssign(this.selectedOffers, 'enabled' ,enabled, (list) =>{
+        angular.forEach(list, (item) => {
+          angular.forEach(this.offers, (offer, key) => {
+            if(offer.id == item.id){
+              offer.enabled = enabled;
+            }
+          });
+        });
+        this.selectedOffers = [];
+        this.DialogService.hide();
+      });
     }
 
     remove() {
@@ -74,7 +71,28 @@ class CmsOffersListController{
         //    }
         //});
     }
-
+    assignNgo(){
+      this.DialogService.fromTemplate('assignToNgo', {
+         controller: () => this,
+         controllerAs: 'vm'
+      });
+    }
+    assignSave(){
+      this.OfferService.bulkAssign(this.selectedOffers, 'ngo_id',this.ngo.id, (list) =>{
+        angular.forEach(list, (item) => {
+          angular.forEach(this.offers, (offer, key) => {
+            if(offer.id == item.id){
+              offer.ngo_id = this.ngo.id;
+            }
+          });
+        });
+        this.selectedOffers = [];
+        this.DialogService.hide();
+      });
+    }
+    cancel(){
+      this.DialogService.hide();
+    }
     $onInit(){
     }
 }

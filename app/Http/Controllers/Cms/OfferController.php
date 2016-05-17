@@ -114,5 +114,12 @@ class OfferController extends Controller
 
        return response()->success(compact('offer'));
    }
+   public function bulkAssign(Request $request, $ids){
+     $offersQ = Offer::whereIn('id', explode(',', $ids));
+     $offers = $offersQ->get();
+     $updatedRows = $offersQ->update([$request->get('field') => $request->get('value')]);
+
+     return response()->success(compact('offers', 'updatedRows'));
+   }
 
 }

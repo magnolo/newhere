@@ -51,16 +51,6 @@ export class OfferService{
             this.DialogService.hide();
         });
     }
-
-
-
-        //this.API.all('offers').post(offer).then(()=>{
-        //    this.$state.go(this.$state.current, {}, {reload: true});
-        //    this.ToastService.show('Saved successfully');
-        //    this.DialogService.hide();
-        //});
-
-
     toggleEnabled(offer) {
         this.API.one('offers', offer.id).customPUT({
             enabled: offer.enabled ? 1 : 0
@@ -75,7 +65,6 @@ export class OfferService{
             }
         );
     }
-
     bulkRemove(list, success, error){
         var ids = [];
         angular.forEach(list, (item) => {
@@ -85,5 +74,18 @@ export class OfferService{
             this.ToastService.show(response.data.deletedRows+' item(s) successfully deleted!');
             success(response.data.offers);
         });
+    }
+    bulkAssign(list, field, value, success, error){
+      var ids = [];
+      angular.forEach(list, (item) => {
+          ids.push(item.id);
+      });
+      this.API.several('offers', ids).patch({
+        field: field,
+        value: value
+      }).then((response) => {
+          this.ToastService.show('Offers successfully updated!');
+          success(response.data.offers);
+      });
     }
 }

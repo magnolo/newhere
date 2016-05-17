@@ -20,6 +20,15 @@
             </div>
             <span flex></span>
             <div layout="row" layout-align="end center" ng-cloak style="font-size:16px">
+              <md-button ng-if="vm.selectedOffers.length" class="md-raised md-icon-button md-hue-1" ng-click="vm.bulkToggleEnabled(false)" layout="row" layout-align="center center">
+                  <i class="material-icons">lock</i>
+              </md-button>
+              <md-button ng-if="vm.selectedOffers.length" class="md-raised md-icon-button md-hue-1" ng-click="vm.bulkToggleEnabled(true)" layout="row" layout-align="center center">
+                  <i class="material-icons">lock_open</i>
+              </md-button>
+              <md-button ng-if="vm.selectedOffers.length" class="md-raised md-icon-button md-hue-1" ng-click="vm.assignNgo()" layout="row" layout-align="center center">
+                  <i class="material-icons">business</i>
+              </md-button>
                 <md-button ng-if="vm.selectedOffers.length" class="md-raised md-icon-button md-warn" ng-click="vm.remove()" layout="row" layout-align="center center">
                     <i class="material-icons">delete</i>
                 </md-button>
@@ -53,12 +62,9 @@
                 <!--<td md-cell>{{offer.ngo_id}}</td>-->
 
                 <td md-cell>
-                    <md-chips readonly="true">
-                        <md-chip>
-                            <span>{{offer.ngo.organisation}}</span>
-                            <!--<span>{{$chip.organisation}}</span>-->
-                        </md-chip>
-                    </md-chips>
+                  <md-select ng-model="offer.ngo_id" aria-label="Select NGO" >
+                    <md-option ng-repeat="ngo in vm.ngos" ng-value="ngo.id">{{ ngo.organisation}}</md-option>
+                  </md-select>
                 </td>
                 <td class="md-cell">
                     <md-switch ng-model="offer.enabled" ng-change="vm.toggleEnabled(offer)"
