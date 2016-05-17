@@ -15,10 +15,7 @@
     <![endif]-->
 </head>
 <body>
-
-    <div ui-view="header"></div>
-    <div ui-view="main" class="main"></div>
-    <div ui-view="footer"></div>
+    <div ui-view="top" layout="row" layout-fill></div>
 
     <script src="{!! elixir('js/vendor.js') !!}"></script>
     <script src="{!! elixir('js/partials.js') !!}"></script>

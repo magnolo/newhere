@@ -1,3 +1,5 @@
+import {WidgetNgoComponent} from './app/components/widget-ngo/widget-ngo.component';
+import {UserComponent} from './app/components/user/user.component';
 import {NgoDetailComponent} from './app/components/ngo-detail/ngo-detail.component';
 
 import {ResetpasswordFormComponent} from './app/components/resetpassword-form/resetpassword-form.component';
@@ -19,6 +21,8 @@ import {LoginFormComponent} from './app/components/login-form/login-form.compone
 import {RegisterFormComponent} from './app/components/register-form/register-form.component';
 
 angular.module('app.components')
+	.component('widgetNgo', WidgetNgoComponent)
+	.component('user', UserComponent)
 	.component('ngoDetail', NgoDetailComponent)
 	.component('resetpasswordForm', ResetpasswordFormComponent)
 	.component('forgotpasswordForm', ForgotpasswordFormComponent)

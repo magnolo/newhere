@@ -9,6 +9,7 @@ use App\User;
 use App\Role;
 use App\Ngo;
 use App\Language;
+use Auth;
 
 use DB;
 
@@ -22,6 +23,10 @@ class UserController extends Controller
 
     public function show($id){
       $user = User::findOrFail($id)->load(['roles', 'ngos','languages']);
+      return response()->json($user);
+    }
+    public function me(){
+      $user = Auth::user();
       return response()->json($user);
     }
     public function byRole($role){

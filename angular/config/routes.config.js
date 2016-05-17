@@ -15,20 +15,23 @@ export function RoutesConfig($stateProvider, $urlRouterProvider) {
 		.state('app', {
 			abstract: true,
 			views: {
-				header: {
+				top:{
+					templateUrl: getView('main')
+				},
+				'header@app': {
 					templateUrl: getView('header')
 				},
-				footer: {
+				'footer@app': {
 					templateUrl: getView('footer')
 				},
-				main: {}
+				'main@app': {}
 			}
 		})
 		.state('app.landing', {
             url: '/',
             data: {},
             views: {
-                'main@': {
+                'main@app': {
                     templateUrl: getView('landing')
                 }
             }
@@ -98,6 +101,9 @@ export function RoutesConfig($stateProvider, $urlRouterProvider) {
 			abstract: true,
 			url:'/cms',
 			views: {
+				top:{
+					templateUrl: getCmsView('main')
+				},
 				header: {
 					templateUrl: getCmsView('header')
 				},
@@ -114,7 +120,7 @@ export function RoutesConfig($stateProvider, $urlRouterProvider) {
 				roles:['admin', 'superadmin', 'organisation', 'moderator']
 			},
 			views: {
-				'main@': {
+				'main@cms': {
 					templateUrl: getCmsView('dashboard')
 				}
 			}
@@ -126,7 +132,7 @@ export function RoutesConfig($stateProvider, $urlRouterProvider) {
 				roles:['admin', 'superadmin']
 			},
 			views: {
-				'main@': {
+				'main@cms': {
 					templateUrl: getCmsView('categories')
 				}
 			}
@@ -150,7 +156,7 @@ export function RoutesConfig($stateProvider, $urlRouterProvider) {
 					roles:['admin', 'superadmin']
 			},
 			views: {
-				'main@': {
+				'main@cms': {
 					templateUrl: getCmsView('language')
 				}
 			}
@@ -162,7 +168,7 @@ export function RoutesConfig($stateProvider, $urlRouterProvider) {
 				roles:['admin', 'superadmin']
 			},
 			views: {
-				'main@': {
+				'main@cms': {
 					templateUrl: getCmsView('roles')
 				}
 			}
@@ -174,7 +180,7 @@ export function RoutesConfig($stateProvider, $urlRouterProvider) {
 				roles:['admin', 'superadmin']
 			},
 			views: {
-				'main@': {
+				'main@cms': {
 					templateUrl: getCmsView('users')
 				}
 			}
@@ -186,7 +192,7 @@ export function RoutesConfig($stateProvider, $urlRouterProvider) {
 				roles:['admin', 'superadmin']
 			},
 			views: {
-				'main@': {
+				'main@cms': {
 					templateUrl: getCmsView('offer-translations')
 				}
 			}
@@ -198,7 +204,7 @@ export function RoutesConfig($stateProvider, $urlRouterProvider) {
 				roles:['admin', 'superadmin']
 			},
 			views: {
-				'main@': {
+				'main@cms': {
 					templateUrl: getCmsView('ngos')
 				}
 			}
