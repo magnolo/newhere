@@ -57,9 +57,9 @@
                 <!--<th md-column md-order-by="ngo_id">NgoId</th>-->
                 <th md-column md-order-by="ngo">Ngo</th>
                 <th md-column md-order-by="enabled">Enabled</th>
-                <th md-column>Phone</th>
-                <th md-column>Email</th>
-                <th md-column>Website</th>
+                <th md-column class="icon">Phone</th>
+                <th md-column class="icon">Email</th>
+                <th md-column class="icon">Website</th>
             </tr>
             </thead>
             <tbody md-body>
@@ -78,9 +78,16 @@
                     <md-switch ng-model="offer.enabled" ng-change="vm.toggleEnabled(offer)"
                                aria-label="Enable/Disable Offer"></md-switch>
                 </td>
-                <td md-cell><a href="tel:{{offer.phone}}">{{offer.phone}}</a></td>
-                <td md-cell><a href="mailto:{{offer.email}}">{{offer.email}}</a></td>
-                <td md-cell><a href="{{offer.website}}" target="_blank">{{offer.website}}</a></td>
+                <td md-cell>
+                  <div ng-if="offer.phone">
+                  <md-tooltip>{{offer.phone}}</md-tooltip>
+                  <a href="tel:{{offer.phone}}">
+                    <md-icon>phone</md-icon>
+                  </a>
+                </div>
+                </td>
+                <td md-cell><div ng-if="offer.email"><md-tooltip>{{offer.email}}</md-tooltip><a href="mailto:{{offer.email}}"><md-icon>mail</md-icon></a></div></td>
+                <td md-cell><div ng-if="offer.website"><md-tooltip>{{offer.website}}</md-tooltip><a href="{{offer.website}}" target="_blank"><md-icon>insert_link</md-icon></a></div></td>
             </tr>
             </tbody>
         </table>
