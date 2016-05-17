@@ -1,5 +1,4 @@
 import {NgoDetailComponent} from './app/components/ngo-detail/ngo-detail.component';
-
 import {ResetpasswordFormComponent} from './app/components/resetpassword-form/resetpassword-form.component';
 import {ForgotpasswordFormComponent} from './app/components/forgotpassword-form/forgotpassword-form.component';
 import {CmsNgosListComponent} from './app/components/cms-ngos-list/cms-ngos-list.component';
@@ -18,6 +17,7 @@ import {CmsCategoryFormComponent} from './app/components/cms-category-form/cms-c
 import {CmsCategoriesListComponent} from './app/components/cms-categories-list/cms-categories-list.component';
 import {LoginFormComponent} from './app/components/login-form/login-form.component';
 import {RegisterFormComponent} from './app/components/register-form/register-form.component';
+import {OfferFormComponent} from './app/components/offer-form/offer-form.component';
 import {CmsOffersListComponent} from './app/components/cms-offers-list/cms-offers-list.component';
 
 angular.module('app.components')
@@ -40,4 +40,5 @@ angular.module('app.components')
 	.component('cmsCategoriesList', CmsCategoriesListComponent)
 	.component('loginForm', LoginFormComponent)
 	.component('registerForm', RegisterFormComponent)
+	.component('offerForm', OfferFormComponent);
 	.component('cmsOffersList', CmsOffersListComponent);

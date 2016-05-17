@@ -10,6 +10,8 @@ export class OfferService{
 
     }
 
+<<<<<<< HEAD
+=======
     fetchAll() {
         var vm = this;
         return this.$q(function(resolve) {
@@ -22,6 +24,7 @@ export class OfferService{
         });
     }
 
+>>>>>>> development
     cancel(cms) {
         if (cms) {
             this.DialogService.hide();
@@ -31,6 +34,16 @@ export class OfferService{
     }
 
     create(offer) {
+<<<<<<< HEAD
+        this.API.all('offer').post(offer).then(()=>{
+            this.$state.go(this.$state.current, {}, {reload: true});
+            this.ToastService.show('Saved successfully');
+            this.DialogService.hide();
+        });
+    }
+
+}
+=======
         //this.API.all('offers').post(offer).then(()=>{
         //    this.$state.go(this.$state.current, {}, {reload: true});
         //    this.ToastService.show('Saved successfully');
@@ -65,3 +78,4 @@ export class OfferService{
     }
 }
 
+>>>>>>> development

@@ -215,6 +215,16 @@ export function RoutesConfig($stateProvider, $urlRouterProvider) {
 				}
 			}
 		})
+
+		.state('cms.new-offer',{
+			url:'/new-offer',
+			data:{},
+			views: {
+				'main@': {
+					templateUrl: getCmsView('new-offer')
+				}
+			}
+		})
 		.state('cms.offers',{
 			url:'/offers',
 			data:{

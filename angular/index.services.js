@@ -1,5 +1,6 @@
 import {FilterService} from './services/filter.service';
 import {NgoService} from './services/ngo.service';
+import {OfferService} from './services/offer.service';
 import {OfferTranslationService} from './services/offerTranslation.service';
 import {OfferDetailService} from './services/offerDetail.service';
 import {UserService} from './services/user.service';
@@ -15,6 +16,7 @@ import {OfferService} from './services/offer.service';
 angular.module('app.services')
 	.service('FilterService', FilterService)
 	.service('NgoService', NgoService)
+	.service('OfferService', OfferService)
 	.service('OfferTranslationService', OfferTranslationService)
 	.service('OfferDetailService', OfferDetailService)
 	.service('UserService', UserService)
