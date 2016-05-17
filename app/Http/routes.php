@@ -82,7 +82,9 @@ $api->group(['middleware' => ['api', 'api.auth']], function ($api) {
     $api->get('offer/autocomplete/{search}', 'Cms\OfferController@autocomplete');
     $api->post('offer', 'Cms\OfferController@create');
     $api->get('offers', 'Cms\OfferController@index');
+    $api->patch('offers/{ids}', 'Cms\OfferController@bulkAssign');
     $api->get('offers/{id}', 'Cms\OfferController@show');
+    $api->put('offers/{id}', 'Cms\OfferController@update');
     $api->put('offers/{id}/toggleEnabled', 'Cms\OfferController@toggleEnabled');
-
+    $api->delete('offers/{id}', 'Cms\OfferController@bulkRemove');
 });

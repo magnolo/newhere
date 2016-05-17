@@ -10,7 +10,7 @@ export function ThemeConfig($mdThemingProvider) {
 		.primaryPalette('newHereBlue', {
             default: '600'
     })
-		.accentPalette('grey')
+		.accentPalette('amber')
 		.warnPalette('red');
 
     $mdThemingProvider.theme('warn');

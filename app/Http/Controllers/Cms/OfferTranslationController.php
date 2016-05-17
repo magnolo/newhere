@@ -17,7 +17,7 @@ class OfferTranslationController extends Controller
         /**
          * @todo check for verified offers
          */
-        $offers = \App\Offer::whereNull('deleted')->get();
+        $offers = \App\Offer::all();
 
         foreach ($offers as $offer) {
             /**
@@ -44,7 +44,7 @@ class OfferTranslationController extends Controller
         /**
          * @todo check for verified offers
          */
-        $offers = \App\Offer::whereNull('deleted')->get();
+        $offers = \App\Offer::all();
 
         foreach ($offers as $idx => $offer) {
             /**

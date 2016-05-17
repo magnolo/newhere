@@ -2,6 +2,9 @@ class CmsOffersListController{
     constructor(OfferService, NgoService, $filter, $state, DialogService){
         'ngInject';
         var vm = this;
+        vm.menu = {
+          isOpen:false
+        };
         this.filter = {};
         this.$filter = $filter;
         this.$state = $state;
@@ -39,42 +42,64 @@ class CmsOffersListController{
     toggleEnabled(offer) {
         this.OfferService.toggleEnabled(offer);
     }
-
-    add() {
-        this.offer = {};
-        //this.DialogService.fromTemplate('offer', {
-        //    controller: () => this,
-        //    controllerAs: 'vm'
-        //});
-    }
-
-    details(offer) {
-        this.offer = offer;
-        //this.DialogService.fromTemplate('offer', {
-        //    controller: () => this,
-        //    controllerAs: 'vm'
-        //});
+    bulkToggleEnabled(enabled){
+      this.OfferService.bulkAssign(this.selectedOffers, 'enabled' ,enabled, (list) =>{
+        angular.forEach(list, (item) => {
+          angular.forEach(this.offers, (offer, key) => {
+            if(offer.id == item.id){
+              offer.enabled = enabled;
+            }
+          });
+        });
+        this.selectedOffers = [];
+        this.DialogService.hide();
+      });
     }
 
     remove() {
-        //this.DialogService.prompt('Deleting Offers?', 'You are about to delete offer(s). Is that really a good idea? If so, type in DELETE and confirm?', 'Delete Secret').then((response) => {
-        //    if (response === "DELETE") {
-        //        this.OfferService.bulkRemove(this.selectedOffers, (list) => {
-        //            this.selectedOffers = [];
-        //            angular.forEach(list, (item) => {
-        //                angular.forEach(this.offers, (offer, key) => {
-        //                    if(offer.id == item.id){
-        //                        this.offers.splice(key, 1);
-        //                    }
-        //                });
-        //            });
-        //        });
-        //    } else {
-        //        this.DialogService.alert('Not correct', 'Thankfully, you entered the wrong secret. So nothing is going to change... for now.');
-        //    }
-        //});
+      this.DialogService.prompt('Deleting Offers?', 'You are about to delete offer(s). Type in DELETE and confirm?', 'Delete Secret').then((response) => {
+         if (response === "DELETE") {
+             this.OfferService.bulkRemove(this.selectedOffers, (list) => {
+                 this.selectedOffers = [];
+                 angular.forEach(list, (item) => {
+                     angular.forEach(this.offers, (offer, key) => {
+                         if(offer.id == item.id){
+                             this.offers.splice(key, 1);
+                         }
+                     });
+                 });
+             });
+         } else {
+             this.DialogService.alert('Not correct', 'Thankfully, you entered the wrong secret. So nothing is going to change... for now.');
+         }
+      });
+    }
+    updateNgo(offer){
+      this.OfferService.save(offer);
+    }
+    assignNgo(){
+      this.DialogService.fromTemplate('assignToNgo', {
+         controller: () => this,
+         controllerAs: 'vm'
+      });
     }
 
+    assignSave(){
+      this.OfferService.bulkAssign(this.selectedOffers, 'ngo_id',this.ngo.id, (list) =>{
+        angular.forEach(list, (item) => {
+          angular.forEach(this.offers, (offer, key) => {
+            if(offer.id == item.id){
+              offer.ngo_id = this.ngo.id;
+            }
+          });
+        });
+        this.selectedOffers = [];
+        this.DialogService.hide();
+      });
+    }
+    cancel(){
+      this.DialogService.hide();
+    }
     $onInit(){
     }
 }
