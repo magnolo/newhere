@@ -185,6 +185,18 @@ export function RoutesConfig($stateProvider, $urlRouterProvider) {
 				}
 			}
 		})
+		.state('cms.translations',{
+			url:'/translations',
+			data:{
+				auth:true,
+				roles:['admin', 'superadmin','moderator']
+			},
+			views: {
+				'main@cms': {
+					templateUrl: getCmsView('translations')
+				}
+			}
+		})
 		.state('cms.offer-translations',{
 			url:'/offer-translations',
 			data:{
@@ -211,15 +223,7 @@ export function RoutesConfig($stateProvider, $urlRouterProvider) {
 			}
 		})
 
-		.state('cms.new-offer',{
-			url:'/new-offer',
-			data:{},
-			views: {
-				'main@cms': {
-					templateUrl: getCmsView('new-offer')
-				}
-			}
-		})
+
 		.state('cms.offers',{
 			url:'/offers',
 			data:{
@@ -229,6 +233,15 @@ export function RoutesConfig($stateProvider, $urlRouterProvider) {
 			views: {
 				'main@cms': {
 					templateUrl: getCmsView('offers')
+				}
+			}
+		})
+		.state('cms.offers.new',{
+			url:'/new',
+			data:{},
+			views: {
+				'main@cms': {
+					templateUrl: getCmsView('new-offer')
 				}
 			}
 		})

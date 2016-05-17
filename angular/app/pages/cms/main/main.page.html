@@ -1,67 +1,16 @@
 <md-sidenav md-is-locked-open="$mdMedia('gt-sm')" md-component-id="left" class="md-whiteframe-z1 md-sidenav-left main">
-  <md-toolbar md-theme="custom" class="md-accent md-hue-3">
+  <md-toolbar md-theme="custom">
     <md-button layout="row" layout-align="center center" class="md-toolbar-tools" ui-sref="cms.dashboard">
       <h1><md-icon md-svg-src="/img/newhere-logo_white.svg" class="newHere-logo"></md-icon></h1>
     </md-button>
   </md-toolbar>
-      <md-button layout="column" layout-align="center center" flex class="capitalize md-accent md-hue-3" ui-sref-active="md-warn" ui-sref="cms.dashboard">
-          <div hide-sm hide-md class="md-tile-content">
-              <i class="material-icons md-36">dashboard</i>
-          </div>
-          <div class="md-tile-content">Dashboard</div>
-      </md-button>
-      <md-button layout="column" layout-align="center center" flex class="capitalize md-accent md-hue-3" ui-sref-active="md-warn" ui-sref="cms.offers">
-          <div hide-sm hide-md class="md-tile-content">
-              <i class="material-icons md-36">local_offer</i>
-          </div>
-          <div class="md-tile-content">Offers</div>
-      </md-button>
-      <md-button layout="column" layout-align="center center" flex class="capitalize md-accent md-hue-3" ui-sref-active="md-warn" ui-sref="cms.offer-translations">
-          <div hide-sm hide-md class="md-tile-content">
-              <i class="material-icons md-36">local_offer</i>
-          </div>
-          <div class="md-tile-content">Offer-Translations</div>
-      </md-button>
-      <md-button layout="column" layout-align="center center" flex class="capitalize md-accent md-hue-3" ui-sref-active="md-warn" ui-sref="cms.categories">
-          <div hide-sm hide-md class="md-tile-content">
-              <i class="material-icons md-36">list</i>
-          </div>
-          <div class="md-tile-content">Categories</div>
-      </md-button>
-
-
-      <md-button layout="column" layout-align="center center" flex class="capitalize md-accent md-hue-3" ui-sref-active="md-warn" ui-sref="cms.languages">
-          <div hide-sm hide-md class="md-tile-content">
-              <i class="material-icons md-36">font_download</i>
-          </div>
-          <div class="md-tile-content">Languages</div>
-      </md-button>
-      <md-button layout="column" layout-align="center center" flex class="capitalize md-accent md-hue-3" ui-sref-active="md-warn" ui-sref="cms.users">
-          <div hide-sm hide-md class="md-tile-content">
-              <i class="material-icons md-36">group</i>
-          </div>
-          <div class="md-tile-content">Users</div>
-      </md-button>
-      <md-button layout="column" layout-align="center center" flex class="capitalize md-accent md-hue-3" ui-sref-active="md-warn" ui-sref="cms.roles">
-          <div hide-sm hide-md class="md-tile-content">
-              <i class="material-icons md-36">streetview</i>
-          </div>
-          <div class="md-tile-content">Roles</div>
-      </md-button>
-      <md-button layout="column" layout-align="center center" flex class="capitalize md-accent md-hue-3" ui-sref-active="md-warn" ui-sref="cms.ngos">
-          <div hide-sm hide-md class="md-tile-content">
-              <i class="material-icons md-36">business</i>
-          </div>
-          <div class="md-tile-content">NGOs</div>
-      </md-button>
-
-
+  <cms-menu></cms-menu>
 </md-sidenav>
 
 <div layout="column" flex>
-    <md-toolbar layout="row" class="md-accent md-hue-3" layout-align="end center">
+    <md-toolbar md-theme="custom" layout="row" class="" layout-align="end center">
       	<user-menu></user-menu>
-        <md-button hide-gt-sm ng-click="vm.toggleItemsList()" aria-label="Menu">
+        <md-button hide-gt-sm ng-click="$mdSidenav('left').toggle();" aria-label="Menu">
             <i class="material-icons">menu</i>
         </md-button>
     </md-toolbar>

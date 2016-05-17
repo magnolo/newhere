@@ -1,0 +1,14 @@
+<!-- <md-button ng-repeat="item in vm.items" layout="column" layout-align="center center" flex class="capitalize md-hue-1 md-default" ui-sref-active="md-warn" ui-sref="{{item.sref}}">
+    <div hide-sm hide-md class="md-tile-content">
+        <i class="material-icons md-36">{{item.icon}}</i>
+    </div>
+    <div class="md-tile-content">{{item.title}}</div>
+</md-button> -->
+<md-list>
+  <md-list-item ng-repeat="item in vm.items" ui-sref-active="md-warn" ui-sref="{{item.sref}}">
+      <md-icon>{{item.icon}}</md-icon>
+
+         <p>{{ item.title }}</p>
+       
+  </md-list>
+<md-list>
