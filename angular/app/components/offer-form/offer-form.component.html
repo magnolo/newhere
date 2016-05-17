@@ -1,5 +1,13 @@
-<div class="md-title" style="padding-left:.5em;padding-bottom:.5em">
-  {{ vm.offer.title || 'Neues Angebot'}}
+<div  style="padding:.5em;" layout="row" layout-align="space-between center">
+  <span class="md-title">{{ vm.offer.title || 'Neues Angebot'}}</span>
+  <span>
+    <md-input-container>
+      <label>NGO</label>
+      <md-select ng-model="vm.offer.ngo_id">
+        <md-option ng-repeat="ngo in vm.ngos" ng-value="ngo.id">{{ ngo.organisation }}</md-option>
+      </md-select>
+    </md-input-container>
+  </span>
 </div>
 <form name="offerForm" ng-submit="vm.save()" ng-invalid class="blank">
     <md-content class="blank" layout-xs="column" layout="row">
@@ -42,6 +50,7 @@
             <md-card-title>
                 <md-card-title-text>
                     <span class="md-headline">Filter</span>
+                      <span class="md-subhead">{{ vm.offer.filters.length }} ausgewählt</span>
                 </md-card-title-text>
             </md-card-title>
               <md-content layout-padding>
@@ -98,15 +107,17 @@
             <md-card>
               <md-card-title>
                   <md-card-title-text>
-                      <span class="md-headline">Kategorien </span>
+                      <span class="md-headline">Kategorien</span>
+                      <span class="md-subhead">{{ vm.offer.categories.length }} ausgewählt</span>
                   </md-card-title-text>
               </md-card-title>
-              <treeview items="vm.categories" options="vm.options"></treeview>
+              <treeview items="vm.categories"  selection="vm.offer.categories" options="vm.categoriesOptions"></treeview>
             </md-card>
         </div>
     </md-content>
+    <div flex layout="row" layout-align="end center">
 
     <md-button type="submit" class="md-primary md-raised" ng-disabled="offerForm.$invalid || Form.$pristine">Speichern</md-button>
     <md-button class="md-primary" ng-click="vm.cancel()">Abbrechen</md-button>
-
+</div>
 </form>

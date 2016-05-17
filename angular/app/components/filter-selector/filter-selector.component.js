@@ -16,10 +16,7 @@ class FilterSelectorController{
                 this.dropdownFilters[filter.slug] = filter;
               }
             });
-            console.log(this.selectedFilter);
-            console.log(this.dropdownFilters);
           }
-
         });
 
     }

@@ -9,6 +9,7 @@ use App\Offer;
 use App\Role;
 use App\User;
 use App\Filter;
+use App\Category;
 use Illuminate\Http\Request;
 use Auth;
 use App\Http\Requests;
@@ -118,6 +119,13 @@ class OfferController extends Controller
        foreach($request->get('filters') as $key => $filter){
          $f = Filter::findOrFail($filter['id']);
          $offer->filters()->attach($f);
+       }
+     }
+     if($request->has('categories')){
+       $offer->categories()->detach();
+       foreach($request->get('categories') as $key => $category){
+         $cat = Category::findOrFail($category['id']);
+         $offer->categories()->attach($cat);
        }
      }
      return response()->success(compact('success'));

@@ -1,9 +1,10 @@
 class TreeviewController {
     constructor() {
         'ngInject';
-        
-        this.selection = [];
+
+        //this.selection = [];
         //
+        this.expandedItems = [];
     }
     onDragOver(event, index, external, type) {
       /*if(this.items[index-1].children.length){
@@ -24,6 +25,19 @@ class TreeviewController {
             return this.items.splice(index, 1);
         }
     }
+    toggleExpansion(item){
+      let idx = this.expandedItems.indexOf(item.id);
+      if(idx > -1){
+        this.expandedItems.splice(idx, 1);
+      }
+      else{
+        this.expandedItems.push(item.id);
+      }
+    }
+    isExpanded(item){
+        let idx = this.expandedItems.indexOf(item.id);
+        return idx > -1 ? true : false;
+    }
     toggleSelection(item) {
         var index = -1;
         angular.forEach(this.selection, function(selected, i) {
@@ -37,8 +51,8 @@ class TreeviewController {
             this.selection.push(item);
         }
         if (typeof this.options.selectionChanged == 'function')
-            this.options.selectionChanged();
-        console.log(item, this.selection);
+            this.options.selectionChanged(this.selection);
+
     }
     addChildren(item) {
         item.children = [];
@@ -54,18 +68,55 @@ class TreeviewController {
         return found;
 
     }
+    findId(list, id){
+      let found = false;
+      angular.forEach(list, (item) => {
+        if(item.id == id){
+          found = true;
+        }
+      });
+      return found;
+    }
     childSelected(item) {
         var found = false;
-        /*angular.forEach(item.children, function(child) {
-            if (this.selection.indexOf(child) > -1) {
-                found = true;
-            }
-            if (!found) {
-                found = childSelected(child);
+        var founds = [];
 
+        if(!this.selection) return false;
+        if(!this.selection.length) return false;
+
+      //  if(item.children.length){
+          angular.forEach(item.children, (child) =>{
+            founds.push(this.findId(this.selection, child.id));
+            if(child.children.length){
+              angular.forEach(child.children, (c) =>{
+                  founds.push(this.findId(this.selection, c.id));
+                if(c.children.length){
+                  angular.forEach(c.children, (cc) =>{
+                      founds.push(this.findId(this.selection, cc.id));
+
+                  })
+                }
+              })
             }
-        })*/
-        return found;
+            // if(sel.id == item.id){
+            //   console.log(sel, item);
+            // }
+          })
+        //  console.log(this.selection,item);
+      //  }
+        //
+        // angular.forEach(item.children, function(child) {
+        //     if (this.selection.indexOf(child) > -1) {
+        //         found = true;
+        //     }
+        //     if (!found) {
+        //         found = this.TreeviewController.childSelected(child, selection);
+        //
+        //     }
+        // })
+      //  console.log(founds);
+        return founds.indexOf(true) > -1 ? true : false;
+      //  return found;
     }
 
 

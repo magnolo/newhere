@@ -11,17 +11,32 @@ class OfferFormController {
         this.ToastService = ToastService;
         this.$state = $state;
         this.$LanguageService = LanguageService;
+        this.NgoService = NgoService;
+        this.NgoService.fetchAll().then((list) => {
+          this.ngos = list;
+        });
         this.CategoryService = CategoryService;
         this.CategoryService.all((list) => {
           this.categories = list;
         })
-
+        this.categoriesOptions = {
+          selectionChanged: (items) => {
+            this.offer.categories = items;
+          }
+        }
         if($state.params.id){
           this.OfferService.one($state.params.id, (offer) =>{
             this.offer = offer;
             this.valid_from = new Date(this.offer.valid_from);
             this.valid_until = new Date(this.offer.valid_until);
           })
+        }
+        else{
+          this.offer = {
+            categories:[],
+            filters:[]
+          };
+          this.valid_from = new Date();
         }
 
         angular.element(document.querySelector('#addressSearch')).$valid = false;
