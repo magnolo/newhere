@@ -125,5 +125,11 @@ class OfferController extends Controller
 
      return response()->success(compact('offers', 'updatedRows'));
    }
+   function bulkRemove($ids){
+     $offersQ = Offer::whereIn('id', explode(',', $ids));
+     $offers = $offersQ->get();
+     $deletedRows = $offersQ->delete();
 
+     return response()->success(compact('offers', 'deletedRows'));
+   }
 }

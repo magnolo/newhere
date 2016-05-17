@@ -54,22 +54,22 @@ class CmsOffersListController{
     }
 
     remove() {
-        //this.DialogService.prompt('Deleting Offers?', 'You are about to delete offer(s). Is that really a good idea? If so, type in DELETE and confirm?', 'Delete Secret').then((response) => {
-        //    if (response === "DELETE") {
-        //        this.OfferService.bulkRemove(this.selectedOffers, (list) => {
-        //            this.selectedOffers = [];
-        //            angular.forEach(list, (item) => {
-        //                angular.forEach(this.offers, (offer, key) => {
-        //                    if(offer.id == item.id){
-        //                        this.offers.splice(key, 1);
-        //                    }
-        //                });
-        //            });
-        //        });
-        //    } else {
-        //        this.DialogService.alert('Not correct', 'Thankfully, you entered the wrong secret. So nothing is going to change... for now.');
-        //    }
-        //});
+      this.DialogService.prompt('Deleting Offers?', 'You are about to delete offer(s). Type in DELETE and confirm?', 'Delete Secret').then((response) => {
+         if (response === "DELETE") {
+             this.OfferService.bulkRemove(this.selectedOffers, (list) => {
+                 this.selectedOffers = [];
+                 angular.forEach(list, (item) => {
+                     angular.forEach(this.offers, (offer, key) => {
+                         if(offer.id == item.id){
+                             this.offers.splice(key, 1);
+                         }
+                     });
+                 });
+             });
+         } else {
+             this.DialogService.alert('Not correct', 'Thankfully, you entered the wrong secret. So nothing is going to change... for now.');
+         }
+      });
     }
     updateNgo(offer){
       this.OfferService.save(offer);

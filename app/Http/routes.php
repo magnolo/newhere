@@ -85,5 +85,5 @@ $api->group(['middleware' => ['api', 'api.auth']], function ($api) {
     $api->get('offers/{id}', 'Cms\OfferController@show');
     $api->put('offers/{id}', 'Cms\OfferController@update');
     $api->put('offers/{id}/toggleEnabled', 'Cms\OfferController@toggleEnabled');
-
+    $api->delete('offers/{id}', 'Cms\OfferController@bulkRemove');
 });
