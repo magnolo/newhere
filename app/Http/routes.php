@@ -31,6 +31,7 @@ $api->group(['middleware' => ['api']], function ($api) {
 
     $api->get('images/upload', 'ImageController@test');
     $api->post('images/upload', 'ImageController@uploadImage');
+
 });
 
 //protected routes with JWT (must be logged in)
