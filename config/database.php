@@ -73,7 +73,7 @@ return [
             'username' => env('DB_USERNAME', 'newhere'),
             'password' => env('DB_PASSWORD', 'development'),
             'charset'  => 'utf8',
-            'prefix'   => '',
+            'prefix'   => env('DB_PREFIX', ''),
             'schema'   => 'public',
         ],
 
