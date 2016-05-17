@@ -10,6 +10,18 @@ export class NgoService{
 
     }
 
+    one(){
+        var vm = this;
+        return this.$q(function(resolve) {
+            vm.API.one('ngo').get().then(function (response) {
+                resolve(response)
+            }, function (error) {
+                vm.ToastService.show("Fetching NGO failed");
+            });
+        });
+    }
+
+
     fetchAll() {
         var vm = this;
         return this.$q(function(resolve) {

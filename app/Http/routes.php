@@ -32,8 +32,11 @@ $api->group(['middleware' => ['api']], function ($api) {
     $api->get('images/upload', 'ImageController@test');
     $api->post('images/upload', 'ImageController@uploadImage');
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> development
 });
 
 //protected routes with JWT (must be logged in)
@@ -71,11 +74,19 @@ $api->group(['middleware' => ['api', 'api.auth']], function ($api) {
     $api->delete('users/{id}', 'Cms\UserController@bulkRemove');
 
     $api->get('ngos', 'Cms\NgoController@index');
-    $api->get('ngos/{id}', 'Cms\NgoController@show');
+    $api->get('ngo', 'Cms\NgoController@show');
     $api->post('ngos', 'Cms\NgoController@create');
     $api->put('ngos/{id}', 'Cms\NgoController@update');
+    $api->put('ngo/{id}', 'Cms\NgoController@update');
     $api->put('ngos/{id}/togglePublished', 'Cms\NgoController@togglePublished');
 
+<<<<<<< HEAD
     $api->get('offer/autocomplete/{search}', 'Cms\OfferController@autocomplete');
     $api->post('offer', 'Cms\OfferController@create');
+=======
+    $api->get('offers', 'Cms\OfferController@index');
+    $api->get('offers/{id}', 'Cms\OfferController@show');
+    $api->put('offers/{id}/toggleEnabled', 'Cms\OfferController@toggleEnabled');
+
+>>>>>>> development
 });

@@ -1,0 +1,82 @@
+<md-card>
+    <md-toolbar class="md-table-toolbar md-default" layout-padding>
+
+        <div layout="row" layout-align="space-between start">
+            <md-input-container class="md-icon-float md-block">
+                <label>Search</label>
+                <md-icon class="material-icons">search</md-icon>
+                <input ng-model="vm.filter.title" type="text">
+            </md-input-container>
+
+            <div layout="row" layout-align="end center" ng-cloak style="font-size:16px">
+                <md-input-container>
+                    <label>Enabled</label>
+                    <md-select ng-model="vm.filter.enabled">
+                        <md-option ng-value="">All</md-option>
+                        <md-option ng-value="true">Yes</md-option>
+                        <md-option ng-value="false">No</md-option>
+                    </md-select>
+                </md-input-container>
+            </div>
+
+
+            <span flex></span>
+            <div layout="row" layout-align="end center" ng-cloak style="font-size:16px">
+                <md-button ng-if="vm.selectedOffers.length" class="md-raised md-icon-button md-warn" ng-click="vm.remove()" layout="row" layout-align="center center">
+                    <i class="material-icons">delete</i>
+                </md-button>
+                <md-button class="md-raised md-icon-button md-primary" ng-click="vm.add()" layout="row" layout-align="center center">
+                    <i class="material-icons">add</i>
+                </md-button>
+            </div>
+        </div>
+    </md-toolbar>
+
+    <md-table-container>
+        <table md-table md-row-select multiple ng-model="vm.selectedOffers">
+            <thead md-head md-order="vm.query.order" md-on-reorder="vm.onOrderChange">
+            <tr md-row>
+                <th md-column class="icon"></th>
+                <th md-column md-order-by="title">Offer</th>
+                <th md-column >Address</th>
+                <!--<th md-column md-order-by="ngo_id">NgoId</th>-->
+                <th md-column md-order-by="ngo">Ngo</th>
+                <th md-column md-order-by="enabled">Enabled</th>
+                <th md-column>Phone</th>
+                <th md-column>Email</th>
+                <th md-column>Website</th>
+
+
+            </tr>
+            </thead>
+            <tbody md-body>
+            <tr md-row md-select="offer" ng-repeat="offer in vm.filteredOffer = (vm.offers | filter: vm.filter) | limitTo: vm.query.limit : (vm.query.page-1)*vm.query.limit">
+                <td md-cell><md-button ng-click="vm.details(offer)" class="md-icon-button"><md-icon>info</md-icon></md-button></td>
+                <td md-cell><strong>{{offer.title}}</strong></td>
+                <td md-cell>{{offer.street}} {{offer.streetnumber}} {{offer.streetnumberadditional}} {{offer.zip}} {{offer.city}}</td>
+                <!--<td md-cell>{{offer.ngo_id}}</td>-->
+
+                <td md-cell>
+                    <md-chips readonly="true">
+                        <md-chip>
+                            <span>{{offer.ngo.organisation}}</span>
+                            <!--<span>{{$chip.organisation}}</span>-->
+                        </md-chip>
+                    </md-chips>
+                </td>
+                <td class="md-cell">
+                    <md-switch ng-model="offer.enabled" ng-change="vm.toggleEnabled(offer)"
+                               aria-label="Enable/Disable Offer"></md-switch>
+                </td>
+                <td md-cell>{{offer.phone}}</td>
+                <td md-cell>{{offer.email}}</td>
+                <td md-cell>{{offer.website}}</td>
+            </tr>
+            </tbody>
+        </table>
+
+    </md-table-container>
+
+    <md-table-pagination md-limit="vm.query.limit" md-limit-options="[5,10,15, 25, 50]" md-page="vm.query.page" md-total="{{vm.filteredOffer.length}}" md-on-paginate="vm.onPaginationChange" md-page-select></md-table-pagination>
+
+</md-card>

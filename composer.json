@@ -4,18 +4,6 @@
     "keywords": ["laravel", "angular", "material", "starter", "ui-router", "api", "angular-material"],
     "license": "MIT",
     "type": "project",
-    "repositories": [{
-        "type": "package",
-        "package": {
-            "name": "magnolo/imageupload",
-            "version": "5.2",
-            "source": {
-                "url": "https://github.com/magnolo/laravel-imageupload.git",
-                "type": "git",
-                "reference": "master"
-            }
-        }
-    }],
     "require": {
         "php": ">=5.5.9",
         "laravel/framework": "5.2.*",
@@ -29,7 +17,11 @@
         "orchestra/imagine": "3.2.x",
         "snowfire/beautymail": "dev-master",
         "caouecs/laravel-lang": "~3.0",
+<<<<<<< HEAD
         "guzzlehttp/guzzle": "^6.2"
+=======
+        "league/csv": "^8.0"
+>>>>>>> development
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

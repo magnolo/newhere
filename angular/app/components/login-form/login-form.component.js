@@ -26,10 +26,24 @@ class LoginFormController {
 				});
 				this.$window.localStorage.roles = JSON.stringify(roles);
 				this.ToastService.show('Logged in successfully.');
-				this.$state.go('cms.dashboard');
+				if (this.isNgoUser(roles)) {
+					this.$state.go('app.ngo');
+				} else {
+					this.$state.go('cms.dashboard');
+				}
 			})
 			.catch(this.failedLogin.bind(this));
 	}
+
+	/**
+	 * Check whether user holds organisation role (but no superadmin/admin roles)
+	 * @param roles
+	 * @returns {boolean}
+     */
+	isNgoUser(roles) {
+		return (roles.indexOf("organisation") > -1 && roles.indexOf("superadmin") == -1 && roles.indexOf("admin") == -1);
+	}
+
 
 	failedLogin(response) {
 		if (response.status === 422) {
