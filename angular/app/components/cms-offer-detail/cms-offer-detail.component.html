@@ -1,0 +1,37 @@
+<md-table-container>
+    <table md-table md-row-select multiple ng-model="vm.selectedUsers">
+        <thead md-head md-order="vm.query.order" md-on-reorder="vm.onOrderChange">
+        <tr md-row>
+            <th md-column md-order-by="name">Titel</th>
+            <th md-column md-order-by="email">Beschreibung</th>
+            <th md-column md-order-by="language">Sprache</th>
+        </tr>
+        </thead>
+        <tbody md-body>
+        <tr md-row md-select="offers" ng-repeat="offers in vm.offerDetail">
+            <td md-cell><strong>{{offers.title}}</strong></td>
+            <td md-cell>{{offers.description}}</td>
+            <td md-cell>{{offers.locale}}</td>
+        </tr>
+        </tbody>
+    </table>
+</md-table-container>
+
+<md-table-container>
+    <table md-table md-row-select multiple ng-model="vm.selectedUsers">
+        <thead md-head md-order="vm.query.order" md-on-reorder="vm.onOrderChange">
+        <tr md-row>
+            <th md-column md-order-by="name">Strasse</th>
+            <th md-column md-order-by="email">Email</th>
+        </tr>
+        </thead>
+        <tbody md-body>
+        <tr md-row md-select="off" ng-repeat="off in vm.offer">
+            <td md-cell><strong>{{off.street}}</strong></td>
+            <td md-cell>{{off.email}}</td>
+        </tr>
+        </tbody>
+    </table>
+</md-table-container>
+
+
