@@ -7,11 +7,10 @@ export class OfferService{
         this.$q = $q;
         this.$state = $state;
         this.DialogService = DialogService;
-
+        this.offer;
     }
 
-<<<<<<< HEAD
-=======
+
     fetchAll() {
         var vm = this;
         return this.$q(function(resolve) {
@@ -24,7 +23,19 @@ export class OfferService{
         });
     }
 
->>>>>>> development
+    one(id, success, error) {
+
+        if (!id) return false;
+        if (this.offer.id == id) {
+            success(this.offer);
+        } else {
+            this.API.one('offers', id).get().then((item) => {
+                this.offer = item;
+                success(this.offer);
+            }, error);
+        }
+    }
+
     cancel(cms) {
         if (cms) {
             this.DialogService.hide();
@@ -34,7 +45,6 @@ export class OfferService{
     }
 
     create(offer) {
-<<<<<<< HEAD
         this.API.all('offer').post(offer).then(()=>{
             this.$state.go(this.$state.current, {}, {reload: true});
             this.ToastService.show('Saved successfully');
@@ -42,14 +52,14 @@ export class OfferService{
         });
     }
 
-}
-=======
+
+
         //this.API.all('offers').post(offer).then(()=>{
         //    this.$state.go(this.$state.current, {}, {reload: true});
         //    this.ToastService.show('Saved successfully');
         //    this.DialogService.hide();
         //});
-    }
+
 
     toggleEnabled(offer) {
         this.API.one('offers', offer.id).customPUT({
@@ -77,5 +87,3 @@ export class OfferService{
         });
     }
 }
-
->>>>>>> development

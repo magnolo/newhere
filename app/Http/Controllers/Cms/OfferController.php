@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Cms;
 
 use App\Http\Controllers\Controller;
-<<<<<<< HEAD
+
 use App\Ngo;
 use App\Offer;
 use App\Role;
@@ -19,11 +19,14 @@ use Log;
 
 class OfferController extends Controller
 {
+  //  public function index() {
+  //     $ngos = Ngo::with(['image','users', 'offers'])->get();
+  //     return response()->json($ngos);
+  //  }
    public function index() {
-      $ngos = Ngo::with(['image','users', 'offers'])->get();
-      return response()->json($ngos);
+       $offers = Offer::with(['ngo', 'filters','categories', 'countries'])->get();
+       return response()->json($offers);
    }
-
 
    public function autocomplete($search) {
       $addressApi = new AddressAPI();
@@ -89,50 +92,27 @@ class OfferController extends Controller
       DB::commit();
       return response()->success(compact('offer'));
    }
+   public function toggleEnabled(Request $request, $id) {
+       $this->validate($request, [
+           'enabled' => 'required'
+       ]);
 
-=======
-use App\Offer;
-use App\OfferTranslation;
-use Illuminate\Http\Request;
-use App\Http\Requests;
+       $offer = Offer::find((int)$id);
+       if (!$offer) {
+           return response()->error('Offer not found', 404);
+       }
 
+       $modified = false;
+       if (isset($request->enabled)) {
+           $offer->enabled = (bool)$request->enabled;
+           $modified = true;
+       }
 
-class OfferController extends Controller
-{
-    public function index() {
-        $offers = Offer::with(['ngo', 'filters','categories', 'countries'])->get();
-        return response()->json($offers);
-    }
+       if ($modified) {
+           $offer->save();
+       }
 
-    function bulkRemove($ids){
-//        $offersQ = Offer::whereIn('id', explode(',', $ids));
-//        $offers = $offersQ->get();
-//        $deletedRows = $offersQ->delete(); // deleted -> true !!
-//
-//        return response()->success(compact('offers', 'deletedRows'));
-    }
+       return response()->success(compact('offer'));
+   }
 
-    public function toggleEnabled(Request $request, $id) {
-        $this->validate($request, [
-            'enabled' => 'required'
-        ]);
-
-        $offer = Offer::find((int)$id);
-        if (!$offer) {
-            return response()->error('Offer not found', 404);
-        }
-
-        $modified = false;
-        if (isset($request->enabled)) {
-            $offer->enabled = (bool)$request->enabled;
-            $modified = true;
-        }
-
-        if ($modified) {
-            $offer->save();
-        }
-
-        return response()->success(compact('offer'));
-    }
->>>>>>> development
 }

@@ -48,7 +48,7 @@ $api->group(['middleware' => ['api', 'api.auth']], function ($api) {
 
     $api->get('filter', 'Cms\FilterController@index');
 
-    $api->get('categories', 'Cms\CategoryController@indexAdministrator	super@admin.at');
+    $api->get('categories', 'Cms\CategoryController@index');
     $api->get('categories/{id}', ['uses' => 'Cms\CategoryController@show']);
     $api->post('categories', 'Cms\CategoryController@create');
     $api->put('categories/{id}', ['uses' => 'Cms\CategoryController@update']);

@@ -18,14 +18,12 @@
                     </md-select>
                 </md-input-container>
             </div>
-
-
             <span flex></span>
             <div layout="row" layout-align="end center" ng-cloak style="font-size:16px">
                 <md-button ng-if="vm.selectedOffers.length" class="md-raised md-icon-button md-warn" ng-click="vm.remove()" layout="row" layout-align="center center">
                     <i class="material-icons">delete</i>
                 </md-button>
-                <md-button class="md-raised md-icon-button md-primary" ng-click="vm.add()" layout="row" layout-align="center center">
+                <md-button class="md-raised md-icon-button md-primary" ui-sref="cms.new-offer" layout="row" layout-align="center center">
                     <i class="material-icons">add</i>
                 </md-button>
             </div>
@@ -51,7 +49,7 @@
             </thead>
             <tbody md-body>
             <tr md-row md-select="offer" ng-repeat="offer in vm.filteredOffer = (vm.offers | filter: vm.filter) | limitTo: vm.query.limit : (vm.query.page-1)*vm.query.limit">
-                <td md-cell><md-button ng-click="vm.details(offer)" class="md-icon-button"><md-icon>info</md-icon></md-button></td>
+                <td md-cell><md-button ui-sref="cms.offers.detail({id:offer.id})" class="md-icon-button"><md-icon>info</md-icon></md-button></td>
                 <td md-cell><strong>{{offer.title}}</strong></td>
                 <td md-cell>{{offer.street}} {{offer.streetnumber}} {{offer.streetnumberadditional}} {{offer.zip}} {{offer.city}}</td>
                 <!--<td md-cell>{{offer.ngo_id}}</td>-->

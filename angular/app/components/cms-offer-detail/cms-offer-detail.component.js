@@ -9,12 +9,10 @@ class CmsOfferDetailController {
         this.$filter = $filter;
         this.$state = $state;
         this.DialogService = DialogService;
-        this.OfferDetailService.fetchAll().then(function (response) {
-            vm.offerDetail = response;
-        });
 
-        this.OfferDetailService.one().then(function (response) {
-            vm.offer = response;
+
+        this.OfferDetailService.one($state.params.id, (offer) => {
+            vm.offer = offer;
         });
 
     }
@@ -26,4 +24,3 @@ export const CmsOfferDetailComponent = {
     controllerAs: 'vm',
     bindings: {}
 }
-

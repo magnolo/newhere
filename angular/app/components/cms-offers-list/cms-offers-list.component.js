@@ -1,16 +1,19 @@
 class CmsOffersListController{
-    constructor(OfferService, $filter, $state, DialogService){
+    constructor(OfferService, NgoService, $filter, $state, DialogService){
         'ngInject';
         var vm = this;
         this.filter = {};
         this.$filter = $filter;
         this.$state = $state;
         this.DialogService = DialogService;
+        this.NgoService = NgoService;
         this.OfferService = OfferService;
         this.OfferService.fetchAll().then(function(response) {
             vm.offers = response;
         });
-
+        this.NgoService.fetchAll().then(function(response) {
+            vm.ngos = response;
+        });
         this.selectedOffers = [];
 
         this.query = {

@@ -191,18 +191,7 @@ export function RoutesConfig($stateProvider, $urlRouterProvider) {
 				}
 			}
 		})
-		.state('cms.offer-detail', {
-			url: '/offer-detail',
-			data: {
-				auth: true,
-				roles: ['admin', 'superadmin']
-			},
-			views: {
-				'main@': {
-					templateUrl: getCmsView('offer-detail')
-				}
-			}
-		})
+
 		.state('cms.ngos',{
 			url:'/ngos',
 			data:{
@@ -234,6 +223,18 @@ export function RoutesConfig($stateProvider, $urlRouterProvider) {
 			views: {
 				'main@': {
 					templateUrl: getCmsView('offers')
+				}
+			}
+		})
+		.state('cms.offers.detail', {
+			url: '/{id}',
+			data: {
+				auth: true,
+				roles: ['admin', 'superadmin']
+			},
+			views: {
+				'main@': {
+					templateUrl: getCmsView('offer-detail')
 				}
 			}
 		})
