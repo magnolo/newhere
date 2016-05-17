@@ -153,7 +153,7 @@ export function RoutesConfig($stateProvider, $urlRouterProvider) {
 			url: '/languages',
 			data: {
 				auth:true,
-					roles:['admin', 'superadmin']
+				roles:['admin', 'superadmin']
 			},
 			views: {
 				'main@cms': {
@@ -197,6 +197,7 @@ export function RoutesConfig($stateProvider, $urlRouterProvider) {
 				}
 			}
 		})
+
 		.state('cms.ngos',{
 			url:'/ngos',
 			data:{
@@ -206,6 +207,40 @@ export function RoutesConfig($stateProvider, $urlRouterProvider) {
 			views: {
 				'main@cms': {
 					templateUrl: getCmsView('ngos')
+				}
+			}
+		})
+
+		.state('cms.new-offer',{
+			url:'/new-offer',
+			data:{},
+			views: {
+				'main@cms': {
+					templateUrl: getCmsView('new-offer')
+				}
+			}
+		})
+		.state('cms.offers',{
+			url:'/offers',
+			data:{
+				auth:true,
+				roles:['admin', 'superadmin']
+			},
+			views: {
+				'main@cms': {
+					templateUrl: getCmsView('offers')
+				}
+			}
+		})
+		.state('cms.offers.detail', {
+			url: '/{id}',
+			data: {
+				auth: true,
+				roles: ['admin', 'superadmin']
+			},
+			views: {
+				'main@cms': {
+					templateUrl: getCmsView('offer-detail')
 				}
 			}
 		})

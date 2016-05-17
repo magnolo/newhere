@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
 
 class CreateOfferTranslationsTable extends Migration
 {
@@ -34,10 +34,10 @@ class CreateOfferTranslationsTable extends Migration
                 ->on('offers')
                 ->onDelete('cascade');
 
-            // $table->foreign('language_code')
-            //           ->references('language')
-            //           ->on('languages')
-            //           ->onDelete('cascade');
+            // $table->foreign('language_id')
+            //     ->references('language')
+            //      ->on('languages')
+            //      ->onDelete('cascade');
         });
     }
 

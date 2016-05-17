@@ -16,10 +16,17 @@ class CreateFiltersTable extends Migration
     {
         Schema::create(self::TABLE, function (Blueprint $table) {
             $table->increments('id');
-            $table->string('filterkey', 20)->unique();
-            $table->string('icon', 20);
+            $table->integer('parent_id')->nullable();
+            $table->string('slug');
+            $table->string('icon')->nullable();
+            $table->string('type')->nullable();
             $table->boolean('enabled')->default(true);
             $table->timestamps();
+
+            $table->foreign('parent_id')
+                ->references('id')
+                ->on(self::TABLE)
+                ->onDelete('cascade');
         });
     }
 
@@ -30,6 +37,9 @@ class CreateFiltersTable extends Migration
      */
     public function down()
     {
+      Schema::table(self::TABLE, function (Blueprint $table) {
+          $table->dropForeign(sprintf('%1$s_parent_id_foreign', self::TABLE));
+      });
         Schema::drop(self::TABLE);
     }
 }
