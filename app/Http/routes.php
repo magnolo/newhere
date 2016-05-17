@@ -82,7 +82,7 @@ $api->group(['middleware' => ['api', 'api.auth']], function ($api) {
     $api->put('ngos/{id}/togglePublished', 'Cms\NgoController@togglePublished');
 
     $api->get('offer/autocomplete/{search}', 'Cms\OfferController@autocomplete');
-    $api->post('offer', 'Cms\OfferController@create');
+    $api->post('offers', 'Cms\OfferController@create');
     $api->get('offers', 'Cms\OfferController@index');
     $api->patch('offers/{ids}', 'Cms\OfferController@bulkAssign');
     $api->get('offers/{id}', 'Cms\OfferController@show');

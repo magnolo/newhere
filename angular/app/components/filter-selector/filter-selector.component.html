@@ -1,14 +1,19 @@
-<div ng-repeat="filter in vm.filters" flex layout-align="space-between center">
-    <md-button ng-if="filter.type == 'icon'" ng-click="vm.toggleFilter(filter)" layout="column" layout-align="center center" class="capitalize md-hue-1 md-default">
-        <div hide-sm hide-md class="md-tile-content">
-            <i class="material-icons md-36">close</i>
-        </div>
-    <div class="md-tile-content">{{filter.title}}</div>
-    </md-button>
-    <md-input-container ng-if="filter.type == 'dropdown'" class="md-block">
-        <label>{{filter.title}}</label>
-        <md-select ng-model="vm.selectedFilter[filter.slug]">
-            <md-option ng-repeat="item in filter.children" ng-value="item">{{item.title}}</md-option>
-        </md-select>
-    </md-input-container>
+<div layout="row" layout-padding>
+  <md-input-container ng-repeat="filter in vm.filters | filter: {type: 'dropdown'}" flex class="md-block">
+      <label>{{filter.title}}</label>
+      <md-select ng-model="vm.dropdownFilters[filter.slug]" ng-change="vm.toggleFilter(vm.dropdownFilters[filter.slug])">
+          <md-option ng-value="">None</md-option>
+          <md-option ng-repeat="item in filter.children" ng-value="item">{{item.title}}</md-option>
+      </md-select>
+  </md-input-container>
+</div>
+<div layout="row" layout-wrap>
+
+        <md-button ng-repeat="filter in vm.filters | filter: {type: 'icon'}" ng-class="{'md-raised': vm.inSelection(filter)}" ng-click="vm.toggleFilter(filter)" layout="column" layout-align="center center" class="md-primary">
+            <div hide-sm hide-md class="md-tile-content">
+                <md-icon md-svg-src="/img/icons/filter/{{filter.icon}}.svg" class="md-48"></md-icon>
+            </div>
+            <div class="md-tile-content">{{filter.title}}</div>
+        </md-button>
+
 </div>

@@ -19,6 +19,8 @@ class OfferFormController {
         if($state.params.id){
           this.OfferService.one($state.params.id, (offer) =>{
             this.offer = offer;
+            this.valid_from = new Date(this.offer.valid_from);
+            this.valid_until = new Date(this.offer.valid_until);
           })
         }
 
@@ -47,8 +49,9 @@ class OfferFormController {
     }
 
     save() {
-
-        this.OfferService.create(this.offer);
+      this.offer.valid_until = this.valid_until;
+      this.offer.valid_from = this.valid_from;
+      this.OfferService.save(this.offer);
 
     }
 

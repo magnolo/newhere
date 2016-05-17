@@ -8,6 +8,7 @@ use App\Ngo;
 use App\Offer;
 use App\Role;
 use App\User;
+use App\Filter;
 use Illuminate\Http\Request;
 use Auth;
 use App\Http\Requests;
@@ -81,7 +82,7 @@ class OfferController extends Controller
       $offer->latitude = $coordinates[0];
       $offer->longitude = $coordinates[1];
 
-      $ngo = $ngoUser->ngos()->getResults()[0];
+      $ngo = $ngoUser->ngos()->firstOrFail();
 
       $offer->ngo_id = $ngo->id;
 
@@ -92,11 +93,33 @@ class OfferController extends Controller
       //}
       $offer->save();
 
+      if($request->has('filters')){
+        foreach($request->get('filters') as $key => $filter){
+          $f = Filter::findOrFail($filter['id']);
+          $offer->filters()->attach($f);
+        }
+      }
+      if($request->has('categories')){
+        foreach($request->get('categories') as $key => $category){
+          $cat = Category::findOrFail($category['id']);
+          $offer->categories()->attach($cat);
+        }
+      }
+
       DB::commit();
       return response()->success(compact('offer'));
    }
    public function update(Request $request, $id){
-     $success = Offer::findOrFail($id)->update($request->all());
+     $offer = Offer::findOrFail($id);
+     $success = $offer->update($request->all());
+
+     if($request->has('filters')){
+       $offer->filters()->detach();
+       foreach($request->get('filters') as $key => $filter){
+         $f = Filter::findOrFail($filter['id']);
+         $offer->filters()->attach($f);
+       }
+     }
      return response()->success(compact('success'));
    }
    public function toggleEnabled(Request $request, $id) {
@@ -106,6 +129,7 @@ class OfferController extends Controller
 
        $offer = Offer::find((int)$id);
        if (!$offer) {
+
            return response()->error('Offer not found', 404);
        }
 
