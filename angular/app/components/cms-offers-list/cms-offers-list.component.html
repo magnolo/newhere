@@ -64,7 +64,7 @@
             </thead>
             <tbody md-body>
             <tr md-row md-select="offer" ng-repeat="offer in vm.filteredOffer = (vm.offers | filter: vm.filter) | limitTo: vm.query.limit : (vm.query.page-1)*vm.query.limit">
-                <td md-cell><md-button ui-sref="cms.offers.detail({id:offer.id})" class="md-icon-button"><md-icon>info</md-icon></md-button></td>
+                <td md-cell><md-button ui-sref="cms.offers.detail({id:offer.id})" class="md-icon-button md-accent md-hue-2"><md-icon>info</md-icon></md-button></td>
                 <td md-cell><strong>{{offer.title}}</strong></td>
                 <td md-cell>{{offer.street}} {{offer.streetnumber}} {{offer.streetnumberadditional}} {{offer.zip}} {{offer.city}}</td>
                 <!--<td md-cell>{{offer.ngo_id}}</td>-->
@@ -75,7 +75,7 @@
                   </md-select>
                 </td>
                 <td class="md-cell">
-                    <md-switch ng-model="offer.enabled" ng-change="vm.toggleEnabled(offer)"
+                    <md-switch ng-model="offer.enabled" class="md-primary" ng-change="vm.toggleEnabled(offer)"
                                aria-label="Enable/Disable Offer"></md-switch>
                 </td>
                 <td md-cell>
@@ -98,20 +98,25 @@
   <md-fab-speed-dial class="md-fling fixed bottom" ng-show="vm.selectedOffers.length" md-open="vm.menu.isOpen" md-direction="up">
        <md-fab-trigger>
          <md-button aria-label="menu" class="md-fab md-warn">
+           <md-tooltip md-direction="left" md-delay="250">Edit Orders</md-tooltip>
            <md-icon>edit</md-icon>
          </md-button>
        </md-fab-trigger>
        <md-fab-actions>
          <md-button class="md-raised md-fab md-warn md-hue-2 md-mini" ng-click="vm.remove()" layout="row" layout-align="center center">
+           <md-tooltip md-direction="left" md-delay="250">Delete Orders</md-tooltip>
              <i class="material-icons">delete</i>
          </md-button>
          <md-button class="md-raised md-fab  md-warn md-mini" ng-click="vm.bulkToggleEnabled(false)" layout="row" layout-align="center center">
+            <md-tooltip md-direction="left" md-delay="250">Disable Orders</md-tooltip>
              <i class="material-icons">lock</i>
          </md-button>
-         <md-button  class="md-raised md-fab  md-primary md-mini" ng-click="vm.bulkToggleEnabled(true)" layout="row" layout-align="center center">
+         <md-button  class="md-raised md-fab  md-accent md-mini" ng-click="vm.bulkToggleEnabled(true)" layout="row" layout-align="center center">
+            <md-tooltip md-direction="left" md-delay="250">Enable Orders</md-tooltip>
              <i class="material-icons">lock_open</i>
          </md-button>
-         <md-button  class="md-raised md-fab  md-primary  md-mini" ng-click="vm.assignNgo()" layout="row" layout-align="center center">
+         <md-button  class="md-raised md-fab  md-default  md-mini" ng-click="vm.assignNgo()" layout="row" layout-align="center center">
+           <md-tooltip md-direction="left" md-delay="250">Set NGO</md-tooltip>
              <i class="material-icons">business</i>
          </md-button>
 
