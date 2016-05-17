@@ -1,13 +1,11 @@
 <md-card>
     <md-toolbar class="md-table-toolbar md-default" layout-padding>
-
         <div layout="row" layout-align="space-between start">
-            <md-input-container class="md-icon-float md-block">
+            <md-input-container class="md-icon-float md-block no-error">
                 <label>Search</label>
                 <md-icon class="material-icons">search</md-icon>
                 <input ng-model="vm.filter.title" type="text">
             </md-input-container>
-
             <div layout="row" layout-align="end center" ng-cloak style="font-size:16px">
                 <md-input-container>
                     <label>Enabled</label>
@@ -15,6 +13,15 @@
                         <md-option ng-value="">All</md-option>
                         <md-option ng-value="true">Yes</md-option>
                         <md-option ng-value="false">No</md-option>
+                    </md-select>
+                </md-input-container>
+            </div>
+            <div layout="row" layout-align="end center" ng-cloak style="font-size:16px">
+                <md-input-container>
+                    <label>NGO</label>
+                    <md-select ng-model="vm.filter.ngo_id">
+                      <md-option ng-value="">All</md-option>
+                      <md-option ng-repeat="ngo in vm.ngos" ng-value="ngo.id">{{ngo.organisation}}</md-option>
                     </md-select>
                 </md-input-container>
             </div>
@@ -58,20 +65,17 @@
                     <md-switch ng-model="offer.enabled" ng-change="vm.toggleEnabled(offer)"
                                aria-label="Enable/Disable Offer"></md-switch>
                 </td>
-                <td md-cell>{{offer.phone}}</td>
-                <td md-cell>{{offer.email}}</td>
-                <td md-cell>{{offer.website}}</td>
+                <td md-cell><a href="tel:{{offer.phone}}">{{offer.phone}}</a></td>
+                <td md-cell><a href="mailto:{{offer.email}}">{{offer.email}}</a></td>
+                <td md-cell><a href="{{offer.website}}" target="_blank">{{offer.website}}</a></td>
             </tr>
             </tbody>
         </table>
 
     </md-table-container>
-
     <md-table-pagination md-limit="vm.query.limit" md-limit-options="[5,10,15, 25, 50]" md-page="vm.query.page" md-total="{{vm.filteredOffer.length}}" md-on-paginate="vm.onPaginationChange" md-page-select></md-table-pagination>
-
 </md-card>
-
-  <md-fab-speed-dial class="md-fling" style="position:fixed;bottom:1em;right:1em" ng-show="vm.selectedOffers.length" md-open="vm.menu.isOpen" md-direction="up">
+  <md-fab-speed-dial class="md-fling fixed bottom" ng-show="vm.selectedOffers.length" md-open="vm.menu.isOpen" md-direction="up">
        <md-fab-trigger>
          <md-button aria-label="menu" class="md-fab md-warn">
            <md-icon>edit</md-icon>
