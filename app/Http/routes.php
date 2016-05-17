@@ -54,6 +54,8 @@ $api->group(['middleware' => ['api', 'api.auth']], function ($api) {
     $api->put('categories/{id}', ['uses' => 'Cms\CategoryController@update']);
     $api->put('categories/{id}/toggleEnabled', 'Cms\CategoryController@toggleEnabled');
 
+      $api->get('filters', 'Cms\FilterController@index');
+
     $api->get('offer-translations', 'Cms\OfferTranslationController@index');
     $api->get('offer-translations/untranslated', 'Cms\OfferTranslationController@untranslatedIndex');
     $api->put('offer-translations/{id}', 'Cms\OfferTranslationController@translate');

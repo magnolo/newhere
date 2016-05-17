@@ -15,8 +15,8 @@
     <![endif]-->
 </head>
 <body>
-    <div ui-view="top" layout="row" layout-fill></div>
-
+    <div ui-view="cms" layout="row" layout-fill ng-if="$root.cms"></div>
+    <div ui-view="front" ng-if="!$root.cms"></div>
     <script src="{!! elixir('js/vendor.js') !!}"></script>
     <script src="{!! elixir('js/partials.js') !!}"></script>
     <script src="{!! elixir('js/app.js') !!}"></script>

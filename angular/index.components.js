@@ -1,3 +1,4 @@
+import {FilterSelectorComponent} from './app/components/filter-selector/filter-selector.component';
 import {CmsMenuComponent} from './app/components/cms-menu/cms-menu.component';
 import {WidgetNgoComponent} from './app/components/widget-ngo/widget-ngo.component';
 import {UserComponent} from './app/components/user/user.component';
@@ -24,6 +25,7 @@ import {OfferFormComponent} from './app/components/offer-form/offer-form.compone
 import {CmsOffersListComponent} from './app/components/cms-offers-list/cms-offers-list.component';
 
 angular.module('app.components')
+	.component('filterSelector', FilterSelectorComponent)
 	.component('cmsMenu', CmsMenuComponent)
 	.component('widgetNgo', WidgetNgoComponent)
 	.component('user', UserComponent)

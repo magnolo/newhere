@@ -1,16 +1,27 @@
 class OfferFormController {
-    constructor($auth, $http, $q, OfferService, ToastService, $state, LanguageService) {
+    constructor($http, $q, OfferService, ToastService, NgoService, CategoryService, $state, LanguageService) {
         'ngInject';
 
         this.$q = $q;
         this.aborter = $q.defer();
 
-        this.$auth = $auth;
+        this.categories = [];
         this.$http = $http;
         this.OfferService = OfferService;
         this.ToastService = ToastService;
         this.$state = $state;
         this.$LanguageService = LanguageService;
+        this.CategoryService = CategoryService;
+        this.CategoryService.all((list) => {
+          this.categories = list;
+        })
+
+        if($state.params.id){
+          this.OfferService.one($state.params.id, (offer) =>{
+            this.offer = offer;
+          })
+        }
+
         angular.element(document.querySelector('#addressSearch')).$valid = false;
     }
 

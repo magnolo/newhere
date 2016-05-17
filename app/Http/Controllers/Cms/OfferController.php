@@ -34,11 +34,14 @@ class OfferController extends Controller
       return response()->json($returnArray);
    }
 
-   public function show($id) {
-      $ngo = Ngo::findOrFail($id);
-      return response()->json($ngo);
+  //  public function show($id) {
+  //     $ngo = Ngo::findOrFail($id);
+  //     return response()->json($ngo);
+  //  }
+  public function show($id) {
+      $offer= Offer::where('id',$id)->with(['ngo', 'filters', 'categories', 'countries'])->firstOrFail();
+      return response()->json($offer);
    }
-
 
    public function create(Request $request) {
 

@@ -15,7 +15,7 @@ export function RoutesConfig($stateProvider, $urlRouterProvider) {
 		.state('app', {
 			abstract: true,
 			views: {
-				top:{
+				front:{
 					templateUrl: getView('main')
 				},
 				'header@app': {
@@ -101,7 +101,7 @@ export function RoutesConfig($stateProvider, $urlRouterProvider) {
 			abstract: true,
 			url:'/cms',
 			views: {
-				top:{
+				cms:{
 					templateUrl: getCmsView('main')
 				},
 				header: {
@@ -110,7 +110,7 @@ export function RoutesConfig($stateProvider, $urlRouterProvider) {
 				footer: {
 					templateUrl: getCmsView('footer')
 				},
-				main: {}
+				front: {}
 			}
 		})
 		.state('cms.dashboard', {

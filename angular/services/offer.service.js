@@ -26,14 +26,14 @@ export class OfferService{
     one(id, success, error) {
 
         if (!id) return false;
-        if (this.offer.id == id) {
-            success(this.offer);
-        } else {
+        // if (this.offer.id == id) {
+        //     success(this.offer);
+        // } else {
             this.API.one('offers', id).get().then((item) => {
                 this.offer = item;
                 success(this.offer);
             }, error);
-        }
+        // }
     }
 
     cancel(cms) {

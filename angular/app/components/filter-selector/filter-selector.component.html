@@ -1,0 +1,14 @@
+<div ng-repeat="filter in vm.filters" flex layout-align="space-between center">
+    <md-button ng-if="filter.type == 'icon'" ng-click="vm.toggleFilter(filter)" layout="column" layout-align="center center" class="capitalize md-hue-1 md-default">
+        <div hide-sm hide-md class="md-tile-content">
+            <i class="material-icons md-36">close</i>
+        </div>
+    <div class="md-tile-content">{{filter.title}}</div>
+    </md-button>
+    <md-input-container ng-if="filter.type == 'dropdown'" class="md-block">
+        <label>{{filter.title}}</label>
+        <md-select ng-model="vm.selectedFilter[filter.slug]">
+            <md-option ng-repeat="item in filter.children" ng-value="item">{{item.title}}</md-option>
+        </md-select>
+    </md-input-container>
+</div>
