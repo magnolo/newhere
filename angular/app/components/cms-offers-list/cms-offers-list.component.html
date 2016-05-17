@@ -1,5 +1,19 @@
 <md-card>
-    <md-toolbar class="md-table-toolbar md-default" layout-padding>
+    <md-toolbar class="md-table-toolbar md-default" layout-padding ng-if="!vm.showfilter">
+        <div layout="row" layout-align="space-between start">
+            <h3>Offers</h3>
+            <span flex></span>
+            <div layout="row" layout-align="end center" ng-cloak style="font-size:16px">
+              <md-button ng-click="vm.showfilter = true" class="md-icon-button" layout="row" layout-align="center center">
+                  <i class="material-icons">filter_list</i>
+              </md-button>
+                <md-button class="md-raised md-icon-button md-primary" ui-sref="cms.new-offer" layout="row" layout-align="center center">
+                    <i class="material-icons">add</i>
+                </md-button>
+            </div>
+        </div>
+    </md-toolbar>
+    <md-toolbar class="md-table-toolbar md-default" layout-padding ng-if="vm.showfilter">
         <div layout="row" layout-align="space-between start">
             <md-input-container class="md-icon-float md-block no-error">
                 <label>Search</label>
@@ -27,13 +41,12 @@
             </div>
             <span flex></span>
             <div layout="row" layout-align="end center" ng-cloak style="font-size:16px">
-                <md-button class="md-raised md-icon-button md-primary" ui-sref="cms.new-offer" layout="row" layout-align="center center">
-                    <i class="material-icons">add</i>
-                </md-button>
+              <md-button ng-click="vm.showfilter = false" class="md-icon-button" layout="row" layout-align="center center">
+                  <i class="material-icons">close</i>
+              </md-button>
             </div>
         </div>
     </md-toolbar>
-
     <md-table-container>
         <table md-table md-row-select multiple ng-model="vm.selectedOffers">
             <thead md-head md-order="vm.query.order" md-on-reorder="vm.onOrderChange">
