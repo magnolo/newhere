@@ -51,6 +51,17 @@ export class OfferService{
             this.DialogService.hide();
         });
     }
+    save(offer){
+      offer.save().then(
+          (success) => {
+              this.ToastService.show('Offer updated.');
+          },
+          (error) => {
+              console.log(error);
+              this.ToastService.error('Offer update failed. Please try again');
+          }
+      );
+    }
     toggleEnabled(offer) {
         this.API.one('offers', offer.id).customPUT({
             enabled: offer.enabled ? 1 : 0
@@ -60,7 +71,7 @@ export class OfferService{
             },
             (error) => {
                 console.log(error);
-                this.ToastService.show('Offer update failed. Please try again');
+                this.ToastService.error('Offer update failed. Please try again');
                 offer.enabled = !offer.enabled;
             }
         );

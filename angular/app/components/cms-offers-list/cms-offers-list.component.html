@@ -62,7 +62,7 @@
                 <!--<td md-cell>{{offer.ngo_id}}</td>-->
 
                 <td md-cell>
-                  <md-select ng-model="offer.ngo_id" aria-label="Select NGO" >
+                  <md-select ng-model="offer.ngo_id" aria-label="Select NGO" ng-change="vm.updateNgo(offer)">
                     <md-option ng-repeat="ngo in vm.ngos" ng-value="ngo.id">{{ ngo.organisation}}</md-option>
                   </md-select>
                 </td>

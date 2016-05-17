@@ -71,12 +71,16 @@ class CmsOffersListController{
         //    }
         //});
     }
+    updateNgo(offer){
+      this.OfferService.save(offer);
+    }
     assignNgo(){
       this.DialogService.fromTemplate('assignToNgo', {
          controller: () => this,
          controllerAs: 'vm'
       });
     }
+
     assignSave(){
       this.OfferService.bulkAssign(this.selectedOffers, 'ngo_id',this.ngo.id, (list) =>{
         angular.forEach(list, (item) => {

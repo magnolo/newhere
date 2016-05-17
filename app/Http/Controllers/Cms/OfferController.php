@@ -92,6 +92,10 @@ class OfferController extends Controller
       DB::commit();
       return response()->success(compact('offer'));
    }
+   public function update(Request $request, $id){
+     $success = Offer::findOrFail($id)->update($request->all());
+     return response()->success(compact('success'));
+   }
    public function toggleEnabled(Request $request, $id) {
        $this->validate($request, [
            'enabled' => 'required'
