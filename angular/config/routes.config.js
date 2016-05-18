@@ -93,6 +93,42 @@ export function RoutesConfig($stateProvider, $urlRouterProvider) {
 				}
 			}
 		})
+		.state('app.offers', {
+			url: '/offers',
+			data: {
+				auth:true,
+				roles:['organisation']
+			},
+			views: {
+				'main@app': {
+					templateUrl: getView('offers')
+				}
+			}
+		})
+		.state('app.offers.new', {
+			url: '/new',
+			data: {
+				auth:true,
+				roles:['organisation']
+			},
+			views: {
+				'main@app': {
+					templateUrl: getView('offer-new')
+				}
+			}
+		})
+		.state('app.offers.details', {
+			url: '/{id}',
+			data: {
+				auth:true,
+				roles:['organisation']
+			},
+			views: {
+				'main@app': {
+					templateUrl: getView('offer-detail')
+				}
+			}
+		})
 
 		//
 		// CMS
@@ -161,18 +197,7 @@ export function RoutesConfig($stateProvider, $urlRouterProvider) {
 				}
 			}
 		})
-		.state('cms.roles',{
-			url:'/roles',
-			data:{
-				auth:true,
-				roles:['admin', 'superadmin']
-			},
-			views: {
-				'main@cms': {
-					templateUrl: getCmsView('roles')
-				}
-			}
-		})
+
 		.state('cms.users',{
 			url:'/users',
 			data:{
@@ -182,6 +207,18 @@ export function RoutesConfig($stateProvider, $urlRouterProvider) {
 			views: {
 				'main@cms': {
 					templateUrl: getCmsView('users')
+				}
+			}
+		})
+		.state('cms.users.roles',{
+			url:'/roles',
+			data:{
+				auth:true,
+				roles:['admin', 'superadmin']
+			},
+			views: {
+				'main@cms': {
+					templateUrl: getCmsView('roles')
 				}
 			}
 		})

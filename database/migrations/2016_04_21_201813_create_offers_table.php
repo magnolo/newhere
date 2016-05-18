@@ -26,6 +26,7 @@ class CreateOffersTable extends Migration
             $table->string('city')->nullable();
             $table->float('latitude')->nullable();
             $table->float('longitude')->nullable();
+            $table->integer('image_id')->nullable();
 
             $table->string('phone')->nullable();
             $table->string('email')->nullable();

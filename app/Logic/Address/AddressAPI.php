@@ -26,16 +26,16 @@ class AddressAPI
     */
    public function getCoordinates($street, $streetnumber, $zip) {
 
-      $json = $this->query($street.' '.$streetnumber.' '.$zip);
+      $json = $this->query($street.' '.$streetnumber.', '.$zip);
 
       if ($json === null) {
          return null;
       }
-
+      
       $feature = $json['features'][0];
       $properties = $feature['properties'];
 
-      if (strcmp($properties['street'], $street) == 0 && strcmp($properties['housenumber'], $streetnumber) && strcmp($properties['postalcode'], $zip)) {
+      if ($properties['street'] ==  $street && $properties['housenumber'] ==  $streetnumber && $properties['postalcode'] == $zip) {
          return $feature['geometry']['coordinates'];
       }
 

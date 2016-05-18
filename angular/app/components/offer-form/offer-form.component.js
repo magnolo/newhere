@@ -12,9 +12,11 @@ class OfferFormController {
         this.$state = $state;
         this.$LanguageService = LanguageService;
         this.NgoService = NgoService;
-        this.NgoService.fetchAll().then((list) => {
-          this.ngos = list;
-        });
+        if(this.cms){
+          this.NgoService.fetchAll().then((list) => {
+            this.ngos = list;
+          });
+        }
         this.CategoryService = CategoryService;
         this.CategoryService.all((list) => {
           this.categories = list;

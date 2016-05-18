@@ -64,7 +64,7 @@ export class OfferService{
       }
       else{
         this.API.all('offers').post(offer).then((response)=>{
-            this.$state.go('', {}, {reload: true});
+            this.$state.go(this.$state.current, {}, {reload: true});
             this.ToastService.show('Saved successfully');
             this.DialogService.hide();
               if(success) success(response);

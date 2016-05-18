@@ -1,13 +1,17 @@
 <md-card>
     <md-toolbar class="md-table-toolbar md-default" layout-padding ng-if="!vm.showfilter">
         <div layout="row" layout-align="space-between start">
-            <h3>Offers</h3>
+            <h3>Angebote</h3>
             <span flex></span>
             <div layout="row" layout-align="end center" ng-cloak style="font-size:16px">
               <md-button ng-click="vm.showfilter = true" class="md-icon-button" layout="row" layout-align="center center">
                   <i class="material-icons">filter_list</i>
               </md-button>
-                <md-button class="md-raised md-icon-button md-primary" ui-sref="cms.offers.new" layout="row" layout-align="center center">
+              <md-button ng-if="vm.selectedOffers.length && !vm.cms" class="md-raised md-warn md-icon-button" ng-click="vm.remove()" layout="row" layout-align="center center">
+                <md-tooltip md-direction="left" md-delay="250">Delete Orders</md-tooltip>
+                  <i class="material-icons">delete</i>
+              </md-button>
+                <md-button class="md-raised md-icon-button md-primary" ui-sref="{{ vm.cms ? 'cms.offers.new' : 'app.offers.new' }}" layout="row" layout-align="center center">
                     <i class="material-icons">add</i>
                 </md-button>
             </div>
@@ -30,7 +34,7 @@
                     </md-select>
                 </md-input-container>
             </div>
-            <div layout="row" layout-align="end center" ng-cloak style="font-size:16px">
+            <div layout="row" layout-align="end center" ng-cloak style="font-size:16px" ng-if="vm.cms">
                 <md-input-container>
                     <label>NGO</label>
                     <md-select ng-model="vm.filter.ngo_id">
@@ -55,8 +59,8 @@
                 <th md-column md-order-by="title">Offer</th>
                 <th md-column >Address</th>
                 <!--<th md-column md-order-by="ngo_id">NgoId</th>-->
-                <th md-column md-order-by="ngo">Ngo</th>
-                <th md-column md-order-by="enabled">Enabled</th>
+                <th md-column md-order-by="ngo"  ng-if="vm.cms">Ngo</th>
+                <th md-column md-order-by="enabled"  ng-if="vm.cms">Enabled</th>
                 <th md-column class="icon">Phone</th>
                 <th md-column class="icon">Email</th>
                 <th md-column class="icon">Website</th>
@@ -64,17 +68,17 @@
             </thead>
             <tbody md-body>
             <tr md-row md-select="offer" ng-repeat="offer in vm.filteredOffer = (vm.offers | filter: vm.filter) | limitTo: vm.query.limit : (vm.query.page-1)*vm.query.limit">
-                <td md-cell><md-button ui-sref="cms.offers.detail({id:offer.id})" class="md-icon-button md-accent md-hue-2"><md-icon>info</md-icon></md-button></td>
+                <td md-cell><md-button ui-sref="{{ vm.cms ? 'cms.offers.details({id:'+offer.id+'})' : 'app.offers.details({id:'+offer.id+'})' }}"class="md-icon-button md-accent md-hue-2"><md-icon>info</md-icon></md-button></td>
                 <td md-cell><strong>{{offer.title}}</strong></td>
                 <td md-cell>{{offer.street}} {{offer.streetnumber}} {{offer.streetnumberadditional}} {{offer.zip}} {{offer.city}}</td>
                 <!--<td md-cell>{{offer.ngo_id}}</td>-->
 
-                <td md-cell>
+                <td md-cell  ng-if="vm.cms">
                   <md-select ng-model="offer.ngo_id" aria-label="Select NGO" ng-change="vm.updateNgo(offer)">
                     <md-option ng-repeat="ngo in vm.ngos" ng-value="ngo.id">{{ ngo.organisation}}</md-option>
                   </md-select>
                 </td>
-                <td class="md-cell">
+                <td class="md-cell"  ng-if="vm.cms">
                     <md-switch ng-model="offer.enabled" class="md-primary" ng-change="vm.toggleEnabled(offer)"
                                aria-label="Enable/Disable Offer"></md-switch>
                 </td>
@@ -95,7 +99,7 @@
     </md-table-container>
     <md-table-pagination md-limit="vm.query.limit" md-limit-options="[5,10,15, 25, 50]" md-page="vm.query.page" md-total="{{vm.filteredOffer.length}}" md-on-paginate="vm.onPaginationChange" md-page-select></md-table-pagination>
 </md-card>
-  <md-fab-speed-dial class="md-fling fixed bottom" ng-show="vm.selectedOffers.length" md-open="vm.menu.isOpen" md-direction="up">
+  <md-fab-speed-dial  ng-if="vm.cms" class="md-fling fixed bottom" ng-show="vm.selectedOffers.length" md-open="vm.menu.isOpen" md-direction="up">
        <md-fab-trigger>
          <md-button aria-label="menu" class="md-fab md-warn">
            <md-tooltip md-direction="left" md-delay="250">Edit Orders</md-tooltip>
