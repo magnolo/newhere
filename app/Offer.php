@@ -35,5 +35,8 @@ class Offer extends Model
     {
         return $this->belongsToMany('Webpatser\Countries\Countries', 'offer_countries', 'offer_id', 'country_id');
     }
+    public function image(){
+        return $this->belongsTo('App\Image');
+    }
 
 }

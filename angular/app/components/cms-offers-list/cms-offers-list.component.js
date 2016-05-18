@@ -14,9 +14,12 @@ class CmsOffersListController{
         this.OfferService.fetchAll().then(function(response) {
             vm.offers = response;
         });
-        this.NgoService.fetchAll().then(function(response) {
-            vm.ngos = response;
-        });
+        if(this.cms){
+          this.NgoService.fetchAll().then(function(response) {
+              vm.ngos = response;
+          });
+        }
+
         this.selectedOffers = [];
 
         this.query = {
@@ -31,7 +34,7 @@ class CmsOffersListController{
 
         this.listOrderByColumn = '-organisation';
         this.onOrderChange = (order) => {
-            console.log("onOrderChange " + order);
+            //console.log("onOrderChange " + order);
             return vm.offers = this.$filter('orderBy')(vm.offers, [order], true);
         };
         this.onPaginationChange = (page, limit) => {
@@ -108,5 +111,7 @@ export const CmsOffersListComponent = {
     templateUrl: './views/app/components/cms-offers-list/cms-offers-list.component.html',
     controller: CmsOffersListController,
     controllerAs: 'vm',
-    bindings: {}
+    bindings: {
+      cms: '='
+    }
 }

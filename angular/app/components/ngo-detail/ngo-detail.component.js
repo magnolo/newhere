@@ -6,17 +6,9 @@ class NgoDetailController {
         this.DialogService = DialogService;
         this.NgoService.one().then(function (response) {
             vm.ngo = response;
-            vm.ngo.editMode = false;
+            vm.ngo.editMode = true;
         });
 
-    }
-
-    edit() {
-        this.ngo.editMode = true;
-        this.DialogService.fromTemplate('ngo', {
-            controller: () => this,
-            controllerAs: 'vm'
-        });
     }
 }
 

@@ -15,7 +15,7 @@ class FilterTableSeeder extends Seeder
     protected function createFilter($key, $f, $parent_id = null){
       $filter = new Filter();
       $filter->slug = $key;
-      $filter->icon = $key;
+      $filter->icon = $f['icon'];
       $filter->parent_id = $parent_id;
       $filter->type = isset($f['type']) ? $f['type'] : null;
 
@@ -32,105 +32,129 @@ class FilterTableSeeder extends Seeder
           'family' => [
             'de' => 'Familie',
             'en' => 'Family',
-            'type' => 'icon'
+            'type' => 'icon',
+            'icon' => 'family'
           ],
           'women' => [
             'de' => 'Frauen',
             'en' => 'Women',
-            'type' => 'icon'
+            'type' => 'icon',
+            'icon' => 'woman'
+
           ],
           'men' => [
             'de' => 'Männer',
             'en' => 'Men',
-            'type' => 'icon'
+            'type' => 'icon',
+            'icon' => 'man'
           ],
           'age' => [
             'de' => 'Alter',
             'en' => 'Age',
             'type' => 'dropdown',
+            'icon' => '',
             'children' => [
               '0-5' => [
                 'de' => '0-5 Jahre',
-                'en' => '0-5 years'
+                'en' => '0-5 years',
+                'icon' => ''
               ],
               '5-10' => [
                 'de' => '5-10 Jahre',
-                'en' => '5-10 years'
+                'en' => '5-10 years',
+                'icon' => ''
               ],
               '11-17' => [
                 'de' => '11-17 Jahre',
-                'en' => '11-17 years'
+                'en' => '11-17 years',
+                'icon' => ''
               ],
               'under-27' => [
                 'de' => 'unter 27',
-                'en' => 'under 27'
+                'en' => 'under 27',
+                'icon' => ''
               ],
               '27+' => [
                 'de' => '27+',
-                'en' => '27+'
+                'en' => '27+',
+                'icon' => ''
               ]
             ]
           ],
           'persons-with-disabilities' => [
             'de' => 'Menschen mit besonderen Bedürfnissen',
             'en' => 'Persons with Disabilities',
-            'type' => 'icon'
+            'type' => 'icon',
+            'icon' => 'handicaped'
           ],
           'barrier-free' => [
             'de' => 'Barrierefrei',
             'en' => 'Barrier Free',
-            'type' => 'icon'
+            'type' => 'icon',
+            'icon' => 'handicaped'
           ],
           'culture-pass' => [
             'de' => 'Kulturpass',
             'en' => 'Culture Pass',
-            'type' => 'icon'
+            'type' => 'icon',
+            'icon' => 'culture'
           ],
           'free' => [
             'de' => 'Gratis',
             'en' => 'Free',
-            'type' => 'icon'
+            'type' => 'icon',
+            'icon' => 'free'
           ],
           'country-of-origin' => [
             'de' => 'Herkunftsland',
             'en' => 'Country of Origin',
             'type' => 'dropdown',
+            'icon' => '',
             'children' => [
               'syria' => [
                 'de' => 'Syrien',
-                'en' => 'Syria'
+                'en' => 'Syria',
+                'icon' => ''
               ],
               'afghanistan' => [
                 'de' => 'Afghanistan',
-                'en' => 'Afghanistan'
+                'en' => 'Afghanistan',
+                'icon' => ''
               ],
               'iraq' => [
                 'de' => 'Irak',
-                'en' => 'Iraq'
+                'en' => 'Iraq',
+                'icon' => ''
               ],
               'iran' => [
                 'de' => 'Iran',
-                'en' => 'Iran'
+                'en' => 'Iran',
+                'icon' => ''
               ],
               'pakistan' => [
                 'de' => 'Pakistan',
-                'en' => 'Pakistan'
+                'en' => 'Pakistan',
+                'icon' => ''
               ],
               'nigeria' => [
                 'de' => 'Nigerien',
-                'en' => 'Nigeria'
+                'en' => 'Nigeria',
+                'icon' => ''
               ],
               'morocco' => [
                 'de' => 'Marokko',
-                'en' => 'Morocco'
+                'en' => 'Morocco',
+                'icon' => ''
               ],
               'algeria' => [
                 'de' => 'Algerien',
-                'en' => 'Algeria'
+                'en' => 'Algeria',
+                'icon' => ''
               ],
               'somalia' => [
                 'de' => 'Somalien',
-                'en' => 'Somalia'
+                'en' => 'Somalia',
+                'icon' => ''
               ]
             ]
           ]

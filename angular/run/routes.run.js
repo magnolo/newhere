@@ -1,9 +1,9 @@
 export function RoutesRun($rootScope, $state, $auth, $window, ToastService) {
     'ngInject';
 
-
+    $rootScope.cms = false;
     var deregisterationCallback =  $rootScope.$on("$stateChangeStart", function(event, toState) {
-
+        $rootScope.cms = toState.name.indexOf('cms') > -1 ? true : false;
         if (toState.data && toState.data.auth) {
             /*Cancel going to the authenticated state and go back to the login page*/
             if (!$auth.isAuthenticated()) {

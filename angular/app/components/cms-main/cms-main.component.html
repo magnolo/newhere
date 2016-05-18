@@ -1,0 +1,23 @@
+<md-sidenav  md-is-locked-open="$mdMedia('gt-sm')" md-component-id="left" class="md-whiteframe-z1 md-sidenav-left main">
+  <md-toolbar md-theme="custom" >
+    <md-button layout="row" layout-align="center center" class="md-toolbar-tools" ui-sref="cms.dashboard">
+      <h1><md-icon md-svg-src="/img/newhere-logo_white.svg" class="newHere-logo"></md-icon></h1>
+    </md-button>
+  </md-toolbar>
+  <cms-menu></cms-menu>
+</md-sidenav>
+
+<div layout="column" flex>
+    <md-toolbar md-theme="custom" layout="row" class="" layout-align="space-between center">
+
+        <md-button class="md-icon-button" layout="column" layout-align="center center" hide-gt-sm ng-click="vm.toggleItemsList()" aria-label="Menu">
+            <i class="material-icons">apps</i>
+        </md-button>
+        <span flex></span>
+        <user-menu></user-menu>
+    </md-toolbar>
+
+    <md-content flex class="md-padding page-content">
+        <div ui-view="main"></div>
+    </md-content>
+</div>
