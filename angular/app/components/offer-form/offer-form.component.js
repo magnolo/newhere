@@ -73,6 +73,11 @@ class OfferFormController {
 
       this.offer.valid_until = this.valid_until;
       this.offer.valid_from = this.valid_from;
+        if (new Date() > this.offer.valid_until) {
+            this.ToastService.error('Endadresse ist in der Vergangenheit!');
+            return false;
+        }
+
       this.OfferService.save(this.offer);
 
     }
