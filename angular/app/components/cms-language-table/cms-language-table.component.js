@@ -4,19 +4,22 @@ class CmsLanguageTableController{
 
         this.$filter = $filter;
         this.LanguageService = LanguageService;
+
         this.LanguageService.fetchAll((languages) => {
-          this.languages = languages;
+          this.languages = this.$filter('orderBy')(languages, ['-i18n'], true);
         });
 
         this.query = {
-            order: '-language',
+            order: '-i18n',
             limit: 10,
             page: 1
         };
+        
         this.search = {
           show:false,
           query: ''
-        }
+        };
+        
         this.filter = {
             enabled: '',
             published: '',
@@ -34,7 +37,7 @@ class CmsLanguageTableController{
       this.search = {
         show:false,
         query: ''
-      }
+      };
     }
     save(language) {
       this.LanguageService.update(language);
