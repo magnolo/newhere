@@ -38,7 +38,7 @@ class CreateOffersTable extends Migration
             $table->dateTime('valid_from')->nullable();
             $table->dateTime('valid_until')->nullable();
 
-            $table->boolean('enabled')->default(true);
+            $table->boolean('enabled')->default(false);
 
             $table->softDeletes();
             $table->timestamps();

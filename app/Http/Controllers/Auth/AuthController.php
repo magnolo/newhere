@@ -113,7 +113,7 @@ class AuthController extends Controller
 
         DB::commit();
 
-        $token = JWTAuth::fromUser($ngoUser);
+        //$token = JWTAuth::fromUser($ngoUser);
         return response()->success(compact('user', 'token'));
     }
 
@@ -128,7 +128,7 @@ class AuthController extends Controller
         $user->confirmation_code = $confirmation_code;
         $user->save();
 
-       // $this->userRepository->verifyMail($user);
+        $this->userRepository->verifyMail($user);
 
         return $user;
     }
@@ -155,7 +155,9 @@ class AuthController extends Controller
         $user->confirmation_code = str_random(30);
         $user->save();
 
-        return true;//$this->userRepository->verifyMail($user);
+        $this->userRepository->verifyMail($user);
+
+        return true;//
     }
 
 }
