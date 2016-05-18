@@ -60,7 +60,7 @@ class AuthController extends Controller
         $this->validate($request, [
             'name' => 'required|min:3',
             'email' => 'required|email|unique:users',
-            'password' => 'required|min:6',
+            'password' => 'required|min:5',
         ]);
         $user = $this->storeAndSendMail($request->name, $request->email, $request->password);
         $user->attachRole(Role::where('name', 'user')->findOrFail());
@@ -80,7 +80,7 @@ class AuthController extends Controller
         $this->validate($request, [
             'organisation' => 'required',
             'email' => 'required|email|unique:users',
-            'password' => 'required|min:8',
+            'password' => 'required|min:5',
             'description' => 'max:200'
         ]);
 

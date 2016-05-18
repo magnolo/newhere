@@ -56,7 +56,7 @@ class NgoController extends Controller
             $this->validate($request, [
                 'organisation' => 'required',
                 'email' => 'required|email|unique:users',
-                'password' => 'required|min:8',
+                'password' => 'required|min:5',
                 'description' => 'max:200'
             ]);
         } else {

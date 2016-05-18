@@ -1,5 +1,5 @@
 <md-dialog>
-    <form ng-submit="vm.save()">
+    <form name="userForm" ng-submit="vm.save()">
 
         <md-toolbar>
           <div class="md-toolbar-tools">
@@ -25,11 +25,17 @@
               <div  layout-gt-sm="row">
                 <md-input-container class="md-block" flex-gt-sm>
                     <label>Password</label>
-                    <input type="password" ng-model="vm.user.password">
+                    <input name="password" type="password" ng-model="vm.user.password" minlength="5">
+                    <div ng-messages="userForm.password.$error" ng-show="userForm.password.$dirty">
+                        <div ng-message="minlength">Mindestens 5 Zeichen</div>
+                    </div>
                 </md-input-container>
                 <md-input-container class="md-block" flex-gt-sm>
                     <label>Repeat Password</label>
-                    <input type="password" ng-model="vm.user.re_password">
+                    <input name="re_password" type="password" ng-model="vm.user.re_password" compare-to="vm.user.password">
+                    <div ng-messages="userForm.re_password.$error" ng-show="userForm.re_password.$dirty">
+                        <div ng-message="compareTo">Unterschiedliche Passwörter</div>
+                    </div>
                 </md-input-container>
               </div>
               <h4>Roles</h4>
