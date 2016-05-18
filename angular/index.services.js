@@ -1,3 +1,4 @@
+import {CategoryTranslationService} from './services/categoryTranslation.service';
 import {FilterService} from './services/filter.service';
 import {NgoService} from './services/ngo.service';
 import {OfferService} from './services/offer.service';
@@ -14,6 +15,7 @@ import {ToastService} from './services/toast.service';
 
 
 angular.module('app.services')
+	.service('CategoryTranslationService', CategoryTranslationService)
 	.service('FilterService', FilterService)
 	.service('NgoService', NgoService)
 	.service('OfferService', OfferService)

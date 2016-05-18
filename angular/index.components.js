@@ -1,3 +1,6 @@
+
+import {CmsCategoryTranslationItemComponent} from './app/components/cms-category-translation-item/cms-category-translation-item.component';
+import {CmsCategoryTranslationTableComponent} from './app/components/cms-category-translation-table/cms-category-translation-table.component';
 import {WidgetCategoriesComponent} from './app/components/widget-categories/widget-categories.component';
 import {WidgetOfferComponent} from './app/components/widget-offer/widget-offer.component';
 import {FilterSelectorComponent} from './app/components/filter-selector/filter-selector.component';
@@ -27,6 +30,9 @@ import {OfferFormComponent} from './app/components/offer-form/offer-form.compone
 import {CmsOffersListComponent} from './app/components/cms-offers-list/cms-offers-list.component';
 
 angular.module('app.components')
+
+	.component('cmsCategoryTranslationItem', CmsCategoryTranslationItemComponent)
+	.component('cmsCategoryTranslationTable', CmsCategoryTranslationTableComponent)
 	.component('widgetCategories', WidgetCategoriesComponent)
 	.component('widgetOffer', WidgetOfferComponent)
 	.component('filterSelector', FilterSelectorComponent)

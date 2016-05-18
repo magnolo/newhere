@@ -8,7 +8,7 @@ use App\Http\Requests,
     App\Http\Controllers\Controller,
     Auth;
 
-class OfferTranslationController extends Controller
+class CategoryTranslationController extends Controller
 {
     /**
      * @var \App\Services\Translation
@@ -23,25 +23,22 @@ class OfferTranslationController extends Controller
     public function index()
     {
         list($activeLanguages, $activeLanguageCount) = $this->loadLanguages();
+        
+        $categories = \App\Category::all();
 
-        /**
-         * @todo check for verified offers
-         */
-        $offers = \App\Offer::all();
-
-        foreach ($offers as $offer) {
+        foreach ($categories as $category) {
             /**
-             * @var \App\Offer $offer
+             * @var \App\Category $category
              */
             foreach ($activeLanguages as $language) {
                 /**
                  * @var \App\Language $language
                  */
-                $offer->translate($language->language);
+                $category->translate($language->language);
             }
         }
 
-        return response()->json($offers);
+        return response()->json($categories);
     }
 
     public function untranslatedIndex()
@@ -49,19 +46,16 @@ class OfferTranslationController extends Controller
         list($activeLanguages, $activeLanguageCount) = $this->loadLanguages();
         $defaultLanguage = \App\Language::where('default_language', true)->first();
 
-        $untranslatedOffers = [];
+        $untranslatedCategories = [];
+        
+        $categories = \App\Category::all();
 
-        /**
-         * @todo check for verified offers
-         */
-        $offers = \App\Offer::all();
-
-        foreach ($offers as $idx => $offer) {
+        foreach ($categories as $idx => $category) {
             /**
-             * @var \App\Offer $offer
+             * @var \App\Category $category
              */
             $translatedLanguages = 0;
-            $defaultTranslation = $offer->translate($defaultLanguage->language);
+            $defaultTranslation = $category->translate($defaultLanguage->language);
             if (!$defaultTranslation) {
                 return response()->error('Default translation not found', 404);
             }
@@ -75,17 +69,17 @@ class OfferTranslationController extends Controller
                     continue;
                 }
 
-                $translation = $offer->translate($language->language);
+                $translation = $category->translate($language->language);
                 if ($translation && $translation->version == $version) {
                     $translatedLanguages++;
                 }
             }
             if ($translatedLanguages < $activeLanguageCount) {
-                $untranslatedOffers[] = $offer;
+                $untranslatedCategories[] = $category;
             }
         }
 
-        return response()->json($untranslatedOffers);
+        return response()->json($untranslatedCategories);
     }
 
     public function translate(Request $request, $id)
@@ -94,12 +88,11 @@ class OfferTranslationController extends Controller
             'language' => 'required|min:2|max:2',
             'title' => 'required|string|min:1|max:255',
             'description' => 'required|string|min:1|max:10000',
-            'opening_hours' => 'string|max:10000'
         ]);
 
-        $offer = \App\Offer::find((int)$id);
-        if (!$offer) {
-            return response()->error('Offer not found', 404);
+        $category = \App\Category::find((int)$id);
+        if (!$category) {
+            return response()->error('Category not found', 404);
         }
 
         $defaultLanguage = \App\Language::where('default_language', true)->first();
@@ -115,41 +108,38 @@ class OfferTranslationController extends Controller
             return response()->error('Language not enabled', 404);
         }
 
-        $defaultTranslation = $offer->translate($defaultLanguage->language);
+        $defaultTranslation = $category->translate($defaultLanguage->language);
         if (!$defaultTranslation) {
             return response()->error('Language not found', 404);
         }
 
         $hasChanged = $this->translationService->hasChanged(
-            ($offer->translate($translationLanguage->language) ? 
+            ($category->translate($translationLanguage->language) ?
                 [
-                    'title' => $offer->translate($translationLanguage->language)->title,
-                    'description' => $offer->translate($translationLanguage->language)->description,
-                    'opening_hours' => $offer->translate($translationLanguage->language)->opening_hours,
+                    'title' =>  $category->translate($translationLanguage->language)->title,
+                    'description' => $category->translate($translationLanguage->language)->description,
                 ] : [
-                    'title' => null, 'description' => null, 'opening_hours' => null,
+                    'title' => null, 'description' => null,
                 ]
             ),
             [
                 'title' => $request->get('title'),
                 'description' => $request->get('description'),
-                'opening_hours' => $request->get('opening_hours'),
             ]
         );
 
         if ($hasChanged) {
-            $offer->translateOrNew($translationLanguage->language)->title = $request->get('title');
-            $offer->translateOrNew($translationLanguage->language)->description = $request->get('description');
-            $offer->translateOrNew($translationLanguage->language)->opening_hours = $request->get('opening_hours');
+            $category->translateOrNew($translationLanguage->language)->title = $request->get('title');
+            $category->translateOrNew($translationLanguage->language)->description = $request->get('description');
             if ($translationLanguage->default_language) {
-                $offer->translateOrNew($translationLanguage->language)->version = $defaultTranslation->version + 1;
+                $category->translateOrNew($translationLanguage->language)->version = $defaultTranslation->version + 1;
             } else {
-                $offer->translateOrNew($translationLanguage->language)->version = $defaultTranslation->version;
+                $category->translateOrNew($translationLanguage->language)->version = $defaultTranslation->version;
             }
-            $offer->save();
+            $category->save();
         }
 
-        return response()->json($offer);
+        return response()->json($category);
     }
 
     private function loadLanguages()
