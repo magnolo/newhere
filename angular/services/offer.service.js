@@ -38,9 +38,7 @@ export class OfferService{
 
     cancel(cms) {
         if (cms) {
-            this.DialogService.hide();
-        } else {
-            this.$state.go("app.landing");
+            this.$state.go("cms.offers");
         }
     }
 
