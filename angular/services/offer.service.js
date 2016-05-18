@@ -54,6 +54,7 @@ export class OfferService{
         offer.save().then((response) => {
                 this.ToastService.show('Offer updated.');
                 if(success) success(response);
+          this.$state.go("cms.offers");
             },
             (error) => {
                 this.ToastService.error('Offer update failed. Please try again');
@@ -66,6 +67,7 @@ export class OfferService{
             this.ToastService.show('Saved successfully');
             this.DialogService.hide();
               if(success) success(response);
+          this.$state.go("cms.offers");
         });
       }
 
