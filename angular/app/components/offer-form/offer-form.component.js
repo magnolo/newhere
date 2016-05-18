@@ -66,6 +66,11 @@ class OfferFormController {
     }
 
     save() {
+      if(!this.offer.street || !this.offer.streetnumber || !this.offer.zip ){
+        this.ToastService.error('Es ist keine Adresse vorhanden!');
+        return false;
+      }
+
       this.offer.valid_until = this.valid_until;
       this.offer.valid_from = this.valid_from;
       this.OfferService.save(this.offer);

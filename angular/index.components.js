@@ -1,3 +1,5 @@
+import {WidgetCategoriesComponent} from './app/components/widget-categories/widget-categories.component';
+import {WidgetOfferComponent} from './app/components/widget-offer/widget-offer.component';
 import {FilterSelectorComponent} from './app/components/filter-selector/filter-selector.component';
 import {CmsMenuComponent} from './app/components/cms-menu/cms-menu.component';
 import {WidgetNgoComponent} from './app/components/widget-ngo/widget-ngo.component';
@@ -25,6 +27,8 @@ import {OfferFormComponent} from './app/components/offer-form/offer-form.compone
 import {CmsOffersListComponent} from './app/components/cms-offers-list/cms-offers-list.component';
 
 angular.module('app.components')
+	.component('widgetCategories', WidgetCategoriesComponent)
+	.component('widgetOffer', WidgetOfferComponent)
 	.component('filterSelector', FilterSelectorComponent)
 	.component('cmsMenu', CmsMenuComponent)
 	.component('widgetNgo', WidgetNgoComponent)

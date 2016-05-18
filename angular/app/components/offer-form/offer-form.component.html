@@ -1,9 +1,9 @@
 <div  style="padding:.5em;" layout="row" layout-align="space-between center" ng-if="vm.cms">
   <span class="md-title">{{ vm.offer.title || 'Neues Angebot'}}</span>
   <span>
-    <md-input-container>
+    <md-input-container class="md-block">
       <label>NGO</label>
-      <md-select ng-model="vm.offer.ngo_id">
+      <md-select ng-model="vm.offer.ngo_id" >
         <md-option ng-repeat="ngo in vm.ngos" ng-value="ngo.id">{{ ngo.organisation }}</md-option>
       </md-select>
     </md-input-container>
