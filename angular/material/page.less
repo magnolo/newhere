@@ -8,17 +8,21 @@
     font-style: normal;
 
 }
-
-.greyed {
-    background-color: #f5f5f5 !important;
-    -moz-osx-font-smoothing: grayscale;
+html.md-default-theme, html, body.md-default-theme, body{
+  background-color: #fff;
+}
+div[ui-view="front"]{
+  height:100%;
 }
 .main{
-  min-height: calc(~'100% - 175px');
+  min-height: calc(~'100% - 275px');
 }
 .Page-container{
   height:100%;
 }
 md-list, form, .white-bg{
   background-color: #fff !important;
+}
+.greyed{
+  background-color:#ECECEC;
 }

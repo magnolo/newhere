@@ -4,7 +4,10 @@
     md-list-item {
         min-height: 32px;
         position: relative;
-
+        md-list{
+          padding:0px;
+          padding-left:32px;
+        }
         .md-list-item-text {
             > p {
                 margin: 0.7em 0;
@@ -57,6 +60,17 @@
         .meanwhile {
             opacity: 0.1;
         }
+
+    }
+    .child{
+      .md-mega-mini{
+        //border:2px solid #357DBA;
+      }
+    }
+    md-list-item{
+      &.child{
+          background-color:lighten(#357DBA, 40%);
+      }
 
     }
 }

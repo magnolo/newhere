@@ -1,7 +1,9 @@
 class ImageUploaderController{
     constructor(ToastService){
         'ngInject';
-
+        if(!this.label){
+          this.label = "Logo hochladen";
+        }
     }
     assignImage($file, $message, $flow){
       if(!this.item) this.item = {};
@@ -22,5 +24,6 @@ export const ImageUploaderComponent = {
     controllerAs: 'vm',
     bindings: {
       item: '=ngModel',
+      label: '@'
     }
 }

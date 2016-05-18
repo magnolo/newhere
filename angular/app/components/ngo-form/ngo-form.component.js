@@ -19,7 +19,7 @@ class NgoFormController{
                 this.$auth.signup(this.ngo)
                     .then((response) => {
                         //remove this if you require email verification
-                        this.$auth.setToken(response.data);
+                        //this.$auth.setToken(response.data);
 
                         this.ToastService.show('Successfully registered.');
                         this.$state.go('app.login');

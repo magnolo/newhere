@@ -1,5 +1,12 @@
+
 import {CmsCategoryTranslationItemComponent} from './app/components/cms-category-translation-item/cms-category-translation-item.component';
 import {CmsCategoryTranslationTableComponent} from './app/components/cms-category-translation-table/cms-category-translation-table.component';
+import {WidgetCategoriesComponent} from './app/components/widget-categories/widget-categories.component';
+import {WidgetOfferComponent} from './app/components/widget-offer/widget-offer.component';
+import {FilterSelectorComponent} from './app/components/filter-selector/filter-selector.component';
+import {CmsMenuComponent} from './app/components/cms-menu/cms-menu.component';
+import {WidgetNgoComponent} from './app/components/widget-ngo/widget-ngo.component';
+import {UserComponent} from './app/components/user/user.component';
 import {NgoDetailComponent} from './app/components/ngo-detail/ngo-detail.component';
 import {ResetpasswordFormComponent} from './app/components/resetpassword-form/resetpassword-form.component';
 import {ForgotpasswordFormComponent} from './app/components/forgotpassword-form/forgotpassword-form.component';
@@ -23,8 +30,15 @@ import {OfferFormComponent} from './app/components/offer-form/offer-form.compone
 import {CmsOffersListComponent} from './app/components/cms-offers-list/cms-offers-list.component';
 
 angular.module('app.components')
+
 	.component('cmsCategoryTranslationItem', CmsCategoryTranslationItemComponent)
 	.component('cmsCategoryTranslationTable', CmsCategoryTranslationTableComponent)
+	.component('widgetCategories', WidgetCategoriesComponent)
+	.component('widgetOffer', WidgetOfferComponent)
+	.component('filterSelector', FilterSelectorComponent)
+	.component('cmsMenu', CmsMenuComponent)
+	.component('widgetNgo', WidgetNgoComponent)
+	.component('user', UserComponent)
 	.component('ngoDetail', NgoDetailComponent)
 	.component('resetpasswordForm', ResetpasswordFormComponent)
 	.component('forgotpasswordForm', ForgotpasswordFormComponent)

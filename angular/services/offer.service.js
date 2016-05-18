@@ -26,14 +26,14 @@ export class OfferService{
     one(id, success, error) {
 
         if (!id) return false;
-        if (this.offer.id == id) {
-            success(this.offer);
-        } else {
+        // if (this.offer.id == id) {
+        //     success(this.offer);
+        // } else {
             this.API.one('offers', id).get().then((item) => {
                 this.offer = item;
                 success(this.offer);
             }, error);
-        }
+        // }
     }
 
     cancel(cms) {
@@ -51,16 +51,26 @@ export class OfferService{
             this.DialogService.hide();
         });
     }
-    save(offer){
-      offer.save().then(
-          (success) => {
-              this.ToastService.show('Offer updated.');
-          },
-          (error) => {
-              console.log(error);
-              this.ToastService.error('Offer update failed. Please try again');
-          }
-      );
+    save(offer, success, error){
+      if(offer.id){
+        offer.save().then((response) => {
+                this.ToastService.show('Offer updated.');
+                if(success) success(response);
+            },
+            (error) => {
+                this.ToastService.error('Offer update failed. Please try again');
+            }
+        );
+      }
+      else{
+        this.API.all('offers').post(offer).then((response)=>{
+            this.$state.go(this.$state.current, {}, {reload: true});
+            this.ToastService.show('Saved successfully');
+            this.DialogService.hide();
+              if(success) success(response);
+        });
+      }
+
     }
     toggleEnabled(offer) {
         this.API.one('offers', offer.id).customPUT({

@@ -1,16 +1,46 @@
 class OfferFormController {
-    constructor($auth, $http, $q, OfferService, ToastService, $state, LanguageService) {
+    constructor($http, $q, OfferService, ToastService, NgoService, CategoryService, $state, LanguageService) {
         'ngInject';
 
         this.$q = $q;
         this.aborter = $q.defer();
 
-        this.$auth = $auth;
+        this.categories = [];
         this.$http = $http;
         this.OfferService = OfferService;
         this.ToastService = ToastService;
         this.$state = $state;
         this.$LanguageService = LanguageService;
+        this.NgoService = NgoService;
+        if(this.cms){
+          this.NgoService.fetchAll().then((list) => {
+            this.ngos = list;
+          });
+        }
+        this.CategoryService = CategoryService;
+        this.CategoryService.all((list) => {
+          this.categories = list;
+        })
+        this.categoriesOptions = {
+          selectionChanged: (items) => {
+            this.offer.categories = items;
+          }
+        }
+        if($state.params.id){
+          this.OfferService.one($state.params.id, (offer) =>{
+            this.offer = offer;
+            this.valid_from = new Date(this.offer.valid_from);
+            this.valid_until = new Date(this.offer.valid_until);
+          })
+        }
+        else{
+          this.offer = {
+            categories:[],
+            filters:[]
+          };
+          this.valid_from = new Date();
+        }
+
         angular.element(document.querySelector('#addressSearch')).$valid = false;
     }
 
@@ -36,8 +66,14 @@ class OfferFormController {
     }
 
     save() {
+      if(!this.offer.street || !this.offer.streetnumber || !this.offer.zip ){
+        this.ToastService.error('Es ist keine Adresse vorhanden!');
+        return false;
+      }
 
-        this.OfferService.create(this.offer);
+      this.offer.valid_until = this.valid_until;
+      this.offer.valid_from = this.valid_from;
+      this.OfferService.save(this.offer);
 
     }
 

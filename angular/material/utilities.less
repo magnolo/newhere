@@ -89,6 +89,11 @@ md-table-pagination{
 md-toast{
   position:fixed;
 }
+
+md-dialog{
+  border-radius:0px;
+}
+
 md-fab-speed-dial{
   &.fixed{
     position:fixed;
@@ -105,4 +110,35 @@ md-input-container{
     }
   }
 
+ }
+ .blank{
+   background-color: transparent !important;
+ }
+ md-content.md-default-theme, md-content{
+   background-color:#fff;
+ }
+ md-input-container label:not(._md-container-ignore){
+
+      //left:8px;
+ }
+ .md-button{
+   &.md-mega-mini{
+     line-height: 20px;
+     min-height:20px;
+     height:20px;
+     width:20px;
+
+     .material-icons{
+          font-size:16px;
+     }
+   }
+ }
+ md-toolbar{
+   &.md-custom-theme{
+     min-height:48px;
+     .md-toolbar-tools{
+       min-height:48px;
+       height:48px;
+     }
+   }
  }

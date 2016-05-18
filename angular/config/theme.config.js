@@ -13,5 +13,10 @@ export function ThemeConfig($mdThemingProvider) {
 		.accentPalette('amber')
 		.warnPalette('red');
 
-    $mdThemingProvider.theme('warn');
+  $mdThemingProvider.theme('warn');
+	$mdThemingProvider.theme('custom')
+          .primaryPalette('grey')
+          .accentPalette('deep-purple')
+          .warnPalette('green')
+					.dark();
 }

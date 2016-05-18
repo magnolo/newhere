@@ -8,13 +8,14 @@ use App\Ngo;
 use App\Offer;
 use App\Role;
 use App\User;
+use App\Filter;
+use App\Category;
 use Illuminate\Http\Request;
-use Auth;
 use App\Http\Requests;
 use Illuminate\Support\Facades\DB;
 use GuzzleHttp\Client;
 use App\Logic\Address\AddressAPI;
-
+use Auth;
 use Log;
 
 class OfferController extends Controller
@@ -24,7 +25,15 @@ class OfferController extends Controller
   //     return response()->json($ngos);
   //  }
    public function index() {
-       $offers = Offer::with(['ngo', 'filters','categories', 'countries'])->get();
+      $user = Auth::user();
+      if($user->hasRole(['superadmin', 'admin']) ){
+         $offers = Offer::with(['ngo', 'filters','categories', 'countries', 'image'])->get();
+      }
+      else{
+         $ngo = $user->ngos()->firstOrFail();
+        $offers = $ngo->offers()->with(['ngo', 'filters','categories', 'countries', 'image'])->orderBy('updated_at','DESC')->get();
+      }
+
        return response()->json($offers);
    }
 
@@ -34,11 +43,14 @@ class OfferController extends Controller
       return response()->json($returnArray);
    }
 
-   public function show($id) {
-      $ngo = Ngo::findOrFail($id);
-      return response()->json($ngo);
+  //  public function show($id) {
+  //     $ngo = Ngo::findOrFail($id);
+  //     return response()->json($ngo);
+  //  }
+  public function show($id) {
+      $offer= Offer::where('id',$id)->with(['ngo', 'filters', 'categories', 'countries', 'image'])->firstOrFail();
+      return response()->json($offer);
    }
-
 
    public function create(Request $request) {
 
@@ -74,13 +86,18 @@ class OfferController extends Controller
       $offer->city = $request->get('city');
       $offer->valid_from = $request->get('valid_from');
       $offer->valid_until = $request->get('valid_until');
-
+      $offer->image_id = $request->get('image_id');
       $offer->latitude = $coordinates[0];
       $offer->longitude = $coordinates[1];
 
-      $ngo = $ngoUser->ngos()->getResults()[0];
+      if($request->has('ngo_id')){
+        $offer->ngo_id = $request->get('ngo_id');
+      }
+      else{
+        $ngo = $ngoUser->ngos()->firstOrFail();
+        $offer->ngo_id = $ngo->id;
+      }
 
-      $offer->ngo_id = $ngo->id;
 
       //Standard Translation
       //if ($request->has('description')) {
@@ -89,12 +106,64 @@ class OfferController extends Controller
       //}
       $offer->save();
 
+      if($request->has('filters')){
+        foreach($request->get('filters') as $key => $filter){
+          $f = Filter::findOrFail($filter['id']);
+          $offer->filters()->attach($f);
+        }
+      }
+      if($request->has('categories')){
+        foreach($request->get('categories') as $key => $category){
+          $cat = Category::findOrFail($category['id']);
+          $offer->categories()->attach($cat);
+        }
+      }
+
       DB::commit();
       return response()->success(compact('offer'));
    }
    public function update(Request $request, $id){
-     $success = Offer::findOrFail($id)->update($request->all());
-     return response()->success(compact('success'));
+
+     $addressApi = new AddressAPI();
+     $coordinates = $addressApi->getCoordinates($request->get('street'), $request->get('streetnumber'), $request->get('zip'));
+
+     DB::beginTransaction();
+     $offer = Offer::findOrFail($id);
+     $offer->title = $request->get('title');
+     $offer->description = $request->get('description');
+     $offer->opening_hours = $request->get('opening_hours');
+     $offer->website = $request->get('website');
+     $offer->email = $request->get('email');
+     $offer->phone = $request->get('phone');
+     $offer->street = $request->get('street');
+     $offer->streetnumber = $request->get('streetnumber');
+     $offer->streetnumberadditional = $request->get('streetnumberadditional');
+     $offer->zip = $request->get('zip');
+     $offer->city = $request->get('city');
+     $offer->valid_from = $request->get('valid_from');
+     $offer->valid_until = $request->get('valid_until');
+     $offer->image_id = $request->get('image_id');
+     $offer->latitude = $coordinates[0];
+     $offer->longitude = $coordinates[1];
+     $offer->ngo_id = $request->get('ngo_id');
+     $success = $offer->save();
+
+     if($request->has('filters')){
+       $offer->filters()->detach();
+       foreach($request->get('filters') as $key => $filter){
+         $f = Filter::findOrFail($filter['id']);
+         $offer->filters()->attach($f);
+       }
+     }
+     if($request->has('categories')){
+       $offer->categories()->detach();
+       foreach($request->get('categories') as $key => $category){
+         $cat = Category::findOrFail($category['id']);
+         $offer->categories()->attach($cat);
+       }
+     }
+     DB::commit();
+     return response()->success(compact(['success','offer']));
    }
    public function toggleEnabled(Request $request, $id) {
        $this->validate($request, [
@@ -103,6 +172,7 @@ class OfferController extends Controller
 
        $offer = Offer::find((int)$id);
        if (!$offer) {
+
            return response()->error('Offer not found', 404);
        }
 
