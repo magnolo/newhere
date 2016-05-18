@@ -63,7 +63,9 @@ class OfferTranslationController extends Controller
             $translatedLanguages = 0;
             $defaultTranslation = $offer->translate($defaultLanguage->language);
             if (!$defaultTranslation) {
-                return response()->error('Default translation not found', 404);
+                unset($offers[$idx]);
+                continue;
+                //return response()->error('Default translation not found', 404);
             }
             $version = $defaultTranslation->version;
 
