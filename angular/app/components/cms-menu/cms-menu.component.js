@@ -21,7 +21,7 @@ class CmsMenuController{
           },
           {
             sref:'cms.translations',
-            icon:'local_offer',
+            icon:'translate',
             title:'Translations'
           },
           {
