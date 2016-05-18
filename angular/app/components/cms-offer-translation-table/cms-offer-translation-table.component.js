@@ -1,8 +1,9 @@
 class CmsOfferTranslationTableController{
-    constructor(OfferTranslationService){
+    constructor(OfferTranslationService, LanguageService){
         'ngInject';
 
         this.OfferTranslationService = OfferTranslationService;
+        this.LanguageService = LanguageService;
         
         this.untranslatedOffers = [];
         this.enabledLanguages = [];
@@ -10,11 +11,11 @@ class CmsOfferTranslationTableController{
         this.showAll = false;
         this.loading = true;
         
-        this.OfferTranslationService.fetchDefaultLanguage((defaultLanguage) => {
+        this.LanguageService.fetchDefault((defaultLanguage) => {
             this.defaultLanguage = defaultLanguage;
         });
         
-        this.OfferTranslationService.fetchEnabledLanguages((enabledLanguages) => {
+        this.LanguageService.fetchEnabled((enabledLanguages) => {
             this.enabledLanguages = enabledLanguages;
         });
 

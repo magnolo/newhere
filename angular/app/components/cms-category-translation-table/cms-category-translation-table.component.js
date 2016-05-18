@@ -1,8 +1,9 @@
 class CmsCategoryTranslationTableController{
-    constructor(CategoryTranslationService){
+    constructor(CategoryTranslationService, LanguageService){
         'ngInject';
 
         this.CategoryTranslationService = CategoryTranslationService;
+        this.LanguageService = LanguageService;
 
         this.untranslatedCategories = [];
         this.enabledLanguages = [];
@@ -10,11 +11,11 @@ class CmsCategoryTranslationTableController{
         this.showAll = false;
         this.loading = true;
 
-        this.CategoryTranslationService.fetchDefaultLanguage((defaultLanguage) => {
+        this.LanguageService.fetchDefault((defaultLanguage) => {
             this.defaultLanguage = defaultLanguage;
         });
 
-        this.CategoryTranslationService.fetchEnabledLanguages((enabledLanguages) => {
+        this.LanguageService.fetchEnabled((enabledLanguages) => {
             this.enabledLanguages = enabledLanguages;
         });
 
