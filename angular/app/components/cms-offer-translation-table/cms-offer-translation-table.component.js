@@ -8,6 +8,7 @@ class CmsOfferTranslationTableController{
         this.enabledLanguages = [];
         this.defaultLanguage = {};
         this.showAll = false;
+        this.loading = true;
         
         this.OfferTranslationService.fetchDefaultLanguage((defaultLanguage) => {
             this.defaultLanguage = defaultLanguage;
@@ -19,6 +20,7 @@ class CmsOfferTranslationTableController{
 
         this.OfferTranslationService.fetchUntranslated((untranslatedOffers) => {
             this.untranslatedOffers = untranslatedOffers;
+            this.loading = false;
         });
     }
 
@@ -40,13 +42,17 @@ class CmsOfferTranslationTableController{
     }
 
     reload(showAll) {
+        this.loading = true;
+        
         if (showAll) {
             this.OfferTranslationService.fetchAll((untranslatedOffers) => {
                 this.untranslatedOffers = untranslatedOffers;
+                this.loading = false;
             }, null, true);
         } else {
             this.OfferTranslationService.fetchUntranslated((untranslatedOffers) => {
                 this.untranslatedOffers = untranslatedOffers;
+                this.loading = false;
             }, null, true);
         }
     }

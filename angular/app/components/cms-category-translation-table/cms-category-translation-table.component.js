@@ -8,6 +8,7 @@ class CmsCategoryTranslationTableController{
         this.enabledLanguages = [];
         this.defaultLanguage = {};
         this.showAll = false;
+        this.loading = true;
 
         this.CategoryTranslationService.fetchDefaultLanguage((defaultLanguage) => {
             this.defaultLanguage = defaultLanguage;
@@ -19,6 +20,7 @@ class CmsCategoryTranslationTableController{
 
         this.CategoryTranslationService.fetchUntranslated((untranslatedCategories) => {
             this.untranslatedCategories = untranslatedCategories;
+            this.loading = false;
         });
     }
 
@@ -40,13 +42,17 @@ class CmsCategoryTranslationTableController{
     }
 
     reload(showAll) {
+        this.loading = true;
+        
         if (showAll) {
             this.CategoryTranslationService.fetchAll((untranslatedCategories) => {
                 this.untranslatedCategories = untranslatedCategories;
+                this.loading = false;
             }, null, true);
         } else {
             this.CategoryTranslationService.fetchUntranslated((untranslatedCategories) => {
                 this.untranslatedCategories = untranslatedCategories;
+                this.loading = false;
             }, null, true);
         }
     }
