@@ -39,6 +39,9 @@ class OfferFormController {
             filters:[]
           };
           this.valid_from = new Date();
+            this.NgoService.one().then((ngo) => {
+                this.adoptFieldsFromNgo(ngo);
+            });
         }
 
         angular.element(document.querySelector('#addressSearch')).$valid = false;
@@ -84,6 +87,18 @@ class OfferFormController {
 
     cancel() {
         this.OfferService.cancel(this.cms);
+    }
+
+    adoptFieldsFromNgo(ngo) {
+        if (ngo) {
+            this.offer.email = ngo.contact_email;
+            this.offer.phone = ngo.contact_phone;
+            this.offer.website = ngo.website;
+            this.offer.street = ngo.street;
+            this.offer.streetnumber = ngo.street_number;
+            this.offer.zip = ngo.zip;
+            this.offer.city = ngo.city;
+        }
     }
 
 }

@@ -22,10 +22,10 @@ class NgoSeeder extends Seeder
         $ngo->street_number = "5";
         $ngo->zip = "1010";
         $ngo->city = "Wien";
-        $ngo->website = "www.wwf.at";
+        $ngo->website = "http://www.wwf.at";
         $ngo->contact = "WWF Chief";
-        $ngo->contact_email ="http://wwf@ngo.at";
-        $ngo->contact_phone = "+43 1 316546";
+        $ngo->contact_email ="wwf@ngo.at";
+        $ngo->contact_phone = "+43 1 12345678";
 
         $ngo->save();
 
@@ -40,10 +40,10 @@ class NgoSeeder extends Seeder
         $ngo->street_number = "5";
         $ngo->zip = "1010";
         $ngo->city = "Wien";
-        $ngo->website = "http://www.wwf.at";
+        $ngo->website = "http://www.caritas.at";
         $ngo->contact = "Caritas Chief";
         $ngo->contact_email ="caritas@ngo.at";
-        $ngo->contact_phone = "+43 1 316546";
+        $ngo->contact_phone = "+43 1 23456789";
 
         $ngo->save();
 
