@@ -20,7 +20,7 @@
                 <md-menu-content width="2">
                     <md-menu-item ng-repeat="language in vm.languages">
                         <md-button ng-click="vm.addTranslation(language.language)">
-                            {{language.language}}
+                            {{language.i18n}} ({{language.language}})
                         </md-button>
                     </md-menu-item>
                 </md-menu-content>

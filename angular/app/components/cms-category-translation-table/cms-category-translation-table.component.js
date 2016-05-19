@@ -1,24 +1,27 @@
 class CmsCategoryTranslationTableController{
-    constructor(CategoryTranslationService){
+    constructor(CategoryTranslationService, LanguageService){
         'ngInject';
 
         this.CategoryTranslationService = CategoryTranslationService;
+        this.LanguageService = LanguageService;
 
         this.untranslatedCategories = [];
         this.enabledLanguages = [];
         this.defaultLanguage = {};
         this.showAll = false;
+        this.loading = true;
 
-        this.CategoryTranslationService.fetchDefaultLanguage((defaultLanguage) => {
+        this.LanguageService.fetchDefault((defaultLanguage) => {
             this.defaultLanguage = defaultLanguage;
         });
 
-        this.CategoryTranslationService.fetchEnabledLanguages((enabledLanguages) => {
+        this.LanguageService.fetchEnabled((enabledLanguages) => {
             this.enabledLanguages = enabledLanguages;
         });
 
         this.CategoryTranslationService.fetchUntranslated((untranslatedCategories) => {
             this.untranslatedCategories = untranslatedCategories;
+            this.loading = false;
         });
     }
 
@@ -40,13 +43,17 @@ class CmsCategoryTranslationTableController{
     }
 
     reload(showAll) {
+        this.loading = true;
+        
         if (showAll) {
             this.CategoryTranslationService.fetchAll((untranslatedCategories) => {
                 this.untranslatedCategories = untranslatedCategories;
+                this.loading = false;
             }, null, true);
         } else {
             this.CategoryTranslationService.fetchUntranslated((untranslatedCategories) => {
                 this.untranslatedCategories = untranslatedCategories;
+                this.loading = false;
             }, null, true);
         }
     }

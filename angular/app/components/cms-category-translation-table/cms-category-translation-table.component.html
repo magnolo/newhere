@@ -7,14 +7,14 @@
         </div>
     </md-toolbar>
 
-    <md-table-container ng-if="vm.untranslatedCategories.length">
+    <md-table-container ng-if="vm.untranslatedCategories.length && vm.loading == false">
         <table md-table>
             <thead md-head>
             <tr md-row>
                 <th md-column>#</th>
-                <th md-column>{{vm.defaultLanguage.language}}</th>
+                <th md-column>{{vm.defaultLanguage.i18n}} ({{vm.defaultLanguage.language}})</th>
                 <th md-column ng-repeat="language in vm.enabledLanguages | filter: {default_language: false}">
-                    {{language.language}}
+                    {{language.i18n}} ({{language.language}})
                 </th>
             </tr>
             </thead>
@@ -44,9 +44,15 @@
         </table>
     </md-table-container>
 
-    <md-content ng-if="vm.untranslatedCategories.length == 0">
+    <md-content ng-if="vm.untranslatedCategories.length == 0 && vm.loading == false">
         <div flex layout="column" layout-align="center center" layout-padding>
             <div class="md-display-1">Wow, everything seems to be translated!</div>
             <div class="md-subhead">Wanna see all offers and their translations? Check show all.</div>
+        </div>
+    </md-content>
+
+    <md-content ng-if="vm.loading == true">
+        <div flex layout="column" layout-align="center center" layout-margin>
+            <md-progress-circular md-mode="indeterminate"></md-progress-circular>
         </div>
     </md-content>

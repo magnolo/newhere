@@ -13,7 +13,7 @@
         <md-dialog-content>
             <div class="md-dialog-content" layout="row">
                 <div>
-                    <h3>{{ vm.sourceLanguage.language || 'de' }}</h3>
+                    <h3>{{ vm.sourceLanguage.i18n || 'de' }} ({{ vm.sourceLanguage.language || 'de' }})</h3>
                     <md-input-container class="md-block">
                         <label>Title</label>
                         <input ng-model="vm.sourceTranslation.title" readonly>
@@ -28,7 +28,7 @@
                     </span>
                 </div>
                 <div>
-                    <h3>{{ vm.language.language || 'de' }}</h3>
+                    <h3>{{ vm.language.i18n || 'de' }} ({{ vm.language.language || 'de' }})</h3>
                     <md-input-container class="md-block">
                         <label>Title</label>
                         <input ng-model="vm.translation.title" required>

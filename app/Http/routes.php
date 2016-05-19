@@ -40,7 +40,6 @@ $api->group(['middleware' => ['api', 'api.auth']], function ($api) {
      * @var \Dingo\Api\Routing\Router $api
      */
 
-
     $api->get('offer-translations', 'Cms\OfferTranslationController@index');
     $api->get('offer-translations/untranslated', 'Cms\OfferTranslationController@untranslatedIndex');
     $api->put('offer-translations/{id}', 'Cms\OfferTranslationController@translate');
@@ -48,6 +47,10 @@ $api->group(['middleware' => ['api', 'api.auth']], function ($api) {
     $api->get('category-translations', 'Cms\CategoryTranslationController@index');
     $api->get('category-translations/untranslated', 'Cms\CategoryTranslationController@untranslatedIndex');
     $api->put('category-translations/{id}', 'Cms\CategoryTranslationController@translate');
+
+    $api->get('languages/published', 'Cms\LanguageController@publishedIndex');
+    $api->get('languages/enabled', 'Cms\LanguageController@enabledIndex');
+    $api->get('languages/default', 'Cms\LanguageController@defaultLanguage');
 
     $api->get('offerDetail', 'Cms\OfferDetailController@index');
     $api->get('offer', 'Cms\OfferDetailController@show');
@@ -65,22 +68,18 @@ $api->group(['middleware' => ['api', 'api.auth']], function ($api) {
     $api->get('ngo', 'Cms\NgoController@show');
     $api->put('ngo/{id}', 'Cms\NgoController@update');
 
-      $api->get('categories', 'Cms\CategoryController@index');
-      $api->get('filters', 'Cms\FilterController@index');
+    $api->get('categories', 'Cms\CategoryController@index');
+    $api->get('filters', 'Cms\FilterController@index');
+
     // JUST FOR ADMINS
     $api->group(['middleware' => ['role:superadmin|admin']], function ($api) {
 
       $api->get('languages', 'Cms\LanguageController@index');
-      $api->get('languages/published', 'Cms\LanguageController@publishedIndex');
-      $api->get('languages/enabled', 'Cms\LanguageController@enabledIndex');
-      $api->get('languages/default', 'Cms\LanguageController@defaultLanguage');
       $api->put('languages/{id}', 'Cms\LanguageController@update');
 
       $api->get('ngos', 'Cms\NgoController@index');
-
       $api->post('ngos', 'Cms\NgoController@create');
       $api->put('ngos/{id}', 'Cms\NgoController@update');
-
       $api->put('ngos/{id}/togglePublished', 'Cms\NgoController@togglePublished');
 
       $api->get('users', 'Cms\UserController@index');
@@ -91,8 +90,8 @@ $api->group(['middleware' => ['api', 'api.auth']], function ($api) {
       $api->post('users', 'Cms\UserController@create');
       $api->put('users/{id}', 'Cms\UserController@update');
       $api->delete('users/{id}', 'Cms\UserController@bulkRemove');
-      $api->get('roles', 'Cms\RoleController@index');
 
+      $api->get('roles', 'Cms\RoleController@index');
 
       $api->get('categories/{id}', ['uses' => 'Cms\CategoryController@show']);
       $api->post('categories', 'Cms\CategoryController@create');
