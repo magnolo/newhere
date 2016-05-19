@@ -29,9 +29,13 @@ class OfferFormController {
         if($state.params.id){
           this.OfferService.one($state.params.id, (offer) =>{
             this.offer = offer;
-            this.valid_from = new Date(this.offer.valid_from);
-            this.valid_until = new Date(this.offer.valid_until);
-          })
+            if(this.offer.valid_from != null) {
+               this.valid_from = new Date(this.offer.valid_from);
+            }
+            if(this.offer.valid_until != null) {
+               this.valid_until = new Date(this.offer.valid_until);
+            }
+         })
         }
         else{
           this.offer = {
@@ -39,7 +43,7 @@ class OfferFormController {
             filters:[]
           };
           this.valid_from = new Date();
-            this.NgoService.one().then((ngo) => {
+          this.NgoService.one().then((ngo) => {
                 this.adoptFieldsFromNgo(ngo);
             });
         }
@@ -77,7 +81,7 @@ class OfferFormController {
       this.offer.valid_until = this.valid_until;
       this.offer.valid_from = this.valid_from;
         if (new Date() > this.offer.valid_until) {
-            this.ToastService.error('Endadresse ist in der Vergangenheit!');
+            this.ToastService.error('Enddatum ist in der Vergangenheit!');
             return false;
         }
 
