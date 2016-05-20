@@ -93,6 +93,10 @@ export class CategoryService {
         }
 
     }
+
+    cancel() {
+        this.$state.go("cms.categories");
+    }
     selectCategory(category) {
         return this.selectedCategory = category;
     }

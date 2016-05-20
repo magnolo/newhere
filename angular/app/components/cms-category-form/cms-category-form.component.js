@@ -47,6 +47,10 @@ class CmsCategoryFormController{
     save() {
       this.CategoryService.save(this.category);
     }
+
+    cancel() {
+        this.CategoryService.cancel()
+    }
 }
 
 export const CmsCategoryFormComponent = {
