@@ -1,6 +1,15 @@
 class WizardOfferController{
     constructor($http, $q, OfferService, CategoryService, LanguageService, NgoService){
         'ngInject';
+
+        this.offer = {
+          categories:[],
+          filters:[],
+          translations:{},
+          languages:[]
+        }
+
+
         this.$http = $http;
         this.$q = $q;
         this.aborter = $q.defer();
@@ -26,12 +35,7 @@ class WizardOfferController{
           this.categories = list;
         })
         //
-        this.offer = {
-          categories:[],
-          filters:[],
-          translations:{},
-          languages:[]
-        }
+
     }
     querySearch(query) {
         if (this.$http.pendingRequests.length) {
@@ -103,6 +107,12 @@ class WizardOfferController{
 
     }
     $onInit(){
+      this.offer = {
+        categories:[],
+        filters:[],
+        translations:{},
+        languages:[]
+      }
     }
 }
 
