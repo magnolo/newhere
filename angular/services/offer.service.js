@@ -49,7 +49,7 @@ export class OfferService{
             this.DialogService.hide();
         });
     }
-    save(offer, success, error){
+    save(offer, success, error, goto){
       if(offer.id){
         offer.save().then((response) => {
                 this.ToastService.show('Offer updated.');
@@ -67,7 +67,13 @@ export class OfferService{
             this.ToastService.show('Saved successfully');
             this.DialogService.hide();
               if(success) success(response);
-          this.$state.go("cms.offers");
+              if(goto){
+                this.$state.go(goto);
+              }
+              else{
+                  this.$state.go("cms.offers");
+              }
+
         });
       }
 

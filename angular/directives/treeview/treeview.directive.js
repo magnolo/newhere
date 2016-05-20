@@ -50,8 +50,11 @@ class TreeviewController {
         } else {
             this.selection.push(item);
         }
-        if (typeof this.options.selectionChanged == 'function')
-            this.options.selectionChanged(this.selection);
+        if(this.options){
+          if (typeof this.options.selectionChanged == 'function')
+              this.options.selectionChanged(this.selection);
+        }
+
 
     }
     addChildren(item) {

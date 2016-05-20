@@ -6,7 +6,7 @@
           <h3>{{vm.label}}</h3>
         </div>
     </div>
-    <div class="image-prev" ng-show="$flow.files.length">
+    <div class="image-prev" ng-show="$flow.files.length" layout="column" layout-align="center center">
         <img flow-img="$flow.files[0]">
     </div>
     <div class="image-prev" ng-show="!$flow.files.length && vm.item.image">

@@ -1,9 +1,12 @@
 @import "./angular/material/project";
 @import "./angular/material/colors";
 
+image-uploader{
+  display: inherit;
+}
 .upload-container{
   position:relative;
-
+  width:100%;
   text-align: center;
   color:#fff;
   .material-icons{
@@ -12,9 +15,9 @@
   .image-prev{
     background-color:@white;
     min-height: 200px;
-    border: 1px solid @grey-light;
+    border: 1px solid @desert;
     &.no-image{
-      background-color:@grey-light;
+      background-color:@desert;
     }
     .material-icons{
       font-size:4em;

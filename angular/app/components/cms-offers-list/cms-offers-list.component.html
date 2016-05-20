@@ -6,7 +6,7 @@
   </md-button>
 </div>
 
-<md-card ng-if="vm.offers.length">
+<div ng-if="vm.offers.length">
     <md-toolbar class="md-table-toolbar md-default" layout-padding ng-if="!vm.showfilter">
         <div layout="row" layout-align="space-between start">
             <h3>Angebote</h3>
@@ -108,7 +108,7 @@
     </md-table-container>
     <md-table-pagination md-limit="vm.query.limit" md-limit-options="[5,10,15, 25, 50]" md-page="vm.query.page" md-total="{{vm.filteredOffer.length}}" md-on-paginate="vm.onPaginationChange" md-page-select></md-table-pagination>
 
-</md-card>
+</div>
   <md-fab-speed-dial  ng-if="vm.cms" class="md-fling fixed bottom" ng-show="vm.selectedOffers.length" md-open="vm.menu.isOpen" md-direction="up">
        <md-fab-trigger>
          <md-button aria-label="menu" class="md-fab md-warn">

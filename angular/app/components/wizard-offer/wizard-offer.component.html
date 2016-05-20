@@ -1,0 +1,217 @@
+<md-card>
+
+    <wizard on-finish="vm.finishedWizard()">
+        <wz-step wz-title="Kategorien">
+            <md-toolbar>
+                <div class="md-toolbar-tools">
+                    <h2>
+                      <span>Wähle die Kategorien</span>
+                    </h2>
+                    <span flex></span>
+                    <md-button class="md-raised" wz-next>
+                        Weiter
+                    </md-button>
+                </div>
+            </md-toolbar>
+            <md-content layout-padding layout="row" layout-align="center center">
+                <treeview items="vm.categories" selection="vm.offer.categories"></treeview>
+            </md-content>
+        </wz-step>
+        <wz-step wz-title="Zielgruppe">
+            <md-toolbar>
+                <div class="md-toolbar-tools">
+                    <h2>
+                    <span>Wähle sorgfältig deine Zielgruppe</span>
+                  </h2>
+                    <span flex></span>
+                    <md-button wz-previous>
+                        Zurück
+                    </md-button>
+                    <md-button class="md-raised" wz-next>
+                        Weiter
+                    </md-button>
+                </div>
+            </md-toolbar>
+            <md-content layout-padding layout="column" layout-align="center center">
+                <md-switch style="font-size:1.5em" ng-model="vm.offer.toAll" ng-change="vm.clearFilters()" class="md-primary" aria-label="Offer is dedicated to all">
+                    Das Angebot richtet sich an alle
+                </md-switch>
+                <div ng-if="!vm.offer.toAll" layout="column" layout-gt-xs="row">
+
+                    <div flex flex-gt-xs="33">
+                        <div layout-padding>
+                            <div layout="column" class="colored">
+                                <h4>Sprachen </h4>
+
+                            </div>
+                            <div layout-padding layout="column">
+
+                                <md-checkbox ng-model="vm.selectedLanguages[lang.language]" ng-disabled="lang.default_language" ng-change="vm.setLanguages()" ng-repeat="lang in vm.languages">
+                                    {{ lang.i18n}}
+                                </md-checkbox>
+                            </div>
+                        </div>
+                    </div>
+                    <div flex flex-gt-xs="66">
+                        <filter-selector ng-model="vm.offer.filters"></filter-selector>
+                    </div>
+                </div>
+            </md-content>
+        </wz-step>
+        <wz-step wz-title="Details">
+            <md-toolbar>
+                <div class="md-toolbar-tools">
+                    <h2>
+                    <span>Details</span>
+                  </h2>
+                    <span flex></span>
+                    <md-button wz-previous>
+                        Zurück
+                    </md-button>
+                    <md-button class="md-raised" wz-next>
+                        Speichern
+                    </md-button>
+                </div>
+            </md-toolbar>
+            <md-content layout="column" layout-gt-xs="row" flex>
+                <div flex flex-gt-xs="50" layout-padding>
+                    <div>
+                        <md-input-container class="md-block bigger no-error">
+                            <label>Name</label>
+                            <input type="text" ng-model="vm.offer.translations['de'].title" required />
+                        </md-input-container>
+                        <div layout="column" class="colored">
+                            <h4>Ausgewählt</h4>
+                            <div ng-if="vm.offer.toAll || ! vm.offer.filters.length">
+                                Das Angebot gilt für Alle
+                            </div>
+                            <div ng-if="!vm.offer.toAll">
+                                <div ng-repeat="filter in vm.offer.filters">
+                                    <div ng-if="filter.parent_id == 4">
+                                        Für das Alter: {{ filter.title}}
+                                    </div>
+                                    <div ng-if="filter.parent_id == 14">
+                                        Für das Herkunftsland: {{ filter.title}}
+                                    </div>
+                                </div>
+                            </div>
+                            <div ng-if="!vm.offer.toAll">
+                                Für die Sprachen: <span ng-repeat="lang in vm.offer.languages">{{ lang.i18n}}, </span>
+                            </div>
+                            <div layout="row" layout-align="start center" ng-if="!vm.offer.toAll">
+                                <span>Für: </span>
+                                <div ng-repeat="filter in vm.offer.filters | filter: {'type': 'icon'}" style="margin:.5em">
+                                    <md-icon class="icon-colored" md-svg-src="/img/icons/filter/{{filter.icon}}.svg" class="md-48"></md-icon>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div flex="50" layout-padding>
+                    <image-uploader ng-model="vm.offer" label="Logo oder Bild hochladen"></image-uploader>
+                </div>
+
+            </md-content>
+            <md-content layout="column" layout-gt-xs="row">
+                <div flex="50">
+                    <md-tabs md-dynamic-height>
+                        <md-tab label="{{ lang.i18n }}" ng-repeat="lang in vm.offer.languages">
+                            <div layout-padding>
+                                <div ng-if="lang.language != 'de'">
+                                    <md-input-container class="md-block no-error">
+                                        <label>Titel</label>
+                                        <input ng-model="vm.offer.translations[lang.language].title" md-maxlength="200">
+                                    </md-input-container>
+                                </div>
+                                <div>
+                                    <md-input-container class="md-block  no-error">
+                                        <label>Beschreibung des Angebotes</label>
+                                        <textarea ng-model="vm.offer.translations[lang.language].description" ng-required="lang.language == 'de'" md-maxlength="200"></textarea>
+                                    </md-input-container>
+                                </div>
+                                <div>
+                                    <md-input-container class="md-block  no-error">
+                                        <label>Öffnungszeiten</label>
+                                        <textarea ng-model="vm.offer.translations[lang.language].opening_hours" ng-required="lang.language == 'de'" md-maxlength="200" rows="5"></textarea>
+                                    </md-input-container>
+                                </div>
+                            </div>
+                        </md-tab>
+                    </md-tabs>
+
+                </div>
+                <div flex="50" layout-padding>
+                    <div>
+                        <md-input-container class="md-block">
+                            <label>Email</label>
+                            <input ng-model="vm.offer.email" type="email" reqiured placeholder="email@offer.com">
+                        </md-input-container>
+                    </div>
+                    <div>
+                        <md-input-container class="md-block">
+                            <label>Telefonnummer</label>
+                            <input ng-model="vm.offer.phone" ng-pattern="/^((\+\d{1,3}(-| )?\(?\d\)?(-| )?\d{1,5})|(\(?\d{2,6}\)?))(-| )?(\d{3,4})(-| )?(\d{4})(( x| ext)\d{1,5}){0,1}$/" placeholder="+43 660 12345678">
+                        </md-input-container>
+                    </div>
+                    <div>
+                        <md-input-container class="md-block">
+                            <label>Webseite</label>
+                            <input ng-model="vm.offer.website" type="url" placeholder="http://www.your-offer.com">
+                        </md-input-container>
+                    </div>
+                </div>
+            </md-content>
+            <md-content layout="column" layout-gt-xs="row">
+                <div flex="50" layout-padding>
+                    <div layout="column" >
+                        <h4 class="colored">Adresse </h4>
+                        <div>
+                            <md-checkbox ng-model="vm.offer.withoutAddress" ng-true-value="true" ng-false-value="false">
+                                Angebot ohne Adresse (Website)
+                            </md-checkbox>
+                        </div>
+                    </div>
+                    <div ng-show="!vm.offer.withoutAddress">
+                        <md-autocomplete ng-init="vm.offer.street=''" md-selected-item="vm.selectedItem" md-selected-item-change="vm.selectedItemChange(item)" md-search-text="vm.searchText" md-items="item in vm.querySearch(vm.searchText)" md-item-text="item.street+' '+item.number+', '+item.zip+' '+item.city"
+                          md-min-length="2" md-floating-label="Adress-Suche" placeholder="z.B. Stephansplatz 1, 1010 Wien">
+                            <md-item-template>
+                                <span md-highlight-text="vm.searchText">{{item.street+' '+item.number+', '+item.zip+' '+item.city}}</span>
+                            </md-item-template>
+                            <md-not-found>
+                                Keine passende Adresse gefunden!
+                            </md-not-found>
+                        </md-autocomplete>
+
+                        <p ng-if="vm.offer.street">
+                            {{vm.offer.street}} {{vm.offer.streetnumber}}
+                            <br/> {{vm.offer.zip}} {{vm.offer.city}}
+                            <br/>
+                        </p>
+                        <div>
+                            <md-input-container class="md-block">
+                                <label>Adresszusatz</label>
+                                <input ng-model="vm.offer.streetnumberadditional">
+                            </md-input-container>
+                        </div>
+                    </div>
+                </div>
+                <div flex="50" layout-padding>
+                    <div layout="column" class="colored">
+                        <h4>Angebot gültig </h4>
+
+                    </div>
+                    <div layout="column" layout-align="center center">
+                        <span>von
+                <md-datepicker ng-model="vm.valid_from" md-placeholder="Datum eingeben"></md-datepicker>
+            </span>
+                        <span>
+                bis
+                <md-datepicker ng-model="vm.valid_until" md-placeholder="Datum eingeben"></md-datepicker>
+            </span>
+                    </div>
+                </div>
+            </md-content>
+        </wz-step>
+    </wizard>
+
+</md-card>
