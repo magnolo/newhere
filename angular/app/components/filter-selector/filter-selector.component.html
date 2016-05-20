@@ -1,4 +1,5 @@
-<div layout="row" layout-padding>
+<div layout="column" layout-padding>
+
   <md-input-container ng-repeat="filter in vm.filters | filter: {type: 'dropdown'}" flex class="md-block">
       <label>{{filter.title}}</label>
       <md-select ng-model="vm.dropdownFilters[filter.slug]" ng-change="vm.toggleFilter(vm.dropdownFilters[filter.slug])">
@@ -6,6 +7,7 @@
           <md-option ng-repeat="item in filter.children" ng-value="item">{{item.title}}</md-option>
       </md-select>
   </md-input-container>
+
 </div>
 <div layout="row" layout-wrap>
 

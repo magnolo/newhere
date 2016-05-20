@@ -29,10 +29,18 @@ md-input-container{
   &.bigger{
     font-size:2em;
     margin-top:2em;
+
     label{
       font-weight:400;
     }
-
+    input{
+      padding-bottom:12px;
+    }
+    &.md-input-focused{
+      input{
+        padding-bottom:10px;
+      }
+    }
   }
 }
 md-toolbar.md-table-toolbar.md-default {
@@ -142,3 +150,50 @@ md-input-container{
      }
    }
  }
+.steps-indicator{
+  padding-top:30px;
+  height:75px;
+  background-color: @blue;
+  li{
+    padding-top:1em;
+    a{
+      font-weight: normal;
+      color:@white;
+      padding-top:.5em;
+      &::before{
+        background-color: @white;
+      }
+    }
+    &.current, &.editing{
+      a{
+        &::before{
+          background-color: @desert;
+        }
+      }
+    }
+    &.done{
+      a{
+        //color:@green;
+        &::before{
+          background-color: @green;
+        }
+      }
+    }
+
+  }
+  &.steps-4:before {
+    left: calc(100% / 4 / 1.2);
+    right: calc(100% / 4 / 1.2);
+  }
+  &.steps-3:before {
+    left: calc(100% / 3 / 1.4);
+    right: calc(100% / 3 / 1.4);
+  }
+  &::before{
+    background-color: @white;
+    display: none;
+  }
+}
+.icon-colored{
+  color:@blue;
+}

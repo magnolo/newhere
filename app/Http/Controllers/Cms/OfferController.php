@@ -118,6 +118,14 @@ class OfferController extends Controller
           $offer->categories()->attach($cat);
         }
       }
+      if($request->has('translations')){
+        foreach($request->get('translations') as $key => $translation){
+          $offer->translateOrNew($key)->title = $translation['title'];
+          $offer->translateOrNew($key)->description = $translation['description'];
+          $offer->translateOrNew($key)->opening_hours = $translation['opening_hours'];
+          $offer->save();
+        }
+      }
 
       DB::commit();
       return response()->success(compact('offer'));
