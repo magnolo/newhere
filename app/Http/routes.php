@@ -60,7 +60,7 @@ $api->group(['middleware' => ['api', 'api.auth']], function ($api) {
     $api->get('offer/autocomplete/{search}', 'Cms\OfferController@autocomplete');
     $api->post('offers', 'Cms\OfferController@create');
     $api->get('offers', 'Cms\OfferController@index');
-
+    $api->get('offers/count', 'Cms\OfferController@count');
     $api->get('offers/{id}', 'Cms\OfferController@show');
     $api->put('offers/{id}', 'Cms\OfferController@update');
     $api->delete('offers/{id}', 'Cms\OfferController@bulkRemove');

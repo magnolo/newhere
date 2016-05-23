@@ -10,7 +10,9 @@ export class OfferService{
         this.offer;
     }
 
+    count(){
 
+    }
     fetchAll() {
         var vm = this;
         return this.$q(function(resolve) {
@@ -21,6 +23,11 @@ export class OfferService{
                 vm.ToastService.show("Fetching Offers failed");
             });
         });
+    }
+    fetchFiltered(query,success, error, force){
+      return this.API.all('offers').getList(query).then((response) =>{
+        success(response);
+      });
     }
 
     one(id, success, error) {

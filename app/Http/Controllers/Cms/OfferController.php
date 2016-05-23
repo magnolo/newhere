@@ -24,19 +24,45 @@ class OfferController extends Controller
   //     $ngos = Ngo::with(['image','users', 'offers'])->get();
   //     return response()->json($ngos);
   //  }
-   public function index() {
+   public function index(Request $request) {
       $user = Auth::user();
       if($user->hasRole(['superadmin', 'admin']) ){
-         $offers = Offer::with(['ngo', 'filters','categories', 'countries', 'image'])->get();
+         $offers = Offer::with(['ngo', 'filters','categories', 'countries', 'image']);
       }
       else{
          $ngo = $user->ngos()->firstOrFail();
-        $offers = $ngo->offers()->with(['ngo', 'filters','categories', 'countries', 'image'])->orderBy('updated_at','DESC')->get();
+         $offers = $ngo->offers()->with(['ngo', 'filters','categories', 'countries', 'image']);
       }
-
-       return response()->json($offers);
+      $count = $offers->count();
+      if($request->has('order')){
+        $order = $request->get('order');
+        $dir = 'DESC';
+        if(substr($order,0,1) == '-'){
+          $dir = 'ASC';
+          $order = substr($order,1);
+        }
+        $offers = $offers->orderBy($order, $dir);
+      }
+      if($request->has('limit')){
+        $offers = $offers->take($request->get('limit'));
+      }
+      if($request->has('page')){
+        $offers = $offers->skip(($request->get('page') - 1) * $request->get('limit'));
+      }
+      $offers = $offers->get();
+      return response()->success(compact('offers', 'count'));
    }
-
+   public function count(){
+     $user = Auth::user();
+     if($user->hasRole(['superadmin', 'admin']) ){
+        $offers = Offer::with(['ngo', 'filters','categories', 'countries', 'image']);
+     }
+     else{
+        $ngo = $user->ngos()->firstOrFail();
+        $offers = $ngo->offers()->with(['ngo', 'filters','categories', 'countries', 'image']);
+     }
+     return response()->json($offers->count());
+   }
    public function autocomplete($search) {
       $addressApi = new AddressAPI();
       $returnArray = $addressApi->getAddressSuggestions($search);

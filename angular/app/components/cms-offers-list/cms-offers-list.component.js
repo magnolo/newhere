@@ -12,12 +12,8 @@ class CmsOffersListController{
         this.DialogService = DialogService;
         this.NgoService = NgoService;
         this.OfferService = OfferService;
-        this.OfferService.fetchAll().then(function(response) {
-            vm.offers = response;
-            vm.loading = false;
-        });
         if(this.cms){
-          this.NgoService.fetchAll().then(function(response) {
+          this.NgoService.fetchAll().then((response) => {
               vm.ngos = response;
           });
         }
@@ -42,6 +38,14 @@ class CmsOffersListController{
         this.onPaginationChange = (page, limit) => {
             //console.log(page, limit);
         };
+        this.getOffers = ()=>{
+          this.promise = this.OfferService.fetchFiltered(vm.query, (response) => {
+                vm.offers = response;
+                vm.loading = false;
+                vm.count = response.count;
+          }).$promise;
+        };
+        this.getOffers();
     }
 
     toggleEnabled(offer) {

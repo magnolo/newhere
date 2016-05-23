@@ -24,6 +24,20 @@ export class APIService {
 						headers.Authorization = 'Bearer ' + token;
 					}
 					headers.Language = $window.localStorage.language || 'de';
+				})
+				.addResponseInterceptor(function(data, operation, what){
+					var extractedData;
+					console.log(what);
+           if (operation === "getList") {
+             extractedData = data.data[what];
+						 if(data.data['count']){
+							 extractedData.count = data.data['count'];
+						 }
+             extractedData.error = data.errors;
+           } else {
+             extractedData = data.data;
+           }
+           return extractedData;
 				});
 		});
 	}

@@ -15,7 +15,7 @@ class NgoController extends Controller
 {
     public function index() {
         $ngos = Ngo::with(['image','users', 'offers'])->get();
-        return response()->json($ngos);
+          return response()->success(compact('ngos'));
     }
 
     public function show() {
