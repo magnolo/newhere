@@ -44,6 +44,14 @@ class CmsCategoryFormController{
       }
 
     }
+    i18nTitle(locale){
+      var title;
+      angular.forEach(this.languages, (lang) => {
+        if(lang.language == locale)
+          title = lang.i18n;
+      });
+      return title;
+    }
     save() {
       this.CategoryService.save(this.category);
     }

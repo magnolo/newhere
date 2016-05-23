@@ -1,9 +1,12 @@
 <form ng-submit="vm.save()" name="categoryForm">
     <div layout="row" layout-padding>
+        <div>
         <md-input-container class="md-block">
             <label>Icon</label>
             <input type="text" ng-model="vm.category.icon" required>
         </md-input-container>
+      </div>
+      <div>
         <md-input-container class="CmsCategoryForm-inputContainer">
             <label>Parent Category</label>
             <md-select ng-model="vm.category.parent_id">
@@ -11,6 +14,7 @@
                 <md-option ng-if="category.id != vm.category.id" ng-repeat="category in vm.categories" ng-value="category.id">{{category.title}}</md-option>
             </md-select>
         </md-input-container>
+      </div>
         <span flex></span>
         <div layout="row" layout-align="center center">
             <md-menu ng-if="vm.category.id">
@@ -30,7 +34,7 @@
         </div>
     </div>
     <md-tabs md-dynamic-height  md-autoselect md-selected="vm.activeTransTab" class="md-primary" ng-if="vm.category.translations.length">
-        <md-tab label="{{translation.locale}}" ng-repeat="translation in vm.category.translations">
+        <md-tab label="{{vm.i18nTitle(translation.locale)}}" ng-repeat="translation in vm.category.translations">
             <md-content class="md-padding white-bg">
                 <div>
                     <md-input-container class="md-block">
