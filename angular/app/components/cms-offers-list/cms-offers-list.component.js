@@ -5,6 +5,7 @@ class CmsOffersListController{
         vm.menu = {
           isOpen:false
         };
+        vm.loading = true;
         this.filter = {};
         this.$filter = $filter;
         this.$state = $state;
@@ -13,6 +14,7 @@ class CmsOffersListController{
         this.OfferService = OfferService;
         this.OfferService.fetchAll().then(function(response) {
             vm.offers = response;
+            vm.loading = false;
         });
         if(this.cms){
           this.NgoService.fetchAll().then(function(response) {

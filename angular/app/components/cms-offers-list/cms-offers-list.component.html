@@ -1,4 +1,10 @@
-<div ng-if="!vm.offers.length" layout-align="center center" layout="column">
+<md-content ng-if="vm.loading">
+    <div flex layout="column" layout-padding layout-align="center center" layout-margin>
+        <h3 class="colored">Angebote werden geladen</h3>
+        <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+    </div>
+</md-content>
+<div ng-if="!vm.offers.length && vm.loading == false" layout-align="center center" layout="column">
   <div class="md-display-1" layout-padding>Keine Angebote vorhanden</div>
   <md-button class="md-raised md-primary" ui-sref="{{ vm.cms ? 'cms.offers.new' : 'app.offers.new' }}" layout="row" layout-align="center center">
       <i class="material-icons">add</i>
@@ -6,7 +12,7 @@
   </md-button>
 </div>
 
-<div ng-if="vm.offers.length">
+<div ng-if="vm.offers.length && vm.loading == false">
     <md-toolbar class="md-table-toolbar md-default" layout-padding ng-if="!vm.showfilter">
         <div layout="row" layout-align="space-between start">
             <h3>Angebote</h3>
