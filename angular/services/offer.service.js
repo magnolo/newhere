@@ -25,9 +25,11 @@ export class OfferService{
         });
     }
     fetchFiltered(query,success, error, force){
-      return this.API.all('offers').getList(query).then((response) =>{
+      var q = this.API.all('offers').getList(query);
+      q.then((response) =>{
         success(response);
       });
+      return q;
     }
 
     one(id, success, error) {

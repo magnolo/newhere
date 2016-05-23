@@ -82,7 +82,8 @@
             </tr>
             </thead>
             <tbody md-body>
-            <tr md-row md-select="offer" ng-repeat="offer in vm.filteredOffer = (vm.offers | filter: vm.filter) | limitTo: vm.query.limit : (vm.query.page-1)*vm.query.limit">
+              <!-- vm.filteredOffer = (vm.offers | filter: vm.filter) | limitTo: vm.query.limit : (vm.query.page-1)*vm.query.limit -->
+            <tr md-row md-select="offer" ng-repeat="offer in vm.offers">
                 <td md-cell><md-button ui-sref="{{ vm.cms ? 'cms.offers.detail({id:'+offer.id+'})' : 'app.offers.details({id:'+offer.id+'})' }}"class="md-icon-button md-accent md-hue-2"><md-icon>info</md-icon></md-button></td>
                 <td md-cell><strong>{{offer.title}}</strong></td>
                 <td md-cell>{{offer.street}} {{offer.streetnumber}} {{offer.streetnumberadditional}}, {{offer.zip}} {{offer.city}}</td>

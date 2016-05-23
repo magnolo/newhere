@@ -27,7 +27,6 @@ export class APIService {
 				})
 				.addResponseInterceptor(function(data, operation, what){
 					var extractedData;
-					console.log(what);
            if (operation === "getList") {
              extractedData = data.data[what];
 						 if(data.data['count']){
