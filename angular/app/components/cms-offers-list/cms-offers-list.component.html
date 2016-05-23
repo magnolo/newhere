@@ -1,18 +1,4 @@
-<md-content ng-if="vm.loading">
-    <div flex layout="column" layout-padding layout-align="center center" layout-margin>
-        <h3 class="colored">Angebote werden geladen</h3>
-        <md-progress-circular md-mode="indeterminate"></md-progress-circular>
-    </div>
-</md-content>
-<div ng-if="!vm.offers.length && vm.loading == false" layout-align="center center" layout="column">
-  <div class="md-display-1" layout-padding>Keine Angebote vorhanden</div>
-  <md-button class="md-raised md-primary" ui-sref="{{ vm.cms ? 'cms.offers.new' : 'app.offers.new' }}" layout="row" layout-align="center center">
-      <i class="material-icons">add</i>
-      <div>Angebot erstellen</div>
-  </md-button>
-</div>
-
-<div ng-if="vm.offers.length && vm.loading == false">
+<div >
     <md-toolbar class="md-table-toolbar md-default" layout-padding ng-if="!vm.showfilter">
         <div layout="row" layout-align="space-between start">
             <h3>Angebote</h3>
@@ -37,12 +23,12 @@
             <md-input-container class="md-icon-float md-block no-error">
                 <label>Search</label>
                 <md-icon class="material-icons">search</md-icon>
-                <input ng-model="vm.filter.title" type="text">
+                <input ng-model="vm.query.title" type="text"  ng-change="vm.getOffers()">
             </md-input-container>
             <div layout="row" layout-align="end center" ng-cloak style="font-size:16px">
                 <md-input-container>
                     <label>Enabled</label>
-                    <md-select ng-model="vm.filter.enabled">
+                    <md-select ng-model="vm.query.enabled" ng-change="vm.getOffers()">
                         <md-option ng-value="">All</md-option>
                         <md-option ng-value="true">Yes</md-option>
                         <md-option ng-value="false">No</md-option>
@@ -52,7 +38,7 @@
             <div layout="row" layout-align="end center" ng-cloak style="font-size:16px" ng-if="vm.cms">
                 <md-input-container>
                     <label>NGO</label>
-                    <md-select ng-model="vm.filter.ngo_id">
+                    <md-select ng-model="vm.query.ngo_id"  ng-change="vm.getOffers()">
                       <md-option ng-value="">All</md-option>
                       <md-option ng-repeat="ngo in vm.ngos" ng-value="ngo.id">{{ngo.organisation}}</md-option>
                     </md-select>
@@ -71,10 +57,10 @@
             <thead md-head md-order="vm.query.order" md-on-reorder="vm.getOffers" >
             <tr md-row>
                 <th md-column class="icon"></th>
-                <th md-column md-order-by="title">Offer</th>
+                <!-- TODO: ORDER BY TRANSLATED TITLE -->
+                <th md-column md-order-by="id">Offer</th>
                 <th md-column >Address</th>
-                <!--<th md-column md-order-by="ngo_id">NgoId</th>-->
-                <th md-column md-order-by="ngo"  ng-if="vm.cms">Ngo</th>
+                <th md-column md-order-by="ngo_id"  ng-if="vm.cms">Ngo</th>
                 <th md-column md-order-by="enabled"  ng-if="vm.cms">Enabled</th>
                 <th md-column class="icon">Phone</th>
                 <th md-column class="icon">Email</th>

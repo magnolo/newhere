@@ -38,7 +38,7 @@ class CategoryTranslationController extends Controller
             }
         }
 
-        return response()->success(compact('categories'));
+        return response()->success(['category-translations' => $categories]);
     }
 
     public function untranslatedIndex()

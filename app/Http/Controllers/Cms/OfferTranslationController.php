@@ -41,7 +41,7 @@ class OfferTranslationController extends Controller
             }
         }
 
-        return response()->success(compact('offers'));
+        return response()->success(['offer-translations' => $offers]);
     }
 
     public function untranslatedIndex()

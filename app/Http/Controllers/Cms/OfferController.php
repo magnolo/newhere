@@ -34,6 +34,19 @@ class OfferController extends Controller
          $offers = $ngo->offers()->with(['ngo', 'filters','categories', 'countries', 'image']);
       }
       $count = $offers->count();
+
+      if($request->has('ngo_id')){
+        $offers = $offers->where('ngo_id', $request->get('ngo_id'));
+        $count = $offers->count();
+      }
+      if($request->has('enabled')){
+        $offers = $offers->where('enabled', $request->get('enabled'));
+        $count = $offers->count();
+      }
+      if($request->has('title')){
+        $offers = $offers->whereTranslationLike('title', '%'.$request->get('title').'%');
+        $count = $offers->count();
+      }
       if($request->has('order')){
         $order = $request->get('order');
         $dir = 'DESC';
