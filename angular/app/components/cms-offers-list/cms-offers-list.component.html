@@ -1,4 +1,10 @@
-<div ng-if="!vm.offers.length" layout-align="center center" layout="column">
+<md-content ng-if="vm.loading">
+    <div flex layout="column" layout-padding layout-align="center center" layout-margin>
+        <h3 class="colored">Angebote werden geladen</h3>
+        <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+    </div>
+</md-content>
+<div ng-if="!vm.offers.length && vm.loading == false" layout-align="center center" layout="column">
   <div class="md-display-1" layout-padding>Keine Angebote vorhanden</div>
   <md-button class="md-raised md-primary" ui-sref="{{ vm.cms ? 'cms.offers.new' : 'app.offers.new' }}" layout="row" layout-align="center center">
       <i class="material-icons">add</i>
@@ -6,7 +12,7 @@
   </md-button>
 </div>
 
-<div ng-if="vm.offers.length">
+<div ng-if="vm.offers.length && vm.loading == false">
     <md-toolbar class="md-table-toolbar md-default" layout-padding ng-if="!vm.showfilter">
         <div layout="row" layout-align="space-between start">
             <h3>Angebote</h3>
@@ -61,8 +67,8 @@
         </div>
     </md-toolbar>
     <md-table-container >
-        <table md-table md-row-select multiple ng-model="vm.selectedOffers">
-            <thead md-head md-order="vm.query.order" md-on-reorder="vm.onOrderChange">
+        <table md-table md-row-select multiple ng-model="vm.selectedOffers" md-progress="vm.promise">
+            <thead md-head md-order="vm.query.order" md-on-reorder="vm.getOffers" >
             <tr md-row>
                 <th md-column class="icon"></th>
                 <th md-column md-order-by="title">Offer</th>
@@ -76,7 +82,8 @@
             </tr>
             </thead>
             <tbody md-body>
-            <tr md-row md-select="offer" ng-repeat="offer in vm.filteredOffer = (vm.offers | filter: vm.filter) | limitTo: vm.query.limit : (vm.query.page-1)*vm.query.limit">
+              <!-- vm.filteredOffer = (vm.offers | filter: vm.filter) | limitTo: vm.query.limit : (vm.query.page-1)*vm.query.limit -->
+            <tr md-row md-select="offer" ng-repeat="offer in vm.offers">
                 <td md-cell><md-button ui-sref="{{ vm.cms ? 'cms.offers.detail({id:'+offer.id+'})' : 'app.offers.details({id:'+offer.id+'})' }}"class="md-icon-button md-accent md-hue-2"><md-icon>info</md-icon></md-button></td>
                 <td md-cell><strong>{{offer.title}}</strong></td>
                 <td md-cell>{{offer.street}} {{offer.streetnumber}} {{offer.streetnumberadditional}}, {{offer.zip}} {{offer.city}}</td>
@@ -106,7 +113,7 @@
         </table>
 
     </md-table-container>
-    <md-table-pagination md-limit="vm.query.limit" md-limit-options="[5,10,15, 25, 50]" md-page="vm.query.page" md-total="{{vm.filteredOffer.length}}" md-on-paginate="vm.onPaginationChange" md-page-select></md-table-pagination>
+    <md-table-pagination md-limit="vm.query.limit" md-limit-options="[5,10,15, 25, 50]" md-page="vm.query.page" md-total="{{vm.count}}" md-on-paginate="vm.getOffers" md-page-select></md-table-pagination>
 
 </div>
   <md-fab-speed-dial  ng-if="vm.cms" class="md-fling fixed bottom" ng-show="vm.selectedOffers.length" md-open="vm.menu.isOpen" md-direction="up">

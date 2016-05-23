@@ -18,7 +18,7 @@ class UserController extends Controller
     //
     public function index(){
       $users = User::with(['roles', 'ngos','languages'])->get();
-      return response()->json($users);
+      return response()->success(compact('users'));
     }
 
     public function show($id){
@@ -33,17 +33,17 @@ class UserController extends Controller
       $users = User::whereHas('roles', function($query) use ($role){
           $query->where('name', $role);
       })->get();
-      return response()->json($users);
+      return response()->success(compact('users'));
     }
     public function byNgo($id){
       $ngo = Ngo::findOrFail($id);
       $users = $ngo->load('users');
-      return response()->json($users);
+      return response()->success(compact('users'));
     }
     public function byLanuage($language){
       $language = Language::where('language',$language)->firstOrFail;
       $users = $language->load('users');
-      return response()->json($users);
+      return response()->success(compact('users'));
     }
     public function update(Request $request, $id){
       $this->validate($request, [

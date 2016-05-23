@@ -21,7 +21,7 @@ class CreateNgosTable extends Migration
             $table->string('street_number')->nullable();
             $table->string('zip')->nullable();
             $table->string('city')->nullable();
-            $table->string('website')->nullable();
+            $table->string('website',500)->nullable();
             $table->text('contact')->nullable();
             $table->text('contact_email')->nullable();
             $table->text('contact_phone')->nullable();

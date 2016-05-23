@@ -26,7 +26,7 @@ class CategoryController extends Controller
           $categories->load('children');
         }
 
-        return response()->json($categories);
+        return response()->success(compact('categories'));
     }
 
     public function show($id)

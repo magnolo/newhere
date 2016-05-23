@@ -19,8 +19,8 @@ class CreateOffersTable extends Migration
 
             $table->integer('ngo_id');
 
-            $table->string('street')->nullable();
-            $table->string('streetnumber')->nullable();
+            $table->text('street')->nullable();
+            $table->string('streetnumber', 500)->nullable();
             $table->string('streetnumberadditional')->nullable();
             $table->string('zip')->nullable();
             $table->string('city')->nullable();
@@ -30,7 +30,7 @@ class CreateOffersTable extends Migration
 
             $table->string('phone')->nullable();
             $table->string('email')->nullable();
-            $table->string('website')->nullable();
+            $table->string('website', 500)->nullable();
 
             $table->integer('age_from')->default(0)->nullable();
             $table->integer('age_to')->default(99)->nullable();

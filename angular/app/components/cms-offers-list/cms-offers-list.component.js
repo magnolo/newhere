@@ -5,17 +5,15 @@ class CmsOffersListController{
         vm.menu = {
           isOpen:false
         };
+        vm.loading = true;
         this.filter = {};
         this.$filter = $filter;
         this.$state = $state;
         this.DialogService = DialogService;
         this.NgoService = NgoService;
         this.OfferService = OfferService;
-        this.OfferService.fetchAll().then(function(response) {
-            vm.offers = response;
-        });
         if(this.cms){
-          this.NgoService.fetchAll().then(function(response) {
+          this.NgoService.fetchAll().then((response) => {
               vm.ngos = response;
           });
         }
@@ -33,13 +31,21 @@ class CmsOffersListController{
         }
 
         this.listOrderByColumn = '-organisation';
-        this.onOrderChange = (order) => {
-            //console.log("onOrderChange " + order);
-            return vm.offers = this.$filter('orderBy')(vm.offers, [order], true);
+        // this.onOrderChange = (order) => {
+        //     //console.log("onOrderChange " + order);
+        //     return vm.offers = this.$filter('orderBy')(vm.offers, [order], true);
+        // };
+        // this.onPaginationChange = (page, limit) => {
+        //     //console.log(page, limit);
+        // };
+        this.getOffers = ()=>{
+          vm.promise = this.OfferService.fetchFiltered(vm.query, (response) => {
+                vm.offers = response;
+                vm.loading = false;
+                vm.count = response.count;
+          });
         };
-        this.onPaginationChange = (page, limit) => {
-            //console.log(page, limit);
-        };
+        this.getOffers();
     }
 
     toggleEnabled(offer) {

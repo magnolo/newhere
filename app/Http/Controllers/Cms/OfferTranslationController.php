@@ -41,7 +41,7 @@ class OfferTranslationController extends Controller
             }
         }
 
-        return response()->json($offers);
+        return response()->success(compact('offers'));
     }
 
     public function untranslatedIndex()
@@ -49,7 +49,7 @@ class OfferTranslationController extends Controller
         list($activeLanguages, $activeLanguageCount) = $this->loadLanguages();
         $defaultLanguage = \App\Language::where('default_language', true)->first();
 
-        $untranslatedOffers = [];
+        $untranslated = [];
 
         /**
          * @todo check for verified offers
@@ -83,11 +83,11 @@ class OfferTranslationController extends Controller
                 }
             }
             if ($translatedLanguages < $activeLanguageCount) {
-                $untranslatedOffers[] = $offer;
+                $untranslated[] = $offer;
             }
         }
 
-        return response()->json($untranslatedOffers);
+        return response()->success(compact('untranslated'));
     }
 
     public function translate(Request $request, $id)
@@ -123,7 +123,7 @@ class OfferTranslationController extends Controller
         }
 
         $hasChanged = $this->translationService->hasChanged(
-            ($offer->translate($translationLanguage->language) ? 
+            ($offer->translate($translationLanguage->language) ?
                 [
                     'title' => $offer->translate($translationLanguage->language)->title,
                     'description' => $offer->translate($translationLanguage->language)->description,
