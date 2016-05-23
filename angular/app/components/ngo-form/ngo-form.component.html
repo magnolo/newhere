@@ -16,13 +16,18 @@
                 <input ng-model="vm.ngo.email" type="email" ng-required="!(vm.cms && vm.ngo.useCmsAccount)" ng-disabled="vm.cms && vm.ngo.useCmsAccount">
             </md-input-container>
             <md-input-container class="md-block" flex-gt-sm>
-                <label>Password</label>
-                <input ng-model="vm.ngo.password" type="password" ng-required="!(vm.cms && vm.ngo.useCmsAccount)" ng-disabled="vm.cms && vm.ngo.useCmsAccount">
-
+                <label>Passwort</label>
+                <input name="password" ng-model="vm.ngo.password" type="password" minlength="5" ng-required="!(vm.cms && vm.ngo.useCmsAccount)" ng-disabled="vm.cms && vm.ngo.useCmsAccount">
+                <div ng-messages="ngoForm.password.$error" ng-show="ngoForm.password.$dirty">
+                    <div ng-message="minlength">Mindestens 5 Zeichen</div>
+                </div>
             </md-input-container>
         <md-input-container class="md-block" flex-gt-sm>
             <label>Passwort wiederholen</label>
-            <input ng-model="vm.ngo.re_password" type="password" ng-required="!(vm.cms && vm.ngo.useCmsAccount)" ng-disabled="vm.cms && vm.ngo.useCmsAccount">
+            <input name="re_password" ng-model="vm.ngo.re_password" compare-to="vm.ngo.password" type="password" ng-required="!(vm.cms && vm.ngo.useCmsAccount)" ng-disabled="vm.cms && vm.ngo.useCmsAccount">
+            <div ng-messages="ngoForm.re_password.$error" ng-show="ngoForm.re_password.$dirty">
+                <div ng-message="compareTo">Unterschiedliche Passwörter</div>
+            </div>
         </md-input-container>
         </div>
     </div>

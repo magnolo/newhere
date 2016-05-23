@@ -1,9 +1,20 @@
+import {WizardOfferComponent} from './app/components/wizard-offer/wizard-offer.component';
 
+import {CmsCategoryTranslationItemComponent} from './app/components/cms-category-translation-item/cms-category-translation-item.component';
+import {CmsCategoryTranslationTableComponent} from './app/components/cms-category-translation-table/cms-category-translation-table.component';
+import {WidgetCategoriesComponent} from './app/components/widget-categories/widget-categories.component';
+import {WidgetOfferComponent} from './app/components/widget-offer/widget-offer.component';
+import {FilterSelectorComponent} from './app/components/filter-selector/filter-selector.component';
+import {CmsMenuComponent} from './app/components/cms-menu/cms-menu.component';
+import {WidgetNgoComponent} from './app/components/widget-ngo/widget-ngo.component';
+import {UserComponent} from './app/components/user/user.component';
+import {NgoDetailComponent} from './app/components/ngo-detail/ngo-detail.component';
 import {ResetpasswordFormComponent} from './app/components/resetpassword-form/resetpassword-form.component';
 import {ForgotpasswordFormComponent} from './app/components/forgotpassword-form/forgotpassword-form.component';
 import {CmsNgosListComponent} from './app/components/cms-ngos-list/cms-ngos-list.component';
 import {CmsOfferTranslationItemComponent} from './app/components/cms-offer-translation-item/cms-offer-translation-item.component';
 import {CmsOfferTranslationTableComponent} from './app/components/cms-offer-translation-table/cms-offer-translation-table.component';
+import {CmsOfferDetailComponent} from './app/components/cms-offer-detail/cms-offer-detail.component';
 import {ImageUploaderComponent} from './app/components/image-uploader/image-uploader.component';
 import {CmsUsersTableComponent} from './app/components/cms-users-table/cms-users-table.component';
 import {NgoFormComponent} from './app/components/ngo-form/ngo-form.component';
@@ -16,13 +27,27 @@ import {CmsCategoryFormComponent} from './app/components/cms-category-form/cms-c
 import {CmsCategoriesListComponent} from './app/components/cms-categories-list/cms-categories-list.component';
 import {LoginFormComponent} from './app/components/login-form/login-form.component';
 import {RegisterFormComponent} from './app/components/register-form/register-form.component';
+import {OfferFormComponent} from './app/components/offer-form/offer-form.component';
+import {CmsOffersListComponent} from './app/components/cms-offers-list/cms-offers-list.component';
 
 angular.module('app.components')
+	.component('wizardOffer', WizardOfferComponent)
+
+	.component('cmsCategoryTranslationItem', CmsCategoryTranslationItemComponent)
+	.component('cmsCategoryTranslationTable', CmsCategoryTranslationTableComponent)
+	.component('widgetCategories', WidgetCategoriesComponent)
+	.component('widgetOffer', WidgetOfferComponent)
+	.component('filterSelector', FilterSelectorComponent)
+	.component('cmsMenu', CmsMenuComponent)
+	.component('widgetNgo', WidgetNgoComponent)
+	.component('user', UserComponent)
+	.component('ngoDetail', NgoDetailComponent)
 	.component('resetpasswordForm', ResetpasswordFormComponent)
 	.component('forgotpasswordForm', ForgotpasswordFormComponent)
 	.component('cmsNgosList', CmsNgosListComponent)
-	.component('cmsOfferTranslationItem', CmsOfferTranslationItemComponent)
 	.component('cmsOfferTranslationTable', CmsOfferTranslationTableComponent)
+	.component('cmsOfferTranslationItem', CmsOfferTranslationItemComponent)
+	.component('cmsOfferDetail', CmsOfferDetailComponent)
 	.component('imageUploader', ImageUploaderComponent)
 	.component('cmsUsersTable', CmsUsersTableComponent)
 	.component('ngoForm', NgoFormComponent)
@@ -34,4 +59,6 @@ angular.module('app.components')
 	.component('cmsCategoryForm', CmsCategoryFormComponent)
 	.component('cmsCategoriesList', CmsCategoriesListComponent)
 	.component('loginForm', LoginFormComponent)
-	.component('registerForm', RegisterFormComponent);
+	.component('registerForm', RegisterFormComponent)
+	.component('offerForm', OfferFormComponent)
+	.component('cmsOffersList', CmsOffersListComponent);

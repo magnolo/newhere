@@ -19,7 +19,7 @@ class OfferTableSeeder extends Seeder
         $reader->setDelimiter(";");
         $results = $reader->fetch();
         foreach ($results as $key => $row) {
-        
+
             $offer = new Offer();
             $offer->ngo_id = 1;
             if(!empty($row[6]))

@@ -9,6 +9,7 @@ export class UserService {
         this.ToastService = ToastService;
         this.users;
         this.user;
+        this.me;
     }
     all(success, error, force) {
         if (angular.isDefined(this.users) && !force) {
@@ -25,6 +26,12 @@ export class UserService {
                 this._promise = null;
             }, error);
         }
+    }
+    me(success, error, force){
+      this.API.one('users', 'me').get().then((item) => {
+        this.me = item;
+        success(this.me);
+      },error);
     }
     one(id, success, error){
       this.API.one('users', id).get().then((item) => {

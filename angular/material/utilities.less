@@ -14,6 +14,12 @@
     padding: 0.5em 1em;
     text-transform: none;
 }
+md-toolbar.md-table-toolbar{
+  transition: all 0s;
+  h3{
+    margin-top:10px;
+  }
+}
 md-toolbar.md-table-toolbar:not(.md-menu-toolbar).md-default .md-button{
   &.md-primary, &.md-warn {
     color: #fff;
@@ -23,10 +29,18 @@ md-input-container{
   &.bigger{
     font-size:2em;
     margin-top:2em;
+
     label{
       font-weight:400;
     }
-
+    input{
+      padding-bottom:12px;
+    }
+    &.md-input-focused{
+      input{
+        padding-bottom:10px;
+      }
+    }
   }
 }
 md-toolbar.md-table-toolbar.md-default {
@@ -82,4 +96,104 @@ md-table-pagination{
 }
 md-toast{
   position:fixed;
+}
+
+md-dialog{
+  border-radius:0px;
+}
+
+md-fab-speed-dial{
+  &.fixed{
+    position:fixed;
+    &.bottom{
+      bottom:1em;
+      right:1em;
+    }
+  }
+}
+md-input-container{
+  &.no-error{
+    .md-errors-spacer{
+      min-height:0px;
+    }
+  }
+
+ }
+ .blank{
+   background-color: transparent !important;
+ }
+ md-content.md-default-theme, md-content{
+   background-color:#fff;
+ }
+ md-input-container label:not(._md-container-ignore){
+
+      //left:8px;
+ }
+ .md-button{
+   &.md-mega-mini{
+     line-height: 20px;
+     min-height:20px;
+     height:20px;
+     width:20px;
+
+     .material-icons{
+          font-size:16px;
+     }
+   }
+ }
+ md-toolbar{
+   &.md-custom-theme{
+     min-height:48px;
+     .md-toolbar-tools{
+       min-height:48px;
+       height:48px;
+     }
+   }
+ }
+.steps-indicator{
+  padding-top:30px;
+  height:75px;
+  background-color: @blue;
+  li{
+    padding-top:1em;
+    a{
+      font-weight: normal;
+      color:@white;
+      padding-top:.5em;
+      &::before{
+        background-color: @white;
+      }
+    }
+    &.current, &.editing{
+      a{
+        &::before{
+          background-color: @desert;
+        }
+      }
+    }
+    &.done{
+      a{
+        //color:@green;
+        &::before{
+          background-color: @green;
+        }
+      }
+    }
+
+  }
+  &.steps-4:before {
+    left: calc(100% / 4 / 1.2);
+    right: calc(100% / 4 / 1.2);
+  }
+  &.steps-3:before {
+    left: calc(100% / 3 / 1.4);
+    right: calc(100% / 3 / 1.4);
+  }
+  &::before{
+    background-color: @white;
+    display: none;
+  }
+}
+.icon-colored{
+  color:@blue;
 }

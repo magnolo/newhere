@@ -1,10 +1,15 @@
 class CmsMainController{
-    constructor(){
+    constructor($mdSidenav){
         'ngInject';
 
         //
-    }
+        this.mdSidenav = $mdSidenav;
 
+    }
+    toggleItemsList() {
+      this.mdSidenav('left').toggle();
+
+    }
     $onInit(){
     }
 }

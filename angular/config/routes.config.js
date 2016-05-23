@@ -15,20 +15,23 @@ export function RoutesConfig($stateProvider, $urlRouterProvider) {
 		.state('app', {
 			abstract: true,
 			views: {
-				header: {
+				front:{
+					templateUrl: getView('main')
+				},
+				'header@app': {
 					templateUrl: getView('header')
 				},
-				footer: {
+				'footer@app': {
 					templateUrl: getView('footer')
 				},
-				main: {}
+				'main@app': {}
 			}
 		})
 		.state('app.landing', {
             url: '/',
             data: {},
             views: {
-                'main@': {
+                'main@app': {
                     templateUrl: getView('landing')
                 }
             }
@@ -37,25 +40,25 @@ export function RoutesConfig($stateProvider, $urlRouterProvider) {
 			url: '/login',
 			data: {},//{auth: true} would require JWT auth for this route
 			views: {
-				'main@': {
+				'main@app': {
 					templateUrl: getView('login')
 				}
 			}
 		})
-        .state('app.register', {
-            url: '/register',
-            data: {},//{auth: true} would require JWT auth for this route
-            views: {
-                'main@': {
-                    templateUrl: getView('register')
-                }
-            }
-        })
-		.state('app.ngo', {
-			url: '/ngo',
+        // .state('app.register', {
+        //     url: '/register',
+        //     data: {},//{auth: true} would require JWT auth for this route
+        //     views: {
+        //         'main@': {
+        //             templateUrl: getView('register')
+        //         }
+        //     }
+        // })
+		.state('app.ngoRegister', {
+			url: '/ngoRegister',
 			data: {},//{auth: true} would require JWT auth for this route
 			views: {
-				'main@': {
+				'main@app': {
 					templateUrl: getView('ngo-register')
 				}
 			}
@@ -64,7 +67,7 @@ export function RoutesConfig($stateProvider, $urlRouterProvider) {
 			url: '/forgotpassword',
 			data: {},//{auth: true} would require JWT auth for this route
 			views: {
-				'main@': {
+				'main@app': {
 					templateUrl: getView('forgot-password')
 				}
 			}
@@ -73,8 +76,56 @@ export function RoutesConfig($stateProvider, $urlRouterProvider) {
 			url: '/reset-password/{token}',
 			data: {},//{auth: true} would require JWT auth for this route
 			views: {
-				'main@': {
+				'main@app': {
 					templateUrl: getView('reset-password')
+				}
+			}
+		})
+		.state('app.ngo', {
+			url: '/ngo',
+			data: {
+				auth:true,
+				roles:['organisation']
+			},
+			views: {
+				'main@app': {
+					templateUrl: getView('ngo')
+				}
+			}
+		})
+		.state('app.offers', {
+			url: '/offers',
+			data: {
+				auth:true,
+				roles:['organisation']
+			},
+			views: {
+				'main@app': {
+					templateUrl: getView('offers')
+				}
+			}
+		})
+		.state('app.offers.new', {
+			url: '/new',
+			data: {
+				auth:true,
+				roles:['organisation']
+			},
+			views: {
+				'main@app': {
+					templateUrl: getView('offer-new')
+				}
+			}
+		})
+		.state('app.offers.details', {
+			url: '/{id}',
+			data: {
+				auth:true,
+				roles:['organisation']
+			},
+			views: {
+				'main@app': {
+					templateUrl: getView('offer-detail')
 				}
 			}
 		})
@@ -86,13 +137,16 @@ export function RoutesConfig($stateProvider, $urlRouterProvider) {
 			abstract: true,
 			url:'/cms',
 			views: {
+				cms:{
+					templateUrl: getCmsView('main')
+				},
 				header: {
 					templateUrl: getCmsView('header')
 				},
 				footer: {
 					templateUrl: getCmsView('footer')
 				},
-				main: {}
+				front: {}
 			}
 		})
 		.state('cms.dashboard', {
@@ -102,7 +156,7 @@ export function RoutesConfig($stateProvider, $urlRouterProvider) {
 				roles:['admin', 'superadmin', 'organisation', 'moderator']
 			},
 			views: {
-				'main@': {
+				'main@cms': {
 					templateUrl: getCmsView('dashboard')
 				}
 			}
@@ -114,7 +168,7 @@ export function RoutesConfig($stateProvider, $urlRouterProvider) {
 				roles:['admin', 'superadmin']
 			},
 			views: {
-				'main@': {
+				'main@cms': {
 					templateUrl: getCmsView('categories')
 				}
 			}
@@ -135,26 +189,15 @@ export function RoutesConfig($stateProvider, $urlRouterProvider) {
 			url: '/languages',
 			data: {
 				auth:true,
-					roles:['admin', 'superadmin']
+				roles:['admin', 'superadmin']
 			},
 			views: {
-				'main@': {
+				'main@cms': {
 					templateUrl: getCmsView('language')
 				}
 			}
 		})
-		.state('cms.roles',{
-			url:'/roles',
-			data:{
-				auth:true,
-				roles:['admin', 'superadmin']
-			},
-			views: {
-				'main@': {
-					templateUrl: getCmsView('roles')
-				}
-			}
-		})
+
 		.state('cms.users',{
 			url:'/users',
 			data:{
@@ -162,8 +205,32 @@ export function RoutesConfig($stateProvider, $urlRouterProvider) {
 				roles:['admin', 'superadmin']
 			},
 			views: {
-				'main@': {
+				'main@cms': {
 					templateUrl: getCmsView('users')
+				}
+			}
+		})
+		.state('cms.users.roles',{
+			url:'/roles',
+			data:{
+				auth:true,
+				roles:['admin', 'superadmin']
+			},
+			views: {
+				'main@cms': {
+					templateUrl: getCmsView('roles')
+				}
+			}
+		})
+		.state('cms.translations',{
+			url:'/translations',
+			data:{
+				auth:true,
+				roles:['admin', 'superadmin','moderator']
+			},
+			views: {
+				'main@cms': {
+					templateUrl: getCmsView('translations')
 				}
 			}
 		})
@@ -174,8 +241,20 @@ export function RoutesConfig($stateProvider, $urlRouterProvider) {
 				roles:['admin', 'superadmin']
 			},
 			views: {
-				'main@': {
+				'main@cms': {
 					templateUrl: getCmsView('offer-translations')
+				}
+			}
+		})
+		.state('cms.category-translations',{
+			url:'/category-translations',
+			data:{
+				auth:true,
+				roles:['admin', 'superadmin']
+			},
+			views: {
+				'main@': {
+					templateUrl: getCmsView('category-translations')
 				}
 			}
 		})
@@ -186,8 +265,43 @@ export function RoutesConfig($stateProvider, $urlRouterProvider) {
 				roles:['admin', 'superadmin']
 			},
 			views: {
-				'main@': {
+				'main@cms': {
 					templateUrl: getCmsView('ngos')
+				}
+			}
+		})
+
+
+		.state('cms.offers',{
+			url:'/offers',
+			data:{
+				auth:true,
+				roles:['admin', 'superadmin']
+			},
+			views: {
+				'main@cms': {
+					templateUrl: getCmsView('offers')
+				}
+			}
+		})
+		.state('cms.offers.new',{
+			url:'/new',
+			data:{},
+			views: {
+				'main@cms': {
+					templateUrl: getCmsView('new-offer')
+				}
+			}
+		})
+		.state('cms.offers.detail', {
+			url: '/{id}',
+			data: {
+				auth: true,
+				roles: ['admin', 'superadmin']
+			},
+			views: {
+				'main@cms': {
+					templateUrl: getCmsView('offer-detail')
 				}
 			}
 		})

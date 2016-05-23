@@ -5,23 +5,7 @@ export class OfferTranslationService{
         this.API = API;
         this.ToastService = ToastService;
 
-        this.enabledLanguages = [];
-        this.defaultLanguage = {};
         this.untranslatedOffers = [];
-    }
-    
-    fetchDefaultLanguage(success, error) {
-        this.API.all('languages').customGET('default').then((language) => {
-            this.defaultLanguage = language;
-            success(this.defaultLanguage);
-        });
-    }
-    
-    fetchEnabledLanguages(success, error) {
-        this.API.all('languages').customGETLIST('enabled').then((list) => {
-            this.enabledLanguages = list;
-            success(this.enabledLanguages);
-        });
     }
 
     fetchUntranslated(success, error, force) {

@@ -6,6 +6,7 @@ class UserMenuController{
         this.$auth = $auth;
         this.$state = $state;
         this.ToastService = ToastService;
+      
     }
 
     logout(){

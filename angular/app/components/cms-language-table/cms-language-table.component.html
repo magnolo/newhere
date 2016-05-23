@@ -25,13 +25,17 @@
         <table md-table>
             <thead md-head md-order="vm.query.order" md-on-reorder="vm.onOrderChange">
                 <tr md-row>
-                    <th md-column md-order-by="language">Sprache</th>
+                    <th md-column md-order-by="i18n">Sprache</th>
+                    <th md-column md-order-by="language">Code</th>
                     <th md-column md-order-by="enabled">Aktiviert</th>
                     <th md-column md-order-by="published">Veröffentlicht</th>
                 </tr>
             </thead>
             <tbody md-body>
                 <tr ng-repeat="language in vm.filteredLanguages = (vm.languages | filter: vm.filter) | limitTo: vm.query.limit : (vm.query.page-1)*vm.query.limit">
+                    <td class="md-cell">
+                        {{language.i18n}} <md-icon ng-if="language.default_language">grade</md-icon>
+                    </td>
                     <td class="md-cell">{{language.language}}</td>
                     <td class="md-cell">
                         <md-switch ng-model="language.enabled" ng-change="vm.save(language, 'enabled')" aria-label="Sprache aktivieren/deaktivieren?"></md-switch>

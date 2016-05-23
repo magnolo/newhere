@@ -9,6 +9,7 @@ use App\User;
 use App\Role;
 use App\Ngo;
 use App\Language;
+use Auth;
 
 use DB;
 
@@ -22,6 +23,10 @@ class UserController extends Controller
 
     public function show($id){
       $user = User::findOrFail($id)->load(['roles', 'ngos','languages']);
+      return response()->json($user);
+    }
+    public function me(){
+      $user = Auth::user();
       return response()->json($user);
     }
     public function byRole($role){
@@ -82,8 +87,8 @@ class UserController extends Controller
           'email'    => 'required|email',
           'name' => 'required|min:3|max:255',
           'confirmed' => 'required',
-          'password' => 'required|min:6',
-          're_password' => 'required|min:6',
+          'password' => 'required|min:5',
+          're_password' => 'required|min:5',
           'roles' => 'required'
       ]);
 

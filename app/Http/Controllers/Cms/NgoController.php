@@ -18,8 +18,14 @@ class NgoController extends Controller
         return response()->json($ngos);
     }
 
-    public function show($id) {
-        $ngo = Ngo::findOrFail($id);
+    public function show() {
+        $user = Auth::user();
+
+        $ngo = $user->ngos()->with('image')->firstOrFail();
+        if (!$ngo) {
+            return response()->error('NGO not found', 404);
+        }
+
         return response()->json($ngo);
     }
 
@@ -50,7 +56,7 @@ class NgoController extends Controller
             $this->validate($request, [
                 'organisation' => 'required',
                 'email' => 'required|email|unique:users',
-                'password' => 'required|min:8',
+                'password' => 'required|min:5',
                 'description' => 'max:200'
             ]);
         } else {

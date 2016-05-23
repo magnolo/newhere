@@ -3,15 +3,29 @@
 namespace App\Http\Controllers\Cms;
 
 use Illuminate\Http\Request,
+    App,
     App\Http\Requests,
     App\Http\Controllers\Controller,
     App\Language;
 
 class LanguageController extends Controller
 {
+    /**
+     * @var \App\Services\Translation
+     */
+    private $translationService;
+
+    public function __construct(\App\Services\Translation $translationService){
+        $this->translationService = $translationService;
+
+        App::setLocale(app('request')->header('language'));
+    }
+
     public function index()
     {
         $languages = Language::all();
+
+        $this->translationService->translateLanguage($languages, App::getLocale());
 
         return response()->json($languages);
     }
@@ -23,6 +37,8 @@ class LanguageController extends Controller
             return response()->error('No default language found', 404);
         }
 
+        $this->translationService->translateLanguage($language, App::getLocale());
+
         return response()->json($language);
     }
 
@@ -30,6 +46,9 @@ class LanguageController extends Controller
     {
         $languages = \App\Language::where('enabled', true)
             ->get();
+
+        $this->translationService->translateLanguage($languages, App::getLocale());
+
         return response()->json($languages);
     }
 
@@ -38,8 +57,12 @@ class LanguageController extends Controller
         $languages = Language::where('enabled', true)
             ->where('published', true)
             ->get();
+
+        $this->translationService->translateLanguage($languages, App::getLocale());
+
         return response()->json($languages);
     }
+    
     public function update(Request $request, $id)
     {
         $this->validate($request, [

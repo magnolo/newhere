@@ -33,7 +33,7 @@ class PasswordResetController extends Controller
     }
     public function postNewPassword(Request $request, $token){
       $this->validate($request, [
-        'password'              => 'required|min:6|max:20',
+        'password'              => 'required|min:5|max:20',
         're_password' => 'required|same:password'
       ]);
 

@@ -26,7 +26,8 @@
     "textAngular": "^1.5.1",
     "bootstrap-css-only": "^3.3.6",
     "angular-sanitize": "^1.5.5",
-    "ng-flow": "~2"
+    "ng-flow": "~2",
+    "angular-wizard": "^0.6.1"
   },
   "overrides": {
     "font-awesome": {
@@ -34,5 +35,8 @@
         "css/font-awesome.css"
       ]
     }
+  },
+  "resolutions": {
+    "angular": "~1.5"
   }
 }

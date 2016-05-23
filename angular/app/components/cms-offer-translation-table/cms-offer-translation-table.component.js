@@ -1,24 +1,27 @@
 class CmsOfferTranslationTableController{
-    constructor(OfferTranslationService){
+    constructor(OfferTranslationService, LanguageService){
         'ngInject';
 
         this.OfferTranslationService = OfferTranslationService;
+        this.LanguageService = LanguageService;
         
         this.untranslatedOffers = [];
         this.enabledLanguages = [];
         this.defaultLanguage = {};
         this.showAll = false;
+        this.loading = true;
         
-        this.OfferTranslationService.fetchDefaultLanguage((defaultLanguage) => {
+        this.LanguageService.fetchDefault((defaultLanguage) => {
             this.defaultLanguage = defaultLanguage;
         });
         
-        this.OfferTranslationService.fetchEnabledLanguages((enabledLanguages) => {
+        this.LanguageService.fetchEnabled((enabledLanguages) => {
             this.enabledLanguages = enabledLanguages;
         });
 
         this.OfferTranslationService.fetchUntranslated((untranslatedOffers) => {
             this.untranslatedOffers = untranslatedOffers;
+            this.loading = false;
         });
     }
 
@@ -40,13 +43,17 @@ class CmsOfferTranslationTableController{
     }
 
     reload(showAll) {
+        this.loading = true;
+        
         if (showAll) {
             this.OfferTranslationService.fetchAll((untranslatedOffers) => {
                 this.untranslatedOffers = untranslatedOffers;
+                this.loading = false;
             }, null, true);
         } else {
             this.OfferTranslationService.fetchUntranslated((untranslatedOffers) => {
                 this.untranslatedOffers = untranslatedOffers;
+                this.loading = false;
             }, null, true);
         }
     }

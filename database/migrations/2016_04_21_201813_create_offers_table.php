@@ -26,6 +26,7 @@ class CreateOffersTable extends Migration
             $table->string('city')->nullable();
             $table->float('latitude')->nullable();
             $table->float('longitude')->nullable();
+            $table->integer('image_id')->nullable();
 
             $table->string('phone')->nullable();
             $table->string('email')->nullable();
@@ -37,8 +38,9 @@ class CreateOffersTable extends Migration
             $table->dateTime('valid_from')->nullable();
             $table->dateTime('valid_until')->nullable();
 
-            $table->boolean('enabled')->default(true);
-            $table->dateTime('deleted')->nullable();
+            $table->boolean('enabled')->default(false);
+
+            $table->softDeletes();
             $table->timestamps();
         });
     }

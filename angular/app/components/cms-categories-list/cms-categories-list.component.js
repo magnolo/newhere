@@ -7,7 +7,7 @@ class CmsCategoriesListController {
         this.CategoryService.all((categories) =>{
           this.categories = categories;
         });
-
+        this.selection = [];
         this.options = {
           allowMove:true,
           allowDrag:true,

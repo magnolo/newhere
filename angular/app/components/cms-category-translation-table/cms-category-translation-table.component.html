@@ -1,0 +1,58 @@
+
+    <md-toolbar class="md-table-toolbar md-default" layout-padding>
+        <div layout="row" layout-align="end start">
+            <md-checkbox ng-model="vm.showAll" aria-label="Alle anzeigen" ng-click="vm.reload(!vm.showAll)">
+                show all
+            </md-checkbox>
+        </div>
+    </md-toolbar>
+
+    <md-table-container ng-if="vm.untranslatedCategories.length && vm.loading == false">
+        <table md-table>
+            <thead md-head>
+            <tr md-row>
+                <th md-column>#</th>
+                <th md-column>{{vm.defaultLanguage.i18n}} ({{vm.defaultLanguage.language}})</th>
+                <th md-column ng-repeat="language in vm.enabledLanguages | filter: {default_language: false}">
+                    {{language.i18n}} ({{language.language}})
+                </th>
+            </tr>
+            </thead>
+            <tbody md-body>
+            <tr ng-repeat="untranslatedCategory in vm.untranslatedCategories">
+                <td md-cell>{{untranslatedCategory.id}}</td>
+                <td md-cell ng-init="sourceTranslation = vm.getTranslation(untranslatedCategory, vm.defaultLanguage)">
+                    <cms-category-translation-item
+                            translation="sourceTranslation"
+                            source-translation="sourceTranslation"
+                            language="vm.defaultLanguage"
+                            source-language="vm.defaultLanguage"
+                            category="untranslatedCategory">
+                    </cms-category-translation-item>
+                </td>
+                <td md-cell ng-repeat="language in vm.enabledLanguages | filter: {default_language: false}" ng-init="o = vm.getTranslation(untranslatedCategory, language)">
+                    <cms-category-translation-item
+                            translation="o"
+                            source-translation="sourceTranslation"
+                            language="language"
+                            source-language="vm.defaultLanguage"
+                            category="untranslatedCategory">
+                    </cms-category-translation-item>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </md-table-container>
+
+    <md-content ng-if="vm.untranslatedCategories.length == 0 && vm.loading == false">
+        <div flex layout="column" layout-align="center center" layout-padding>
+            <div class="md-display-1">Wow, everything seems to be translated!</div>
+            <div class="md-subhead">Wanna see all offers and their translations? Check show all.</div>
+        </div>
+    </md-content>
+
+    <md-content ng-if="vm.loading == true">
+        <div flex layout="column" layout-align="center center" layout-margin>
+            <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+        </div>
+    </md-content>

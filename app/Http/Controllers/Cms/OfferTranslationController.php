@@ -10,6 +10,16 @@ use App\Http\Requests,
 
 class OfferTranslationController extends Controller
 {
+    /**
+     * @var \App\Services\Translation
+     */
+    private $translationService;
+
+    public function __construct(\App\Services\Translation $translationService)
+    {
+        $this->translationService = $translationService;
+    }
+
     public function index()
     {
         list($activeLanguages, $activeLanguageCount) = $this->loadLanguages();
@@ -17,7 +27,7 @@ class OfferTranslationController extends Controller
         /**
          * @todo check for verified offers
          */
-        $offers = \App\Offer::whereNull('deleted')->get();
+        $offers = \App\Offer::all();
 
         foreach ($offers as $offer) {
             /**
@@ -44,7 +54,7 @@ class OfferTranslationController extends Controller
         /**
          * @todo check for verified offers
          */
-        $offers = \App\Offer::whereNull('deleted')->get();
+        $offers = \App\Offer::all();
 
         foreach ($offers as $idx => $offer) {
             /**
@@ -53,7 +63,9 @@ class OfferTranslationController extends Controller
             $translatedLanguages = 0;
             $defaultTranslation = $offer->translate($defaultLanguage->language);
             if (!$defaultTranslation) {
-                return response()->error('Default translation not found', 404);
+                unset($offers[$idx]);
+                continue;
+                //return response()->error('Default translation not found', 404);
             }
             $version = $defaultTranslation->version;
 
@@ -110,18 +122,34 @@ class OfferTranslationController extends Controller
             return response()->error('Language not found', 404);
         }
 
-        if ($translationLanguage->default_language) {
-            $defaultTranslation->title = $request->get('title');
-            $defaultTranslation->description = $request->get('description');
-            $defaultTranslation->opening_hours = $request->get('opening_hours');
-            $defaultTranslation->version = $defaultTranslation->version + 1;
-        } else {
+        $hasChanged = $this->translationService->hasChanged(
+            ($offer->translate($translationLanguage->language) ? 
+                [
+                    'title' => $offer->translate($translationLanguage->language)->title,
+                    'description' => $offer->translate($translationLanguage->language)->description,
+                    'opening_hours' => $offer->translate($translationLanguage->language)->opening_hours,
+                ] : [
+                    'title' => null, 'description' => null, 'opening_hours' => null,
+                ]
+            ),
+            [
+                'title' => $request->get('title'),
+                'description' => $request->get('description'),
+                'opening_hours' => $request->get('opening_hours'),
+            ]
+        );
+
+        if ($hasChanged) {
             $offer->translateOrNew($translationLanguage->language)->title = $request->get('title');
             $offer->translateOrNew($translationLanguage->language)->description = $request->get('description');
             $offer->translateOrNew($translationLanguage->language)->opening_hours = $request->get('opening_hours');
-            $offer->translateOrNew($translationLanguage->language)->version = $defaultTranslation->version;
+            if ($translationLanguage->default_language) {
+                $offer->translateOrNew($translationLanguage->language)->version = $defaultTranslation->version + 1;
+            } else {
+                $offer->translateOrNew($translationLanguage->language)->version = $defaultTranslation->version;
+            }
+            $offer->save();
         }
-        $offer->save();
 
         return response()->json($offer);
     }
@@ -162,31 +190,4 @@ class OfferTranslationController extends Controller
             $languages->count() - $decreaseCount
         ];
     }
-
-    /*public function test()
-    {
-        $offer = new \App\Offer();
-        $offer->ngo_id = 1;
-        $offer->street = 'Dorfstraße';
-        $offer->streetnumber = '1';
-        $offer->streetnumberadditional = null;
-        $offer->zip = '1234';
-        $offer->city = 'Dorf';
-        $offer->latitude = 1.00;
-        $offer->longitude = 1.00;
-        $offer->phone = '01/123456789';
-        $offer->email = 'foo@example.com';
-        $offer->website = 'http://www.example.com';
-
-        //$offer = \App\Offer::find(1);
-
-        $offer->translateOrNew('de')->version = 1;
-        $offer->translateOrNew('de')->title = 'Mega Angebot!';
-        $offer->translateOrNew('de')->description = 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna';
-        $offer->translateOrNew('de')->opening_hours = 'Mo-Fr 19:00-21:30';
-
-        $offer->save();
-
-        return response()->json($offer);
-    }*/
 }
