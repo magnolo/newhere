@@ -27,7 +27,7 @@ class LanguageController extends Controller
 
         $this->translationService->translateLanguage($languages, App::getLocale());
 
-        return response()->json($languages);
+        return response()->success(compact('languages'));
     }
 
     public function defaultLanguage()
@@ -44,12 +44,12 @@ class LanguageController extends Controller
 
     public function enabledIndex()
     {
-        $languages = \App\Language::where('enabled', true)
+        $enabled = \App\Language::where('enabled', true)
             ->get();
 
-        $this->translationService->translateLanguage($languages, App::getLocale());
+        $this->translationService->translateLanguage($enabled, App::getLocale());
 
-        return response()->json($languages);
+        return response()->success(compact('enabled'));
     }
 
     public function publishedIndex()
@@ -62,7 +62,7 @@ class LanguageController extends Controller
 
         return response()->json($languages);
     }
-    
+
     public function update(Request $request, $id)
     {
         $this->validate($request, [

@@ -52,17 +52,6 @@ class OfferController extends Controller
       $offers = $offers->get();
       return response()->success(compact('offers', 'count'));
    }
-   public function count(){
-     $user = Auth::user();
-     if($user->hasRole(['superadmin', 'admin']) ){
-        $offers = Offer::with(['ngo', 'filters','categories', 'countries', 'image']);
-     }
-     else{
-        $ngo = $user->ngos()->firstOrFail();
-        $offers = $ngo->offers()->with(['ngo', 'filters','categories', 'countries', 'image']);
-     }
-     return response()->json($offers->count());
-   }
    public function autocomplete($search) {
       $addressApi = new AddressAPI();
       $returnArray = $addressApi->getAddressSuggestions($search);
