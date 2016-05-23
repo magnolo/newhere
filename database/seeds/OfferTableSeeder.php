@@ -4,6 +4,7 @@ use Illuminate\Database\Seeder;
 
 use App\Offer;
 use League\Csv\Reader;
+use App\Ngo;
 
 class OfferTableSeeder extends Seeder
 {
@@ -20,8 +21,14 @@ class OfferTableSeeder extends Seeder
         $results = $reader->fetch();
         foreach ($results as $key => $row) {
 
+            $ngo = Ngo::where('short', $row[0])->first();
+
+            if(is_null($ngo)){
+              $ngo = Ngo::where('short', 'NONE')->first();
+            }
+
             $offer = new Offer();
-            $offer->ngo_id = 1;
+            $offer->ngo_id = $ngo->id;
             if(!empty($row[6]))
               $offer->street = $row[6];
             if(!empty($row[7]))
