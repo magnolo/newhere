@@ -18,7 +18,12 @@ class NgoController extends Controller
           return response()->success(compact('ngos'));
     }
 
-    public function show() {
+    public function show($id){
+        $ngo = Ngo::findOrFail($id)->load(['image']);
+        return response()->json($ngo);
+    }
+
+    public function my() {
         $user = Auth::user();
 
         $ngo = $user->ngos()->with('image')->firstOrFail();

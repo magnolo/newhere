@@ -1,2 +1,40 @@
+<div ng-if="vm.ngo" class="ngo-detail" ng-cloak>
 
-      <ngo-form cms="false" ngo="vm.ngo"></ngo-form>
+    <div ng-if="vm.ngo.image" layout="row" layout-align="center">
+        <img ng-src="{{'/' + vm.ngo.image.dir + '/' + vm.ngo.image.filename}}">
+    </div>
+
+
+    <div layout="column" layout-align="center start">
+        <h1>{{vm.ngo.organisation}}</h1>
+    </div>
+
+    <div layout-gt-sm="row" ng-cloak>
+        <div ng-if="vm.ngo.street" layout="column" layout-align="center start" flex-gt-xs>
+            <h4>Addresse</h4>
+            <p>{{vm.ngo.street + " " + vm.ngo.street_number + ", " + vm.ngo.zip + " " + vm.ngo.city}}</p>
+        </div>
+        <div ng-if="vm.ngo.website" layout="column" layout-align="center start" flex-gt-xs>
+            <h4>Website</h4>
+            <a ng-href="{{vm.ngo.website}}">{{vm.ngo.website}}</a>
+        </div>
+    </div>
+    <div layout-gt-sm="row">
+        <div ng-if="vm.ngo.contact" layout="column" layout-align="center start" flex-gt-xs>
+            <h4>Kontakt Person</h4>
+            <p>{{vm.ngo.contact}}</p>
+        </div>
+        <div ng-if="vm.ngo.contact_email" layout="column" layout-align="center start" flex-gt-xs>
+            <h4>Kontakt Email</h4>
+            <a href="mailto:{{vm.ngo.contact_email}}">{{vm.ngo.contact_email}}</a>
+        </div>
+        <div ng-if="vm.ngo.contact_phone" layout="column" layout-align="center start" flex-gt-xs>
+            <h4>Kontakt Nummer</h4>
+            <p>{{vm.ngo.contact_phone}}</p>
+        </div>
+    </div>
+    <div ng-if="vm.ngo.description" layout="column" layout-align="center start">
+        <h4>Beschreibung</h4>
+        <p>{{vm.ngo.description}}</p>
+    </div>
+</div>
