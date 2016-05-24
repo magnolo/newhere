@@ -207,3 +207,33 @@ md-toolbar.md-whitey-theme:not(.md-menu-toolbar) md-icon{
   color:@blue;
   fill:@blue;
 }
+.md-button{
+  &.md-full{
+    padding: 1em;
+    margin-right: -16px !important;
+    background-color: @blue;
+    color:@white;
+    border-radius: 0;
+    padding-right: 16px;
+    md-icon{
+      &.material-icons{
+        color:@white;
+        fill:@white;
+        transition: all .3s;
+      }
+    }
+    &.md-whitey-theme{
+      &:not([disabled]){
+        &:hover{
+            color:@blue;
+            md-icon{
+              &.material-icons{
+                color:@blue;
+                fill:@blue;
+              }
+            }
+        }
+      }
+    }
+  }
+}

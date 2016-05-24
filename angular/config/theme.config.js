@@ -43,20 +43,20 @@ export function ThemeConfig($mdThemingProvider) {
         .definePalette('customPrimary',
             customPrimary);
     var customBackground = {
-        '50': '#ffffff',
-        '100': '#ffffff',
-        '200': '#ffffff',
-        '300': '#ffffff',
-        '400': '#ffffff',
-        '500': '#ffffff',
-        '600': '#f2f2f2',
-        '700': '#e6e6e6',
-        '800': '#d9d9d9',
-        '900': '#cccccc',
-        'A100': '#ffffff',
-        'A200': '#ffffff',
-        'A400': '#ffffff',
-        'A700': '#bfbfbf'
+			'50': '#8fbbdf',
+		 '100': '#7baeda',
+		 '200': '#68a2d4',
+		 '300': '#5496ce',
+		 '400': '#408ac9',
+		 '500': '#357DBA',
+		 '600': '#2f70a6',
+		 '700': '#2a6292',
+		 '800': '#24557e',
+		 '900': '#1e486b',
+		 'A100': '#a3c7e5',
+		 'A200': '#b7d3ea',
+		 'A400': '#cbdff0',
+		 'A700': '#193a57'
     };
     $mdThemingProvider
         .definePalette('customBackground',
