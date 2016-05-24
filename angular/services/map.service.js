@@ -11,6 +11,11 @@ export class MapService {
             lng: 16.372801,
             zoom: 12
         };
+        this.controls = {
+                   fullscreen: {
+                       position: 'topleft'
+                   }
+               }
         this.layers = {
             baselayers: {
                 xyz: {
