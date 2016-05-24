@@ -76,9 +76,12 @@
                 <!--<td md-cell>{{offer.ngo_id}}</td>-->
 
                 <td md-cell  ng-if="vm.cms">
+                  {{ offer.ngo.organisation}}
+                  <!-- REMOVED SELECTOR FOR MUCH MORE RENDER SPEED
+
                   <md-select ng-model="offer.ngo_id" aria-label="Select NGO" ng-change="vm.updateNgo(offer)">
                     <md-option ng-repeat="ngo in vm.ngos" ng-value="ngo.id">{{ ngo.organisation}}</md-option>
-                  </md-select>
+                  </md-select> -->
                 </td>
                 <td class="md-cell"  ng-if="vm.cms">
                     <md-switch ng-model="offer.enabled" class="md-primary" ng-change="vm.toggleEnabled(offer)"
