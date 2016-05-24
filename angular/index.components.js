@@ -1,3 +1,5 @@
+import {LocatorComponent} from './app/components/locator/locator.component';
+import {MapComponent} from './app/components/map/map.component';
 import {WizardOfferComponent} from './app/components/wizard-offer/wizard-offer.component';
 
 import {CmsCategoryTranslationItemComponent} from './app/components/cms-category-translation-item/cms-category-translation-item.component';
@@ -31,6 +33,8 @@ import {OfferFormComponent} from './app/components/offer-form/offer-form.compone
 import {CmsOffersListComponent} from './app/components/cms-offers-list/cms-offers-list.component';
 
 angular.module('app.components')
+	.component('locator', LocatorComponent)
+	.component('map', MapComponent)
 	.component('wizardOffer', WizardOfferComponent)
 
 	.component('cmsCategoryTranslationItem', CmsCategoryTranslationItemComponent)

@@ -1,0 +1,25 @@
+<md-content flex layout="column">
+    <md-toolbar md-theme="whitey" class="md-whiteframe-z1" >
+        <div class="md-toolbar-tools">
+            <md-button aria-label="Back">
+                <md-icon>chevron_left</md-icon>
+                <span>Back</span>
+            </md-button>
+            <span flex></span>
+            <md-button class="" aria-label="More">
+                <md-icon>filter_list</md-icon>
+                Filter
+            </md-button>
+        </div>
+    </md-toolbar>
+    <md-content layout="row" flex>
+        <md-sidenav class="app md-sidenav-left md-whiteframe-z1" md-component-id="categories" md-is-locked-open="!$root.sidebarClosed">
+            <md-content>
+
+            </md-content>
+        </md-sidenav>
+        <md-content flex layout="column">
+            <map></map>
+        </md-content>
+    </md-content>
+</md-content>
