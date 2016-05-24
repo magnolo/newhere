@@ -29,7 +29,7 @@ export function ThemeConfig($mdThemingProvider) {
         '200': '#68a2d4',
         '300': '#5496ce',
         '400': '#408ac9',
-        '500': '#357DBA',
+        '500': '#ffffff',
         '600': '#2f70a6',
         '700': '#2a6292',
         '800': '#24557e',
@@ -76,7 +76,7 @@ export function ThemeConfig($mdThemingProvider) {
         'A200': '#fefefd',
         'A400': '#ffffff',
         'A700': '#8a7e3f',
-				'contrastDefaultColor': 'light',   
+				'contrastDefaultColor': 'light',
     };
     $mdThemingProvider
         .definePalette('customWarn',
