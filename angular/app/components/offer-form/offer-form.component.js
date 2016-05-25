@@ -13,7 +13,7 @@ class OfferFormController {
         this.$state = $state;
         this.$LanguageService = LanguageService;
         this.OfferTranslationService = OfferTranslationService;
-        this.OfferTranslationService.fetchAll((list) = > {
+        this.OfferTranslationService.fetchAll((list) => {
             this.translations = list;
     })
         this.NgoService = NgoService;
