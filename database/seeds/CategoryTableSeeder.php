@@ -110,6 +110,25 @@ class CategoryTableSeeder extends Seeder
               // $sub1->translateOrNew('fa')->description = $farsiTrans[3];
 
               $sub1->save();
+              if(!empty($row[4])){
+                $sub2 = new Category;
+                $sub2->icon = "none";
+                $sub2->parent_id = $sub1->id;
+                $sub2->save();
+                $sub2->translateOrNew('de')->title = $row[4];
+                if(!empty($row[5])){
+                    $sub2->translateOrNew('de')->description = $row[5];
+                }
+
+                $sub2->translateOrNew('en')->title = $englishTrans[4];
+                $sub2->translateOrNew('en')->description = $englishTrans[5];
+
+                // Farsi translation not working cause of conflict in table data 50/51
+                // $sub2->translateOrNew('fa')->title = $farsiTrans[4];
+                // $sub2->translateOrNew('fa')->description = $farsiTrans[5];
+
+                $sub2->save();
+              }
             }
             elseif(!empty($row[4])){
               $sub2 = new Category;
