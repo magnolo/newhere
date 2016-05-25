@@ -44,7 +44,6 @@ class CategoryTableSeeder extends Seeder
             if(!empty($row[0])){
 
               $parent = new Category;
-              $parent->icon = "none";
               $parent->slug = str_slug($row[0]);
               $parent->save();
 
@@ -67,7 +66,6 @@ class CategoryTableSeeder extends Seeder
 
               if(!empty($row[2])){
                 $sub1 = new Category;
-                $sub1->icon = "none";
                 $sub1->parent_id = $parent->id;
                 $sub1->slug = str_slug($row[2]);
                 $sub1->save();
@@ -88,7 +86,6 @@ class CategoryTableSeeder extends Seeder
                 $sub1->save();
                 if(!empty($row[4])){
                   $sub2 = new Category;
-                  $sub2->icon = "none";
                   $sub2->parent_id = $sub1->id;
                   $sub2->slug = str_slug($row[4]);
                   $sub2->save();
@@ -112,7 +109,6 @@ class CategoryTableSeeder extends Seeder
             }
             elseif(!empty($row[2])){
               $sub1 = new Category;
-              $sub1->icon = "none";
               $sub1->parent_id = $parent->id;
               $sub1->slug = str_slug($row[2]);
               $sub1->save();
@@ -133,7 +129,6 @@ class CategoryTableSeeder extends Seeder
               $sub1->save();
               if(!empty($row[4])){
                 $sub2 = new Category;
-                $sub2->icon = "none";
                 $sub2->parent_id = $sub1->id;
                 $sub2->slug = str_slug($row[4]);
                 $sub2->save();
@@ -156,7 +151,6 @@ class CategoryTableSeeder extends Seeder
             }
             elseif(!empty($row[4])){
               $sub2 = new Category;
-              $sub2->icon = "none";
               $sub2->parent_id = $sub1->id;
               $sub2->slug = str_slug($row[4]);
               $sub2->save();

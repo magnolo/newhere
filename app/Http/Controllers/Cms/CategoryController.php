@@ -26,6 +26,7 @@ class CategoryController extends Controller
           $categories->load('children');
         }
 
+        $categories->load('image');
         return response()->success(compact('categories'));
     }
 
@@ -36,6 +37,7 @@ class CategoryController extends Controller
         foreach($languages as $language){
            $category->translate($language->language);
         }
+        $category->load('image');
         return response()->json($category);
     }
 
@@ -43,7 +45,7 @@ class CategoryController extends Controller
     {
         $this->validate($request, [
             'language'    => 'required|min:2|max:2',
-            'icon' => 'required|min:1|max:20',
+            'image_id' => 'required|int',
             'title' => 'required|max:255',
             'description' => 'required'
         ]);
@@ -52,8 +54,9 @@ class CategoryController extends Controller
 
         $locale = $request->get('language');
         $category = new Category();
-        $category->icon = $request->get('icon');
         $category->parent_id = $request->get('parent_id');
+        $category->image_id = $request->get('image_id');
+        $category->slug = str_slug($request->get('title'));
         $category->save();
 
         $category->translateOrNew($locale)->title = $request->get('title');
@@ -73,10 +76,9 @@ class CategoryController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'icon' => 'required|min:1|max:20',
+            'image_id' => 'required|int',
             'translations' => 'required'
         ]);
-
 
         $category = Category::find((int)$id);
         if (!$category) {
@@ -85,9 +87,8 @@ class CategoryController extends Controller
 
         DB::beginTransaction();
 
-        $locale = $request->get('language');
-        $category->icon = $request->get('icon');
         $category->parent_id = $request->get('parent_id');
+        $category->image_id = $request->get('image_id');
 
         foreach($request->get('translations') as $transalation){
           $category->translateOrNew($transalation['locale'])->title = $transalation['title'];
@@ -110,6 +111,5 @@ class CategoryController extends Controller
       $category->enabled = $request->get('endabled');
 
       return response()->success(compact('category'));
-
     }
 }
