@@ -31,6 +31,7 @@ class OfferTableSeeder extends Seeder
 
         $wrongCats = array();
         $wrongFilters = array();
+        $wrongNgos = array();
 
         foreach ($results as $key => $row) {
             $categories = array();
@@ -39,6 +40,9 @@ class OfferTableSeeder extends Seeder
 
             if(is_null($ngo)){
               $ngo = Ngo::where('short', 'NONE')->first();
+                if(!in_array($row[0], $wrongNgos)){
+                  $wrongNgos[] = $row[0];
+                }
             }
 
             $offer = new Offer();
@@ -113,6 +117,12 @@ class OfferTableSeeder extends Seeder
               }
             }
 
+        }
+
+        //Console Output: Missing Ngos
+        $this->command->info('Missing Ngos:');
+        foreach ($wrongNgos as $key => $ngo) {
+          $this->command->error($ngo);
         }
 
         //Console Output: Missing Categories
