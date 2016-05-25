@@ -11,6 +11,6 @@ class FilterController extends Controller
     public function index()
     {
         $filters = Filter::where('parent_id', null)->with('children')->orderBy('type')->orderBy('id')->get();
-        return response()->json($filters);
+        return response()->success(compact('filters'));
     }
 }

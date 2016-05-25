@@ -1,9 +1,8 @@
-I;I. Description;II;II. Description;III;III.Description
 Education;Education opportunities and advice for different ages, including traditional education, language learning and more.;Childcare;Enrolling children in childcare, nurseries and pre-school, advice on choosing a school and finding spaces.;;
 ;;School;Advice on finding school spaces for children, enrollment procedures and extra help and support for children who are refugees.;;
 ;;University;Opportunities and support for refugees wishing to enroll in university courses.;;
 ;;Training Opportunities;Training and further education opportunities to improve or add to existing skills and qualifications.;;
-;;Language learning ;Learning German and other languages online and offline and getting involved in social language learning activities such as language tandems.;;
+;;Language Learning;Learning German and other languages online and offline and getting involved in social language learning activities such as language tandems.;;
 ;;Literacy Courses;Find courses and opportunities to improve reading and writing skills - for young people and adults.;;
 ;;Libraries;Quiet spaces to read, study, attend readings or borrow books, CDs and DVDs.;;
 ;;Education Advice;Advice on which educational opportunities are available to you, how to find spaces and how to enroll.;;
@@ -42,7 +41,7 @@ Community and Leisure;Cultural activities, sports clubs, places of worship and e
 ;;Sport and Leisure;Sports clubs, teams, classes and spaces providing opportunities to train, exercise and socialise.;;
 ;;Places of Worship;Structures or spaces where individuals or groups can congregate to pray, study, provide support to one another or socialise.;Churches;Christian places of worship also acting as an opportunity to seek advice and meet other members of your religious community.
 ;;;;Mosques;Muslim places of worship also acting as an opportunity to seek advice and meet other members of your religious community.
-;;;;Cultural Associations and Other Places of Worship;For events and venues related to other religious and cultural groups not covered elsewhere. 
+;;;;Cultural Associations and Other Places of Worship;For events and venues related to other religious and cultural groups not covered elsewhere.
 ;;Art and Culture;Events, venues and classes where art, music, theater and more can be enjoyed or learnt, including affordable opportunities and special offers for refugees.;Art;Free exhibitions, exhibitions on the topic of refugees, art classes and more
 ;;;;Film;Free film nights, film showings in your language and films on other interesting topics.
 ;;;;Dance, Theatre and Comedy;Performances, classes, festivals and more
@@ -50,14 +49,15 @@ Community and Leisure;Cultural activities, sports clubs, places of worship and e
 ;;Politics;Opportunities to get involved in the political life of your community and attend events related to the topic of refugees in Europe.;;
 Housing;Finding a new home, advice for refugees looking for housing, and temporary and emergency accomodation options and advice.;Registration Offices;How and where to register your new address or a change of address.;;
 ;;Housing;Where to find permanent housing and services tailored specifically to the needs of refugees.;;
-;;Temporary Accommodation;Where to stay on a temporary or emergency basis and advice on temporary housing.;Homeless Shelters;Places to sleep and find shelter for newcomers who have been unable to find any alternative sleeping arrangements.
-;;;;Emergency Accommodation;Usually short stay accommodation set up to provide sleeping places before newly arrived individuals continue their journey or 
+;;Items;Where to stay on a temporary or emergency basis and advice on temporary housing.;Homeless Shelters;Places to sleep and find shelter for newcomers who have been unable to find any alternative sleeping arrangements.
+;;;;Emergency Accommodation;Usually short stay accommodation set up to provide sleeping places before newly arrived individuals continue their journey or
 ;;;;Refugee Homes;Houses and blocks of flats where larger groups of refugees might live on a temporary or more permanent basis.
 ;;Accommodation Support;Advice and support for regugees searching for housing or with housing-related queries, as well as special housing opportunities for refugees.;;
 Communication;Getting connected and keeping in touch with friends and family here and abroad.;Internet;Free Wifi hotspots, getting online at home and where to find internet cafes.;;
 ;;Telephone;Where and how to get sim cards, calling abroad and where to buy second hand phones;;
 ;;Media;Newspapers, Magazines, Blogs relevant for refugees;;
 ;;Post;Advice on using the postal service in Austria;;
+;;Transport;Information on train, bus and tram tickets, bikes and other ways of getting around Vienna;;
 Food;Where to find halal and other special product, as well as where to find affordable groceries and food distribution sites.;Shopping (cheap, halal and kosher);Where to find speciality and halal products and where to buy affordable groceries.;;
 ;;Special Restaurants;Where to find restaurants which serve halal and speciality foods or which have special offers and events for refugees.;;
 ;;Food Distribution;Locations and dates of free of charge food distribution services.;;
@@ -73,41 +73,3 @@ Counselling;"Where and how to get refugee-specific counselling and support for a
 ;;Counselling for LGBTQI;LGBTI support centres and other opportunities for seeking advice specifically tailored to lesbian, gay, bisexual, transgender or intersex refugees.;;
 ;;Counselling for Sex Workers;Special counselling for female or male refugees who are or have been engaged in sex work.;;
 ;;Family Counselling;Support for refugee families on a range of issues from trauma to finding a new place to live.;;
-;;;;;
-;;;;;
-Filters:;;;;;
-Families;;;;;
-Women;;;;;
-Men;;;;;
-Age;0-5 years;;;;
-;6-10 years;;;;
-;11-17 years;;;;
-;under 27;;;;
-;27+;;;;
-Persons with Disabilities;;;;;
-Barrier Free;;;;;
-LGBTQI;;;;;
-Country of Origin;Syria;;;;
-;Afghanistan;;;;
-;Iraq;;;;
-;Iran;;;;
-;Pakistan;;;;
-;Nigeria;;;;
-;Morocco;;;;
-;Algeria;;;;
-;Somalia;;;;
-Language of service or offer;German;;;;
-;English;;;;
-;French;;;;
-;Arabic;;;;
-;Farsi;;;;
-;Kurdish;;;;
-;Urdu;;;;
-Status;Asylum;;;;
-;Subsidiary protection;;;;
-;ongoing procedure;;;;
-;UMFs;;;;
-;Unregistered;;;;
-;Rejected asylum application;;;;
-Culture-pass;;;;;
-Free;;;;;

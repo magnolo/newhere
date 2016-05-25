@@ -1,27 +1,24 @@
 class CmsOffersListController{
-    constructor(OfferService, NgoService, $filter, $state, DialogService){
+    constructor($sessionStorage, OfferService, NgoService, $filter, $state, DialogService){
         'ngInject';
         var vm = this;
         vm.menu = {
           isOpen:false
         };
-        this.filter = {};
+        vm.loading = true;
+        this.$sessionStorage = $sessionStorage;
         this.$filter = $filter;
         this.$state = $state;
         this.DialogService = DialogService;
         this.NgoService = NgoService;
         this.OfferService = OfferService;
-        this.OfferService.fetchAll().then(function(response) {
-            vm.offers = response;
-        });
         if(this.cms){
-          this.NgoService.fetchAll().then(function(response) {
+          this.NgoService.fetchAll().then((response) => {
               vm.ngos = response;
           });
         }
 
         this.selectedOffers = [];
-
         this.query = {
             order: '-id',
             limit: 10,
@@ -31,15 +28,26 @@ class CmsOffersListController{
             show: false,
             query: ''
         }
-
+        if(this.$sessionStorage.offerQuery){
+          this.query = this.$sessionStorage.offerQuery;
+        }
         this.listOrderByColumn = '-organisation';
-        this.onOrderChange = (order) => {
-            //console.log("onOrderChange " + order);
-            return vm.offers = this.$filter('orderBy')(vm.offers, [order], true);
+        // this.onOrderChange = (order) => {
+        //     //console.log("onOrderChange " + order);
+        //     return vm.offers = this.$filter('orderBy')(vm.offers, [order], true);
+        // };
+        // this.onPaginationChange = (page, limit) => {
+        //     //console.log(page, limit);
+        // };
+        this.getOffers = ()=>{
+          vm.$sessionStorage.offerQuery = vm.query;
+          vm.promise = this.OfferService.fetchFiltered(vm.query, (response) => {
+                vm.offers = response;
+                vm.loading = false;
+                vm.count = response.count;
+          });
         };
-        this.onPaginationChange = (page, limit) => {
-            //console.log(page, limit);
-        };
+        this.getOffers();
     }
 
     toggleEnabled(offer) {

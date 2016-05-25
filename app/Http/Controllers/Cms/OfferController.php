@@ -24,19 +24,47 @@ class OfferController extends Controller
   //     $ngos = Ngo::with(['image','users', 'offers'])->get();
   //     return response()->json($ngos);
   //  }
-   public function index() {
+   public function index(Request $request) {
       $user = Auth::user();
       if($user->hasRole(['superadmin', 'admin']) ){
-         $offers = Offer::with(['ngo', 'filters','categories', 'countries', 'image'])->get();
+         $offers = Offer::with(['ngo', 'filters','categories', 'countries', 'image']);
       }
       else{
          $ngo = $user->ngos()->firstOrFail();
-        $offers = $ngo->offers()->with(['ngo', 'filters','categories', 'countries', 'image'])->orderBy('updated_at','DESC')->get();
+         $offers = $ngo->offers()->with(['ngo', 'filters','categories', 'countries', 'image']);
       }
+      $count = $offers->count();
 
-       return response()->json($offers);
+      if($request->has('ngo_id')){
+        $offers = $offers->where('ngo_id', $request->get('ngo_id'));
+        $count = $offers->count();
+      }
+      if($request->has('enabled')){
+        $offers = $offers->where('enabled', $request->get('enabled'));
+        $count = $offers->count();
+      }
+      if($request->has('title')){
+        $offers = $offers->whereTranslationLike('title', '%'.$request->get('title').'%');
+        $count = $offers->count();
+      }
+      if($request->has('order')){
+        $order = $request->get('order');
+        $dir = 'DESC';
+        if(substr($order,0,1) == '-'){
+          $dir = 'ASC';
+          $order = substr($order,1);
+        }
+        $offers = $offers->orderBy($order, $dir);
+      }
+      if($request->has('limit')){
+        $offers = $offers->take($request->get('limit'));
+      }
+      if($request->has('page')){
+        $offers = $offers->skip(($request->get('page') - 1) * $request->get('limit'));
+      }
+      $offers = $offers->get();
+      return response()->success(compact('offers', 'count'));
    }
-
    public function autocomplete($search) {
       $addressApi = new AddressAPI();
       $returnArray = $addressApi->getAddressSuggestions($search);
@@ -48,7 +76,7 @@ class OfferController extends Controller
   //     return response()->json($ngo);
   //  }
   public function show($id) {
-      $offer= Offer::where('id',$id)->with(['ngo', 'filters', 'categories', 'countries', 'image'])->firstOrFail();
+      $offer = Offer::where('id', $id)->with(['ngo', 'filters', 'categories', 'countries', 'image', 'translations'])->firstOrFail();
       return response()->json($offer);
    }
 

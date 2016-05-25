@@ -23,7 +23,7 @@ class CategoryTranslationController extends Controller
     public function index()
     {
         list($activeLanguages, $activeLanguageCount) = $this->loadLanguages();
-        
+
         $categories = \App\Category::all();
 
         foreach ($categories as $category) {
@@ -38,7 +38,7 @@ class CategoryTranslationController extends Controller
             }
         }
 
-        return response()->json($categories);
+        return response()->success(['category-translations' => $categories]);
     }
 
     public function untranslatedIndex()
@@ -46,8 +46,8 @@ class CategoryTranslationController extends Controller
         list($activeLanguages, $activeLanguageCount) = $this->loadLanguages();
         $defaultLanguage = \App\Language::where('default_language', true)->first();
 
-        $untranslatedCategories = [];
-        
+        $untranslated = [];
+
         $categories = \App\Category::all();
 
         foreach ($categories as $idx => $category) {
@@ -75,11 +75,11 @@ class CategoryTranslationController extends Controller
                 }
             }
             if ($translatedLanguages < $activeLanguageCount) {
-                $untranslatedCategories[] = $category;
+                $untranslated[] = $category;
             }
         }
 
-        return response()->json($untranslatedCategories);
+        return response()->success(compact('untranslated'));
     }
 
     public function translate(Request $request, $id)

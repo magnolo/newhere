@@ -28,7 +28,7 @@ class CategoryController extends Controller
             }]);
         }
 
-        return response()->json($categories);
+        return response()->success(compact('categories'));
     }
 
     public function show($id)

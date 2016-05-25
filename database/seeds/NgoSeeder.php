@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use League\Csv\Reader;
 
 use App\Ngo;
 use App\User;
@@ -15,41 +16,36 @@ class NgoSeeder extends Seeder
     public function run()
     {
         //
+
+
+        $reader = Reader::createFromPath(base_path().'/database/seeds/csvs/ngos.csv');
+        $reader->setDelimiter(";");
+        $results = $reader->fetch();
+        foreach ($results as $key => $row) {
+
+            $ngo = new Ngo();
+            $ngo->short = $row[0];
+            $ngo->organisation = $row[1];
+            $ngo->contact_email = $row[2];
+            $ngo->website = $row[4];
+            $ngo->contact = $row[5];
+            $ngo->contact_phone = $row[6];
+            $ngo->street = $row[7];
+            $ngo->street_number = $row[8];
+            $ngo->zip = $row[9];
+            $ngo->city = $row[10];
+
+            $ngo->save();
+
+            $ngo->translateOrNew('de')->description = $row[12];
+
+            $ngo->save();
+
+        }
+
         $ngo = new Ngo();
-
-        $ngo->organisation = "WWF";
-        $ngo->street = "World Wide";
-        $ngo->street_number = "5";
-        $ngo->zip = "1010";
-        $ngo->city = "Wien";
-        $ngo->website = "http://www.wwf.at";
-        $ngo->contact = "WWF Chief";
-        $ngo->contact_email ="wwf@ngo.at";
-        $ngo->contact_phone = "+43 1 12345678";
-
+        $ngo->short = 'NONE';
+        $ngo->organisation = '- No NGO -';
         $ngo->save();
-
-        $user = User::where('email', "wwf@ngo.at")->firstOrFail();
-
-        $ngo->users()->attach($user);
-
-        $ngo = new Ngo();
-
-        $ngo->organisation = "Caritas";
-        $ngo->street = "World Wide";
-        $ngo->street_number = "5";
-        $ngo->zip = "1010";
-        $ngo->city = "Wien";
-        $ngo->website = "http://www.caritas.at";
-        $ngo->contact = "Caritas Chief";
-        $ngo->contact_email ="caritas@ngo.at";
-        $ngo->contact_phone = "+43 1 23456789";
-
-        $ngo->save();
-
-        $user = User::findOrFail(1);
-
-        $ngo->users()->attach($user);
-
     }
 }
