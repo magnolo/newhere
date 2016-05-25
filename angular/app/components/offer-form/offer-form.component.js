@@ -7,15 +7,22 @@ class OfferFormController {
 
         this.categories = [];
         this.translations = [];
+        this.defaultLanguage = {};
         this.$http = $http;
         this.OfferService = OfferService;
         this.ToastService = ToastService;
         this.$state = $state;
-        this.$LanguageService = LanguageService;
+        this.LanguageService = LanguageService;
+        this.LanguageService.fetchDefault((defaultLanguage) => {
+            this.defaultLanguage = defaultLanguage;
+         });
+        this.LanguageService.fetchEnabled((enabledLanguages) => {
+            this.enabledLanguages = enabledLanguages;
+         });
         this.OfferTranslationService = OfferTranslationService;
         this.OfferTranslationService.fetchAll((list) => {
             this.translations = list;
-    })
+         })
         this.NgoService = NgoService;
         if(this.cms){
           this.NgoService.fetchAll().then((list) => {
@@ -109,10 +116,6 @@ class OfferFormController {
             this.offer.zip = ngo.zip;
             this.offer.city = ngo.city;
         }
-    }
-
-    showTranslation() {
-        //TODO
     }
 
 }

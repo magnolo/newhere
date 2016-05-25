@@ -134,14 +134,18 @@
                       <md-table-container>
                           <table md-table>
                               <tbody md-body>
-                              <tr ng-repeat="trans in vm.offer.translations" ng-if="trans.locale != 'de'">
-                                  <td class="md-cell">{{trans.title}}</td>
-                                  <td class="md-cell">{{trans.locale}}</td>
-                                  <td md-cell>
-                                      <md-button ng-click="vm.showTranslation()" class="md-icon-button">
-                                          <md-icon>edit</md-icon>
-                                      </md-button>
+                              <tr ng-repeat="trans in vm.offer.translations" ng-init="sourceTranslation = (vm.offer.translations| filter : {locale: 'de'})[0]" ng-if="trans.locale != 'de'">
+                                  <td class="md-cell" ng-repeat="language in vm.enabledLanguages | filter: {language: trans.locale}">
+                                      <cms-offer-translation-item
+                                              translation="trans"
+                                              source-translation="sourceTranslation"
+                                              source-language="vm.defaultLanguage"
+                                              language="language"
+                                              offer="vm.offer"
+                                      >
+                                      </cms-offer-translation-item>
                                   </td>
+                                  <td class="md-cell">{{trans.locale}}</td>
                               </tr>
                               </tbody>
                           </table>
