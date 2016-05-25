@@ -72,7 +72,7 @@ class CategoryController extends Controller
 
         DB::commit();
 
-        return response()->json($category);
+        return response()->json(compact('category'));
     }
 
     public function update(Request $request, $id)
@@ -188,7 +188,7 @@ class CategoryController extends Controller
 
         DB::commit();
 
-        return response()->json($category);
+        return response()->json(compact('category'));
     }
 
     public function toggleEnabled(Request $request, $id)
