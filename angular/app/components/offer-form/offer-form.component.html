@@ -128,13 +128,13 @@
                       <md-card-title>
                           <md-card-title-text>
                               <span class="md-headline">Übersetzungen</span>
-                              <span class="md-subhead">{{ vm.offer.translations.length }} vorhanden</span>
+                              <span class="md-subhead">{{ vm.offer.translations.length-1 }} vorhanden</span>
                           </md-card-title-text>
                       </md-card-title>
                       <md-table-container>
                           <table md-table>
                               <tbody md-body>
-                              <tr ng-repeat="trans in vm.offer.translations">
+                              <tr ng-repeat="trans in vm.offer.translations" ng-if="trans.locale != 'de'">
                                   <td class="md-cell">{{trans.title}}</td>
                                   <td class="md-cell">{{trans.locale}}</td>
                                   <td md-cell>
