@@ -1,11 +1,13 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Illuminate\Console\Command;
 
 use App\Offer;
 use League\Csv\Reader;
 use App\Ngo;
 use App\Category;
+use App\Filter;
 
 class OfferTableSeeder extends Seeder
 {
@@ -20,14 +22,19 @@ class OfferTableSeeder extends Seeder
         $reader = Reader::createFromPath(base_path().'/database/seeds/csvs/offers.csv');
         $reader->setDelimiter(";");
         $results = $reader->fetch();
-        $categories = array();
+
         $street = "";
         $streetnumber = "";
         $zip = "";
         $city = "";
 
-        foreach ($results as $key => $row) {
 
+        $wrongCats = array();
+        $wrongFilters = array();
+
+        foreach ($results as $key => $row) {
+            $categories = array();
+            $filters = array();
             $ngo = Ngo::where('short', $row[0])->first();
 
             if(is_null($ngo)){
@@ -71,18 +78,54 @@ class OfferTableSeeder extends Seeder
               $offer->translateOrNew('en')->description = $row[23];
                 $offer->save();
             }
+
+            // Adding Categories
             if(!empty($row[1])){
               $categories = explode(',', $row[1]);
             }
+
             if(count($categories)){
               foreach($categories as $cat){
                 $category = Category::whereTranslation('title', trim($cat))->first();
+                 if(!$category){
+                    if(!in_array(trim($cat), $wrongCats)){
+                      $wrongCats[] = trim($cat);
+                    }
+                }
                 $offer->categories()->attach($category);
+              }
+            }
+
+            // Adding Filters
+            if(!empty($row[3])){
+              $filters = explode(',', $row[3]);
+            }
+
+            if(count($filters)){
+              foreach($filters as $f){
+                $filter = Filter::whereTranslation('title', trim($f))->first();
+                 if(!$filter){
+                    if(!in_array(trim($f), $wrongFilters)){
+                      $wrongFilters[] = trim($f);
+                    }
+                }
+                $offer->filters()->attach($filter);
               }
             }
 
         }
 
+        //Console Output: Missing Categories
+        $this->command->info('Missing Categories:');
+        foreach ($wrongCats as $key => $cat) {
+          $this->command->error($cat);
+        }
+
+        //Console Output: Missing Filters
+        $this->command->info('Missing Filters:');
+        foreach ($wrongFilters as $key => $filter) {
+          $this->command->error($filter);
+        }
 
     }
 }

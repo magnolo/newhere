@@ -45,7 +45,7 @@ class NgoSeeder extends Seeder
 
         $ngo = new Ngo();
         $ngo->short = 'NONE';
-        $ngo->organisation = 'Missing NGO Link';
+        $ngo->organisation = 'No NGO';
         $ngo->save();
     }
 }
