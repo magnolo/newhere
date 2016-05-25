@@ -20,8 +20,8 @@ class CreateOfferTranslationsTable extends Migration
 
             $table->integer('version')->default(1);
 
-            $table->string('title');
-            $table->text('description');
+            $table->string('title')->nullable();
+            $table->text('description')->nullable();
             $table->text('opening_hours')->nullable();
 
             $table->string('locale')->index();
