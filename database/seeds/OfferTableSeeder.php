@@ -74,6 +74,7 @@ class OfferTableSeeder extends Seeder
 
             if(!empty($row[4])) $offer->translateOrNew('de')->title = $row[4];
             if(!empty($row[5])) $offer->translateOrNew('de')->description = $row[5];
+            if(!empty($row[15])) $offer->translateOrNew('de')->opening_hours = $row[15];
             if(!empty($row[22])) $offer->translateOrNew('en')->title = $row[22];
             if(!empty($row[23])) $offer->translateOrNew('en')->description = $row[23];
             if(!empty($row[25])) $offer->translateOrNew('fa')->title = $row[25];
