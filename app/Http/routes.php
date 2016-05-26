@@ -32,7 +32,7 @@ $api->group(['middleware' => ['api']], function ($api) {
     $api->get('images/upload', 'ImageController@test');
     $api->post('images/upload', 'ImageController@uploadImage');
 
-    $api->get('ngos/{id}', 'Cms\NgoController@show');
+    $api->get('ngo/{id}', 'Cms\NgoController@show');
 
 
 

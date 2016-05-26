@@ -24,7 +24,7 @@ export class NgoService{
     oneById(id){
         var vm = this;
         return this.$q(function(resolve) {
-            vm.API.one('ngos',id).get().then(function (response) {
+            vm.API.one('ngo',id).get().then(function (response) {
                 resolve(response)
             }, function (error) {
                 vm.ToastService.show("Fetching NGO failed");
