@@ -70,6 +70,14 @@ $api->group(['middleware' => ['api', 'api.auth']], function ($api) {
     $api->get('categories', 'Cms\CategoryController@index');
     $api->get('filters', 'Cms\FilterController@index');
 
+    // FOR ADMINS AND NGOs
+    $api->group(['middleware' => ['role:superadmin|admin|organisation']], function ($api) {
+        $api->post('users', 'Cms\UserController@create');
+        $api->delete('users/{id}', 'Cms\UserController@bulkRemove');
+        $api->get('ngoUsers', 'Cms\UserController@byNgo');
+        $api->post('ngoUsers', 'Cms\UserController@createNgoUser');
+    });
+
     // JUST FOR ADMINS
     $api->group(['middleware' => ['role:superadmin|admin']], function ($api) {
 
@@ -85,11 +93,7 @@ $api->group(['middleware' => ['api', 'api.auth']], function ($api) {
       $api->get('users/role/{role}', 'Cms\UserController@byRole');
 
       $api->get('users/{id}', 'Cms\UserController@show');
-      $api->post('users', 'Cms\UserController@create');
       $api->put('users/{id}', 'Cms\UserController@update');
-      $api->delete('users/{id}', 'Cms\UserController@bulkRemove');
-      $api->get('ngoUsers', 'Cms\UserController@byNgo');
-      $api->post('ngoUsers', 'Cms\UserController@createNgoUser');
 
       $api->get('roles', 'Cms\RoleController@index');
 
