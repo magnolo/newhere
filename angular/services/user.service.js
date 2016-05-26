@@ -57,6 +57,12 @@ export class UserService {
         });
       }
     }
+    saveNgoUser(user, success){
+            this.API.all('ngoUsers').post(user).then((response)=>{
+                this.ToastService.show('Saved successfully');
+                success(response);
+            });
+    }
     bulkRemove(list, success, error){
       var ids = [];
       angular.forEach(list, (item) => {

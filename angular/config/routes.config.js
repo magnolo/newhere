@@ -270,6 +270,18 @@ export function RoutesConfig($stateProvider, $urlRouterProvider) {
 				}
 			}
 		})
+		.state('cms.ngos.users',{
+			url:'/users/{id}',
+			data:{
+				auth:true,
+				roles:['admin', 'superadmin']
+			},
+			views: {
+				'main@cms': {
+					templateUrl: getCmsView('ngo-users')
+				}
+			}
+		})
 
 
 		.state('cms.offers',{

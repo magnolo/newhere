@@ -21,7 +21,7 @@ class NgoController extends Controller
     public function show() {
         $user = Auth::user();
 
-        $ngo = $user->ngos()->with('image')->firstOrFail();
+        $ngo = $user->ngos()->with('image', 'users')->firstOrFail();
         if (!$ngo) {
             return response()->error('NGO not found', 404);
         }

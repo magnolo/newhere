@@ -1,0 +1,43 @@
+<md-card>
+    <md-toolbar class="md-table-toolbar md-default" layout-padding>
+
+        <div layout="row" layout-align="space-between start">
+            <md-input-container class="md-icon-float md-block">
+                <label>User suchen</label>
+                <md-icon class="material-icons">search</md-icon>
+                <input ng-model="vm.listFilter.search" type="text">
+            </md-input-container>
+
+            <span flex></span>
+            <div layout="row" layout-align="end center" ng-cloak style="font-size:16px">
+                <md-button ng-if="vm.selectedUsers.length" class="md-raised md-icon-button md-warn" ng-click="vm.removeUsers()" layout="row" layout-align="center center">
+                    <i class="material-icons">delete</i>
+                </md-button>
+                <md-button class="md-raised md-icon-button md-primary" ng-click="vm.addUser()" layout="row" layout-align="center center">
+                    <i class="material-icons">add</i>
+                </md-button>
+            </div>
+        </div>
+    </md-toolbar>
+
+    <md-table-container>
+        <table md-table md-row-select multiple ng-model="vm.selectedUsers">
+            <thead md-head md-order="vm.listOrderByColumn" md-on-reorder="vm.onOrderChange">
+            <tr md-row>
+                <th md-column md-order-by="name">User Name</th>
+                <th md-column md-order-by="email">Email</th>
+            </tr>
+            </thead>
+            <tbody md-body>
+            <tr md-row md-select="user" ng-repeat="user in vm.filteredUsers =
+            (vm.users | filter: vm.listFilter.search)
+                     | limitTo: vm.listPagination.limit : (vm.listPagination.page-1)*vm.listPagination.limit">
+                <td class="md-cell">{{user.name}}</td>
+                <td class="md-cell">{{user.email}}</td>
+            </tr>
+            </tbody>
+        </table>
+    </md-table-container>
+
+    <md-table-pagination md-limit="vm.listPagination.limit" md-page="vm.listPagination.page" md-total="{{vm.filteredUsers.length}}"></md-table-pagination>
+</md-card>

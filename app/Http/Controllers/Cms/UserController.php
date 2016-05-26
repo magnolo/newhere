@@ -35,11 +35,22 @@ class UserController extends Controller
       })->get();
       return response()->success(compact('users'));
     }
-    public function byNgo($id){
-      $ngo = Ngo::findOrFail($id);
-      $users = $ngo->load('users');
-      return response()->success(compact('users'));
+
+    public function byNgo(Request $request)
+    {
+        $ngoId = $request->header('ngoId');
+        if ($ngoId) {
+            $ngo = Ngo::findOrFail($ngoId);
+            $ngoUsers = $ngo->users;
+        } else {
+            $user = Auth::user();
+            $ngo = $user->ngos()->firstOrFail();
+            $ngoUsers = $ngo->users()->where('user_id', '<>', $user->id)->get();
+        }
+        return response()->success(compact('ngoUsers'));
     }
+
+
     public function byLanuage($language){
       $language = Language::where('language',$language)->firstOrFail;
       $users = $language->load('users');
@@ -131,6 +142,44 @@ class UserController extends Controller
       return response()->success(compact('user'));
 
     }
+
+    public function createNgoUser(Request $request)
+    {
+        $this->validate($request, [
+            'email' => 'required|email',
+            'name' => 'required|min:3|max:255',
+            'password' => 'required|min:5',
+            're_password' => 'required|min:5'
+        ]);
+
+        if ($request->get('password') != $request->get('re_password')) {
+            return response()->error('Passwords do not match!', 422);
+        }
+
+        DB::beginTransaction();
+        $user = new User;
+        $user->name = trim($request->get('name'));
+        $user->email = trim(strtolower($request->get('email')));
+        $user->password = bcrypt($request->get('password'));
+        $user->confirmation_code = str_random(30);
+        $user->save();
+        // attach organisation role
+        $ngoRole = Role::where('name', 'organisation')->firstOrFail();
+        $user->roles()->attach($ngoRole);
+        // attach ngo
+        if ($request->has('ngoId')) {
+            $ngo = Ngo::findOrFail($request->get('ngoId'));
+        } else {
+            $loggedInUser = Auth::user();
+            $ngo = $loggedInUser->ngos()->firstOrFail();
+        }
+        $user->ngos()->attach($ngo);
+        DB::commit();
+
+        return response()->success(compact('user'));
+
+    }
+
     function bulkRemove($ids){
       $usersQ = User::whereIn('id', explode(',', $ids));
       $users = $usersQ->get();

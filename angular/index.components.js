@@ -1,3 +1,4 @@
+import {NgoUsersListComponent} from './app/components/ngo-users-list/ngo-users-list.component';
 import {WizardOfferComponent} from './app/components/wizard-offer/wizard-offer.component';
 
 import {CmsCategoryTranslationItemComponent} from './app/components/cms-category-translation-item/cms-category-translation-item.component';
@@ -31,6 +32,7 @@ import {OfferFormComponent} from './app/components/offer-form/offer-form.compone
 import {CmsOffersListComponent} from './app/components/cms-offers-list/cms-offers-list.component';
 
 angular.module('app.components')
+	.component('ngoUsersList', NgoUsersListComponent)
 	.component('wizardOffer', WizardOfferComponent)
 
 	.component('cmsCategoryTranslationItem', CmsCategoryTranslationItemComponent)
