@@ -1,0 +1,98 @@
+<div >
+    <md-toolbar class="md-table-toolbar md-default" layout-padding ng-if="!vm.showfilter">
+        <div layout="row" layout-align="space-between start">
+            <h3>Filters</h3>
+            <span flex></span>
+            <div layout="row" layout-align="end center" ng-cloak style="font-size:16px">
+                <md-button ng-click="vm.showfilter = true" class="md-icon-button" layout="row" layout-align="center center">
+                    <i class="material-icons">filter_list</i>
+                </md-button>
+                <md-button ng-if="vm.selectedFilters.length && !vm.cms" class="md-raised md-warn md-icon-button" ng-click="vm.remove()" layout="row" layout-align="center center">
+                    <md-tooltip md-direction="left" md-delay="250">Delete Filters</md-tooltip>
+                    <i class="material-icons">delete</i>
+                </md-button>
+                <!--<md-button class="md-raised md-icon-button md-primary" ui-sref="{{ vm.cms ? 'cms.offers.new' : 'app.offers.new' }}" layout="row" layout-align="center center">-->
+                    <!--<i class="material-icons">add</i>-->
+                <!--</md-button>-->
+            </div>
+        </div>
+    </md-toolbar>
+
+    <md-toolbar class="md-table-toolbar md-default" layout-padding ng-if="vm.showfilter">
+        <div layout="row" layout-align="space-between start">
+            <md-input-container class="md-icon-float md-block no-error">
+                <label>Search</label>
+                <md-icon class="material-icons">search</md-icon>
+                <input ng-model="vm.query.title" type="text"  ng-change="vm.getFilters()">
+            </md-input-container>
+            <div layout="row" layout-align="end center" ng-cloak style="font-size:16px">
+                <md-input-container>
+                    <label>Enabled</label>
+                    <md-select ng-model="vm.query.enabled" ng-change="vm.getFilters()">
+                        <md-option ng-value="">All</md-option>
+                        <md-option ng-value="true">Yes</md-option>
+                        <md-option ng-value="false">No</md-option>
+                    </md-select>
+                </md-input-container>
+            </div>
+            <span flex></span>
+            <div layout="row" layout-align="end center" ng-cloak style="font-size:16px">
+                <md-button ng-click="vm.showfilter = false" class="md-icon-button" layout="row" layout-align="center center">
+                    <i class="material-icons">close</i>
+                </md-button>
+            </div>
+        </div>
+    </md-toolbar>
+    <md-table-container >
+        <table md-table md-row-select multiple ng-model="vm.selectedFilters" md-progress="vm.promise">
+            <thead md-head md-order="vm.query.order" md-on-reorder="vm.getFilters" >
+            <tr md-row>
+                <th md-column class="icon"></th>
+                <!-- TODO: ORDER BY TRANSLATED TITLE -->
+                <th md-column class="icon"></th>
+                <th md-column md-order-by="id">Filter</th>
+                <th md-column md-order-by="enabled"  ng-if="vm.cms">Enabled</th>
+            </tr>
+            </thead>
+            <tbody md-body>
+            <!-- vm.filteredOffer = (vm.offers | filter: vm.filter) | limitTo: vm.query.limit : (vm.query.page-1)*vm.query.limit -->
+            <tr md-row md-select="filter" ng-repeat="filter in vm.filters">
+                <!--<td md-cell><md-button ui-sref="{{ vm.cms ? 'cms.filters.detail({id:'+filter.id+'})' : 'app.filters.details({id:'+filter.id+'})' }}"class="md-icon-button md-accent md-hue-2"><md-icon>info</md-icon></md-button></td>-->
+                <td md-cell><md-button class="md-icon-button md-accent md-hue-2"><md-icon>info</md-icon></md-button></td>
+
+                <td md-cell><md-icon md-svg-src="/img/icons/filter/{{filter.icon}}.svg" class="md-48"></md-icon></td>
+                <td md-cell><strong>{{filter.title}}</strong></td>
+                <td class="md-cell"  ng-if="vm.cms">
+                    <md-switch ng-model="filter.enabled" class="md-primary" ng-change="vm.toggleEnabled(filter)"
+                               aria-label="Enable/Disable Filter"></md-switch>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+    </md-table-container>
+    <md-table-pagination md-limit="vm.query.limit" md-limit-options="[5,10,15,25,50,100]" md-page="vm.query.page" md-total="{{vm.count}}" md-on-paginate="vm.getFilters" md-page-select></md-table-pagination>
+
+</div>
+<md-fab-speed-dial  ng-if="vm.cms" class="md-fling fixed bottom" ng-show="vm.selectedFilters.length" md-open="vm.menu.isOpen" md-direction="up">
+    <md-fab-trigger>
+        <md-button aria-label="menu" class="md-fab md-warn">
+            <md-tooltip md-direction="left" md-delay="250">Edit Filters</md-tooltip>
+            <md-icon>edit</md-icon>
+        </md-button>
+    </md-fab-trigger>
+    <md-fab-actions>
+        <md-button class="md-raised md-fab md-warn md-hue-2 md-mini" ng-click="vm.remove()" layout="row" layout-align="center center">
+            <md-tooltip md-direction="left" md-delay="250">Delete Filters</md-tooltip>
+            <i class="material-icons">delete</i>
+        </md-button>
+        <md-button class="md-raised md-fab  md-warn md-mini" ng-click="vm.bulkToggleEnabled(false)" layout="row" layout-align="center center">
+            <md-tooltip md-direction="left" md-delay="250">Disable Filters</md-tooltip>
+            <i class="material-icons">lock</i>
+        </md-button>
+        <md-button  class="md-raised md-fab  md-accent md-mini" ng-click="vm.bulkToggleEnabled(true)" layout="row" layout-align="center center">
+            <md-tooltip md-direction="left" md-delay="250">Enable Filters</md-tooltip>
+            <i class="material-icons">lock_open</i>
+        </md-button>
+    </md-fab-actions>
+</md-fab-speed-dial>

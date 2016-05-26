@@ -38,6 +38,11 @@ class CmsMenuController{
             sref:'cms.users',
             icon:'group',
             title:'Users'
+          },
+          {
+            sref:'cms.filters',
+            icon:'filter_list',
+            title:'Filters'
           }
           // {
           //   sref:'cms.roles',

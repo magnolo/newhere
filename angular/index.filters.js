@@ -7,6 +7,7 @@ import {TruncateWordsFilter} from './filters/truncate_words.filter';
 import {TrustHtmlFilter} from './filters/trust_html.filter';
 import {UcFirstFilter} from './filters/ucfirst.filter';
 import {OfferEnabledFilter} from './filters/offer_enabled.filter';
+import {FilterEnabledFilter} from './filters/filter_enabled.filter';
 
 angular.module('app.filters')
 	.filter('ngoPublished', NgoPublishedFilter)
@@ -17,4 +18,5 @@ angular.module('app.filters')
 	.filter('truncateWords', TruncateWordsFilter)
 	.filter('trustHtml', TrustHtmlFilter)
 	.filter('ucfirst', UcFirstFilter)
-	.filter('offerEnabled', OfferEnabledFilter);
+	.filter('offerEnabled', OfferEnabledFilter)
+	.filter('filterEnabled', FilterEnabledFilter);

@@ -68,7 +68,10 @@ $api->group(['middleware' => ['api', 'api.auth']], function ($api) {
     $api->put('ngo/{id}', 'Cms\NgoController@update');
 
     $api->get('categories', 'Cms\CategoryController@index');
+
     $api->get('filters', 'Cms\FilterController@index');
+    $api->get('filters/all', 'Cms\FilterController@all');
+    $api->delete('filters/{id}', 'Cms\FilterController@bulkRemove');
 
     // JUST FOR ADMINS
     $api->group(['middleware' => ['role:superadmin|admin']], function ($api) {
@@ -99,6 +102,9 @@ $api->group(['middleware' => ['api', 'api.auth']], function ($api) {
 
       $api->put('offers/{id}/toggleEnabled', 'Cms\OfferController@toggleEnabled');
       $api->patch('offers/{ids}', 'Cms\OfferController@bulkAssign');
+
+      $api->put('filters/{id}/toggleEnabled', 'Cms\FilterController@toggleEnabled');
+      $api->patch('filters/{ids}', 'Cms\FilterController@bulkAssign');
 
     });
 });
