@@ -40,7 +40,6 @@ class NgoUsersListController{
     }
 
     save() {
-        alert("saving NGO User");
         this.user.ngoUser = true;
         this.user.confirmed = true;
         if (this.$state.params.id) {
