@@ -34,8 +34,7 @@ $api->group(['middleware' => ['api']], function ($api) {
 
     $api->get('ngo/{id}', 'Cms\NgoController@show');
 
-
-
+    $api->get('offer/autocomplete/{search}', 'Cms\OfferController@autocomplete');
 
 });
 
@@ -62,7 +61,6 @@ $api->group(['middleware' => ['api', 'api.auth']], function ($api) {
 
     $api->get('users/me', 'Cms\UserController@me');
 
-    $api->get('offer/autocomplete/{search}', 'Cms\OfferController@autocomplete');
     $api->post('offers', 'Cms\OfferController@create');
     $api->get('offers', 'Cms\OfferController@index');
     $api->get('offers/{id}', 'Cms\OfferController@show');
