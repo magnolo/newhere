@@ -1,5 +1,5 @@
 class CmsOffersListController{
-    constructor($sessionStorage, OfferService, NgoService, $filter, $state, DialogService){
+    constructor($sessionStorage, OfferService, NgoService, $filter, $state, DialogService, CategoryService, FilterService){
         'ngInject';
         var vm = this;
         vm.menu = {
@@ -12,10 +12,19 @@ class CmsOffersListController{
         this.DialogService = DialogService;
         this.NgoService = NgoService;
         this.OfferService = OfferService;
+        this.CategoryService = CategoryService;
+        this.FilterService = FilterService;
         if(this.cms){
           this.NgoService.fetchAll().then((response) => {
               vm.ngos = response;
           });
+          this.CategoryService.all((categories) =>{
+              vm.categories = categories;
+          });
+          this.FilterService.all((filters) =>{
+              vm.filters = filters;
+          });
+
         }
 
         this.selectedOffers = [];

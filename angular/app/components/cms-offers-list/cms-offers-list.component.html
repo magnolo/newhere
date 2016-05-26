@@ -43,6 +43,20 @@
                       <md-option ng-repeat="ngo in vm.ngos | orderBy: 'organisation'" ng-value="ngo.id">{{ngo.organisation}}</md-option>
                     </md-select>
                 </md-input-container>
+                <md-input-container>
+                    <label>Categories</label>
+                    <md-select ng-model="vm.query.category_id"  ng-change="vm.getOffers()">
+                        <md-option ng-value="">All</md-option>
+                        <md-option ng-repeat="category in vm.categories | orderBy: 'title'" ng-value="category.id">{{category.title}}</md-option>
+                    </md-select>
+                </md-input-container>
+                <md-input-container>
+                    <label>Filters</label>
+                    <md-select ng-model="vm.query.filter_id"  ng-change="vm.getOffers()">
+                        <md-option ng-value="">All</md-option>
+                        <md-option ng-repeat="filter in vm.filters | orderBy: 'title'" ng-value="filter.id">{{filter.title}}</md-option>
+                    </md-select>
+                </md-input-container>
             </div>
             <span flex></span>
             <div layout="row" layout-align="end center" ng-cloak style="font-size:16px">
