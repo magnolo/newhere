@@ -70,8 +70,8 @@ $api->group(['middleware' => ['api', 'api.auth']], function ($api) {
     $api->get('categories', 'Cms\CategoryController@index');
     $api->get('filters', 'Cms\FilterController@index');
 
-    // FOR ADMINS AND NGOs
-    $api->group(['middleware' => ['role:superadmin|admin|organisation']], function ($api) {
+    // FOR ADMINS AND NGO-admins
+    $api->group(['middleware' => ['role:superadmin|admin|organisation-admin']], function ($api) {
         $api->post('users', 'Cms\UserController@create');
         $api->delete('users/{id}', 'Cms\UserController@bulkRemove');
         $api->get('ngoUsers', 'Cms\UserController@byNgo');

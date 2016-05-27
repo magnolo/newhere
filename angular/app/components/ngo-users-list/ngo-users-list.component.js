@@ -12,8 +12,9 @@ class NgoUsersListController{
         this.DialogService = DialogService;
         this.NgoService = NgoService;
 
-        this.NgoService.fetchNgoUsers(this.$state.params.id).then(function(response) {
-            vm.users = response;
+        this.NgoService.fetchNgoUsers(this.$state.params.id).then(function(users) {
+            vm.users = users;
+            //TODO: filter Roles
         });
         this.listFilter = {
             search: ''
@@ -33,6 +34,9 @@ class NgoUsersListController{
     }
 
     addUser() {
+        this.user = {
+            isNgoAdmin: false
+        };
         this.DialogService.fromTemplate('createNgoUser', {
             controller: () => this,
             controllerAs: 'vm'
@@ -41,7 +45,6 @@ class NgoUsersListController{
 
     save() {
         this.user.ngoUser = true;
-        this.user.confirmed = true;
         if (this.$state.params.id) {
             this.user.ngoId = this.$state.params.id;
         }

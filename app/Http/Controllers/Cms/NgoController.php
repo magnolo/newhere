@@ -72,7 +72,7 @@ class NgoController extends Controller
             $ngoUser = Auth::user();
         } else {
             $ngoUser = $this->storeAndSendMail($request->get('organisation'), $request->email, $request->password);
-            $organisationRole = Role::where('name', 'organisation')->firstOrFail();
+            $organisationRole = Role::where('name', 'organisation-admin')->firstOrFail();
             $ngoUser->attachRole($organisationRole);
         }
 

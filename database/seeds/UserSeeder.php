@@ -23,7 +23,7 @@ class UserSeeder extends Seeder
         $user->save();
         $user->attachRole($superAdmin);
 
-        $organisation = Role::where('name', 'organisation')->firstOrFail();
+        $organisation = Role::where('name', 'organisation-admin')->firstOrFail();
         $ngo = new User;
         $ngo->email = "wwf@ngo.at";
         $ngo->password = Hash::make('ngouser');

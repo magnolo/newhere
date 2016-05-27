@@ -41,11 +41,11 @@ class UserController extends Controller
         $ngoId = $request->header('ngoId');
         if ($ngoId) {
             $ngo = Ngo::findOrFail($ngoId);
-            $ngoUsers = $ngo->users;
+            $ngoUsers = $ngo->users()->with(['roles'])->get();
         } else {
             $user = Auth::user();
             $ngo = $user->ngos()->firstOrFail();
-            $ngoUsers = $ngo->users()->where('user_id', '<>', $user->id)->get();
+            $ngoUsers = $ngo->users()->with(['roles'])->where('user_id', '<>', $user->id)->get();
         }
         return response()->success(compact('ngoUsers'));
     }
@@ -149,7 +149,8 @@ class UserController extends Controller
             'email' => 'required|email',
             'name' => 'required|min:3|max:255',
             'password' => 'required|min:5',
-            're_password' => 'required|min:5'
+            're_password' => 'required|min:5',
+            'isNgoAdmin' => 'required'
         ]);
 
         if ($request->get('password') != $request->get('re_password')) {
@@ -164,7 +165,11 @@ class UserController extends Controller
         $user->confirmation_code = str_random(30);
         $user->save();
         // attach organisation role
-        $ngoRole = Role::where('name', 'organisation')->firstOrFail();
+        if ($request->get('isNgoAdmin')) {
+            $ngoRole = Role::where('name', 'organisation-admin')->firstOrFail();
+        } else {
+            $ngoRole = Role::where('name', 'organisation-user')->firstOrFail();
+        }
         $user->roles()->attach($ngoRole);
         // attach ngo
         if ($request->has('ngoId')) {
