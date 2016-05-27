@@ -2,57 +2,112 @@
 
 namespace App\Http\Controllers\Cms;
 
-use App\Http\Requests,
-    App\Http\Controllers\Controller;
-use App\Filter;
+use Illuminate\Http\Request,
+    App,
+    DB,
+    App\Http\Requests,
+    App\Http\Controllers\Controller,
+    App\Filter,
+    App\Language;
 
 class FilterController extends Controller
 {
-    public function index()
+    public function __construct(){
+        App::setLocale(app('request')->header('language'));
+    }
+
+    public function index(Request $request)
     {
-        $filters = Filter::where('parent_id', null)->with('children')->orderBy('type')->orderBy('id')->get();
+
+        if($request->get('all')){
+            $filters = Filter::withTranslation()->orderBy('id', 'ASC')->get();
+        }
+        else{
+//            $filters = Filter::where('parent_id', null)->with('children')->orderBy('type')->orderBy('id')->get();
+            $filters = Filter::where('parent_id',null)->withTranslation()->orderBy('type')->get();
+            $filters->load('children');
+        }
+
         return response()->success(compact('filters'));
     }
-    public function all()
+    public function show($id)
     {
-        $filters = Filter::with(['children', 'parent'])->orderBy('id')->get();
-        return response()->success(compact('filters'));
+        $filter = Filter::findOrFail((int)$id);
+        $languages = Language::where('enabled', true)->get();
+        foreach($languages as $language){
+            $filter->translate($language->language);
+        }
+        return response()->json($filter);
     }
-    public function toggleEnabled(Request $request, $id) {
+
+    public function create(Request $request)
+    {
         $this->validate($request, [
-            'enabled' => 'required'
+            'language'    => 'required|min:2|max:2',
+            'icon' => 'required|min:1|max:20',
+            'title' => 'required|max:255'
         ]);
 
-        $filter = Filter::find((int)$id);
-        if (!$filter) {
+        DB::beginTransaction();
 
-            return response()->error('Filter not found', 404);
-        }
+        $locale = $request->get('language');
+        $filter = new Filter();
+        $filter->icon = $request->get('icon');
+        $filter->parent_id = $request->get('parent_id');
+        $filter->save();
 
-        $modified = false;
-        if (isset($request->enabled)) {
-            $filter->enabled = (bool)$request->enabled;
-            $modified = true;
-        }
+        $filter->translateOrNew($locale)->title = $request->get('title');
+        $filter->save();
 
-        if ($modified) {
+        if($locale !== "de"){
+            $filter->translateOrNew('de')->title = $request->get('title');
             $filter->save();
         }
 
+        DB::commit();
+
+        return response()->json($filter);
+    }
+
+    public function update(Request $request, $id)
+    {
+        $this->validate($request, [
+            'icon' => 'required|min:1|max:20',
+            'translations' => 'required'
+        ]);
+
+
+        $filter = Filter::find((int)$id);
+        if (!$filter) {
+            return response()->error('Filter not found', 404);
+        }
+
+        DB::beginTransaction();
+
+        $locale = $request->get('language');
+        $filter->icon = $request->get('icon');
+        $filter->parent_id = $request->get('parent_id');
+
+        foreach($request->get('translations') as $translation){
+            $filter->translateOrNew($translation['locale'])->title = $translation['title'];
+
+        }
+        $filter->save();
+
+        DB::commit();
+
         return response()->success(compact('filter'));
     }
-    function bulkRemove($ids){
-        $filtersQ = Filter::whereIn('id', explode(',', $ids));
-        $filters = $filtersQ->get();
-        $deletedRows = $filtersQ->delete();
 
-        return response()->success(compact('filters', 'deletedRows'));
-    }
-    public function bulkAssign(Request $request, $ids){
-        $filtersQ = Filter::whereIn('id', explode(',', $ids));
-        $filters = $filtersQ->get();
-        $updatedRows = $filtersQ->update([$request->get('field') => $request->get('value')]);
+    public function toggleEnabled(Request $request, $id){
+        $this->validate($request, [
+            'enabled'  => 'required',
+        ]);
 
-        return response()->success(compact('filters', 'updatedRows'));
+        $filter = Filter::findOrFail((int)$id);
+        $filter->enabled = $request->get('endabled');
+
+        return response()->success(compact('filter'));
+
     }
 }

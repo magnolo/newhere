@@ -29,7 +29,8 @@ import {LoginFormComponent} from './app/components/login-form/login-form.compone
 import {RegisterFormComponent} from './app/components/register-form/register-form.component';
 import {OfferFormComponent} from './app/components/offer-form/offer-form.component';
 import {CmsOffersListComponent} from './app/components/cms-offers-list/cms-offers-list.component';
-import {CmsFiltersListComponent} from './app/components/cms-filters-list/cms-filters-list.component'
+import {CmsFiltersListComponent} from './app/components/cms-filters-list/cms-filters-list.component';
+import {CmsFilterFormComponent} from './app/components/cms-filter-form/cms-filter-form.component';
 
 angular.module('app.components')
 	.component('wizardOffer', WizardOfferComponent)
@@ -63,4 +64,5 @@ angular.module('app.components')
 	.component('registerForm', RegisterFormComponent)
 	.component('offerForm', OfferFormComponent)
 	.component('cmsOffersList', CmsOffersListComponent)
-	.component('cmsFiltersList', CmsFiltersListComponent);
+	.component('cmsFiltersList', CmsFiltersListComponent)
+	.component('cmsFilterForm', CmsFilterFormComponent);

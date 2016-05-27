@@ -318,5 +318,17 @@ export function RoutesConfig($stateProvider, $urlRouterProvider) {
 				}
 			}
 		})
+		.state('cms.filters.details', {
+			url: '/:id',
+			data: {
+				auth:true,
+				roles:['admin', 'superadmin']
+			},
+			views: {
+				'details': {
+					templateUrl: getCmsView('filter')
+				}
+			}
+		})
 	;
 }
