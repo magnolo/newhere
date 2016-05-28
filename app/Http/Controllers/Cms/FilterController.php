@@ -66,7 +66,7 @@ class FilterController extends Controller
 
         DB::commit();
 
-        return response()->json($filter);
+        return response()->json(compact('filter'));
     }
 
     public function update(Request $request, $id)

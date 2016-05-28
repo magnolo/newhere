@@ -11,7 +11,7 @@ class Filter extends Model
 
     protected $table = 'filters';
     public $translatedAttributes = ['title'];
-    protected $fillable = ['parent_id', 'icon', 'enabled'];
+    protected $fillable = ['icon', 'enabled'];
 
     public function children()
     {
