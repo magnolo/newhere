@@ -34,20 +34,16 @@ class FilterSelectorController{
       else{
         let idx = null;
         angular.forEach(this.selectedFilter, (f, key) =>{
-           console.log(f.id+' '+filter.id);
           if(f.id == filter.id){
             idx = key;
           }
         });
-        console.log(idx);
         if(idx === parseInt(idx, 10)){
            this.selectedFilter.splice(idx, 1);
         }
         else{
-           console.log('push');
           this.selectedFilter.push(filter);
         }
-        console.log(this.selectedFilter);
 
       }
       this.item = this.selectedFilter;
