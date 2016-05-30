@@ -99,6 +99,7 @@ $api->group(['middleware' => ['api', 'api.auth']], function ($api) {
       $api->post('categories', 'Cms\CategoryController@create');
       $api->put('categories/{id}', ['uses' => 'Cms\CategoryController@update']);
       $api->put('categories/{id}/toggleEnabled', 'Cms\CategoryController@toggleEnabled');
+      $api->put('categories/{id}/move', 'Cms\CategoryController@move');
 
       $api->put('offers/{id}/toggleEnabled', 'Cms\OfferController@toggleEnabled');
       $api->patch('offers/{ids}', 'Cms\OfferController@bulkAssign');

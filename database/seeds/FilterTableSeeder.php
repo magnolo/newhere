@@ -31,7 +31,7 @@ class FilterTableSeeder extends Seeder
         $filters = [
           'family' => [
             'de' => 'Familie',
-            'en' => 'Family',
+            'en' => 'Families',
             'type' => 'icon',
             'icon' => 'family'
           ],
@@ -59,9 +59,9 @@ class FilterTableSeeder extends Seeder
                 'en' => '0-5 years',
                 'icon' => ''
               ],
-              '5-10' => [
-                'de' => '5-10 Jahre',
-                'en' => '5-10 years',
+              '6-10' => [
+                'de' => '6-10 Jahre',
+                'en' => '6-10 years',
                 'icon' => ''
               ],
               '11-17' => [
@@ -69,14 +69,14 @@ class FilterTableSeeder extends Seeder
                 'en' => '11-17 years',
                 'icon' => ''
               ],
-              'under-27' => [
-                'de' => 'unter 27',
-                'en' => 'under 27',
+              '18-26' => [
+                'de' => '18-26 Jahre',
+                'en' => '18-26 years',
                 'icon' => ''
               ],
               '27+' => [
-                'de' => '27+',
-                'en' => '27+',
+                'de' => '27+ Jahre',
+                'en' => '27+ years',
                 'icon' => ''
               ]
             ]
@@ -95,7 +95,7 @@ class FilterTableSeeder extends Seeder
           ],
           'culture-pass' => [
             'de' => 'Kulturpass',
-            'en' => 'Culture Pass',
+            'en' => 'Culture-pass',
             'type' => 'icon',
             'icon' => 'culture'
           ],
@@ -104,6 +104,12 @@ class FilterTableSeeder extends Seeder
             'en' => 'Free',
             'type' => 'icon',
             'icon' => 'free'
+          ],
+          'lgbtqi' => [
+            'de' => 'LGBTQI',
+            'en' => 'LGBTQI',
+            'type' => 'icon',
+            'icon' => 'lgbtqi'
           ],
           'country-of-origin' => [
             'de' => 'Herkunftsland',
@@ -157,7 +163,89 @@ class FilterTableSeeder extends Seeder
                 'icon' => ''
               ]
             ]
-          ]
+          ],
+          'language-of-service-or-offer' => [
+            'de' => 'Sprache des Angebotes',
+            'en' => 'Language of service or offer',
+            'type' => 'dropdown',
+            'icon' => '',
+            'children' => [
+              'german' => [
+                'de' => 'Deutsch',
+                'en' => 'German',
+                'icon' => ''
+              ],
+              'english' => [
+                'de' => 'Englisch',
+                'en' => 'English',
+                'icon' => ''
+              ],
+              'french' => [
+                'de' => 'Französisch',
+                'en' => 'French',
+                'icon' => ''
+              ],
+              'arabic' => [
+                'de' => 'Arabisch',
+                'en' => 'Arabic',
+                'icon' => ''
+              ],
+              'farsi' => [
+                'de' => 'Farsi',
+                'en' => 'Farsi',
+                'icon' => ''
+              ],
+              'kurdish' => [
+                'de' => 'Kursisch',
+                'en' => 'Kurdish',
+                'icon' => ''
+              ],
+              'urdu' => [
+                'de' => 'Urdu',
+                'en' => 'Urdu',
+                'icon' => ''
+              ],
+            ],
+          ],
+          'status' => [
+              'de' => 'Status',
+              'en' => 'Status',
+              'type' => 'dropdown',
+              'icon' => '',
+              'children' => [
+                'asylum' => [
+                  'de' => 'Asyl',
+                  'en' => 'Asylum',
+                  'icon' => ''
+                ],
+                'subsidiary-protection' => [
+                  'de' => 'Subsidiärer Schutz',
+                  'en' => 'Subsidiary Protection',
+                  'icon' => ''
+                ],
+                'ongoing-procedure' => [
+                  'de' => 'Subsidiärer Schutz',
+                  'en' => 'Ongoing Procedure',
+                  'icon' => ''
+                ],
+                'umrs' => [
+                  'de' => 'UMRs',
+                  'en' => 'UMRs',
+                  'icon' => ''
+                ],
+                'unregistered' => [
+                  'de' => 'Noch nicht registriert',
+                  'en' => 'Unregistered',
+                  'icon' => ''
+                ],
+                'rejected-asylum-application' => [
+                  'de' => 'Negativer Asylbescheid',
+                  'en' => 'Rejected Asylum Application',
+                  'icon' => ''
+                ]
+              ]
+            ]
+
         ];
 
 

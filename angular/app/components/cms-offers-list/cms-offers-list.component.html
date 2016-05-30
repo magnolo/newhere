@@ -40,7 +40,7 @@
                     <label>NGO</label>
                     <md-select ng-model="vm.query.ngo_id"  ng-change="vm.getOffers()">
                       <md-option ng-value="">All</md-option>
-                      <md-option ng-repeat="ngo in vm.ngos" ng-value="ngo.id">{{ngo.organisation}}</md-option>
+                      <md-option ng-repeat="ngo in vm.ngos | orderBy: 'organisation'" ng-value="ngo.id">{{ngo.organisation}}</md-option>
                     </md-select>
                 </md-input-container>
             </div>

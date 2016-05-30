@@ -17,7 +17,14 @@ class TreeviewController {
             if (entry.id == 0) {
                 this.items.splice(key, 1);
             }
-        })
+        });
+
+        if (typeof this.options.onDragDrop == "function") {
+            this.options.onDragDrop(
+                item, index, this.item
+            );
+        }
+
         return item;
     }
     onMovedComplete(index, data, evt) {
