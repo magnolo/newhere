@@ -11,6 +11,7 @@ class FilterSelectorController{
           this.filters = list;
           if(this.item){
             this.selectedFilter = angular.copy(this.item);
+
             angular.forEach(this.selectedFilter, (filter, key) =>{
               if(filter.parent_id){
                 this.dropdownFilters[filter.slug] = filter;
@@ -22,6 +23,7 @@ class FilterSelectorController{
     }
     toggleFilter(filter){
       if(filter.parent_id){
+
         angular.forEach(this.selectedFilter, (f, key) =>{
           if(f.parent_id == filter.parent_id){
             this.selectedFilter.splice(key,1);
@@ -36,26 +38,25 @@ class FilterSelectorController{
             idx = key;
           }
         });
-        if(idx){
+        if(idx === parseInt(idx, 10)){
            this.selectedFilter.splice(idx, 1);
         }
         else{
           this.selectedFilter.push(filter);
         }
+
       }
       this.item = this.selectedFilter;
     }
+
     inSelection(filter){
       let found = false;
       angular.forEach(this.selectedFilter, (f, key) =>{
         if(f.id == filter.id){
-        found = true;
+           found = true;
         }
       });
-      if(found){
-        return true;
-      }
-      return false;
+      return found;
     }
     $onInit(){
 
