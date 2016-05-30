@@ -26,7 +26,7 @@
             <tr md-row>
                 <th md-column md-order-by="name">User Name</th>
                 <th md-column md-order-by="email">Email</th>
-                <!--<th md-column md-order-by="isNgoAdmin">NGO Amdin</th>-->
+                <th md-column md-order-by="isNgoAdmin">NGO Amdin</th>
             </tr>
             </thead>
             <tbody md-body>
@@ -35,10 +35,10 @@
                      | limitTo: vm.listPagination.limit : (vm.listPagination.page-1)*vm.listPagination.limit">
                 <td class="md-cell">{{user.name}}</td>
                 <td class="md-cell">{{user.email}}</td>
-                <!--<td class="md-cell">
+                <td class="md-cell">
                     <md-switch ng-model="user.isNgoAdmin" ng-change="vm.toggleAdmin(user)"
                                aria-label="NGO Administrator"></md-switch>
-                </td>-->
+                </td>
             </tr>
             </tbody>
         </table>

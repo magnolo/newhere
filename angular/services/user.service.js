@@ -63,6 +63,19 @@ export class UserService {
                 success(response);
             });
     }
+    toggleNgoUserAdmin(ngoUser) {
+        this.API.one('ngoUsers', ngoUser.id).customPUT({
+            isNgoAdmin: ngoUser.isNgoAdmin ? 1 : 0
+        },'toggleAdmin').then(
+            (success) => {
+                this.ToastService.show('User updated.');
+            },
+            (error) => {
+                this.ToastService.show('User update failed. Please try again');
+                ngoUser.isNgoAdmin = !ngoUser.isNgoAdmin;
+            }
+        );
+    }
     bulkRemove(list, success, error){
       var ids = [];
       angular.forEach(list, (item) => {

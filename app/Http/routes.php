@@ -76,6 +76,8 @@ $api->group(['middleware' => ['api', 'api.auth']], function ($api) {
         $api->delete('users/{id}', 'Cms\UserController@bulkRemove');
         $api->get('ngoUsers', 'Cms\UserController@byNgo');
         $api->post('ngoUsers', 'Cms\UserController@createNgoUser');
+        $api->put('ngoUsers/{id}/toggleAdmin', 'Cms\UserController@toggleAdmin');
+
     });
 
     // JUST FOR ADMINS

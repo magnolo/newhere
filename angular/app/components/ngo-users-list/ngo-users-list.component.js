@@ -12,9 +12,15 @@ class NgoUsersListController{
         this.DialogService = DialogService;
         this.NgoService = NgoService;
 
-        this.NgoService.fetchNgoUsers(this.$state.params.id).then(function(users) {
+        this.NgoService.fetchNgoUsers(this.$state.params.id).then(function (users) {
+            angular.forEach(users, function (user) {
+                var roles = [];
+                angular.forEach(user.roles, function (role) {
+                    roles.push(role.name);
+                });
+                user.isNgoAdmin = (roles.indexOf("organisation-admin") > -1);
+            });
             vm.users = users;
-            //TODO: filter Roles
         });
         this.listFilter = {
             search: ''
@@ -41,6 +47,10 @@ class NgoUsersListController{
             controller: () => this,
             controllerAs: 'vm'
         });
+    }
+
+    toggleAdmin(ngoUser) {
+        this.UserService.toggleNgoUserAdmin(ngoUser);
     }
 
     save() {

@@ -192,4 +192,29 @@ class UserController extends Controller
 
       return response()->success(compact('users', 'deletedRows'));
     }
+
+    public function toggleAdmin(Request $request, $id) {
+        $this->validate($request, [
+            'isNgoAdmin' => 'required'
+        ]);
+
+        $user = User::find((int)$id);
+        if (!$user) {
+            return response()->error('User not found', 404);
+        }
+
+        $ngoAdminRole = Role::where('name', 'organisation-admin')->firstOrFail();
+        $ngoUserRole = Role::where('name', 'organisation-user')->firstOrFail();
+        if($request->get('isNgoAdmin')) {
+            $user->roles()->attach($ngoAdminRole);
+        } else {
+            $user->roles()->detach($ngoAdminRole->id);
+            // attach organisation-user role if not already attached
+            if (!$user->roles->contains('id', $ngoUserRole->id)) {
+                $user->roles()->attach($ngoUserRole);
+            }
+        }
+
+        return response()->success(compact('user'));
+    }
 }
