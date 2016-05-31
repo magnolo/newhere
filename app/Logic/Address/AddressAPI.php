@@ -31,13 +31,13 @@ class AddressAPI
       if ($json === null) {
          return null;
       }
-      
+
       $feature = $json['features'][0];
       $properties = $feature['properties'];
 
-      if ($properties['street'] ==  $street && $properties['housenumber'] ==  $streetnumber && $properties['postalcode'] == $zip) {
+      //if ($properties['street'] ==  $street && $properties['housenumber'] ==  $streetnumber && $properties['postalcode'] == $zip) {
          return $feature['geometry']['coordinates'];
-      }
+    //  }
 
       return null;
    }

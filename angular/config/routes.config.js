@@ -31,7 +31,7 @@ export function RoutesConfig($stateProvider, $urlRouterProvider) {
             }
         })
         .state('app.start', {
-            url: '/start',
+            abstract:true,
             data: {},
             views: {
                 'header@app': {
@@ -45,8 +45,27 @@ export function RoutesConfig($stateProvider, $urlRouterProvider) {
                 }
             }
         })
-
-
+				.state('app.start.categories', {
+            url: '/start',
+            data: {},
+            views: {
+                'content@app.start': {
+                    templateUrl: getAppView('categories')
+                }
+            }
+        })
+				.state('app.start.categories.sub', {
+            url: '/:slug',
+            data: {},
+            views: {
+                'content@app.start': {
+                    templateUrl: getAppView('categories-sub')
+                },
+								'toolbar@app.start': {
+										templateUrl: getAppView('categories-toolbar')
+								}
+            }
+        })
 
     .state('app.landing', {
             url: '/',

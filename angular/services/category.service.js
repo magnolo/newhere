@@ -34,9 +34,23 @@ export class CategoryService {
                 this._promise = null;
             }, error);
         }
+    }
+    bySlug(slug, success, error) {
+
+        this.API.one('categories', slug).get().then((response) => {
+            this.category = response;
+            success(response);
+        }, error);
 
     }
-
+    getOffers(success){
+      console.log(this.category);
+      if(this.category){
+        this.API.one('categories', this.category.slug).getList('offers').then((offers) => {
+          success(offers);
+        })
+      }
+    }
     flattened(success, error, force) {
         if (angular.isDefined(this.flattenedCategories) && !force) {
             success(this.flattenedCategories);
@@ -66,7 +80,7 @@ export class CategoryService {
             }, error);
         }
     }
-    
+
     save(category) {
         if (category.id && category.id != 'new') {
             return this.category.save().then((response) => {
@@ -96,7 +110,7 @@ export class CategoryService {
         }
 
     }
-    
+
     move(item, newIndex, newParent) {
         this.API.one('categories', item.id).customPUT({
             sortindex: newIndex,
