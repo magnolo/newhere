@@ -82,23 +82,14 @@ export function RoutesConfig($stateProvider, $urlRouterProvider) {
 			}
 		})
 		.state('app.ngo', {
-			url: '/ngo/{id}',
-			data: {},//{auth: true} would require JWT auth for this route
-			views: {
-				'main@app': {
-					templateUrl: getView('ngo')
-				}
-			}
-		})
-		.state('app.myngo', {
-			url: '/my-ngo',
+			url: '/ngo',
 			data: {
 				auth:true,
 				roles:['organisation']
 			},
 			views: {
 				'main@app': {
-					templateUrl: getView('my-ngo')
+					templateUrl: getView('ngo')
 				}
 			}
 		})

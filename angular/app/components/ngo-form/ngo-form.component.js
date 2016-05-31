@@ -1,41 +1,12 @@
 class NgoFormController{
-    constructor($auth, NgoService, ToastService, $state, LanguageService, $http, $q) {
+    constructor($auth, NgoService, ToastService, $state, LanguageService) {
         'ngInject';
-
-        this.$q = $q;
-        this.aborter = $q.defer();
-        this.$http = $http;
-        angular.element(document.querySelector('#addressSearch')).$valid = false;
-
 
         this.$auth = $auth;
         this.NgoService = NgoService;
         this.ToastService = ToastService;
         this.$state = $state;
         this.$LanguageService = LanguageService;
-    }
-
-    querySearch(query) {
-        if (this.$http.pendingRequests.length) {
-            this.aborter.resolve();
-            this.aborter = this.$q.defer();
-        }
-        return this.$http.get('/api/offer/autocomplete/' + query, {
-            timeout: this.aborter.promise
-        }).then(function(response) {
-            return response.data; //
-        });
-    }
-
-    selectedItemChange(item) {
-        if (!item) return;
-        if (!this.ngo) {
-            this.ngo = {};
-        }
-        this.ngo.street = item.street;
-        this.ngo.street_number = item.number;
-        this.ngo.city = item.city;
-        this.ngo.zip = item.zip;
     }
 
     register() {
