@@ -13,7 +13,18 @@ export class NgoService{
     one(){
         var vm = this;
         return this.$q(function(resolve) {
-            vm.API.one('ngo').get().then(function (response) {
+            vm.API.one('ngos/my').get().then(function (response) {
+                resolve(response)
+            }, function (error) {
+                vm.ToastService.show("Fetching NGO failed");
+            });
+        });
+    }
+
+    oneById(id){
+        var vm = this;
+        return this.$q(function(resolve) {
+            vm.API.one('ngo',id).get().then(function (response) {
                 resolve(response)
             }, function (error) {
                 vm.ToastService.show("Fetching NGO failed");
