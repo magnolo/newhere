@@ -72,9 +72,13 @@ class OfferTableSeeder extends Seeder
             if(!empty($row[18]))
               $offer->website = $row[18];
 
-            $coordinates = $addressAPI->getCoordinates($offer->street, $offer->streetnumber, $offer->zip);
-            $offer->latitude = $coordinates[0];
-            $offer->longitude = $coordinates[1];
+            $this->command->info($offer->street." ".$offer->streetnumber.", ". $offer->zip);
+            if($offer->street != "" && $offer->streetnumber != "" && $offer->zip != ""){
+              $coordinates = $addressApi->getCoordinates($offer->street, $offer->streetnumber, $offer->zip);
+              $offer->latitude = $coordinates[0];
+              $offer->longitude = $coordinates[1];
+            }
+
             $offer->save();
 
             if(!empty($row[4])) $offer->translateOrNew('de')->title = $row[4];

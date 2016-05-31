@@ -5,6 +5,7 @@ export class MapService {
         this.tokens = {
             mapbox: 'pk.eyJ1IjoibWFnbm9sbyIsImEiOiJuSFdUYkg4In0.5HOykKk0pNP1N3isfPQGTQ'
         }
+
         this.$rootScope = $rootScope;
         this.center = {
             lat: 48.209272,
@@ -12,10 +13,10 @@ export class MapService {
             zoom: 12
         };
         this.controls = {
-                   fullscreen: {
-                       position: 'topleft'
-                   }
-               }
+            fullscreen: {
+                position: 'topleft'
+            }
+        }
         this.layers = {
             baselayers: {
                 xyz: {
@@ -32,9 +33,27 @@ export class MapService {
             }
         };
         this.markers = {};
+        this.setMarkers = (offers) => {
+            var markers = {}
 
+            angular.forEach(offers, (offer, key) => {
+              var marker = {
+                  lng:parseFloat(offer.latitude),
+                  lat:parseFloat(offer.longitude),
+                  message:offer.title
+              };
+              markers[offer.id+'_'+key] = marker;
+            });
+            console.log(markers);
+            this.markers = markers;
+        }
     }
+    $onInit(){
+      this.markers = {};
+    }
+
     getLocation(success, error) {
+
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition((position) => {
                 this.center.lat = position.coords.latitude;
@@ -59,7 +78,5 @@ export class MapService {
     setLocation() {
 
     }
-    setMarkers(offers){
 
-    }
 }

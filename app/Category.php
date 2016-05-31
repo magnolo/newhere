@@ -10,7 +10,7 @@ class Category extends Model
     use Translatable;
 
     public $translatedAttributes = ['title', 'description'];
-    protected $fillable = ['icon', 'disabled', 'title', 'description'];
+    protected $fillable = ['image_id', 'disabled', 'title', 'description'];
 
     public function children()
     {
@@ -21,8 +21,15 @@ class Category extends Model
     {
         return $this->hasOne('App\Category', 'id', 'parent_id');
     }
+
     public function offers()
     {
         return $this->belongsToMany('App\Offer', 'offer_categories', 'category_id', 'offer_id');
+
+    }
+    public function image()
+    {
+        return $this->belongsTo('App\Image');
+
     }
 }
