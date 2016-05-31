@@ -1,33 +1,54 @@
 export function RoutesConfig($stateProvider, $urlRouterProvider) {
-	'ngInject';
+    'ngInject';
 
-	var getView = (viewName) => {
-		return `./views/app/pages/${viewName}/${viewName}.page.html`;
-	};
+    var getView = (viewName) => {
+        return `./views/app/pages/${viewName}/${viewName}.page.html`;
+    };
+    var getAppView = (viewName) => {
+        return `./views/app/pages/app/${viewName}/${viewName}.page.html`;
+    };
 
-	var getCmsView = (viewName) => {
-		return `./views/app/pages/cms/${viewName}/${viewName}.page.html`;
-	};
+    var getCmsView = (viewName) => {
+        return `./views/app/pages/cms/${viewName}/${viewName}.page.html`;
+    };
 
-	$urlRouterProvider.otherwise('/');
+    $urlRouterProvider.otherwise('/');
 
-	$stateProvider
-		.state('app', {
-			abstract: true,
-			views: {
-				front:{
-					templateUrl: getView('main')
-				},
-				'header@app': {
-					templateUrl: getView('header')
-				},
-				'footer@app': {
-					templateUrl: getView('footer')
-				},
-				'main@app': {}
-			}
-		})
-		.state('app.landing', {
+    $stateProvider
+        .state('app', {
+            abstract: true,
+            views: {
+                front: {
+                    templateUrl: getView('main')
+                },
+                'header@app': {
+                    templateUrl: getView('header')
+                },
+                'footer@app': {
+                    templateUrl: getView('footer')
+                },
+                'main@app': {}
+            }
+        })
+        .state('app.start', {
+            url: '/start',
+            data: {},
+            views: {
+                'header@app': {
+                    templateUrl: getAppView('header')
+                },
+                'main@app': {
+                    templateUrl: getAppView('start')
+                },
+                'footer@app': {
+                    templateUrl: getAppView('footer')
+                }
+            }
+        })
+
+
+
+    .state('app.landing', {
             url: '/',
             data: {},
             views: {
@@ -37,23 +58,15 @@ export function RoutesConfig($stateProvider, $urlRouterProvider) {
             }
         })
         .state('app.login', {
-			url: '/login',
-			data: {},//{auth: true} would require JWT auth for this route
-			views: {
-				'main@app': {
-					templateUrl: getView('login')
-				}
-			}
-		})
-        // .state('app.register', {
-        //     url: '/register',
-        //     data: {},//{auth: true} would require JWT auth for this route
-        //     views: {
-        //         'main@': {
-        //             templateUrl: getView('register')
-        //         }
-        //     }
-        // })
+            url: '/login',
+            data: {}, //{auth: true} would require JWT auth for this route
+            views: {
+                'main@app': {
+                    templateUrl: getView('login')
+                }
+            }
+        })
+
 		.state('app.ngoRegister', {
 			url: '/ngoRegister',
 			data: {},//{auth: true} would require JWT auth for this route
@@ -287,38 +300,37 @@ export function RoutesConfig($stateProvider, $urlRouterProvider) {
 		})
 
 
-		.state('cms.offers',{
-			url:'/offers',
-			data:{
-				auth:true,
-				roles:['admin', 'superadmin']
-			},
-			views: {
-				'main@cms': {
-					templateUrl: getCmsView('offers')
-				}
-			}
-		})
-		.state('cms.offers.new',{
-			url:'/new',
-			data:{},
-			views: {
-				'main@cms': {
-					templateUrl: getCmsView('new-offer')
-				}
-			}
-		})
-		.state('cms.offers.detail', {
-			url: '/{id}',
-			data: {
-				auth: true,
-				roles: ['admin', 'superadmin']
-			},
-			views: {
-				'main@cms': {
-					templateUrl: getCmsView('offer-detail')
-				}
-			}
-		})
-	;
+    .state('cms.offers', {
+            url: '/offers',
+            data: {
+                auth: true,
+                roles: ['admin', 'superadmin']
+            },
+            views: {
+                'main@cms': {
+                    templateUrl: getCmsView('offers')
+                }
+            }
+        })
+        .state('cms.offers.new', {
+            url: '/new',
+            data: {},
+            views: {
+                'main@cms': {
+                    templateUrl: getCmsView('new-offer')
+                }
+            }
+        })
+        .state('cms.offers.detail', {
+            url: '/{id}',
+            data: {
+                auth: true,
+                roles: ['admin', 'superadmin']
+            },
+            views: {
+                'main@cms': {
+                    templateUrl: getCmsView('offer-detail')
+                }
+            }
+        });
 }

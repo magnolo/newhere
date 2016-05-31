@@ -1,6 +1,7 @@
+import {LocatorComponent} from './app/components/locator/locator.component';
+import {MapComponent} from './app/components/map/map.component';
 import {NgoUsersListComponent} from './app/components/ngo-users-list/ngo-users-list.component';
 import {WizardOfferComponent} from './app/components/wizard-offer/wizard-offer.component';
-
 import {CmsCategoryTranslationItemComponent} from './app/components/cms-category-translation-item/cms-category-translation-item.component';
 import {CmsCategoryTranslationTableComponent} from './app/components/cms-category-translation-table/cms-category-translation-table.component';
 import {WidgetCategoriesComponent} from './app/components/widget-categories/widget-categories.component';
@@ -32,9 +33,10 @@ import {OfferFormComponent} from './app/components/offer-form/offer-form.compone
 import {CmsOffersListComponent} from './app/components/cms-offers-list/cms-offers-list.component';
 
 angular.module('app.components')
+	.component('locator', LocatorComponent)
+	.component('map', MapComponent)
 	.component('ngoUsersList', NgoUsersListComponent)
 	.component('wizardOffer', WizardOfferComponent)
-
 	.component('cmsCategoryTranslationItem', CmsCategoryTranslationItemComponent)
 	.component('cmsCategoryTranslationTable', CmsCategoryTranslationTableComponent)
 	.component('widgetCategories', WidgetCategoriesComponent)
