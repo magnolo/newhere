@@ -241,4 +241,35 @@ md-toolbar.md-whitey-theme:not(.md-menu-toolbar) md-icon{
       }
     }
   }
+  &.big-thumb{
+    margin:0px;
+    padding: 2em;
+    border-radius: 0px;
+    font-size:11px;
+    color:@blue;
+    white-space: normal;
+    line-height: 1.4em;
+    &:nth-child(odd){
+      background-color:#f8f8f8;
+    }
+    &:hover{
+        background-color:#efefef;
+    }
+    md-icon{
+      margin:1em 0;
+      margin: .5em 0;
+      font-size: 48px;
+      min-width: 48px;
+      min-height: 48px;
+      &.material-icons{
+        color:@blue;
+        fill:@blue;
+        transition: all .3s;
+      }
+    }
+    > span{
+      height: 3em;
+    }
+  }
+
 }

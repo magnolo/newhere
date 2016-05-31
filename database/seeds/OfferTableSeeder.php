@@ -8,9 +8,11 @@ use League\Csv\Reader;
 use App\Ngo;
 use App\Category;
 use App\Filter;
+use App\Logic\Address\AddressAPI;
 
 class OfferTableSeeder extends Seeder
 {
+
     /**
      * Run the database seeds.
      *
@@ -32,7 +34,7 @@ class OfferTableSeeder extends Seeder
         $wrongCats = array();
         $wrongFilters = array();
         $wrongNgos = array();
-
+        $addressApi = new AddressAPI();
         foreach ($results as $key => $row) {
             $categories = array();
             $filters = array();
@@ -70,6 +72,9 @@ class OfferTableSeeder extends Seeder
             if(!empty($row[18]))
               $offer->website = $row[18];
 
+            $coordinates = $addressAPI->getCoordinates($offer->street, $offer->streetnumber, $offer->zip);
+            $offer->latitude = $coordinates[0];
+            $offer->longitude = $coordinates[1];
             $offer->save();
 
             if(!empty($row[4])) $offer->translateOrNew('de')->title = $row[4];

@@ -32,6 +32,9 @@ $api->group(['middleware' => ['api']], function ($api) {
     $api->get('images/upload', 'ImageController@test');
     $api->post('images/upload', 'ImageController@uploadImage');
 
+    $api->get('categories', 'Cms\CategoryController@index');
+    $api->get('categories/{id}', ['uses' => 'Cms\CategoryController@show']);
+    $api->get('categories/{id}/offers', ['uses' => 'Cms\CategoryController@offers']);
 });
 
 //protected routes with JWT (must be logged in)
@@ -67,7 +70,7 @@ $api->group(['middleware' => ['api', 'api.auth']], function ($api) {
     $api->get('ngo', 'Cms\NgoController@show');
     $api->put('ngo/{id}', 'Cms\NgoController@update');
 
-    $api->get('categories', 'Cms\CategoryController@index');
+
     $api->get('filters', 'Cms\FilterController@index');
 
     // FOR ADMINS AND NGO-admins
@@ -99,7 +102,7 @@ $api->group(['middleware' => ['api', 'api.auth']], function ($api) {
 
       $api->get('roles', 'Cms\RoleController@index');
 
-      $api->get('categories/{id}', ['uses' => 'Cms\CategoryController@show']);
+
       $api->post('categories', 'Cms\CategoryController@create');
       $api->put('categories/{id}', ['uses' => 'Cms\CategoryController@update']);
       $api->put('categories/{id}/toggleEnabled', 'Cms\CategoryController@toggleEnabled');

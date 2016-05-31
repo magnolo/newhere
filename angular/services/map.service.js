@@ -30,7 +30,8 @@ export class MapService {
                     }
                 }
             }
-        }
+        };
+        this.markers = {};
 
     }
     getLocation(success, error) {
@@ -56,6 +57,9 @@ export class MapService {
 
     }
     setLocation() {
+
+    }
+    setMarkers(offers){
 
     }
 }
