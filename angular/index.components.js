@@ -1,4 +1,3 @@
-import {NgoDetailComponent} from './app/components/ngo-detail/ngo-detail.component';
 import {WizardOfferComponent} from './app/components/wizard-offer/wizard-offer.component';
 
 import {CmsCategoryTranslationItemComponent} from './app/components/cms-category-translation-item/cms-category-translation-item.component';
@@ -9,7 +8,7 @@ import {FilterSelectorComponent} from './app/components/filter-selector/filter-s
 import {CmsMenuComponent} from './app/components/cms-menu/cms-menu.component';
 import {WidgetNgoComponent} from './app/components/widget-ngo/widget-ngo.component';
 import {UserComponent} from './app/components/user/user.component';
-import {MyNgoDetailComponent} from './app/components/my-ngo-detail/my-ngo-detail.component';
+import {NgoDetailComponent} from './app/components/ngo-detail/ngo-detail.component';
 import {ResetpasswordFormComponent} from './app/components/resetpassword-form/resetpassword-form.component';
 import {ForgotpasswordFormComponent} from './app/components/forgotpassword-form/forgotpassword-form.component';
 import {CmsNgosListComponent} from './app/components/cms-ngos-list/cms-ngos-list.component';
@@ -32,7 +31,6 @@ import {OfferFormComponent} from './app/components/offer-form/offer-form.compone
 import {CmsOffersListComponent} from './app/components/cms-offers-list/cms-offers-list.component';
 
 angular.module('app.components')
-	.component('ngoDetail', NgoDetailComponent)
 	.component('wizardOffer', WizardOfferComponent)
 
 	.component('cmsCategoryTranslationItem', CmsCategoryTranslationItemComponent)
@@ -43,7 +41,7 @@ angular.module('app.components')
 	.component('cmsMenu', CmsMenuComponent)
 	.component('widgetNgo', WidgetNgoComponent)
 	.component('user', UserComponent)
-	.component('myNgoDetail', MyNgoDetailComponent)
+	.component('ngoDetail', NgoDetailComponent)
 	.component('resetpasswordForm', ResetpasswordFormComponent)
 	.component('forgotpasswordForm', ForgotpasswordFormComponent)
 	.component('cmsNgosList', CmsNgosListComponent)

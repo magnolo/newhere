@@ -1,16 +1,14 @@
-class NgoDetailController{
-    constructor($state, NgoService){
+class NgoDetailController {
+    constructor(NgoService, DialogService) {
         'ngInject';
-
         var vm = this;
         this.NgoService = NgoService;
-        this.NgoService.oneById($state.params.id).then(function (response) {
+        this.DialogService = DialogService;
+        this.NgoService.one().then(function (response) {
             vm.ngo = response;
-            console.log(response);
+            vm.ngo.editMode = true;
         });
-    }
 
-    $onInit(){
     }
 }
 

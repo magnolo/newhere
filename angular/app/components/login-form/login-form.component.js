@@ -27,7 +27,7 @@ class LoginFormController {
 				this.$window.localStorage.roles = JSON.stringify(roles);
 				this.ToastService.show('Logged in successfully.');
 				if (this.isNgoUser(roles)) {
-					this.$state.go('app.myngo');
+					this.$state.go('app.ngo');
 				} else {
 					this.$state.go('cms.dashboard');
 				}

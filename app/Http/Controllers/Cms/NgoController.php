@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Cms;
 
 use App\Http\Controllers\Controller;
-use App\Logic\Address\AddressAPI;
 use App\Ngo;
 use App\Role;
 use App\User;
@@ -19,12 +18,7 @@ class NgoController extends Controller
           return response()->success(compact('ngos'));
     }
 
-    public function show($id){
-        $ngo = Ngo::findOrFail($id)->load(['image']);
-        return response()->json($ngo);
-    }
-
-    public function my() {
+    public function show() {
         $user = Auth::user();
 
         $ngo = $user->ngos()->with('image')->firstOrFail();
@@ -72,11 +66,6 @@ class NgoController extends Controller
             ]);
         }
 
-        if ($request->has('street') && $request->has('street_number') && $request->has('zip')) {
-            $addressApi = new AddressAPI();
-            $coordinates = $addressApi->getCoordinates($request->get('street'), $request->get('street_number'), $request->get('zip'));
-        }
-
         DB::beginTransaction();
 
         if ($useCmsAccount) {
@@ -98,10 +87,6 @@ class NgoController extends Controller
         $ngo->zip = $request->get('zip');
         $ngo->city = $request->get('city');
         $ngo->image_id = $request->get('image_id');
-        if ($coordinates) {
-            $ngo->latitude = $coordinates[0];
-            $ngo->longitude = $coordinates[1];
-        }
 
         //Standard Translation
         if ($request->has('description')) {
@@ -149,12 +134,6 @@ class NgoController extends Controller
             return response()->error('NGO not found', 404);
         }
 
-        if ($request->has('street') && $request->has('street_number') && $request->has('zip')) {
-            $addressApi = new AddressAPI();
-            $coordinates = $addressApi->getCoordinates($request->get('street'), $request->get('street_number'), $request->get('zip'));
-        }
-
-
         DB::beginTransaction();
         $ngo->organisation = $request->get('organisation');
         $ngo->website = $request->get('website');
@@ -166,10 +145,6 @@ class NgoController extends Controller
         $ngo->zip = $request->get('zip');
         $ngo->city = $request->get('city');
         $ngo->image_id = $request->get('image_id');
-        if ($coordinates) {
-            $ngo->latitude = $coordinates[0];
-            $ngo->longitude = $coordinates[1];
-        }
 
         //Standard Translation
         if ($request->has('description')) {
