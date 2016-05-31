@@ -1,3 +1,5 @@
+import {CmsNgoTranslationItemComponent} from './app/components/cms-ngo-translation-item/cms-ngo-translation-item.component';
+import {CmsNgoTranslationTableComponent} from './app/components/cms-ngo-translation-table/cms-ngo-translation-table.component';
 import {AppCategoriesContentSubComponent} from './app/components/app-categories-content-sub/app-categories-content-sub.component';
 import {AppCategoriesContentComponent} from './app/components/app-categories-content/app-categories-content.component';
 import {AppCategoriesToolbarComponent} from './app/components/app-categories-toolbar/app-categories-toolbar.component';
@@ -36,6 +38,8 @@ import {OfferFormComponent} from './app/components/offer-form/offer-form.compone
 import {CmsOffersListComponent} from './app/components/cms-offers-list/cms-offers-list.component';
 
 angular.module('app.components')
+	.component('cmsNgoTranslationItem', CmsNgoTranslationItemComponent)
+	.component('cmsNgoTranslationTable', CmsNgoTranslationTableComponent)
 	.component('appCategoriesContentSub', AppCategoriesContentSubComponent)
 	.component('appCategoriesContent', AppCategoriesContentComponent)
 	.component('appCategoriesToolbar', AppCategoriesToolbarComponent)

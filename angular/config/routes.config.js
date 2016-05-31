@@ -293,6 +293,18 @@ export function RoutesConfig($stateProvider, $urlRouterProvider) {
 				}
 			}
 		})
+		.state('cms.ngo-translations',{
+			url:'/ngo-translations',
+			data:{
+				auth:true,
+				roles:['admin', 'superadmin']
+			},
+			views: {
+				'main@': {
+					templateUrl: getCmsView('ngo-translations')
+				}
+			}
+		})
 		.state('cms.ngos',{
 			url:'/ngos',
 			data:{
