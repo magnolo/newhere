@@ -21,7 +21,6 @@ class CmsNgosListController{
 
         this.listOrderByColumn = '-organisation';
         this.onOrderChange = (order) => {
-            console.log("onOrderChange " + order);
             return vm.ngos = this.$filter('orderBy')(vm.ngos, [order], true);
         };
     }

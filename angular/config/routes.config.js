@@ -75,7 +75,7 @@ export function RoutesConfig($stateProvider, $urlRouterProvider) {
         //         }
         //     }
         // })
-        .state('app.ngoRegister', {
+    		.state('app.ngoRegister', {
             url: '/ngoRegister',
             data: {}, //{auth: true} would require JWT auth for this route
             views: {
@@ -106,11 +106,14 @@ export function RoutesConfig($stateProvider, $urlRouterProvider) {
             url: '/ngo',
             data: {
                 auth: true,
-                roles: ['organisation']
+                roles: ['organisation-admin', 'organisation-user']
             },
             views: {
                 'main@app': {
-                    templateUrl: getView('ngo')
+                    templateUrl: getView('ngo'),
+                    controller: function($scope, $window) {
+                        $scope.isNgoAdmin = ($window.localStorage.roles.indexOf("organisation-admin") > -1);
+                    }
                 }
             }
         })
@@ -118,7 +121,7 @@ export function RoutesConfig($stateProvider, $urlRouterProvider) {
             url: '/offers',
             data: {
                 auth: true,
-                roles: ['organisation']
+                roles: ['organisation-admin', 'organisation-user']
             },
             views: {
                 'main@app': {
@@ -130,7 +133,7 @@ export function RoutesConfig($stateProvider, $urlRouterProvider) {
             url: '/new',
             data: {
                 auth: true,
-                roles: ['organisation']
+                roles: ['organisation-admin', 'organisation-user']
             },
             views: {
                 'main@app': {
@@ -142,7 +145,7 @@ export function RoutesConfig($stateProvider, $urlRouterProvider) {
             url: '/{id}',
             data: {
                 auth: true,
-                roles: ['organisation']
+                roles: ['organisation-admin', 'organisation-user']
             },
             views: {
                 'main@app': {
@@ -174,7 +177,7 @@ export function RoutesConfig($stateProvider, $urlRouterProvider) {
             url: '/dashboard',
             data: {
                 auth: true,
-                roles: ['admin', 'superadmin', 'organisation', 'moderator']
+                roles: ['admin', 'superadmin', 'moderator']
             },
             views: {
                 'main@cms': {
@@ -288,6 +291,18 @@ export function RoutesConfig($stateProvider, $urlRouterProvider) {
             views: {
                 'main@cms': {
                     templateUrl: getCmsView('ngos')
+                }
+            }
+        })
+        .state('cms.ngos.users', {
+            url: '/users/{id}',
+            data: {
+                auth: true,
+                roles: ['admin', 'superadmin']
+            },
+            views: {
+                'main@cms': {
+                    templateUrl: getCmsView('ngo-users')
                 }
             }
         })

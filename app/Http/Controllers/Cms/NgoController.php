@@ -21,7 +21,7 @@ class NgoController extends Controller
     public function show() {
         $user = Auth::user();
 
-        $ngo = $user->ngos()->with('image')->firstOrFail();
+        $ngo = $user->ngos()->with('image', 'users')->firstOrFail();
         if (!$ngo) {
             return response()->error('NGO not found', 404);
         }
@@ -72,7 +72,7 @@ class NgoController extends Controller
             $ngoUser = Auth::user();
         } else {
             $ngoUser = $this->storeAndSendMail($request->get('organisation'), $request->email, $request->password);
-            $organisationRole = Role::where('name', 'organisation')->firstOrFail();
+            $organisationRole = Role::where('name', 'organisation-admin')->firstOrFail();
             $ngoUser->attachRole($organisationRole);
         }
 

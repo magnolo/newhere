@@ -15,8 +15,6 @@ export class NgoService{
         return this.$q(function(resolve) {
             vm.API.one('ngo').get().then(function (response) {
                 resolve(response)
-            }, function (error) {
-                vm.ToastService.show("Fetching NGO failed");
             });
         });
     }
@@ -27,11 +25,18 @@ export class NgoService{
         return this.$q(function(resolve) {
             vm.API.all('ngos').getList().then(function (response) {
                 resolve(response)
-            }, function (error) {
-                console.log(error);
-                vm.ToastService.show("Fetching NGOs failed");
             });
         });
+    }
+
+    fetchNgoUsers(ngoId) {
+        var vm = this;
+        return this.$q(function(resolve) {
+            vm.API.all('ngoUsers').getList("query", {ngoId : ngoId}).then(function (response) {
+                resolve(response)
+            });
+        });
+
     }
 
     update(ngo) {
