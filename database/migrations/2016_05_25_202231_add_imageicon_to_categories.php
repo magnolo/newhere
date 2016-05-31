@@ -27,7 +27,7 @@ class AddImageiconToCategories extends Migration
     {
         Schema::table('categories', function (Blueprint $table) {
             $table->dropColumn('image_id');
-            $table->string('icon', 20);
+            $table->string('icon', 20)->nullable();
         });
     }
 }

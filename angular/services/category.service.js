@@ -96,6 +96,17 @@ export class CategoryService {
         }
 
     }
+    
+    move(item, newIndex, newParent) {
+        this.API.one('categories', item.id).customPUT({
+            sortindex: newIndex,
+            parent: (typeof newParent == "undefined" ? 0 : newParent.id)
+        }, 'move').then(
+            (response) => {
+                this.ToastService.show('Category moved.');
+            }
+        );
+    }
 
     cancel() {
         this.$state.go("cms.categories");
@@ -111,7 +122,6 @@ export class CategoryService {
                 this.ToastService.show('Category updated.');
             },
             (response) => {
-                //this.ToastService.show('Category updated.');
                 category.enabled = !category.enabled;
             }
         );

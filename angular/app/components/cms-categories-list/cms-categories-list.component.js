@@ -8,14 +8,18 @@ class CmsCategoriesListController {
           this.categories = categories;
         });
         this.selection = [];
+        
         this.options = {
-          allowMove:true,
-          allowDrag:true,
-          allowDrop:true,
-          drag: true,
-          itemClick: function(item){
-            $state.go('cms.categories.details',{id:item});
-          }
+            allowMove:true,
+            allowDrag:true,
+            allowDrop:true,
+            drag: true,
+            itemClick: function(item){
+                $state.go('cms.categories.details',{id:item});
+            },
+            onDragDrop: (item, newIndex, newParent) => {
+                this.CategoryService.move(item, newIndex, newParent);
+            }
         }
     }
     toggleEnabled(category) {
