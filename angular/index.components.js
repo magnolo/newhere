@@ -1,3 +1,5 @@
+import {CmsNgoTranslationItemComponent} from './app/components/cms-ngo-translation-item/cms-ngo-translation-item.component';
+import {CmsNgoTranslationTableComponent} from './app/components/cms-ngo-translation-table/cms-ngo-translation-table.component';
 import {LocatorComponent} from './app/components/locator/locator.component';
 import {MapComponent} from './app/components/map/map.component';
 import {NgoUsersListComponent} from './app/components/ngo-users-list/ngo-users-list.component';
@@ -33,6 +35,8 @@ import {OfferFormComponent} from './app/components/offer-form/offer-form.compone
 import {CmsOffersListComponent} from './app/components/cms-offers-list/cms-offers-list.component';
 
 angular.module('app.components')
+	.component('cmsNgoTranslationItem', CmsNgoTranslationItemComponent)
+	.component('cmsNgoTranslationTable', CmsNgoTranslationTableComponent)
 	.component('locator', LocatorComponent)
 	.component('map', MapComponent)
 	.component('ngoUsersList', NgoUsersListComponent)
