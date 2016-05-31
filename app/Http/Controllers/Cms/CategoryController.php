@@ -34,16 +34,38 @@ class CategoryController extends Controller
 
     public function show($id)
     {
-        $category = Category::findOrFail((int) $id);
-        $languages = Language::where('enabled', true)->get();
-        foreach ($languages as $language) {
-            $category->translate($language->language);
+        if(is_int($id)){
+          $category = Category::findOrFail((int)$id);
+          $languages = Language::where('enabled', true)->get();
+          foreach ($languages as $language) {
+              $category->translate($language->language);
+          }
+        }
+        else{
+          $category = Category::where('slug', $id)->with(['children', 'parent'])->firstOrFail();
         }
         $category->load('image');
 
         return response()->json($category);
     }
-
+    public function offers($slug){
+      $category = Category::where('slug', $slug)->with(['children', 'offers'])->firstOrFail();
+      $offers = $category->offers;
+      if(count($category->children)){
+        foreach($category->children as $child){
+          $child->load('offers');
+          $offers->push($child->offers);
+          if(count($child->children)){
+            foreach($child->children as $c){
+              $c->load('offers');
+              $offers->push($c->offers);
+            }
+          }
+        }
+      }
+      $offers = $offers->flatten();
+      return response()->success(compact('offers'));
+    }
     public function create(Request $request)
     {
         $this->validate($request, [
