@@ -66,246 +66,238 @@ export function RoutesConfig($stateProvider, $urlRouterProvider) {
                 }
             }
         })
-        // .state('app.register', {
-        //     url: '/register',
-        //     data: {},//{auth: true} would require JWT auth for this route
-        //     views: {
-        //         'main@': {
-        //             templateUrl: getView('register')
-        //         }
-        //     }
-        // })
-    		.state('app.ngoRegister', {
-            url: '/ngoRegister',
-            data: {}, //{auth: true} would require JWT auth for this route
-            views: {
-                'main@app': {
-                    templateUrl: getView('ngo-register')
-                }
-            }
-        })
-        .state('app.forgotpassword', {
-            url: '/forgotpassword',
-            data: {}, //{auth: true} would require JWT auth for this route
-            views: {
-                'main@app': {
-                    templateUrl: getView('forgot-password')
-                }
-            }
-        })
-        .state('app.resetpassword', {
-            url: '/reset-password/{token}',
-            data: {}, //{auth: true} would require JWT auth for this route
-            views: {
-                'main@app': {
-                    templateUrl: getView('reset-password')
-                }
-            }
-        })
-        .state('app.ngo', {
-            url: '/ngo',
-            data: {
-                auth: true,
-                roles: ['organisation-admin', 'organisation-user']
-            },
-            views: {
-                'main@app': {
-                    templateUrl: getView('ngo'),
-                    controller: function($scope, $window) {
-                        $scope.isNgoAdmin = ($window.localStorage.roles.indexOf("organisation-admin") > -1);
-                    }
-                }
-            }
-        })
-        .state('app.offers', {
-            url: '/offers',
-            data: {
-                auth: true,
-                roles: ['organisation-admin', 'organisation-user']
-            },
-            views: {
-                'main@app': {
-                    templateUrl: getView('offers')
-                }
-            }
-        })
-        .state('app.offers.new', {
-            url: '/new',
-            data: {
-                auth: true,
-                roles: ['organisation-admin', 'organisation-user']
-            },
-            views: {
-                'main@app': {
-                    templateUrl: getView('offer-new')
-                }
-            }
-        })
-        .state('app.offers.details', {
-            url: '/{id}',
-            data: {
-                auth: true,
-                roles: ['organisation-admin', 'organisation-user']
-            },
-            views: {
-                'main@app': {
-                    templateUrl: getView('offer-detail')
-                }
-            }
-        })
 
-    //
-    // CMS
-    //
-    .state('cms', {
-            abstract: true,
-            url: '/cms',
-            views: {
-                cms: {
-                    templateUrl: getCmsView('main')
-                },
-                header: {
-                    templateUrl: getCmsView('header')
-                },
-                footer: {
-                    templateUrl: getCmsView('footer')
-                },
-                front: {}
-            }
-        })
-        .state('cms.dashboard', {
-            url: '/dashboard',
-            data: {
-                auth: true,
-                roles: ['admin', 'superadmin', 'moderator']
-            },
-            views: {
-                'main@cms': {
-                    templateUrl: getCmsView('dashboard')
-                }
-            }
-        })
-        .state('cms.categories', {
-            url: '/categories',
-            data: {
-                auth: true,
-                roles: ['admin', 'superadmin']
-            },
-            views: {
-                'main@cms': {
-                    templateUrl: getCmsView('categories')
-                }
-            }
-        })
-        .state('cms.categories.details', {
-            url: '/:id',
-            data: {
-                auth: true,
-                roles: ['admin', 'superadmin']
-            },
-            views: {
-                'details': {
-                    templateUrl: getCmsView('category')
-                }
-            }
-        })
-        .state('cms.languages', {
-            url: '/languages',
-            data: {
-                auth: true,
-                roles: ['admin', 'superadmin']
-            },
-            views: {
-                'main@cms': {
-                    templateUrl: getCmsView('language')
-                }
-            }
-        })
+		.state('app.ngoRegister', {
+			url: '/ngoRegister',
+			data: {},//{auth: true} would require JWT auth for this route
+			views: {
+				'main@app': {
+					templateUrl: getView('ngo-register')
+				}
+			}
+		})
+		.state('app.forgotpassword', {
+			url: '/forgotpassword',
+			data: {},//{auth: true} would require JWT auth for this route
+			views: {
+				'main@app': {
+					templateUrl: getView('forgot-password')
+				}
+			}
+		})
+		.state('app.resetpassword', {
+			url: '/reset-password/{token}',
+			data: {},//{auth: true} would require JWT auth for this route
+			views: {
+				'main@app': {
+					templateUrl: getView('reset-password')
+				}
+			}
+		})
+		.state('app.ngo', {
+			url: '/ngo',
+			data: {
+				auth:true,
+				roles:['organisation-admin', 'organisation-user']
+			},
+			views: {
+				'main@app': {
+					templateUrl: getView('ngo'),
+					controller: function($scope, $window){
+						$scope.isNgoAdmin = ($window.localStorage.roles.indexOf("organisation-admin") > -1);
+					}
+				}
+			}
+		})
+		.state('app.offers', {
+			url: '/offers',
+			data: {
+				auth:true,
+				roles:['organisation-admin', 'organisation-user']
+			},
+			views: {
+				'main@app': {
+					templateUrl: getView('offers')
+				}
+			}
+		})
+		.state('app.offers.new', {
+			url: '/new',
+			data: {
+				auth:true,
+				roles:['organisation-admin', 'organisation-user']
+			},
+			views: {
+				'main@app': {
+					templateUrl: getView('offer-new')
+				}
+			}
+		})
+		.state('app.offers.details', {
+			url: '/{id}',
+			data: {
+				auth:true,
+				roles:['organisation-admin', 'organisation-user']
+			},
+			views: {
+				'main@app': {
+					templateUrl: getView('offer-detail')
+				}
+			}
+		})
 
-    .state('cms.users', {
-            url: '/users',
-            data: {
-                auth: true,
-                roles: ['admin', 'superadmin']
-            },
-            views: {
-                'main@cms': {
-                    templateUrl: getCmsView('users')
-                }
-            }
-        })
-        .state('cms.users.roles', {
-            url: '/roles',
-            data: {
-                auth: true,
-                roles: ['admin', 'superadmin']
-            },
-            views: {
-                'main@cms': {
-                    templateUrl: getCmsView('roles')
-                }
-            }
-        })
-        .state('cms.translations', {
-            url: '/translations',
-            data: {
-                auth: true,
-                roles: ['admin', 'superadmin', 'moderator']
-            },
-            views: {
-                'main@cms': {
-                    templateUrl: getCmsView('translations')
-                }
-            }
-        })
-        .state('cms.offer-translations', {
-            url: '/offer-translations',
-            data: {
-                auth: true,
-                roles: ['admin', 'superadmin']
-            },
-            views: {
-                'main@cms': {
-                    templateUrl: getCmsView('offer-translations')
-                }
-            }
-        })
-        .state('cms.category-translations', {
-            url: '/category-translations',
-            data: {
-                auth: true,
-                roles: ['admin', 'superadmin']
-            },
-            views: {
-                'main@': {
-                    templateUrl: getCmsView('category-translations')
-                }
-            }
-        })
-        .state('cms.ngos', {
-            url: '/ngos',
-            data: {
-                auth: true,
-                roles: ['admin', 'superadmin']
-            },
-            views: {
-                'main@cms': {
-                    templateUrl: getCmsView('ngos')
-                }
-            }
-        })
-        .state('cms.ngos.users', {
-            url: '/users/{id}',
-            data: {
-                auth: true,
-                roles: ['admin', 'superadmin']
-            },
-            views: {
-                'main@cms': {
-                    templateUrl: getCmsView('ngo-users')
-                }
-            }
-        })
+		//
+		// CMS
+		//
+		.state('cms', {
+			abstract: true,
+			url:'/cms',
+			views: {
+				cms:{
+					templateUrl: getCmsView('main')
+				},
+				header: {
+					templateUrl: getCmsView('header')
+				},
+				footer: {
+					templateUrl: getCmsView('footer')
+				},
+				front: {}
+			}
+		})
+		.state('cms.dashboard', {
+			url: '/dashboard',
+			data: {
+				auth:true,
+				roles:['admin', 'superadmin', 'moderator']
+			},
+			views: {
+				'main@cms': {
+					templateUrl: getCmsView('dashboard')
+				}
+			}
+		})
+		.state('cms.categories', {
+			url: '/categories',
+			data: {
+				auth:true,
+				roles:['admin', 'superadmin']
+			},
+			views: {
+				'main@cms': {
+					templateUrl: getCmsView('categories')
+				}
+			}
+		})
+		.state('cms.categories.details', {
+			url: '/:id',
+			data: {
+				auth:true,
+					roles:['admin', 'superadmin']
+			},
+			views: {
+				'details': {
+					templateUrl: getCmsView('category')
+				}
+			}
+		})
+		.state('cms.languages', {
+			url: '/languages',
+			data: {
+				auth:true,
+				roles:['admin', 'superadmin']
+			},
+			views: {
+				'main@cms': {
+					templateUrl: getCmsView('language')
+				}
+			}
+		})
+
+		.state('cms.users',{
+			url:'/users',
+			data:{
+				auth:true,
+				roles:['admin', 'superadmin']
+			},
+			views: {
+				'main@cms': {
+					templateUrl: getCmsView('users')
+				}
+			}
+		})
+		.state('cms.users.roles',{
+			url:'/roles',
+			data:{
+				auth:true,
+				roles:['admin', 'superadmin']
+			},
+			views: {
+				'main@cms': {
+					templateUrl: getCmsView('roles')
+				}
+			}
+		})
+		.state('cms.translations',{
+			url:'/translations',
+			data:{
+				auth:true,
+				roles:['admin', 'superadmin','moderator']
+			},
+			views: {
+				'main@cms': {
+					templateUrl: getCmsView('translations')
+				}
+			}
+		})
+		.state('cms.offer-translations',{
+			url:'/offer-translations',
+			data:{
+				auth:true,
+				roles:['admin', 'superadmin']
+			},
+			views: {
+				'main@cms': {
+					templateUrl: getCmsView('offer-translations')
+				}
+			}
+		})
+		.state('cms.category-translations',{
+			url:'/category-translations',
+			data:{
+				auth:true,
+				roles:['admin', 'superadmin']
+			},
+			views: {
+				'main@': {
+					templateUrl: getCmsView('category-translations')
+				}
+			}
+		})
+		.state('cms.ngos',{
+			url:'/ngos',
+			data:{
+				auth:true,
+				roles:['admin', 'superadmin']
+			},
+			views: {
+				'main@cms': {
+					templateUrl: getCmsView('ngos')
+				}
+			}
+		})
+		.state('cms.ngos.users',{
+			url:'/users/{id}',
+			data:{
+				auth:true,
+				roles:['admin', 'superadmin']
+			},
+			views: {
+				'main@cms': {
+					templateUrl: getCmsView('ngo-users')
+				}
+			}
+		})
 
 
     .state('cms.offers', {

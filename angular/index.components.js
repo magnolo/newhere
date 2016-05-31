@@ -1,4 +1,3 @@
-
 import {LocatorComponent} from './app/components/locator/locator.component';
 import {MapComponent} from './app/components/map/map.component';
 import {NgoUsersListComponent} from './app/components/ngo-users-list/ngo-users-list.component';
