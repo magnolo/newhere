@@ -1,10 +1,11 @@
 class AppCategoriesContentController {
-    constructor(CategoryService) {
+    constructor(CategoryService, MapService) {
         'ngInject';
 
         this.categories = [];
         //
-
+        this.MapService = MapService;
+        this.MapService.markers = {};
         this.CategoryService = CategoryService;
         this.CategoryService.all((categories) => {
             this.categories = categories;

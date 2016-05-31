@@ -23,6 +23,7 @@ class ImageController extends Controller
         $image->size = $result['original_filesize'];
         $image->width = $result['original_width'];
         $image->height = $result['original_height'];
+        $image->src = "/". $result['dir'] . "/" . $result['filename'];
         $image->save();
 
         return response()->json($image);

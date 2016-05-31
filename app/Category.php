@@ -24,8 +24,7 @@ class Category extends Model
 
     public function offers()
     {
-        return $this->belongsToMany('App\Offer', 'offer_categories', 'category_id', 'offer_id');
-
+        return $this->belongsToMany('App\Offer', 'offer_categories', 'category_id', 'offer_id')->with(['ngo', 'filters', 'categories', 'image']);
     }
     public function image()
     {

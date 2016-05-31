@@ -3,6 +3,7 @@
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
 use App\Category;
+use App\Image;
 use League\Csv\Reader;
 
 class CategoryTableSeeder extends Seeder
@@ -44,10 +45,15 @@ class CategoryTableSeeder extends Seeder
 
             if (!empty($row[0])) {
                 $sortIndex[1] = $sortIndex[2] = 0;
+                $image = Image::where('basename', 'like', '%'.$germanTrans[0]."%" )->first();
 
                 $parent = new Category;
 
                 $parent->slug = str_slug($row[0]);
+
+                if($image){
+                  $parent->image_id = $image->id;
+                }
                 $parent->save();
 
                 $parent->translateOrNew('en')->title = $row[0];
@@ -194,7 +200,7 @@ class CategoryTableSeeder extends Seeder
 
                 $sub2->save();
               }
-            
+
         }
     }
 }

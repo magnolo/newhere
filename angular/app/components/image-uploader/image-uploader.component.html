@@ -1,4 +1,4 @@
-<div flow-init="{singleFile:true}" flow-file-added="!!{png:1,gif:1,jpg:1,jpeg:1}[$file.getExtension()]" flow-files-submitted="$flow.upload()" flow-file-success="vm.assignImage($file, $message, $flow)" class="upload-container">
+<div flow-init="{singleFile:true}" flow-file-added="!!{png:1,gif:1,jpg:1,jpeg:1,svg:1}[$file.getExtension()]" flow-files-submitted="$flow.upload()" flow-file-success="vm.assignImage($file, $message, $flow)" class="upload-container">
     <div class="image-prev no-image" ng-show="!$flow.files.length && !vm.item.image" flow-drop layout="row" layout-align="center center" flow-drag-enter="style={border:'4px dashed #357DBA'}" flow-drag-leave="style={}"
  ng-style="style">
         <div layout="column" layout-align="center center" class="cursor"  flow-btn>

@@ -256,11 +256,10 @@ md-toolbar.md-whitey-theme:not(.md-menu-toolbar) md-icon{
         background-color:#efefef;
     }
     md-icon{
-      margin:1em 0;
-      margin: .5em 0;
-      font-size: 48px;
-      min-width: 48px;
-      min-height: 48px;
+      margin:0;
+      font-size: 96px;
+      min-width: 96px;
+      min-height: 96px;
       &.material-icons{
         color:@blue;
         fill:@blue;
@@ -272,4 +271,17 @@ md-toolbar.md-whitey-theme:not(.md-menu-toolbar) md-icon{
     }
   }
 
+}
+md-icon{
+  &.big-icon{
+    margin:0;
+    font-size: 64px;
+    min-width: 64px;
+    min-height: 64px;
+    &.material-icons{
+      color:@blue;
+      fill:@blue;
+      transition: all .3s;
+    }
+  }
 }

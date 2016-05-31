@@ -33,7 +33,8 @@ $api->group(['middleware' => ['api']], function ($api) {
     $api->post('images/upload', 'ImageController@uploadImage');
 
     $api->get('categories', 'Cms\CategoryController@index');
-    $api->get('categories/{id}', ['uses' => 'Cms\CategoryController@show']);
+    $api->get('categories/{id}', ['uses' => 'Cms\CategoryController@show'])->where('id', '[0-9]+');
+    $api->get('categories/{slug}', ['uses' => 'Cms\CategoryController@bySlug'])->where(['slug' => '[a-z][-a-z0-9]*$']);
     $api->get('categories/{id}/offers', ['uses' => 'Cms\CategoryController@offers']);
 });
 
