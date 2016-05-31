@@ -41,7 +41,7 @@ class LoginFormController {
 	 * @returns {boolean}
      */
 	isNgoUser(roles) {
-		return (roles.indexOf("organisation") > -1 && roles.indexOf("superadmin") == -1 && roles.indexOf("admin") == -1);
+		return (roles.indexOf("organisation-admin") > -1  || roles.indexOf("organisation-user") > -1 && roles.indexOf("superadmin") == -1 && roles.indexOf("admin") == -1);
 	}
 
 

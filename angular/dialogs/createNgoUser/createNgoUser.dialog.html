@@ -1,0 +1,49 @@
+<md-dialog>
+    <form name="createNgoUserForm" ng-submit="vm.save()">
+
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>User</h2>
+            </div>
+        </md-toolbar>
+
+        <md-dialog-content>
+            <div class="md-dialog-content">
+                <div layout-gt-sm="row">
+                    <md-input-container class="md-block" flex-gt-sm>
+                        <label>Name</label>
+                        <input type="text" ng-model="vm.user.name" required>
+                    </md-input-container>
+                    <md-input-container class="md-block" flex-gt-sm>
+                        <label>Email</label>
+                        <input type="email" ng-model="vm.user.email" required>
+                    </md-input-container>
+                </div>
+                <div  layout-gt-sm="row">
+                    <md-input-container class="md-block" flex-gt-sm>
+                        <label>Passwort</label>
+                        <input name="password" type="password" ng-model="vm.user.password" minlength="5">
+                        <div ng-messages="createNgoUserForm.password.$error" ng-show="createNgoUserForm.password.$dirty">
+                            <div ng-message="minlength">Mindestens 5 Zeichen</div>
+                        </div>
+                    </md-input-container>
+                    <md-input-container class="md-block" flex-gt-sm>
+                        <label>Passwort wiederholen</label>
+                        <input name="re_password" type="password" ng-model="vm.user.re_password" compare-to="vm.user.password">
+                        <div ng-messages="createNgoUserForm.re_password.$error" ng-show="createNgoUserForm.re_password.$dirty">
+                            <div ng-message="compareTo">Unterschiedliche Passwörter</div>
+                        </div>
+                    </md-input-container>
+                </div>
+                <div  layout-gt-sm="row">
+                    <md-switch  class="md-primary" ng-model="vm.user.isNgoAdmin" aria-label="NGO Administrator">NGO Administrator</md-switch>
+                </div>
+            </div>
+        </md-dialog-content>
+
+        <md-dialog-actions>
+            <md-button type="button" ng-click="vm.cancel()">Cancel</md-button>
+            <md-button class="md-primary md-raised" type="submit">Save</md-button>
+        </md-dialog-actions>
+    </form>
+</md-dialog>
