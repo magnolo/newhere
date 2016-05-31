@@ -17,8 +17,8 @@ export class CategoryService {
         this.LanguageService = LanguageService;
         this.Restangular = Restangular;
         this.$state = $state;
-
     }
+
     all(success, error, force) {
         if (angular.isDefined(this.categories) && !force) {
             success(this.categories);
@@ -30,12 +30,13 @@ export class CategoryService {
                 this.categories = response;
                 angular.forEach(this._callbacks, (callback) => {
                     callback(this.categories);
-                })
+                });
                 this._promise = null;
             }, error);
         }
 
     }
+
     flattened(success, error, force) {
         if (angular.isDefined(this.flattenedCategories) && !force) {
             success(this.flattenedCategories);
@@ -47,11 +48,12 @@ export class CategoryService {
                 this.flattenedCategories = response;
                 angular.forEach(this._callbacksFlat, (callback) => {
                     callback(this.flattenedCategories);
-                })
+                });
                 this._promiseFlat = null;
             }, error);
         }
     }
+
     one(id, success, error) {
 
         if (!id) return false;
@@ -64,6 +66,7 @@ export class CategoryService {
             }, error);
         }
     }
+    
     save(category) {
         if (category.id && category.id != 'new') {
             return this.category.save().then((response) => {
@@ -72,14 +75,14 @@ export class CategoryService {
                     if (item.id == category.id) {
                         angular.copy(category, item);
                     }
-                })
+                });
             });
         } else {
             var data = {
                 title: category.title,
                 description: category.description,
                 language: this.LanguageService.activeLanguage(),
-                icon: category.icon,
+                image_id: category.image_id,
                 parent_id: category.parent_id
             };
             this.API.all('categories').post(data).then((response) => {
