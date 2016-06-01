@@ -57,6 +57,7 @@ class FilterController extends Controller
         $filter->save();
 
         $filter->translateOrNew($locale)->title = $request->get('title');
+        $filter->translateOrNew($locale)->description = $request->get('description');
         $filter->save();
 
         if($locale !== "de"){
@@ -66,7 +67,7 @@ class FilterController extends Controller
 
         DB::commit();
 
-        return response()->json(compact('filter'));
+        return response()->json($filter);
     }
 
     public function update(Request $request, $id)
@@ -90,6 +91,7 @@ class FilterController extends Controller
 
         foreach($request->get('translations') as $translation){
             $filter->translateOrNew($translation['locale'])->title = $translation['title'];
+            $filter->translateOrNew($translation['locale'])->description = $translation['description'];
 
         }
         $filter->save();

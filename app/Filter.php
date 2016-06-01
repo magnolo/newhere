@@ -10,8 +10,8 @@ class Filter extends Model
     use Translatable;
 
     protected $table = 'filters';
-    public $translatedAttributes = ['title'];
-    protected $fillable = ['icon', 'enabled'];
+    public $translatedAttributes = ['title', 'description'];
+    protected $fillable = ['icon', 'enabled', 'description'];
 
     public function children()
     {

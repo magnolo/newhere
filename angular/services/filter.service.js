@@ -77,6 +77,7 @@ export class FilterService {
         } else {
             var data = {
                 title: filter.title,
+                description: filter.description,
                 language: this.LanguageService.activeLanguage(),
                 icon: filter.icon,
                 parent_id: filter.parent_id

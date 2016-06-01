@@ -17,6 +17,7 @@ class CreateFilterTranslationsTable extends Migration
           $table->integer('filter_id')->unsigned();
 
           $table->string('title');
+          $table->text('description')->nullable();
 
           $table->bigInteger('version')->default(1);
 
