@@ -15,6 +15,7 @@ import {FilterSelectorComponent} from './app/components/filter-selector/filter-s
 import {CmsMenuComponent} from './app/components/cms-menu/cms-menu.component';
 import {WidgetNgoComponent} from './app/components/widget-ngo/widget-ngo.component';
 import {UserComponent} from './app/components/user/user.component';
+import {MyNgoDetailComponent} from './app/components/my-ngo-detail/my-ngo-detail.component';
 import {NgoDetailComponent} from './app/components/ngo-detail/ngo-detail.component';
 import {ResetpasswordFormComponent} from './app/components/resetpassword-form/resetpassword-form.component';
 import {ForgotpasswordFormComponent} from './app/components/forgotpassword-form/forgotpassword-form.component';
@@ -55,6 +56,7 @@ angular.module('app.components')
 	.component('cmsMenu', CmsMenuComponent)
 	.component('widgetNgo', WidgetNgoComponent)
 	.component('user', UserComponent)
+	.component('myNgoDetail', MyNgoDetailComponent)
 	.component('ngoDetail', NgoDetailComponent)
 	.component('resetpasswordForm', ResetpasswordFormComponent)
 	.component('forgotpasswordForm', ForgotpasswordFormComponent)
