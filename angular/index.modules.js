@@ -18,5 +18,5 @@ angular.module('app.directives', []);
 angular.module('app.components', [
 	'ui.router', 'md.data.table', 'ngMaterial', 'angular-loading-bar',
 	'restangular', 'ngStorage', 'satellizer', 'ui.tree', 'dndLists','angular.filter','textAngular',
-  'ngSanitize','flow', 'ngMessages','mgo-angular-wizard', 'leaflet-directive'
+  'ngSanitize','flow', 'ngMessages','mgo-angular-wizard', 'leaflet-directive', 'bw.paging'
 ]);

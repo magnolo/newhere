@@ -38,8 +38,8 @@ $api->group(['middleware' => ['api']], function ($api) {
     $api->get('categories/{id}/offers', ['uses' => 'Cms\CategoryController@offers']);
 
     $api->get('ngo/{id}', 'Cms\NgoController@show');
-	// needed for ngo-registration
-    $api->get('offer/autocomplete/{search}', 'Cms\OfferController@autocomplete');
+    $api->get('offers', 'Cms\OfferController@index');
+    $api->get('offer/autocomplete/{search}', 'Cms\OfferController@autocomplete'); // no auth necessary for ngo-registration
 });
 
 //protected routes with JWT (must be logged in)
@@ -70,7 +70,6 @@ $api->group(['middleware' => ['api', 'api.auth']], function ($api) {
     $api->get('users/me', 'Cms\UserController@me');
 
     $api->post('offers', 'Cms\OfferController@create');
-    $api->get('offers', 'Cms\OfferController@index');
     $api->get('offers/{id}', 'Cms\OfferController@show');
     $api->put('offers/{id}', 'Cms\OfferController@update');
     $api->delete('offers/{id}', 'Cms\OfferController@bulkRemove');

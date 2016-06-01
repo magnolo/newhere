@@ -25,14 +25,19 @@ class OfferController extends Controller
   //     return response()->json($ngos);
   //  }
    public function index(Request $request) {
-      $user = Auth::user();
-      if($user->hasRole(['superadmin', 'admin']) ){
-         $offers = Offer::with(['ngo', 'filters','categories', 'countries', 'image']);
-      }
-      else{
-         $ngo = $user->ngos()->firstOrFail();
-         $offers = $ngo->offers()->with(['ngo', 'filters','categories', 'countries', 'image']);
-      }
+       $user = Auth::user();
+       if ($user) {
+           if($user->hasRole(['superadmin', 'admin']) ){
+               $offers = Offer::with(['ngo', 'filters','categories', 'countries', 'image']);
+           }
+           else{
+               $ngo = $user->ngos()->firstOrFail();
+               $offers = $ngo->offers()->with(['ngo', 'filters','categories', 'countries', 'image']);
+           }
+       } else {
+           $offers = Offer::with(['image']);
+       }
+
       $count = $offers->count();
 
       if($request->has('ngo_id')){

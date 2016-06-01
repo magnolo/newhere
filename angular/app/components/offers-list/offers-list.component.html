@@ -1,0 +1,37 @@
+<div ng-if="vm.offers">
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <h2>
+                <span>Angebote</span>
+            </h2>
+        </div>
+    </md-toolbar>
+    <div layout="row" layout-wrap>
+        <md-card class="md-padding" style="width: 300px;" ng-repeat="offer in vm.offers">
+            <md-card-title>
+                <md-card-title-text>
+                    <span class="md-headline">{{offer.title}}</span>
+                    <span class="md-subhead">
+                        {{offer.description  | limitTo: 100}}<span ng-if="offer.description.length > 100">...</span>
+                    </span>
+                </md-card-title-text>
+                <md-card-title-media>
+                    <img ng-if="offer.image" ng-src="{{vm.getImageSrc(offer)}}" class="md-card-image">
+                </md-card-title-media>
+            </md-card-title>
+            <md-card-actions layout="row" layout-align="end center">
+                <md-button>Anzeigen</md-button>
+            </md-card-actions>
+        </md-card>
+    </div>
+    <div layout="row" layout-align="center">
+        <div ng-if="vm.offerCount > vm.query.limit"
+             paging
+             page="vm.query.page"
+             page-size="vm.query.limit"
+             total="vm.offerCount"
+             show-prev-next="true"
+             paging-action="vm.goToPage(page)">
+        </div>
+    </div>
+</div>
