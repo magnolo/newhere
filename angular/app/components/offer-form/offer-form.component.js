@@ -22,7 +22,7 @@ class OfferFormController {
         this.OfferTranslationService = OfferTranslationService;
         this.OfferTranslationService.fetchAll((list) => {
             this.translations = list;
-         })
+         });
         this.NgoService = NgoService;
         if(this.cms){
           this.NgoService.fetchAll().then((list) => {

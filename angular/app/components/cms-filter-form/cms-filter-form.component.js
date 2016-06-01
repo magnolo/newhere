@@ -15,6 +15,7 @@ class CmsFilterFormController{
         })
         this.filter = {
             title:'',
+            description:'',
             translations:[]
         };
 
@@ -37,6 +38,7 @@ class CmsFilterFormController{
         if(!exists){
             this.filter.translations.push({
                 title:'',
+                description:'',
                 locale: language
             });
         }

@@ -42,6 +42,8 @@
                         <input type="text" ng-model="translation.title" required>
                     </md-input-container>
                 </div>
+                <h4 class="md-subhead">Description</h4>
+                <text-angular ng-model="translation.description"></text-angular>
             </md-content>
         </md-tab>
     </md-tabs>
@@ -52,5 +54,7 @@
                 <input type="text" ng-model="vm.filter.title" required>
             </md-input-container>
         </div>
+        <h4 class="md-subhead">Description</h4>
+        <text-angular ng-model="vm.filter.description"></text-angular>
     </md-content>
 </form>
