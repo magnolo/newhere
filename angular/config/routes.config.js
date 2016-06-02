@@ -113,18 +113,27 @@ export function RoutesConfig($stateProvider, $urlRouterProvider) {
 				}
 			}
 		})
-		.state('app.ngo', {
-			url: '/ngo',
+		.state('app.myngo', {
+			url: '/my-ngo',
 			data: {
 				auth:true,
 				roles:['organisation-admin', 'organisation-user']
 			},
 			views: {
 				'main@app': {
-					templateUrl: getView('ngo'),
+					templateUrl: getView('my-ngo'),
 					controller: function($scope, $window){
 						$scope.isNgoAdmin = ($window.localStorage.roles.indexOf("organisation-admin") > -1);
 					}
+				}
+			}
+		})
+		.state('app.ngo', {
+			url: '/ngo/{id}',
+			data: {},//{auth: true} would require JWT auth for this route
+			views: {
+				'main@app': {
+					templateUrl: getView('ngo')
 				}
 			}
 		})

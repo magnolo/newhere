@@ -1,26 +1,13 @@
-<div class="Page-container greyed" layout-fill>
+<md-content class="Page-container" layout-fill>
     <md-toolbar>
         <div class="md-toolbar-tools">
             <h2>
-                <span>Meine Organisation</span>
+                <span>Organisation</span>
             </h2>
         </div>
     </md-toolbar>
-
-    <div flex-gt-sm="70" flex flex-offset-gt-sm="15" layout-padding>
-        <md-card>
-            <md-tabs md-dynamic-height>
-                <md-tab label="Infos">
-                    <ngo-detail></ngo-detail>
-                </md-tab>
-                <md-tab label="Meine Angebote">
-                    <cms-offers-list></cms-offers-list>
-                </md-tab>
-                <md-tab ng-if="isNgoAdmin" label="Mitarbeiter">
-                    <ngo-users-list></ngo-users-list>
-                </md-tab>
-            </md-tabs>
-        </md-card>
+    <div flex-gt-sm="50" flex flex-offset-gt-sm="25" layout-padding>
+        <ngo-detail></ngo-detail>
+        <offers-list></offers-list>
     </div>
-
-</div>
+</md-content>
