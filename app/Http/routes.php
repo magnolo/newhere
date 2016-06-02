@@ -77,6 +77,7 @@ $api->group(['middleware' => ['api', 'api.auth']], function ($api) {
     $api->get('ngos/my', 'Cms\NgoController@my');
     $api->put('ngos/my/{id}', 'Cms\NgoController@update');
 
+    $api->get('categories', 'Cms\CategoryController@index');
 
     $api->get('filters', 'Cms\FilterController@index');
 
@@ -118,5 +119,9 @@ $api->group(['middleware' => ['api', 'api.auth']], function ($api) {
       $api->put('offers/{id}/toggleEnabled', 'Cms\OfferController@toggleEnabled');
       $api->patch('offers/{ids}', 'Cms\OfferController@bulkAssign');
 
+      $api->put('filters/{id}/toggleEnabled', 'Cms\FilterController@toggleEnabled');
+      $api->get('filters/{id}', ['uses' => 'Cms\FilterController@show']);
+      $api->post('filters', 'Cms\FilterController@create');
+      $api->put('filters/{id}', ['uses' => 'Cms\FilterController@update']);
     });
 });

@@ -1,0 +1,60 @@
+<form ng-submit="vm.save()" name="filterForm">
+    <div layout="row" layout-padding>
+        <div>
+            <md-input-container class="md-block">
+                <label>Icon</label>
+                <input type="text" ng-model="vm.filter.icon" required>
+            </md-input-container>
+        </div>
+        <div>
+            <md-input-container class="CmsFilterForm-inputContainer">
+                <label>Parent Filter</label>
+                <md-select ng-model="vm.filter.parent_id">
+                    <md-option ng-value="null">None</md-option>
+                    <md-option ng-if="filter.id != vm.filter.id" ng-repeat="filter in vm.filters" ng-value="filter.id">{{filter.title}}</md-option>
+                </md-select>
+            </md-input-container>
+        </div>
+        <span flex></span>
+        <div layout="row" layout-align="center center">
+            <md-menu ng-if="vm.filter.id">
+                <md-button aria-label="Open translation menu" class="md-raised"  layout="row" layout-align="center center" ng-click="$mdOpenMenu($event)">
+                    <i class="material-icons">add</i> Translation
+                </md-button>
+                <md-menu-content width="2">
+                    <md-menu-item ng-repeat="language in vm.languages">
+                        <md-button ng-click="vm.addTranslation(language.language)">
+                            {{language.i18n}} ({{language.language}})
+                        </md-button>
+                    </md-menu-item>
+                </md-menu-content>
+            </md-menu>
+            <md-button type="submit" class="md-primary md-raised" ng-disabled="filterForm.$invalid">Save</md-button>
+            <md-button class="md-primary" ng-click="vm.cancel()">Cancel</md-button>
+        </div>
+    </div>
+    <md-tabs md-dynamic-height  md-autoselect md-selected="vm.activeTransTab" class="md-primary" ng-if="vm.filter.translations.length">
+        <md-tab label="{{vm.i18nTitle(translation.locale)}}" ng-repeat="translation in vm.filter.translations">
+            <md-content class="md-padding white-bg">
+                <div>
+                    <md-input-container class="md-block">
+                        <label>Title</label>
+                        <input type="text" ng-model="translation.title" required>
+                    </md-input-container>
+                </div>
+                <h4 class="md-subhead">Description</h4>
+                <text-angular ng-model="translation.description"></text-angular>
+            </md-content>
+        </md-tab>
+    </md-tabs>
+    <md-content class="md-padding white-bg" ng-if="!vm.filter.translations.length">
+        <div>
+            <md-input-container class="md-block">
+                <label>Title</label>
+                <input type="text" ng-model="vm.filter.title" required>
+            </md-input-container>
+        </div>
+        <h4 class="md-subhead">Description</h4>
+        <text-angular ng-model="vm.filter.description"></text-angular>
+    </md-content>
+</form>
