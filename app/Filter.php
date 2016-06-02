@@ -21,5 +21,9 @@ class Filter extends Model
     {
         return $this->hasOne('App\Filter', 'id', 'parent_id');
     }
+    public function image()
+    {
+        return $this->belongsTo('App\Image');
 
+    }
 }

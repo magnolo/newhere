@@ -269,6 +269,20 @@ md-toolbar.md-whitey-theme:not(.md-menu-toolbar) md-icon{
     > span{
       height: 3em;
     }
+    &.clean{
+      &:nth-child(odd){
+        background-color:transparent;
+      }
+      &.md-raised{
+        background-color: @blue;
+        md-icon{
+          *{
+            color:@white;
+            fill:@white;
+          }
+        }
+      }
+    }
   }
 
 }

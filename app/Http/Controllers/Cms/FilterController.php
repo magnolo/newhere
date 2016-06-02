@@ -25,14 +25,14 @@ class FilterController extends Controller
         else{
 //            $filters = Filter::where('parent_id', null)->with('children')->orderBy('type')->orderBy('id')->get();
             $filters = Filter::where('parent_id',null)->withTranslation()->orderBy('type')->get();
-            $filters->load('children');
         }
-
+        $filters->load(['children', 'image']);
         return response()->success(compact('filters'));
     }
     public function show($id)
     {
         $filter = Filter::findOrFail((int)$id);
+        $filter->load('image');
         $languages = Language::where('enabled', true)->get();
         foreach($languages as $language){
             $filter->translate($language->language);
@@ -44,7 +44,7 @@ class FilterController extends Controller
     {
         $this->validate($request, [
             'language'    => 'required|min:2|max:2',
-            'icon' => 'required|min:1|max:20',
+            'image_id' => 'int',
             'title' => 'required|max:255'
         ]);
 
@@ -52,7 +52,7 @@ class FilterController extends Controller
 
         $locale = $request->get('language');
         $filter = new Filter();
-        $filter->icon = $request->get('icon');
+        $filter->image_id = $request->get('image_id');
         $filter->parent_id = $request->get('parent_id');
         $filter->save();
 
@@ -73,7 +73,7 @@ class FilterController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'icon' => 'required|min:1|max:20',
+            'image_id' => 'int',
             'translations' => 'required'
         ]);
 
@@ -86,12 +86,15 @@ class FilterController extends Controller
         DB::beginTransaction();
 
         $locale = $request->get('language');
-        $filter->icon = $request->get('icon');
+        $filter->image_id = $request->get('image_id');
         $filter->parent_id = $request->get('parent_id');
 
         foreach($request->get('translations') as $translation){
             $filter->translateOrNew($translation['locale'])->title = $translation['title'];
-            $filter->translateOrNew($translation['locale'])->description = $translation['description'];
+            if(isset($translation['description'])){
+              $filter->translateOrNew($translation['locale'])->description = $translation['description'];
+            }
+
 
         }
         $filter->save();

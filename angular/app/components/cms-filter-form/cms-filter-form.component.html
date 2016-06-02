@@ -1,11 +1,6 @@
 <form ng-submit="vm.save()" name="filterForm">
     <div layout="row" layout-padding>
-        <div>
-            <md-input-container class="md-block">
-                <label>Icon</label>
-                <input type="text" ng-model="vm.filter.icon" required>
-            </md-input-container>
-        </div>
+        <image-uploader ng-model="vm.filter" label="Icon hochladen"></image-uploader>
         <div>
             <md-input-container class="CmsFilterForm-inputContainer">
                 <label>Parent Filter</label>

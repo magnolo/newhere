@@ -11,9 +11,9 @@
 </div>
 <div layout="row" layout-wrap>
 
-        <md-button ng-repeat="filter in vm.filters | filter: {type: 'icon'}" ng-class="{'md-raised': vm.inSelection(filter)}" ng-click="vm.toggleFilter(filter)" layout="column" layout-align="center center" class="md-primary">
+        <md-button flex="33" ng-repeat="filter in vm.filters | filter: {type: 'icon'}" ng-class="{'md-raised md-primary': vm.inSelection(filter)}" ng-click="vm.toggleFilter(filter)" layout="column" layout-align="center center" class="big-thumb clean md-primary">
             <div hide-sm hide-md class="md-tile-content">
-                <md-icon md-svg-src="/img/icons/filter/{{filter.icon}}.svg" class="md-48"></md-icon>
+                <md-icon md-svg-src="{{ filter.image.src}}" class="md-96"></md-icon>
             </div>
             <div class="md-tile-content">{{filter.title}}</div>
         </md-button>
