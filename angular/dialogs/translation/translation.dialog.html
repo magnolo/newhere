@@ -2,7 +2,7 @@
     <form ng-submit="vm.save()">
         <md-toolbar>
             <div class="md-toolbar-tools">
-                <h2>{{vm.sourceTranslation.title}}</h2>
+                <h2>{{vm.ngo ? vm.ngo.organisation : vm.sourceTranslation.title}}</h2>
                 <span flex></span>
                 <md-button class="md-icon-button" ng-click="vm.cancel()">
                     <md-icon>close</md-icon>
@@ -14,7 +14,7 @@
             <div class="md-dialog-content" layout="row">
                 <div>
                     <h3>{{ vm.sourceLanguage.i18n || 'de' }} ({{ vm.sourceLanguage.language || 'de' }})</h3>
-                    <md-input-container class="md-block">
+                    <md-input-container ng-if="vm.sourceTranslation.hasOwnProperty('title')" class="md-block">
                         <label>Title</label>
                         <input ng-model="vm.sourceTranslation.title" readonly>
                     </md-input-container>
@@ -29,7 +29,7 @@
                 </div>
                 <div>
                     <h3>{{ vm.language.i18n || 'de' }} ({{ vm.language.language || 'de' }})</h3>
-                    <md-input-container class="md-block">
+                    <md-input-container ng-if="vm.sourceTranslation.hasOwnProperty('title')" class="md-block">
                         <label>Title</label>
                         <input ng-model="vm.translation.title" required>
                     </md-input-container>

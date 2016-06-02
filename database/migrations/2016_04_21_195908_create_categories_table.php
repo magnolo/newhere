@@ -20,6 +20,7 @@ class CreateCategoriesTable extends Migration
             $table->string('slug')->nullable();
             $table->string('icon', 20);
             $table->boolean('enabled')->default(true);
+            $table->integer('sortindex')->default(0);
             $table->timestamps();
 
             $table->foreign('parent_id')

@@ -3,7 +3,7 @@
 
         <div layout="row" layout-align="space-between start">
             <md-input-container class="md-icon-float md-block">
-                <label>Search</label>
+                <label>NGO suchen</label>
                 <md-icon class="material-icons">search</md-icon>
                 <input ng-model="vm.listFilter.search" type="text">
             </md-input-container>
@@ -55,7 +55,7 @@
                   {{ngo.offers.length}}
                 </td>
                 <td md-cell>
-                  {{ngo.users.length}}
+                  <a ui-sref="{{'cms.ngos.users({id:'+ngo.id+'})'}}">{{ngo.users.length}}</a>
                 </td>
             </tr>
             </tbody>

@@ -1,5 +1,12 @@
+import {CmsNgoTranslationItemComponent} from './app/components/cms-ngo-translation-item/cms-ngo-translation-item.component';
+import {CmsNgoTranslationTableComponent} from './app/components/cms-ngo-translation-table/cms-ngo-translation-table.component';
+import {AppCategoriesContentSubComponent} from './app/components/app-categories-content-sub/app-categories-content-sub.component';
+import {AppCategoriesContentComponent} from './app/components/app-categories-content/app-categories-content.component';
+import {AppCategoriesToolbarComponent} from './app/components/app-categories-toolbar/app-categories-toolbar.component';
+import {LocatorComponent} from './app/components/locator/locator.component';
+import {MapComponent} from './app/components/map/map.component';
+import {NgoUsersListComponent} from './app/components/ngo-users-list/ngo-users-list.component';
 import {WizardOfferComponent} from './app/components/wizard-offer/wizard-offer.component';
-
 import {CmsCategoryTranslationItemComponent} from './app/components/cms-category-translation-item/cms-category-translation-item.component';
 import {CmsCategoryTranslationTableComponent} from './app/components/cms-category-translation-table/cms-category-translation-table.component';
 import {WidgetCategoriesComponent} from './app/components/widget-categories/widget-categories.component';
@@ -33,8 +40,15 @@ import {CmsFiltersListComponent} from './app/components/cms-filters-list/cms-fil
 import {CmsFilterFormComponent} from './app/components/cms-filter-form/cms-filter-form.component';
 
 angular.module('app.components')
+	.component('cmsNgoTranslationItem', CmsNgoTranslationItemComponent)
+	.component('cmsNgoTranslationTable', CmsNgoTranslationTableComponent)
+	.component('appCategoriesContentSub', AppCategoriesContentSubComponent)
+	.component('appCategoriesContent', AppCategoriesContentComponent)
+	.component('appCategoriesToolbar', AppCategoriesToolbarComponent)
+	.component('locator', LocatorComponent)
+	.component('map', MapComponent)
+	.component('ngoUsersList', NgoUsersListComponent)
 	.component('wizardOffer', WizardOfferComponent)
-
 	.component('cmsCategoryTranslationItem', CmsCategoryTranslationItemComponent)
 	.component('cmsCategoryTranslationTable', CmsCategoryTranslationTableComponent)
 	.component('widgetCategories', WidgetCategoriesComponent)
