@@ -3,6 +3,7 @@
 use Illuminate\Database\Seeder;
 
 use App\Filter;
+use App\Image;
 
 class FilterTableSeeder extends Seeder
 {
@@ -12,12 +13,17 @@ class FilterTableSeeder extends Seeder
      * @return void
      */
 
-    protected function createFilter($key, $f, $parent_id = null){
+    public function createFilter($key, $f, $parent_id = null){
       $filter = new Filter();
       $filter->slug = $key;
-      $filter->icon = $f['icon'];
+
       $filter->parent_id = $parent_id;
       $filter->type = isset($f['type']) ? $f['type'] : null;
+
+      if($f['icon']){
+        $icon = Image::where('basename', 'like', '%'.$f['icon']."%" )->first();
+        $filter->image_id = $icon->id;
+      }
 
       $filter->save();
       $filter->translateOrNew('de')->title = $f['de'];
@@ -33,20 +39,20 @@ class FilterTableSeeder extends Seeder
             'de' => 'Familie',
             'en' => 'Families',
             'type' => 'icon',
-            'icon' => 'family'
+            'icon' => '1464870716-Familie'
           ],
           'women' => [
             'de' => 'Frauen',
             'en' => 'Women',
             'type' => 'icon',
-            'icon' => 'woman'
+            'icon' => '1464870725-Frauen'
 
           ],
           'men' => [
             'de' => 'Männer',
             'en' => 'Men',
             'type' => 'icon',
-            'icon' => 'man'
+            'icon' => '1464870734-Maenner'
           ],
           'age' => [
             'de' => 'Alter',
@@ -85,31 +91,31 @@ class FilterTableSeeder extends Seeder
             'de' => 'Menschen mit besonderen Bedürfnissen',
             'en' => 'Persons with Disabilities',
             'type' => 'icon',
-            'icon' => 'handicaped'
+            'icon' => '1464870455-Barrierefrei'
           ],
           'barrier-free' => [
             'de' => 'Barrierefrei',
             'en' => 'Barrier Free',
             'type' => 'icon',
-            'icon' => 'handicaped'
+            'icon' => '1464870455-Barrierefrei'
           ],
           'culture-pass' => [
             'de' => 'Kulturpass',
             'en' => 'Culture-pass',
             'type' => 'icon',
-            'icon' => 'culture'
+            'icon' => ''
           ],
           'free' => [
             'de' => 'Gratis',
             'en' => 'Free',
             'type' => 'icon',
-            'icon' => 'free'
+            'icon' => '1464870698-Gratis'
           ],
           'lgbtqi' => [
             'de' => 'LGBTQI',
             'en' => 'LGBTQI',
             'type' => 'icon',
-            'icon' => 'lgbtqi'
+            'icon' => '1464870705-LGBTQI'
           ],
           'country-of-origin' => [
             'de' => 'Herkunftsland',
