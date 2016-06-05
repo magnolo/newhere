@@ -47,15 +47,30 @@ export class MapService {
             console.log(markers);
             this.markers = markers;
         }
+
+
     }
+
+    zoomTo(offer) {
+      this.center = {
+          lat: parseFloat(offer.longitude),
+          lng: parseFloat(offer.latitude),
+          zoom: 14
+      };
+    }
+
     $onInit(){
       this.markers = {};
     }
 
     getLocation(success, error) {
 
+
+
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition((position) => {
+
+               console.log(position.coords.latitude+' '+position.coords.longitude);
                 this.center.lat = position.coords.latitude;
                 this.center.lng = position.coords.longitude;
                 this.center.zoom = 12;

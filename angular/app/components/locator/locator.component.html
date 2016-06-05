@@ -1,7 +1,30 @@
 <div layout="row" flex>
-    <md-input-container flex md-no-float class="md-primary md-block no-error no-margin">
         <md-icon>place</md-icon>
-        <input type="text" placeholder="Search a place" />
+        <md-input-container flex md-no-float class="md-primary md-block no-error no-margin">
+
+        <md-autocomplete
+        md-selected-item="vm.selectedItem"
+        md-selected-item-change="vm.selectedItemChange(item)"
+        md-search-text="vm.searchText" md-items="item in vm.searchPlaces(vm.searchText)"
+        md-item-text="item.title"
+          md-min-length="2"
+          placeholder="search for a place"
+          md-menu-class="autocomplete-custom-template"
+          md-selected-item-change="vm.selectedItemChange(item)"
+>
+           <md-item-template>
+             <span class="item-title">
+                <md-icon>place</md-icon>
+                <strong> {{item.title}} </strong>
+            </span>
+            <span class="item-address" md-highlight-text="vm.searchText">
+          {{item.street}} {{item.streetnumer}}, {{item.zip}} {{item.city}}
+      </span>
+           </md-item-template>
+           <md-not-found>
+                No places found!
+           </md-not-found>
+        </md-autocomplete>
 
     </md-input-container>
     <md-button ng-click="vm.locateMe()" class="md-icon-button md-primary">
