@@ -8,37 +8,27 @@ use App\Http\Requests,
     App\Http\Controllers\Controller,
     Auth;
 
-class NgoTranslationController extends AbstractTranslationController
+class FilterTranslationController extends AbstractTranslationController
 {
     public function index()
     {
         list($activeLanguages, $activeLanguageCount) = $this->loadLanguages();
-        $defaultLanguage = \App\Language::where('default_language', true)->first();
+        
+        $filters = \App\Filter::all();
 
-        $allNgos = \App\Ngo::all();
-
-        foreach ($allNgos as $idx => $ngo) {
-
-            // filter NGOs that have no description (description is an optional field in NGO)
-            $defaultTranslation = $ngo->translate($defaultLanguage->language);
-            if (!$defaultTranslation) {
-                unset($allNgos[$idx]);
-                continue;
-            } else {
+        foreach ($filters as $filter) {
+            /**
+             * @var \App\Filter $filter
+             */
+            foreach ($activeLanguages as $language) {
                 /**
-                 * @var \App\Ngo $ngo
+                 * @var \App\Language $language
                  */
-                foreach ($activeLanguages as $language) {
-                    /**
-                     * @var \App\Language $language
-                     */
-                    $ngo->translate($language->language);
-
-                }
+                $filter->translate($language->language);
             }
         }
 
-        return response()->success(['ngo-translations' => $allNgos]);
+        return response()->success(['filter-translations' => $filters]);
     }
 
     public function untranslatedIndex()
@@ -48,18 +38,16 @@ class NgoTranslationController extends AbstractTranslationController
 
         $untranslated = [];
 
-        $ngos = \App\Ngo::all();
+        $filters = \App\Filter::all();
 
-        foreach ($ngos as $idx => $ngo) {
+        foreach ($filters as $idx => $filter) {
             /**
-             * @var \App\Ngo $ngo
+             * @var \App\Filter $filter
              */
             $translatedLanguages = 0;
-            $defaultTranslation = $ngo->translate($defaultLanguage->language);
+            $defaultTranslation = $filter->translate($defaultLanguage->language);
             if (!$defaultTranslation) {
-                unset($ngos[$idx]);
-                continue;
-                //return response()->error('Default translation not found', 404);
+                return response()->error('Default translation not found', 404);
             }
             $version = $defaultTranslation->version;
 
@@ -71,13 +59,13 @@ class NgoTranslationController extends AbstractTranslationController
                     continue;
                 }
 
-                $translation = $ngo->translate($language->language);
+                $translation = $filter->translate($language->language);
                 if ($translation && $translation->version == $version) {
                     $translatedLanguages++;
                 }
             }
             if ($translatedLanguages < $activeLanguageCount) {
-                $untranslated[] = $ngo;
+                $untranslated[] = $filter;
             }
         }
 
@@ -88,12 +76,13 @@ class NgoTranslationController extends AbstractTranslationController
     {
         $this->validate($request, [
             'language' => 'required|min:2|max:2',
+            'title' => 'required|string|min:1|max:255',
             'description' => 'required|string|min:1|max:10000',
         ]);
 
-        $ngo = \App\Ngo::find((int)$id);
-        if (!$ngo) {
-            return response()->error('Ngo not found', 404);
+        $filter = \App\Filter::find((int)$id);
+        if (!$filter) {
+            return response()->error('Filter not found', 404);
         }
 
         $defaultLanguage = \App\Language::where('default_language', true)->first();
@@ -109,34 +98,39 @@ class NgoTranslationController extends AbstractTranslationController
             return response()->error('Language not enabled', 404);
         }
 
-        $defaultTranslation = $ngo->translate($defaultLanguage->language);
+        $defaultTranslation = $filter->translate($defaultLanguage->language);
         if (!$defaultTranslation) {
             return response()->error('Language not found', 404);
         }
 
         $hasChanged = $this->getTranslationService()->hasChanged(
-            ($ngo->translate($translationLanguage->language) ?
+            ($filter->translate($translationLanguage->language) ?
                 [
-                    'description' => $ngo->translate($translationLanguage->language)->description,
+                    'title' =>  $filter->translate($translationLanguage->language)->title,
+                    'description' => $filter->translate($translationLanguage->language)->description,
                 ] : [
-                    'description' => null,
+                    'title' => null, 'description' => null,
                 ]
             ),
             [
+                'title' => $request->get('title'),
                 'description' => $request->get('description'),
             ]
         );
 
         if ($hasChanged) {
-            $ngo->translateOrNew($translationLanguage->language)->description = $request->get('description');
+            $filter->translateOrNew($translationLanguage->language)->title = $request->get('title');
+            $filter->translateOrNew($translationLanguage->language)->description = $request->get('description');
+            
             if ($translationLanguage->default_language) {
-                $ngo->translateOrNew($translationLanguage->language)->version = $defaultTranslation->version + 1;
+                $filter->translateOrNew($translationLanguage->language)->version = $defaultTranslation->version + 1;
             } else {
-                $ngo->translateOrNew($translationLanguage->language)->version = $defaultTranslation->version;
+                $filter->translateOrNew($translationLanguage->language)->version = $defaultTranslation->version;
             }
-            $ngo->save();
+            
+            $filter->save();
         }
 
-        return response()->json($ngo);
+        return response()->json($filter);
     }
 }

@@ -8,18 +8,8 @@ use App\Http\Requests,
     App\Http\Controllers\Controller,
     Auth;
 
-class CategoryTranslationController extends Controller
+class CategoryTranslationController extends AbstractTranslationController
 {
-    /**
-     * @var \App\Services\Translation
-     */
-    private $translationService;
-
-    public function __construct(\App\Services\Translation $translationService)
-    {
-        $this->translationService = $translationService;
-    }
-
     public function index()
     {
         list($activeLanguages, $activeLanguageCount) = $this->loadLanguages();
@@ -113,7 +103,7 @@ class CategoryTranslationController extends Controller
             return response()->error('Language not found', 404);
         }
 
-        $hasChanged = $this->translationService->hasChanged(
+        $hasChanged = $this->getTranslationService()->hasChanged(
             ($category->translate($translationLanguage->language) ?
                 [
                     'title' =>  $category->translate($translationLanguage->language)->title,
@@ -140,42 +130,5 @@ class CategoryTranslationController extends Controller
         }
 
         return response()->json($category);
-    }
-
-    private function loadLanguages()
-    {
-        /**
-         * @var \App\User $user
-         */
-        $user = Auth::user();
-        $user->load('roles');
-
-        $allLanguages = true;
-
-        foreach ($user->roles as $role) {
-            if (in_array($role->name, ['moderator'])) {
-                $allLanguages = false;
-                break;
-            }
-        }
-
-        $decreaseCount = 0;
-        if ($allLanguages) {
-            $languages = \App\Language::where('enabled', true)->get();
-            $decreaseCount = 1;
-        } else {
-            $languages = $user->languages()->get();
-            foreach ($languages as $language) {
-                if ($language->default_language) {
-                    $decreaseCount = 1;
-                    break;
-                }
-            }
-        }
-
-        return [
-            $languages,
-            $languages->count() - $decreaseCount
-        ];
     }
 }

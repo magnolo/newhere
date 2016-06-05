@@ -60,6 +60,10 @@ $api->group(['middleware' => ['api', 'api.auth']], function ($api) {
     $api->get('ngo-translations/untranslated', 'Cms\NgoTranslationController@untranslatedIndex');
     $api->put('ngo-translations/{id}', 'Cms\NgoTranslationController@translate');
 
+    $api->get('filter-translations', 'Cms\FilterTranslationController@index');
+    $api->get('filter-translations/untranslated', 'Cms\FilterTranslationController@untranslatedIndex');
+    $api->put('filter-translations/{id}', 'Cms\FilterTranslationController@translate');
+
     $api->get('languages/published', 'Cms\LanguageController@publishedIndex');
     $api->get('languages/enabled', 'Cms\LanguageController@enabledIndex');
     $api->get('languages/default', 'Cms\LanguageController@defaultLanguage');
