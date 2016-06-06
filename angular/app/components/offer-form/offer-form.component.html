@@ -128,7 +128,7 @@
                       <md-card-title>
                           <md-card-title-text>
                               <span class="md-headline">Übersetzungen</span>
-                              <span class="md-subhead">{{ vm.offer.translations.length-1 }} vorhanden</span>
+                              <span class="md-subhead" ng-if = "vm.offer.translations.length-1 != -1">{{ vm.offer.translations.length-1 }} vorhanden</span>
                           </md-card-title-text>
                       </md-card-title>
                       <md-table-container>
