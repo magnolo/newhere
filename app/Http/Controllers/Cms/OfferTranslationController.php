@@ -8,18 +8,8 @@ use App\Http\Requests,
     App\Http\Controllers\Controller,
     Auth;
 
-class OfferTranslationController extends Controller
+class OfferTranslationController extends AbstractTranslationController
 {
-    /**
-     * @var \App\Services\Translation
-     */
-    private $translationService;
-
-    public function __construct(\App\Services\Translation $translationService)
-    {
-        $this->translationService = $translationService;
-    }
-
     public function index()
     {
         list($activeLanguages, $activeLanguageCount) = $this->loadLanguages();
@@ -122,7 +112,7 @@ class OfferTranslationController extends Controller
             return response()->error('Language not found', 404);
         }
 
-        $hasChanged = $this->translationService->hasChanged(
+        $hasChanged = $this->getTranslationService->hasChanged(
             ($offer->translate($translationLanguage->language) ?
                 [
                     'title' => $offer->translate($translationLanguage->language)->title,
@@ -152,42 +142,5 @@ class OfferTranslationController extends Controller
         }
 
         return response()->json($offer);
-    }
-
-    private function loadLanguages()
-    {
-        /**
-         * @var \App\User $user
-         */
-        $user = Auth::user();
-        $user->load('roles');
-
-        $allLanguages = true;
-
-        foreach ($user->roles as $role) {
-            if (in_array($role->name, ['moderator'])) {
-                $allLanguages = false;
-                break;
-            }
-        }
-
-        $decreaseCount = 0;
-        if ($allLanguages) {
-            $languages = \App\Language::where('enabled', true)->get();
-            $decreaseCount = 1;
-        } else {
-            $languages = $user->languages()->get();
-            foreach ($languages as $language) {
-                if ($language->default_language) {
-                    $decreaseCount = 1;
-                    break;
-                }
-            }
-        }
-
-        return [
-            $languages,
-            $languages->count() - $decreaseCount
-        ];
     }
 }

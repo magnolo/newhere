@@ -17,8 +17,8 @@ export class CategoryService {
         this.LanguageService = LanguageService;
         this.Restangular = Restangular;
         this.$state = $state;
-
     }
+
     all(success, error, force) {
         if (angular.isDefined(this.categories) && !force) {
             success(this.categories);
@@ -30,11 +30,26 @@ export class CategoryService {
                 this.categories = response;
                 angular.forEach(this._callbacks, (callback) => {
                     callback(this.categories);
-                })
+                });
                 this._promise = null;
             }, error);
         }
+    }
+    bySlug(slug, success, error) {
 
+        this.API.one('categories', slug).get().then((response) => {
+            this.category = response;
+            success(response);
+        }, error);
+
+    }
+    getOffers(success){
+      console.log(this.category);
+      if(this.category){
+        this.API.one('categories', this.category.slug).getList('offers').then((offers) => {
+          success(offers);
+        })
+      }
     }
     flattened(success, error, force) {
         if (angular.isDefined(this.flattenedCategories) && !force) {
@@ -47,11 +62,12 @@ export class CategoryService {
                 this.flattenedCategories = response;
                 angular.forEach(this._callbacksFlat, (callback) => {
                     callback(this.flattenedCategories);
-                })
+                });
                 this._promiseFlat = null;
             }, error);
         }
     }
+
     one(id, success, error) {
 
         if (!id) return false;
@@ -64,6 +80,7 @@ export class CategoryService {
             }, error);
         }
     }
+
     save(category) {
         if (category.id && category.id != 'new') {
             return this.category.save().then((response) => {
@@ -72,14 +89,14 @@ export class CategoryService {
                     if (item.id == category.id) {
                         angular.copy(category, item);
                     }
-                })
+                });
             });
         } else {
             var data = {
                 title: category.title,
                 description: category.description,
                 language: this.LanguageService.activeLanguage(),
-                icon: category.icon,
+                image_id: category.image_id,
                 parent_id: category.parent_id
             };
             this.API.all('categories').post(data).then((response) => {
@@ -92,6 +109,17 @@ export class CategoryService {
             });
         }
 
+    }
+
+    move(item, newIndex, newParent) {
+        this.API.one('categories', item.id).customPUT({
+            sortindex: newIndex,
+            parent: (typeof newParent == "undefined" ? 0 : newParent.id)
+        }, 'move').then(
+            (response) => {
+                this.ToastService.show('Category moved.');
+            }
+        );
     }
 
     cancel() {
@@ -108,7 +136,6 @@ export class CategoryService {
                 this.ToastService.show('Category updated.');
             },
             (response) => {
-                //this.ToastService.show('Category updated.');
                 category.enabled = !category.enabled;
             }
         );

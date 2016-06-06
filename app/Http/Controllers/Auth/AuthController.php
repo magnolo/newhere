@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Logic\Address\AddressAPI;
 use App\Ngo;
 use App\Role;
 use Auth;
@@ -84,10 +85,15 @@ class AuthController extends Controller
             'description' => 'max:200'
         ]);
 
+        if ($request->has('street') && $request->has('street_number') && $request->has('zip')) {
+            $addressApi = new AddressAPI();
+            $coordinates = $addressApi->getCoordinates($request->get('street'), $request->get('street_number'), $request->get('zip'));
+        }
+
         DB::beginTransaction();
 
         $ngoUser = $this->storeAndSendMail($request->get('organisation'), $request->email, $request->password);
-        $organisationRole = Role::where('name', 'organisation')->firstOrFail();
+        $organisationRole = Role::where('name', 'organisation-admin')->firstOrFail();
         $ngoUser->attachRole($organisationRole);
 
         $ngo = new Ngo();
@@ -101,7 +107,10 @@ class AuthController extends Controller
         $ngo->zip = $request->get('zip');
         $ngo->city = $request->get('city');
         $ngo->image_id = $request->get('image_id');
-
+        if ($coordinates) {
+            $ngo->latitude = $coordinates[0];
+            $ngo->longitude = $coordinates[1];
+        }
         //Standard Translation
         if ($request->has('description')) {
             $locale = $request->get('language');

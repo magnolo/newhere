@@ -30,6 +30,11 @@ class CmsMenuController{
             title:'Categories'
           },
           {
+            sref:'cms.filters',
+            icon:'filter_list',
+            title:'Filters'
+          },
+          {
             sref:'cms.languages',
             icon:'font_download',
             title:'Languages'
@@ -39,12 +44,6 @@ class CmsMenuController{
             icon:'group',
             title:'Users'
           }
-          // {
-          //   sref:'cms.roles',
-          //   icon:'streetview',
-          //   title:'Roles'
-          // },
-
         ]
     }
 

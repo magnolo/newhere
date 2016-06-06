@@ -25,14 +25,20 @@ class OfferController extends Controller
   //     return response()->json($ngos);
   //  }
    public function index(Request $request) {
-      $user = Auth::user();
-      if($user->hasRole(['superadmin', 'admin']) ){
-         $offers = Offer::with(['ngo', 'filters','categories', 'countries', 'image']);
-      }
-      else{
-         $ngo = $user->ngos()->firstOrFail();
-         $offers = $ngo->offers()->with(['ngo','categories', 'filters', 'countries', 'image']);
-      }
+
+       $user = Auth::user();
+       if ($user) {
+           if($user->hasRole(['superadmin', 'admin']) ){
+               $offers = Offer::with(['ngo', 'filters','categories', 'countries', 'image']);
+           }
+           else{
+               $ngo = $user->ngos()->firstOrFail();
+               $offers = $ngo->offers()->with(['ngo', 'filters','categories', 'countries', 'image']);
+           }
+       } else {
+           $offers = Offer::with(['image']);
+       }
+
       $count = $offers->count();
 
       if($request->has('ngo_id')){
@@ -84,7 +90,7 @@ class OfferController extends Controller
   //     return response()->json($ngo);
   //  }
   public function show($id) {
-      $offer= Offer::where('id',$id)->with(['ngo', 'filters', 'categories', 'countries', 'image'])->firstOrFail();
+      $offer = Offer::where('id', $id)->with(['ngo', 'filters', 'categories', 'countries', 'image', 'translations'])->firstOrFail();
       return response()->json($offer);
    }
 

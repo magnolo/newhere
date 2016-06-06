@@ -27,12 +27,20 @@
     "bootstrap-css-only": "^3.3.6",
     "angular-sanitize": "^1.5.5",
     "ng-flow": "~2",
-    "angular-wizard": "^0.6.1"
+    "angular-wizard": "^0.6.1",
+    "leaflet-fullscreen": "^1.0.1",
+    "angular-paging": "^2.2.1"
   },
   "overrides": {
     "font-awesome": {
       "main": [
         "css/font-awesome.css"
+      ]
+    },
+    "leaflet-fullscreen" :{
+      "main":[
+        "dist/Leaflet.fullscreen.js",
+        "dist/leaflet.fullscreen.css"
       ]
     }
   },

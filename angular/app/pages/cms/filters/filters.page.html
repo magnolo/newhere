@@ -1,3 +1,18 @@
-<md-content class="Page-container">
-
-</md-content>
+<md-card>
+    <md-content layout="column" layout-gt-sm="row" flex layout-fill>
+        <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')">
+            <md-content>
+                <cms-filters-list></cms-filters-list>
+            </md-content>
+        </md-sidenav>
+        <md-content ui-view="details" layout="column" flex="80">
+            <div flex layout="column" layout-align="center center" layout-padding>
+                <div class="md-display-1">Choose a filter</div>
+                <div class="md-subhead">or create a new one</div>
+                <md-button ui-sref="cms.filters.details({id:'new'})" class="md-raised md-primary" layout="row" layout-align="center center">
+                    <i class="material-icons">add</i> New Filter
+                </md-button>
+            </div>
+        </md-content>
+    </md-content>
+</md-card>

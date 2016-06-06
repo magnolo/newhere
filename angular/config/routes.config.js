@@ -1,33 +1,73 @@
 export function RoutesConfig($stateProvider, $urlRouterProvider) {
-	'ngInject';
+    'ngInject';
 
-	var getView = (viewName) => {
-		return `./views/app/pages/${viewName}/${viewName}.page.html`;
-	};
+    var getView = (viewName) => {
+        return `./views/app/pages/${viewName}/${viewName}.page.html`;
+    };
+    var getAppView = (viewName) => {
+        return `./views/app/pages/app/${viewName}/${viewName}.page.html`;
+    };
 
-	var getCmsView = (viewName) => {
-		return `./views/app/pages/cms/${viewName}/${viewName}.page.html`;
-	};
+    var getCmsView = (viewName) => {
+        return `./views/app/pages/cms/${viewName}/${viewName}.page.html`;
+    };
 
-	$urlRouterProvider.otherwise('/');
+    $urlRouterProvider.otherwise('/');
 
-	$stateProvider
-		.state('app', {
-			abstract: true,
-			views: {
-				front:{
-					templateUrl: getView('main')
-				},
-				'header@app': {
-					templateUrl: getView('header')
-				},
-				'footer@app': {
-					templateUrl: getView('footer')
-				},
-				'main@app': {}
-			}
-		})
-		.state('app.landing', {
+    $stateProvider
+        .state('app', {
+            abstract: true,
+            views: {
+                front: {
+                    templateUrl: getView('main')
+                },
+                'header@app': {
+                    templateUrl: getView('header')
+                },
+                'footer@app': {
+                    templateUrl: getView('footer')
+                },
+                'main@app': {}
+            }
+        })
+        .state('app.start', {
+            abstract:true,
+            data: {},
+            views: {
+                'header@app': {
+                    templateUrl: getAppView('header')
+                },
+                'main@app': {
+                    templateUrl: getAppView('start')
+                },
+                'footer@app': {
+                    templateUrl: getAppView('footer')
+                }
+            }
+        })
+				.state('app.start.categories', {
+            url: '/start',
+            data: {},
+            views: {
+                'content@app.start': {
+                    templateUrl: getAppView('categories')
+                }
+            }
+        })
+				.state('app.start.categories.sub', {
+            url: '/:slug',
+            data: {},
+            views: {
+                'content@app.start': {
+                    templateUrl: getAppView('categories-sub')
+                },
+								'toolbar@app.start': {
+										templateUrl: getAppView('categories-toolbar')
+								}
+            }
+        })
+
+    .state('app.landing', {
             url: '/',
             data: {},
             views: {
@@ -37,23 +77,15 @@ export function RoutesConfig($stateProvider, $urlRouterProvider) {
             }
         })
         .state('app.login', {
-			url: '/login',
-			data: {},//{auth: true} would require JWT auth for this route
-			views: {
-				'main@app': {
-					templateUrl: getView('login')
-				}
-			}
-		})
-        // .state('app.register', {
-        //     url: '/register',
-        //     data: {},//{auth: true} would require JWT auth for this route
-        //     views: {
-        //         'main@': {
-        //             templateUrl: getView('register')
-        //         }
-        //     }
-        // })
+            url: '/login',
+            data: {}, //{auth: true} would require JWT auth for this route
+            views: {
+                'main@app': {
+                    templateUrl: getView('login')
+                }
+            }
+        })
+
 		.state('app.ngoRegister', {
 			url: '/ngoRegister',
 			data: {},//{auth: true} would require JWT auth for this route
@@ -81,12 +113,24 @@ export function RoutesConfig($stateProvider, $urlRouterProvider) {
 				}
 			}
 		})
-		.state('app.ngo', {
-			url: '/ngo',
+		.state('app.myngo', {
+			url: '/my-ngo',
 			data: {
 				auth:true,
-				roles:['organisation']
+				roles:['organisation-admin', 'organisation-user']
 			},
+			views: {
+				'main@app': {
+					templateUrl: getView('my-ngo'),
+					controller: function($scope, $window){
+						$scope.isNgoAdmin = ($window.localStorage.roles.indexOf("organisation-admin") > -1);
+					}
+				}
+			}
+		})
+		.state('app.ngo', {
+			url: '/ngo/{id}',
+			data: {},//{auth: true} would require JWT auth for this route
 			views: {
 				'main@app': {
 					templateUrl: getView('ngo')
@@ -97,7 +141,7 @@ export function RoutesConfig($stateProvider, $urlRouterProvider) {
 			url: '/offers',
 			data: {
 				auth:true,
-				roles:['organisation']
+				roles:['organisation-admin', 'organisation-user']
 			},
 			views: {
 				'main@app': {
@@ -109,7 +153,7 @@ export function RoutesConfig($stateProvider, $urlRouterProvider) {
 			url: '/new',
 			data: {
 				auth:true,
-				roles:['organisation']
+				roles:['organisation-admin', 'organisation-user']
 			},
 			views: {
 				'main@app': {
@@ -121,7 +165,7 @@ export function RoutesConfig($stateProvider, $urlRouterProvider) {
 			url: '/{id}',
 			data: {
 				auth:true,
-				roles:['organisation']
+				roles:['organisation-admin', 'organisation-user']
 			},
 			views: {
 				'main@app': {
@@ -153,7 +197,7 @@ export function RoutesConfig($stateProvider, $urlRouterProvider) {
 			url: '/dashboard',
 			data: {
 				auth:true,
-				roles:['admin', 'superadmin', 'organisation', 'moderator']
+				roles:['admin', 'superadmin', 'moderator']
 			},
 			views: {
 				'main@cms': {
@@ -258,6 +302,30 @@ export function RoutesConfig($stateProvider, $urlRouterProvider) {
 				}
 			}
 		})
+		.state('cms.ngo-translations',{
+			url:'/ngo-translations',
+			data:{
+				auth:true,
+				roles:['admin', 'superadmin']
+			},
+			views: {
+				'main@': {
+					templateUrl: getCmsView('ngo-translations')
+				}
+			}
+		})
+		.state('cms.filter-translations',{
+			url:'/filter-translations',
+			data:{
+				auth:true,
+				roles:['admin', 'superadmin']
+			},
+			views: {
+				'main@': {
+					templateUrl: getCmsView('filter-translations')
+				}
+			}
+		})
 		.state('cms.ngos',{
 			url:'/ngos',
 			data:{
@@ -270,40 +338,74 @@ export function RoutesConfig($stateProvider, $urlRouterProvider) {
 				}
 			}
 		})
-
-
-		.state('cms.offers',{
-			url:'/offers',
+		.state('cms.ngos.users',{
+			url:'/users/{id}',
 			data:{
 				auth:true,
 				roles:['admin', 'superadmin']
 			},
 			views: {
 				'main@cms': {
-					templateUrl: getCmsView('offers')
+					templateUrl: getCmsView('ngo-users')
 				}
 			}
 		})
-		.state('cms.offers.new',{
-			url:'/new',
-			data:{},
-			views: {
-				'main@cms': {
-					templateUrl: getCmsView('new-offer')
-				}
-			}
-		})
-		.state('cms.offers.detail', {
-			url: '/{id}',
-			data: {
-				auth: true,
-				roles: ['admin', 'superadmin']
+
+		.state('cms.filters',{
+			url:'/filters',
+			data:{
+				auth:true,
+				roles:['admin', 'superadmin']
 			},
 			views: {
 				'main@cms': {
-					templateUrl: getCmsView('offer-detail')
+					templateUrl: getCmsView('filters')
 				}
 			}
 		})
-	;
+		.state('cms.filters.details', {
+			url: '/:id',
+			data: {
+				auth:true,
+				roles:['admin', 'superadmin']
+			},
+			views: {
+				'details': {
+					templateUrl: getCmsView('filter')
+				}
+			}
+		})
+    .state('cms.offers', {
+            url: '/offers',
+            data: {
+                auth: true,
+                roles: ['admin', 'superadmin']
+            },
+            views: {
+                'main@cms': {
+                    templateUrl: getCmsView('offers')
+                }
+            }
+        })
+        .state('cms.offers.new', {
+            url: '/new',
+            data: {},
+            views: {
+                'main@cms': {
+                    templateUrl: getCmsView('new-offer')
+                }
+            }
+        })
+        .state('cms.offers.detail', {
+            url: '/{id}',
+            data: {
+                auth: true,
+                roles: ['admin', 'superadmin']
+            },
+            views: {
+                'main@cms': {
+                    templateUrl: getCmsView('offer-detail')
+                }
+            }
+        });
 }

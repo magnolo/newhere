@@ -17,9 +17,10 @@ class CreateCategoriesTable extends Migration
         Schema::create(self::TABLE, function (Blueprint $table) {
             $table->increments('id');
             $table->integer('parent_id')->nullable();
-            $table->string('slug');
+            $table->string('slug')->nullable();
             $table->string('icon', 20);
             $table->boolean('enabled')->default(true);
+            $table->integer('sortindex')->default(0);
             $table->timestamps();
 
             $table->foreign('parent_id')

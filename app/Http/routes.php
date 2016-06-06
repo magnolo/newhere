@@ -32,6 +32,14 @@ $api->group(['middleware' => ['api']], function ($api) {
     $api->get('images/upload', 'ImageController@test');
     $api->post('images/upload', 'ImageController@uploadImage');
 
+    $api->get('categories', 'Cms\CategoryController@index');
+    $api->get('categories/{id}', ['uses' => 'Cms\CategoryController@show'])->where('id', '[0-9]+');
+    $api->get('categories/{slug}', ['uses' => 'Cms\CategoryController@bySlug'])->where(['slug' => '[a-z][-a-z0-9]*$']);
+    $api->get('categories/{id}/offers', ['uses' => 'Cms\CategoryController@offers']);
+
+    $api->get('ngo/{id}', 'Cms\NgoController@show');
+    $api->get('offers', 'Cms\OfferController@index');
+    $api->get('offer/autocomplete/{search}', 'Cms\OfferController@autocomplete'); // no auth necessary for ngo-registration
 });
 
 //protected routes with JWT (must be logged in)
@@ -48,6 +56,14 @@ $api->group(['middleware' => ['api', 'api.auth']], function ($api) {
     $api->get('category-translations/untranslated', 'Cms\CategoryTranslationController@untranslatedIndex');
     $api->put('category-translations/{id}', 'Cms\CategoryTranslationController@translate');
 
+    $api->get('ngo-translations', 'Cms\NgoTranslationController@index');
+    $api->get('ngo-translations/untranslated', 'Cms\NgoTranslationController@untranslatedIndex');
+    $api->put('ngo-translations/{id}', 'Cms\NgoTranslationController@translate');
+
+    $api->get('filter-translations', 'Cms\FilterTranslationController@index');
+    $api->get('filter-translations/untranslated', 'Cms\FilterTranslationController@untranslatedIndex');
+    $api->put('filter-translations/{id}', 'Cms\FilterTranslationController@translate');
+
     $api->get('languages/published', 'Cms\LanguageController@publishedIndex');
     $api->get('languages/enabled', 'Cms\LanguageController@enabledIndex');
     $api->get('languages/default', 'Cms\LanguageController@defaultLanguage');
@@ -57,18 +73,27 @@ $api->group(['middleware' => ['api', 'api.auth']], function ($api) {
 
     $api->get('users/me', 'Cms\UserController@me');
 
-    $api->get('offer/autocomplete/{search}', 'Cms\OfferController@autocomplete');
     $api->post('offers', 'Cms\OfferController@create');
-    $api->get('offers', 'Cms\OfferController@index');
     $api->get('offers/{id}', 'Cms\OfferController@show');
     $api->put('offers/{id}', 'Cms\OfferController@update');
     $api->delete('offers/{id}', 'Cms\OfferController@bulkRemove');
 
-    $api->get('ngo', 'Cms\NgoController@show');
-    $api->put('ngo/{id}', 'Cms\NgoController@update');
+    $api->get('ngos/my', 'Cms\NgoController@my');
+    $api->put('ngos/my/{id}', 'Cms\NgoController@update');
 
     $api->get('categories', 'Cms\CategoryController@index');
+
     $api->get('filters', 'Cms\FilterController@index');
+
+    // FOR ADMINS AND NGO-admins
+    $api->group(['middleware' => ['role:superadmin|admin|organisation-admin']], function ($api) {
+        $api->post('users', 'Cms\UserController@create');
+        $api->delete('users/{id}', 'Cms\UserController@bulkRemove');
+        $api->get('ngoUsers', 'Cms\UserController@byNgo');
+        $api->post('ngoUsers', 'Cms\UserController@createNgoUser');
+        $api->put('ngoUsers/{id}/toggleAdmin', 'Cms\UserController@toggleAdmin');
+
+    });
 
     // JUST FOR ADMINS
     $api->group(['middleware' => ['role:superadmin|admin']], function ($api) {
@@ -83,22 +108,24 @@ $api->group(['middleware' => ['api', 'api.auth']], function ($api) {
 
       $api->get('users', 'Cms\UserController@index');
       $api->get('users/role/{role}', 'Cms\UserController@byRole');
-      $api->get('users/ngo/{id}', 'Cms\UserController@byNgo');
 
       $api->get('users/{id}', 'Cms\UserController@show');
-      $api->post('users', 'Cms\UserController@create');
       $api->put('users/{id}', 'Cms\UserController@update');
-      $api->delete('users/{id}', 'Cms\UserController@bulkRemove');
 
       $api->get('roles', 'Cms\RoleController@index');
 
-      $api->get('categories/{id}', ['uses' => 'Cms\CategoryController@show']);
+
       $api->post('categories', 'Cms\CategoryController@create');
       $api->put('categories/{id}', ['uses' => 'Cms\CategoryController@update']);
       $api->put('categories/{id}/toggleEnabled', 'Cms\CategoryController@toggleEnabled');
+      $api->put('categories/{id}/move', 'Cms\CategoryController@move');
 
       $api->put('offers/{id}/toggleEnabled', 'Cms\OfferController@toggleEnabled');
       $api->patch('offers/{ids}', 'Cms\OfferController@bulkAssign');
 
+      $api->put('filters/{id}/toggleEnabled', 'Cms\FilterController@toggleEnabled');
+      $api->get('filters/{id}', ['uses' => 'Cms\FilterController@show']);
+      $api->post('filters', 'Cms\FilterController@create');
+      $api->put('filters/{id}', ['uses' => 'Cms\FilterController@update']);
     });
 });

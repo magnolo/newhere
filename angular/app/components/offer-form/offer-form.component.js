@@ -1,16 +1,28 @@
 class OfferFormController {
-    constructor($http, $q, OfferService, ToastService, NgoService, CategoryService, $state, LanguageService) {
+    constructor($http, $q, OfferService, ToastService, NgoService, CategoryService, $state, LanguageService, OfferTranslationService) {
         'ngInject';
 
         this.$q = $q;
         this.aborter = $q.defer();
 
         this.categories = [];
+        this.translations = [];
+        this.defaultLanguage = {};
         this.$http = $http;
         this.OfferService = OfferService;
         this.ToastService = ToastService;
         this.$state = $state;
-        this.$LanguageService = LanguageService;
+        this.LanguageService = LanguageService;
+        this.LanguageService.fetchDefault((defaultLanguage) => {
+            this.defaultLanguage = defaultLanguage;
+         });
+        this.LanguageService.fetchEnabled((enabledLanguages) => {
+            this.enabledLanguages = enabledLanguages;
+         });
+        this.OfferTranslationService = OfferTranslationService;
+        this.OfferTranslationService.fetchAll((list) => {
+            this.translations = list;
+         });
         this.NgoService = NgoService;
         if(this.cms){
           this.NgoService.fetchAll().then((list) => {
@@ -40,7 +52,8 @@ class OfferFormController {
         else{
           this.offer = {
             categories:[],
-            filters:[]
+              filters: [],
+              translations: []
           };
           this.valid_from = new Date();
           this.NgoService.one().then((ngo) => {

@@ -1,0 +1,61 @@
+@import "../../../material/colors";
+map {
+    position: absolute;
+    width: 100%;
+    top: 0;
+    left: 0;
+    height: 100%;
+    .angular-leaflet-map {
+        height: 100%;
+        width: 100%;
+        min-height: 100%;
+    }
+    .leaflet-bar {
+        border-radius: 0;
+        box-shadow: 0 0 0 rgba(0,0,0,0);
+        a {
+            color: @blue;
+            border-bottom-color: transparent;
+            height: 32px;
+            width: 32px;
+            line-height: 32px;
+            &:first-child {
+                border-top-left-radius: 0;
+                border-top-right-radius: 0;
+                margin-bottom: 2px;
+            }
+            &:last-child {
+                border-bottom-left-radius: 0;
+                border-bottom-right-radius: 0;
+            }
+            &:hover {
+                height: 32px;
+                width: 32px;
+                line-height: 32px;
+            }
+        }
+    }
+    .leaflet-left {
+        left:auto;
+        right: 0;
+        .leaflet-control{
+          margin-left:0px;
+          margin-right:10px;
+        }
+    }
+    .leaflet-top {
+        bottom: 1em;
+        top:auto;
+        .leaflet-control{
+          margin-top:0px;
+          margin-bottom:10px;
+        }
+    }
+    .leaflet-control-fullscreen a {
+        background: #fff url(fullscreen@2x.png) no-repeat 0 0;
+        background-size: 32px 64px;
+    }
+    .leaflet-fullscreen-on .leaflet-control-fullscreen a {
+      background-position: 0 -32px;
+    }
+}
