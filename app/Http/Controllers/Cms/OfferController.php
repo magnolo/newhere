@@ -31,7 +31,7 @@ class OfferController extends Controller
       }
       else{
          $ngo = $user->ngos()->firstOrFail();
-         $offers = $ngo->offers()->with(['ngo', 'filters','categories', 'countries', 'image']);
+         $offers = $ngo->offers()->with(['ngo','categories', 'filters', 'countries', 'image']);
       }
       $count = $offers->count();
 
@@ -47,6 +47,13 @@ class OfferController extends Controller
         $offers = $offers->whereTranslationLike('title', '%'.$request->get('title').'%');
         $count = $offers->count();
       }
+      if($request->has('category_id')){
+        $cat_id = $request->get('category_id');
+        $offers = $offers->whereHas('categories', function($q) use ($cat_id){
+          $q->where('category_id', $cat_id);
+        });
+      }
+
       if($request->has('order')){
         $order = $request->get('order');
         $dir = 'DESC';
@@ -62,6 +69,7 @@ class OfferController extends Controller
       if($request->has('page')){
         $offers = $offers->skip(($request->get('page') - 1) * $request->get('limit'));
       }
+
       $offers = $offers->get();
       return response()->success(compact('offers', 'count'));
    }
