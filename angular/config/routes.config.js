@@ -314,6 +314,18 @@ export function RoutesConfig($stateProvider, $urlRouterProvider) {
 				}
 			}
 		})
+		.state('cms.filter-translations',{
+			url:'/filter-translations',
+			data:{
+				auth:true,
+				roles:['admin', 'superadmin']
+			},
+			views: {
+				'main@': {
+					templateUrl: getCmsView('filter-translations')
+				}
+			}
+		})
 		.state('cms.ngos',{
 			url:'/ngos',
 			data:{

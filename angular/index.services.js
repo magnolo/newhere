@@ -1,3 +1,4 @@
+import {FilterTranslationService} from './services/filterTranslation.service';
 import {NgoTranslationService} from './services/ngoTranslation.service';
 import {MapService} from './services/map.service';
 import {CategoryTranslationService} from './services/categoryTranslation.service';
@@ -17,6 +18,7 @@ import {ToastService} from './services/toast.service';
 
 
 angular.module('app.services')
+	.service('FilterTranslationService', FilterTranslationService)
 	.service('NgoTranslationService', NgoTranslationService)
 	.service('MapService', MapService)
 	.service('CategoryTranslationService', CategoryTranslationService)

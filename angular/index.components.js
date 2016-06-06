@@ -1,3 +1,5 @@
+import {CmsFilterTranslationItemComponent} from './app/components/cms-filter-translation-item/cms-filter-translation-item.component';
+import {CmsFilterTranslationTableComponent} from './app/components/cms-filter-translation-table/cms-filter-translation-table.component';
 import {OffersListComponent} from './app/components/offers-list/offers-list.component';
 import {CmsNgoTranslationItemComponent} from './app/components/cms-ngo-translation-item/cms-ngo-translation-item.component';
 import {CmsNgoTranslationTableComponent} from './app/components/cms-ngo-translation-table/cms-ngo-translation-table.component';
@@ -42,6 +44,8 @@ import {CmsFiltersListComponent} from './app/components/cms-filters-list/cms-fil
 import {CmsFilterFormComponent} from './app/components/cms-filter-form/cms-filter-form.component';
 
 angular.module('app.components')
+	.component('cmsFilterTranslationItem', CmsFilterTranslationItemComponent)
+	.component('cmsFilterTranslationTable', CmsFilterTranslationTableComponent)
 	.component('offersList', OffersListComponent)
 	.component('cmsNgoTranslationItem', CmsNgoTranslationItemComponent)
 	.component('cmsNgoTranslationTable', CmsNgoTranslationTableComponent)
