@@ -8,6 +8,7 @@ class AppCategoriesContentSubController {
         this.CategoryService = CategoryService;
         this.OfferService = OfferService;
         this.MapService = MapService;
+        this.state = $state;
         this.offersCallback = (offers) => {
             this.offers = offers;
             this.MapService.setMarkers(offers);
@@ -26,6 +27,10 @@ class AppCategoriesContentSubController {
 
     toggleMap() {
         this.showMap = !this.showMap;
+    }
+
+    showOffer(id) {
+        this.state.go('app.start.detail',{id:id});
     }
 
 

@@ -14,24 +14,26 @@
         {{category.title}}
       </md-button>
     </div>
-    <div ng-if="vm.showOffers" layout="row" layout-align="center" layout-wrap >
-            <md-card class="md-padding" style="width: 320px;" ng-repeat="offer in vm.offers">
-                <md-card-title>
-                    <md-card-title-text>
-                        <span class="md-headline">{{offer.title}}</span>
-                        <span class="md-subhead">
-                            {{offer.description  | limitTo: 100}}<span ng-if="offer.description.length > 100">...</span>
-                        </span>
-                    </md-card-title-text>
-                    <md-card-title-media>
-                        <img ng-if="offer.image" ng-src="{{vm.getImageSrc(offer)}}" class="md-card-image">
-                    </md-card-title-media>
-                </md-card-title>
-                <md-card-actions layout="row" layout-align="end center">
-                    <md-button ui-sref="app.start.detail({id: offer.id})">Anzeigen</md-button>
-                </md-card-actions>
-            </md-card>
-    </div>
+    <md-grid-list class="offer-grid-list" flex-gt-sm="80" flex="90" flex-offset="5" flex-offset-gt-sm="10" ng-if="vm.showOffers"
+            md-cols-xs="2" md-cols-sm="3" md-cols-md="2" md-cols-gt-md="2"
+            md-row-height-gt-md="2:2" md-row-height="4:5"
+            md-gutter="15px" md-gutter-gt-sm="8px" >
+        <md-grid-tile class="offer-container" ng-repeat="offer in vm.offers" ng-click="vm.showOffer(offer.id)"">
+            <md-grid-tile-header class="offer-header">
+                <h4>
+                    <md-icon>location_on</md-icon>
+                    {{offer.title | limitTo: 50}} <span ng-if="offer.title.length > 50">...</span>
+                </h4>
+            </md-grid-tile-header>
+            <span class="offer-content">
+                {{offer.description  | limitTo: 180}}<span ng-if="offer.description.length > 180">...</span>
+            </span>
+        </md-grid-tile>
+    </md-grid-list>
+
+
+
+
 </div>
 
 <div ng-if="vm.offers.length || vm.category.children.length" layout="row">
