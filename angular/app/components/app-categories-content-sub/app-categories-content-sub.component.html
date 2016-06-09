@@ -1,6 +1,6 @@
 <div ng-if="vm.showMap" layout="column">
-    <map></map> <!--TODO: show map full height-->
-    <md-button ng-if="vm.showMap" ng-click="vm.toggleMap()" flex class="md-primary md-raised btn-big">
+    <map></map>
+    <md-button ng-if="vm.showMap" ng-click="vm.toggleMap()" class="btn-bottom md-primary md-raised btn-big">
         <md-icon>list</md-icon>
         Show List
     </md-button>
@@ -18,7 +18,7 @@
             md-cols-xs="2" md-cols-sm="3" md-cols-md="2" md-cols-gt-md="2"
             md-row-height-gt-md="2:2" md-row-height="4:5"
             md-gutter="15px" md-gutter-gt-sm="8px" >
-        <md-grid-tile class="offer-container" ng-repeat="offer in vm.offers" ng-click="vm.showOffer(offer.id)"">
+        <md-grid-tile class="offer-container animate-repeat" ng-repeat="offer in vm.offers" ng-click="vm.showOffer(offer.id)"">
             <md-grid-tile-header class="offer-header">
                 <h4>
                     <md-icon>location_on</md-icon>
@@ -30,10 +30,6 @@
             </span>
         </md-grid-tile>
     </md-grid-list>
-
-
-
-
 </div>
 
 <div ng-if="vm.offers.length || vm.category.children.length" layout="row">
