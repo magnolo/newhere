@@ -7,11 +7,9 @@ class MapController{
         this.$state = $state;
 
         $scope.$on("leafletDirectiveMarker.click", function(event, args){
-                  vm.$state.go('app.start.detail', 7);
+           vm.$state.go('app.start.detail', {id:args.model.offer_id});
          });
     }
-
-
 
     $onInit(){
     }

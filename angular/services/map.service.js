@@ -50,6 +50,7 @@ export class MapService {
 
             angular.forEach(offers, (offer, key) => {
               var marker = {
+                 offer_id:offer.id,
                   lng:parseFloat(offer.latitude),
                   lat:parseFloat(offer.longitude),
                   message:offer.title
