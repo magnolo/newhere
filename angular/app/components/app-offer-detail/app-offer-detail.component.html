@@ -1,4 +1,16 @@
+<md-toolbar md-theme="whitey">
+  <div class="md-toolbar-tools">
+    <md-button aria-label="Back" ng-click="vm.goBack()">
+      <md-icon>chevron_left</md-icon>
+      <span>Back</span>
+    </md-button>
+    <md-icon class="big-icon" md-svg-src="{{vm.CategoryService.category.image.src }}"></md-icon>
+    <small>{{vm.CategoryService.category.title}}</small>
+    <span flex></span>
+  </div>
+</md-toolbar>
 <div layout="row" layout-wrap>
 
-  <h1> {{vm.offer.title}}</h1>
-  </div>
+    <h1>{{vm.offer.title}}</h1>
+
+</div>

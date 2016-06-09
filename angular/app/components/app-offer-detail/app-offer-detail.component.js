@@ -1,8 +1,10 @@
 class AppOfferDetailController{
-    constructor(OfferService, $state){
+    constructor(OfferService, CategoryService,  $state){
         'ngInject';
 
         var vm = this;
+
+        this.CategoryService = CategoryService;
 
         OfferService.one($state.params.id, (offer) => {
             vm.offer = offer;
@@ -10,6 +12,16 @@ class AppOfferDetailController{
     }
 
     $onInit(){
+    }
+    goBack(){
+        if(this.CategoryService.category.parent_id){
+            this.$state.go('app.start.categories.sub',{
+                slug:this.CategoryService.category.parent.slug
+            });
+        }
+        else{
+            this.$state.go('app.start.categories');
+        }
     }
 }
 
