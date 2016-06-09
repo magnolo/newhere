@@ -32,6 +32,18 @@ export class MapService {
                 }
             }
         };
+        this.events = { // or just {} //all events
+                    markers:{
+                      enable: [ 'clicked' ],
+                      logic: 'emit'
+                    }
+                };
+
+      /*this.$on("leafletDirectiveMarker.click", function(event, args){
+                            console.log('event click aojsdnajs');
+                        });*/
+
+
         this.markers = {};
         this.setMarkers = (offers) => {
             var markers = {}
@@ -63,9 +75,9 @@ export class MapService {
       this.markers = {};
     }
 
+
+
     getLocation(success, error) {
-
-
 
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition((position) => {
