@@ -1,6 +1,42 @@
-<div layout="row" layout-wrap>
-  <md-button ui-sref="app.start.categories.sub({slug: category.slug})" class="big-thumb animate-repeat" ng-repeat="category in vm.category.children" flex="33" layout="column" layout-align="center center">
-      <md-icon>menu</md-icon>
-    {{category.title}}
-  </md-button>
+<div ng-if="vm.showMap" layout="column">
+    <map></map> <!--TODO: show map full height-->
+    <md-button ng-if="vm.showMap" ng-click="vm.toggleMap()" flex class="md-primary md-raised btn-big">
+        <md-icon>list</md-icon>
+        Show List
+    </md-button>
+</div>
+
+<div ng-if="!vm.showMap">
+    <div layout="row" layout-wrap>
+      <md-button ui-sref="app.start.categories.sub({slug: category.slug})"
+                 class="big-thumb animate-repeat" ng-repeat="category in vm.category.children" flex="33" layout="column" layout-align="center center">
+          <md-icon>menu</md-icon>
+        {{category.title}}
+      </md-button>
+    </div>
+    <div ng-if="vm.showOffers" layout="row" layout-align="center" layout-wrap >
+            <md-card class="md-padding" style="width: 320px;" ng-repeat="offer in vm.offers">
+                <md-card-title>
+                    <md-card-title-text>
+                        <span class="md-headline">{{offer.title}}</span>
+                        <span class="md-subhead">
+                            {{offer.description  | limitTo: 100}}<span ng-if="offer.description.length > 100">...</span>
+                        </span>
+                    </md-card-title-text>
+                    <md-card-title-media>
+                        <img ng-if="offer.image" ng-src="{{vm.getImageSrc(offer)}}" class="md-card-image">
+                    </md-card-title-media>
+                </md-card-title>
+                <md-card-actions layout="row" layout-align="end center">
+                    <md-button ui-sref="app.start.detail({id: offer.id})">Anzeigen</md-button>
+                </md-card-actions>
+            </md-card>
+    </div>
+</div>
+
+<div ng-if="vm.offers.length || vm.category.children.length" layout="row">
+    <md-button ng-if="!vm.showMap" ng-click="vm.toggleMap()"hide-gt-sm  flex class="md-primary md-raised btn-big">
+        <md-icon>map</md-icon>
+        Explore Map
+    </md-button>
 </div>
