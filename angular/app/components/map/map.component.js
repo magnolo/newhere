@@ -1,10 +1,17 @@
 class MapController{
-    constructor(MapService, OfferService){
+    constructor(MapService, OfferService, $scope, $state){
         'ngInject';
-
+        var vm = this;
         this.MapService = MapService;
         this.OfferService = OfferService;
+        this.$state = $state;
+
+        $scope.$on("leafletDirectiveMarker.click", function(event, args){
+                  vm.$state.go('app.start.detail', 7);
+         });
     }
+
+
 
     $onInit(){
     }

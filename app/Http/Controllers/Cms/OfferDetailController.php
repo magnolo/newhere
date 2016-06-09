@@ -30,9 +30,9 @@ class OfferDetailController extends Controller
 
     }
 
-    public function show()
+    public function show($id)
     {
-        $offer = Offer::where('id', 1)->get();
+        $offer = Offer::where('id', $id)->get();
         // $offersExtended = OfferTranslation::where("offer_id", $id)->get();
 
         return response()->json($offer);

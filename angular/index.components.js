@@ -1,3 +1,4 @@
+import {AppOfferDetailComponent} from './app/components/app-offer-detail/app-offer-detail.component';
 import {CmsFilterTranslationItemComponent} from './app/components/cms-filter-translation-item/cms-filter-translation-item.component';
 import {CmsFilterTranslationTableComponent} from './app/components/cms-filter-translation-table/cms-filter-translation-table.component';
 import {OffersListComponent} from './app/components/offers-list/offers-list.component';
@@ -44,6 +45,7 @@ import {CmsFiltersListComponent} from './app/components/cms-filters-list/cms-fil
 import {CmsFilterFormComponent} from './app/components/cms-filter-form/cms-filter-form.component';
 
 angular.module('app.components')
+	.component('appOfferDetail', AppOfferDetailComponent)
 	.component('cmsFilterTranslationItem', CmsFilterTranslationItemComponent)
 	.component('cmsFilterTranslationTable', CmsFilterTranslationTableComponent)
 	.component('offersList', OffersListComponent)

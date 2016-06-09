@@ -67,6 +67,16 @@ export function RoutesConfig($stateProvider, $urlRouterProvider) {
             }
         })
 
+        .state('app.start.detail', {
+        url: '/offer/:id',
+        data: {},
+        views: {
+           'content@app.start': {
+                templateUrl: getAppView('offer-detail')
+           }
+        }
+   })
+
     .state('app.landing', {
             url: '/',
             data: {},

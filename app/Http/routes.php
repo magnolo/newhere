@@ -33,7 +33,7 @@ $api->group(['middleware' => ['api']], function ($api) {
     $api->post('images/upload', 'ImageController@uploadImage');
 
     $api->get('categories', 'Cms\CategoryController@index');
-    
+
     $api->get('categories/{id}', ['uses' => 'Cms\CategoryController@show'])->where('id', '[0-9]+');
     $api->get('categories/{slug}', ['uses' => 'Cms\CategoryController@bySlug'])->where(['slug' => '[a-z][-a-z0-9]*$']);
     $api->get('categories/{id}/offers', ['uses' => 'Cms\CategoryController@offers']);
@@ -41,6 +41,10 @@ $api->group(['middleware' => ['api']], function ($api) {
     $api->get('ngo/{id}', 'Cms\NgoController@show');
     $api->get('offers', 'Cms\OfferController@index');
     $api->get('offer/autocomplete/{search}', 'Cms\OfferController@autocomplete'); // no auth necessary for ngo-registration
+
+    $api->get('offerDetail', 'Cms\OfferDetailController@index');
+    $api->get('offers/{id}', 'Cms\OfferController@show');
+
 });
 
 //protected routes with JWT (must be logged in)
@@ -69,13 +73,11 @@ $api->group(['middleware' => ['api', 'api.auth']], function ($api) {
     $api->get('languages/enabled', 'Cms\LanguageController@enabledIndex');
     $api->get('languages/default', 'Cms\LanguageController@defaultLanguage');
 
-    $api->get('offerDetail', 'Cms\OfferDetailController@index');
-    $api->get('offer', 'Cms\OfferDetailController@show');
+
 
     $api->get('users/me', 'Cms\UserController@me');
 
     $api->post('offers', 'Cms\OfferController@create');
-    $api->get('offers/{id}', 'Cms\OfferController@show');
     $api->put('offers/{id}', 'Cms\OfferController@update');
     $api->delete('offers/{id}', 'Cms\OfferController@bulkRemove');
 

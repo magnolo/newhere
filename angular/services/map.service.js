@@ -39,9 +39,9 @@ export class MapService {
                     }
                 };
 
-      /*this.$on("leafletDirectiveMarker.click", function(event, args){
-                            console.log('event click aojsdnajs');
-                        });*/
+               /* $scope.$on("leafletDirectiveMarker.click", function(event, args){
+                                     console.log('event click aojsdnajs');
+                                 });*/
 
 
         this.markers = {};
