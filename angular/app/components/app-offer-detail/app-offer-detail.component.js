@@ -14,14 +14,7 @@ class AppOfferDetailController{
     $onInit(){
     }
     goBack(){
-        if(this.CategoryService.category.parent_id){
-            this.$state.go('app.start.categories.sub',{
-                slug:this.CategoryService.category.parent.slug
-            });
-        }
-        else{
-            this.$state.go('app.start.categories');
-        }
+        history.back();
     }
 }
 
