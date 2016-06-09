@@ -35,7 +35,7 @@ class OfferController extends Controller
                $offers = $ngo->offers()->with(['ngo', 'filters','categories', 'countries', 'image']);
            }
        } else {
-           $offers = Offer::with(['image']);
+           $offers = Offer::with(['image', 'categories', 'categories.image']);
        }
 
       $count = $offers->count();

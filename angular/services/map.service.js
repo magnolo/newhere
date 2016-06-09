@@ -39,26 +39,28 @@ export class MapService {
                     }
                 };
 
-               /* $scope.$on("leafletDirectiveMarker.click", function(event, args){
-                                     console.log('event click aojsdnajs');
-                                 });*/
-
-
         this.markers = {};
         this.setMarkers = (offers) => {
             var markers = {}
 
             angular.forEach(offers, (offer, key) => {
+
               var marker = {
-                 offer_id:offer.id,
+                  offer_id:offer.id,
                   lng:parseFloat(offer.latitude),
                   lat:parseFloat(offer.longitude),
-                  message:offer.title
+                  icon: {
+                     iconSize:     [27, 40],
+                     iconAnchor:   [13.5, 39],
+                     type: 'div',
+                     //popupAnchor:  [0, 0],
+                     html: '<object onLoad="var path = document.querySelector(\'#marker'+offer.id+'\').contentDocument.getElementsByTagName(\'path\'); for(i=0;i<path.length;i++){path[i].style.fill = \'#fff\'}" id="marker'+offer.id+'" type="image/svg+xml" width="27" height="40" data="/img/icons/categories/education.svg"></object>'
+                  }
               };
               markers[offer.id+'_'+key] = marker;
             });
-            console.log(markers);
             this.markers = markers;
+
         }
 
 

@@ -5,6 +5,7 @@ class AppOfferDetailController{
         var vm = this;
 
         OfferService.one($state.params.id, (offer) => {
+           console.log(offer)
             vm.offer = offer;
         });
     }
