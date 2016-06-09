@@ -9,8 +9,85 @@
     <span flex></span>
   </div>
 </md-toolbar>
-<div layout="row" layout-wrap>
+<div>
+  <md-conent class="check-element animate-show" ng-show="vm.showMap">
+    <map style="height: 40%"></map>
+  </md-conent>
 
-    <h1>{{vm.offer.title}}</h1>
+  <div class= "offer-detail animate-show" >
 
+    <h3>{{vm.offer.title}}</h3>
+
+    <a href="tel:{{vm.offer.phone}}"><md-icon ng-if="vm.offer.phone!=null" class="offer-detail-icon">phone</md-icon>{{vm.offer.phone}}</a><br>
+
+    <a href="{{vm.offer.website}}" ><md-icon ng-if="vm.offer.website!=null" class="offer-detail-icon">insert_link</md-icon>{{vm.offer.website}}</a><br>
+
+    <a href="mailto:{{vm.offer.email}}"><md-icon ng-if="vm.offer.email!=null" class="offer-detail-icon">mail</md-icon>{{vm.offer.email}}</a>
+
+    <p ng-if="vm.offer.street!=null" ><md-icon class="offer-detail-icon">place</md-icon>{{vm.offer.street}} {{vm.offer.streetnumber}},</p>
+    <p ng-if="vm.offer.streetnumberadditional!=null" class="offer-detail-address" >{{vm.offer.streetnumberadditional}}, {{vm.offer.zip}}</p>
+    <p ng-if="vm.offer.streetnumberadditional==null" class="offer-detail-address">{{vm.offer.zip}}</p>
+    <p ng-if="vm.offer.street!=null" class="offer-detail-address" >{{vm.offer.city}}</p>
+
+    <p><md-icon ng-if="vm.offer.opening_hours!=null" class="offer-detail-icon">schedule</md-icon>{{vm.offer.opening_hours}}</p>
+
+    <p ng-if="vm.offer.age_from!=null && vm.offer.age_to!=null"><md-icon class="offer-detail-icon">people</md-icon>Geeignetes Alter: {{vm.offer.age_from}} - {{vm.offer.age_to}} Jahre</p>
+
+    <p><md-icon ng-if="vm.offer.description!=null" class="offer-detail-icon">info</md-icon>{{vm.offer.description}}</p>
+
+    <br>
+    <div>
+      <img class="offer-detail-image" ng-if="vm.offer.image" ng-src="{{vm.offer.image.dir+'/'+vm.offer.image.filename}}">
+    </div>
+
+    <md-content flex hide-gt-xs >
+      <md-button ng-if="vm.offer !=null" style="float: right" class="md-raised md-icon-button md-primary" ng-click="vm.toggleMap()" layout-align="center center">
+        <i class="material-icons">map</i>
+      </md-button>
+    </md-content>
+
+  </div>
 </div>
+<style>
+  p{
+    margin: 0 0 1px;
+  }
+  .offer-detail {
+    color: #357DBA;
+    margin-left: 30px;
+    margin-right: 30px;
+    margin-bottom: 5px;
+    line-height: 25px;
+  }
+  .offer-detail-icon{
+    font-size: 20px;
+    color: #357DBA;
+  }
+  .offer-detail-address{
+    margin-left: 23px;
+  }
+  .offer-detail-image{
+    width:100%;
+    height:auto;
+  }
+  .animate-show {
+    height:40%;
+    line-height: 20px;
+    opacity: 1;
+    padding: 10px;
+    background: white;
+  }
+  .check-element {
+    height:40%;
+    padding: 10px;
+    background: white;
+  }
+  .animate-show.ng-hide-add, .animate-show.ng-hide-remove {
+    transition: all linear 0.5s;
+  }
+  .animate-show.ng-hide {
+    line-height: 0;
+    opacity: 0;
+    padding: 0 10px;
+  }
+</style>

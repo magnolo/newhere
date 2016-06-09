@@ -3,6 +3,7 @@ class AppOfferDetailController{
         'ngInject';
 
         var vm = this;
+        vm.showMap = false;
 
         this.CategoryService = CategoryService;
 
@@ -15,6 +16,9 @@ class AppOfferDetailController{
     }
     goBack(){
         history.back();
+    }
+    toggleMap(){
+        this.showMap = !this.showMap;
     }
 }
 
