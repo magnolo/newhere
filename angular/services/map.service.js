@@ -32,6 +32,18 @@ export class MapService {
                 }
             }
         };
+        this.events = { // or just {} //all events
+                    markers:{
+                      enable: [ 'clicked' ],
+                      logic: 'emit'
+                    }
+                };
+
+      /*this.$on("leafletDirectiveMarker.click", function(event, args){
+                            console.log('event click aojsdnajs');
+                        });*/
+
+
         this.markers = {};
         this.setMarkers = (offers) => {
             var markers = {}
@@ -47,15 +59,30 @@ export class MapService {
             console.log(markers);
             this.markers = markers;
         }
+
+
     }
+
+    zoomTo(offer) {
+      this.center = {
+          lat: parseFloat(offer.longitude),
+          lng: parseFloat(offer.latitude),
+          zoom: 14
+      };
+    }
+
     $onInit(){
       this.markers = {};
     }
+
+
 
     getLocation(success, error) {
 
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition((position) => {
+
+               console.log(position.coords.latitude+' '+position.coords.longitude);
                 this.center.lat = position.coords.latitude;
                 this.center.lng = position.coords.longitude;
                 this.center.zoom = 12;

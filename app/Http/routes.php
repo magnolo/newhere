@@ -33,6 +33,7 @@ $api->group(['middleware' => ['api']], function ($api) {
     $api->post('images/upload', 'ImageController@uploadImage');
 
     $api->get('categories', 'Cms\CategoryController@index');
+    
     $api->get('categories/{id}', ['uses' => 'Cms\CategoryController@show'])->where('id', '[0-9]+');
     $api->get('categories/{slug}', ['uses' => 'Cms\CategoryController@bySlug'])->where(['slug' => '[a-z][-a-z0-9]*$']);
     $api->get('categories/{id}/offers', ['uses' => 'Cms\CategoryController@offers']);
@@ -81,7 +82,6 @@ $api->group(['middleware' => ['api', 'api.auth']], function ($api) {
     $api->get('ngos/my', 'Cms\NgoController@my');
     $api->put('ngos/my/{id}', 'Cms\NgoController@update');
 
-    $api->get('categories', 'Cms\CategoryController@index');
 
     $api->get('filters', 'Cms\FilterController@index');
 
