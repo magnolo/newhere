@@ -10,13 +10,13 @@
   </div>
 </md-toolbar>
 <div>
-  <md-conent class="check-element animate-show" ng-show="vm.showMap">
-    <map style="height: 40%"></map>
-  </md-conent>
+  <div class="check-element animation" ng-if="vm.showMap" flex hide-gt-xs>
+    <map style="height: 300px"></map>
+  </div>
 
-  <div class= "offer-detail animate-show" >
+  <div class= "offer-detail" >
 
-    <h3>{{vm.offer.title}}</h3>
+    <p style="font-size: 24px">{{vm.offer.title}}</p>
 
     <a href="tel:{{vm.offer.phone}}"><md-icon ng-if="vm.offer.phone!=null" class="offer-detail-icon">phone</md-icon>{{vm.offer.phone}}</a><br>
 
@@ -48,46 +48,3 @@
 
   </div>
 </div>
-<style>
-  p{
-    margin: 0 0 1px;
-  }
-  .offer-detail {
-    color: #357DBA;
-    margin-left: 30px;
-    margin-right: 30px;
-    margin-bottom: 5px;
-    line-height: 25px;
-  }
-  .offer-detail-icon{
-    font-size: 20px;
-    color: #357DBA;
-  }
-  .offer-detail-address{
-    margin-left: 23px;
-  }
-  .offer-detail-image{
-    width:100%;
-    height:auto;
-  }
-  .animate-show {
-    height:40%;
-    line-height: 20px;
-    opacity: 1;
-    padding: 10px;
-    background: white;
-  }
-  .check-element {
-    height:40%;
-    padding: 10px;
-    background: white;
-  }
-  .animate-show.ng-hide-add, .animate-show.ng-hide-remove {
-    transition: all linear 0.5s;
-  }
-  .animate-show.ng-hide {
-    line-height: 0;
-    opacity: 0;
-    padding: 0 10px;
-  }
-</style>
