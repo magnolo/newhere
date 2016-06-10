@@ -3,12 +3,10 @@
 
     </div>
     <md-content layout="row" flex>
-        <md-sidenav class="app md-sidenav-left md-whiteframe-z1" md-component-id="categories" md-is-locked-open="!$root.sidebarClosed">
-            <md-content ui-view="content" md-scroll-y>
+        <md-content flex ui-view="content" md-scroll-y>
 
-            </md-content>
-        </md-sidenav>
-        <md-content flex layout="column">
+        </md-content>
+        <md-content flex layout="column" hide-sm hide-xs>
             <map></map>
         </md-content>
     </md-content>
