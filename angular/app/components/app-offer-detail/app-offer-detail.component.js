@@ -1,15 +1,20 @@
 class AppOfferDetailController{
-    constructor(OfferService, CategoryService,  $state){
+    constructor(OfferService, CategoryService, MapService, $state){
         'ngInject';
 
         var vm = this;
         vm.showMap = false;
 
         this.CategoryService = CategoryService;
+        this.MapService = MapService;
 
         OfferService.one($state.params.id, (offer) => {
             vm.offer = offer;
+            vm.MapService.setMarkers({offer});
+            vm.MapService.zoomTo(offer);
         });
+
+
     }
 
     $onInit(){

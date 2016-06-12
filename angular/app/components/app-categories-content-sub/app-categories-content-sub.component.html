@@ -22,18 +22,18 @@
             <md-grid-tile-header class="offer-header">
                 <h4>
                     <md-icon>location_on</md-icon>
-                    {{offer.title | limitTo: 50}} <span ng-if="offer.title.length > 50">...</span>
+                    {{offer.title}}
                 </h4>
             </md-grid-tile-header>
-            <span class="offer-content">
-                {{offer.description  | limitTo: 180}}<span ng-if="offer.description.length > 180">...</span>
-            </span>
+            <div class="offer-content">
+                {{offer.description}}
+            </div>
         </md-grid-tile>
     </md-grid-list>
 </div>
 
 <div ng-if="vm.offers.length || vm.category.children.length" layout="row">
-    <md-button ng-if="!vm.showMap" ng-click="vm.toggleMap()"hide-gt-sm  flex class="md-primary md-raised btn-big">
+    <md-button ng-if="!vm.showMap" ng-click="vm.toggleMap()" hide-gt-sm  flex class="md-primary md-raised btn-big">
         <md-icon>map</md-icon>
         Explore Map
     </md-button>

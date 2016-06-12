@@ -1,8 +1,30 @@
+@import "../../../material/colors";
+
 .offer-grid-list{
   margin-top: 20px;
 }
+
+.offer-grid-list md-grid-tile {
+   cursor: pointer;
+}
+
 .offer-header{
-  background-color: #357DBA;
+  background-color: @blue;
+}
+
+.offer-container figure {
+   align-items: stretch;
+}
+
+.offer-header figcaption {
+   width: 100%;
+}
+
+.offer-header h4{
+   padding-right: 10px;
+   overflow: hidden;
+   text-overflow: ellipsis;
+   white-space: nowrap;
 }
 
 .offer-container:hover{
@@ -11,6 +33,10 @@
 
 .offer-content{
   font-size: smaller;
+  padding: 1em;
+  padding-top: 54px;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .btn-bottom {
