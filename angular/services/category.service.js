@@ -1,6 +1,6 @@
 // just a temporary try...
 export class CategoryService {
-    constructor(API, ToastService, LanguageService, Restangular, $state) {
+    constructor(API, ToastService, LanguageService, Restangular, $state, $translate) {
         'ngInject';
 
         this._promise;
@@ -17,6 +17,7 @@ export class CategoryService {
         this.LanguageService = LanguageService;
         this.Restangular = Restangular;
         this.$state = $state;
+        this.$translate = $translate;
     }
 
     all(success, error, force) {
@@ -100,7 +101,9 @@ export class CategoryService {
                 parent_id: category.parent_id
             };
             this.API.all('categories').post(data).then((response) => {
-                this.ToastService.show('Saved successfully');
+                this.$translate('Erfolgreich gespeichert.').then((msg) => {
+                    this.ToastService.show(msg);
+                });             
                 this.$state.go('cms.categories.details', {
                     id: response.id
                 });
@@ -117,7 +120,9 @@ export class CategoryService {
             parent: (typeof newParent == "undefined" ? 0 : newParent.id)
         }, 'move').then(
             (response) => {
-                this.ToastService.show('Category moved.');
+                this.$translate('Kategoriereihenfolge geändert.').then((msg) => {
+                    this.ToastService.show(msg);
+                });
             }
         );
     }
@@ -133,7 +138,9 @@ export class CategoryService {
             enabled: category.enabled ? 1 : 0
         }, 'toggleEnabled').then(
             (response) => {
-                this.ToastService.show('Category updated.');
+                this.$translate('Kategorie aktualisiert.').then((msg) => {
+                    this.ToastService.show(msg);
+                });
             },
             (response) => {
                 category.enabled = !category.enabled;

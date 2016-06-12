@@ -1,11 +1,13 @@
 export class MapService {
-    constructor($rootScope, ToastService) {
+    constructor($rootScope, ToastService, $translate) {
         'ngInject';
         //
         this.tokens = {
             mapbox: 'pk.eyJ1IjoibWFnbm9sbyIsImEiOiJuSFdUYkg4In0.5HOykKk0pNP1N3isfPQGTQ'
         }
 
+        this.ToastService = ToastService;
+        this.$translate = $translate;
         this.$rootScope = $rootScope;
         this.center = {
             lat: 48.209272,
@@ -93,7 +95,9 @@ export class MapService {
 
             });
         } else {
-            ToastService.error('Geolocation is not supported by this browser.');
+            this.$translate('Standort kann auf Grund fehlender Browserunterstützung nicht abgerufen werden.').then((msg) => {
+                this.ToastService.error(msg);
+            });
             if (typeof error == "function") {
                 error();
             }

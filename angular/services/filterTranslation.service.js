@@ -1,9 +1,10 @@
 export class FilterTranslationService{
-    constructor(API, ToastService){
+    constructor(API, ToastService, $translate){
         'ngInject';
 
         this.API = API;
         this.ToastService = ToastService;
+        this.$translate = $translate;
 
         this.untranslatedFilters = [];
     }
@@ -36,7 +37,9 @@ export class FilterTranslationService{
             title: translation.title,
             description: translation.description,
         }).then((offer) => {
-            this.ToastService.show('Saved successfully');
+            this.$translate('Erfolgreich gespeichert.').then((msg) => {
+                this.ToastService.show(msg);
+            });
             var translation;
             angular.forEach(offer.translations, function (t, ignore) {
                 if (t.locale == language.language) {

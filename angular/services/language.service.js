@@ -1,7 +1,8 @@
 export class LanguageService {
-    constructor(API, ToastService, $window, $filter) {
+    constructor(API, ToastService, $window, $filter, $translate) {
         'ngInject';
 
+        this.$translate = $translate;
         this.$filter = $filter;
         this.$window = $window;
         this._promise;
@@ -95,7 +96,9 @@ export class LanguageService {
     }
     update(language) {
         return language.save().then((response) => {
-            this.ToastService.show('Language updated.');
-        })
+            this.$translate('Sprache aktualisiert.').then((msg) => {
+                this.ToastService.show(msg);
+            });
+        });
     }
 }
