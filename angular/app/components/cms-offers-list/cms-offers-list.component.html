@@ -1,7 +1,7 @@
 <div >
     <md-toolbar class="md-table-toolbar md-default" layout-padding ng-if="!vm.showfilter">
         <div layout="row" layout-align="space-between start">
-            <h3>Angebote</h3>
+            <h3>{{ 'Angebote' | translate }}</h3>
             <span flex></span>
             <div layout="row" layout-align="end center" ng-cloak style="font-size:16px">
               <md-button ng-click="vm.showfilter = true" class="md-icon-button" layout="row" layout-align="center center">
@@ -21,17 +21,17 @@
     <md-toolbar class="md-table-toolbar md-default" layout-padding ng-if="vm.showfilter">
         <div layout="row" layout-align="space-between start">
             <md-input-container class="md-icon-float md-block no-error">
-                <label>Search</label>
+                <label>{{ 'Suchen' | translate }}</label>
                 <md-icon class="material-icons">search</md-icon>
                 <input ng-model="vm.query.title" type="text"  ng-change="vm.getOffers()">
             </md-input-container>
             <div layout="row" layout-align="end center" ng-cloak style="font-size:16px">
                 <md-input-container>
-                    <label>Enabled</label>
+                    <label>{{ 'Aktiviert' | translate }}</label>
                     <md-select ng-model="vm.query.enabled" ng-change="vm.getOffers()">
-                        <md-option ng-value="">All</md-option>
-                        <md-option ng-value="true">Yes</md-option>
-                        <md-option ng-value="false">No</md-option>
+                        <md-option ng-value="">{{ 'Alle' | translate }}</md-option>
+                        <md-option ng-value="true">{{ 'Ja' | translate }}</md-option>
+                        <md-option ng-value="false">{{ 'Nein' | translate }}</md-option>
                     </md-select>
                 </md-input-container>
             </div>
@@ -39,7 +39,7 @@
                 <md-input-container>
                     <label>NGO</label>
                     <md-select ng-model="vm.query.ngo_id"  ng-change="vm.getOffers()">
-                      <md-option ng-value="">All</md-option>
+                      <md-option ng-value="">{{ 'Alle' | translate }}</md-option>
                       <md-option ng-repeat="ngo in vm.ngos | orderBy: 'organisation'" ng-value="ngo.id">{{ngo.organisation}}</md-option>
                     </md-select>
                 </md-input-container>
@@ -58,13 +58,13 @@
             <tr md-row>
                 <th md-column class="icon"></th>
                 <!-- TODO: ORDER BY TRANSLATED TITLE -->
-                <th md-column md-order-by="id">Offer</th>
-                <th md-column >Address</th>
-                <th md-column md-order-by="ngo_id"  ng-if="vm.cms">Ngo</th>
-                <th md-column md-order-by="enabled"  ng-if="vm.cms">Enabled</th>
-                <th md-column class="icon">Phone</th>
-                <th md-column class="icon">Email</th>
-                <th md-column class="icon">Website</th>
+                <th md-column md-order-by="id">{{ 'Angebot' | translate }}</th>
+                <th md-column >{{ 'Adresse' | translate }}</th>
+                <th md-column md-order-by="ngo_id"  ng-if="vm.cms">{{ 'NGO' | translate }}</th>
+                <th md-column md-order-by="enabled"  ng-if="vm.cms">{{ 'Aktiviert' | translate }}</th>
+                <th md-column class="icon">{{ 'Telefon' | translate }}</th>
+                <th md-column class="icon">{{ 'Email' | translate }}</th>
+                <th md-column class="icon">{{ 'Webseite' | translate }}</th>
             </tr>
             </thead>
             <tbody md-body>
@@ -85,7 +85,7 @@
                 </td>
                 <td class="md-cell"  ng-if="vm.cms">
                     <md-switch ng-model="offer.enabled" class="md-primary" ng-change="vm.toggleEnabled(offer)"
-                               aria-label="Enable/Disable Offer"></md-switch>
+                               aria-label="{{ 'Angebot aktivieren/deaktivieren' | translate }}"></md-switch>
                 </td>
                 <td md-cell>
                   <div ng-if="offer.phone">
@@ -108,25 +108,25 @@
   <md-fab-speed-dial  ng-if="vm.cms" class="md-fling fixed bottom" ng-show="vm.selectedOffers.length" md-open="vm.menu.isOpen" md-direction="up">
        <md-fab-trigger>
          <md-button aria-label="menu" class="md-fab md-warn">
-           <md-tooltip md-direction="left" md-delay="250">Edit Orders</md-tooltip>
+           <md-tooltip md-direction="left" md-delay="250">{{ 'Angebote bearbeiten' | translate }}</md-tooltip>
            <md-icon>edit</md-icon>
          </md-button>
        </md-fab-trigger>
        <md-fab-actions>
          <md-button class="md-raised md-fab md-warn md-hue-2 md-mini" ng-click="vm.remove()" layout="row" layout-align="center center">
-           <md-tooltip md-direction="left" md-delay="250">Delete Orders</md-tooltip>
+           <md-tooltip md-direction="left" md-delay="250">{{ 'Angebote löschen' | translate }}</md-tooltip>
              <i class="material-icons">delete</i>
          </md-button>
          <md-button class="md-raised md-fab  md-warn md-mini" ng-click="vm.bulkToggleEnabled(false)" layout="row" layout-align="center center">
-            <md-tooltip md-direction="left" md-delay="250">Disable Orders</md-tooltip>
+            <md-tooltip md-direction="left" md-delay="250">{{ 'Angebote deaktivieren' | translate }}</md-tooltip>
              <i class="material-icons">lock</i>
          </md-button>
          <md-button  class="md-raised md-fab  md-accent md-mini" ng-click="vm.bulkToggleEnabled(true)" layout="row" layout-align="center center">
-            <md-tooltip md-direction="left" md-delay="250">Enable Orders</md-tooltip>
+            <md-tooltip md-direction="left" md-delay="250">{{ 'Angebote aktivieren' | translate }}</md-tooltip>
              <i class="material-icons">lock_open</i>
          </md-button>
          <md-button  class="md-raised md-fab  md-default  md-mini" ng-click="vm.assignNgo()" layout="row" layout-align="center center">
-           <md-tooltip md-direction="left" md-delay="250">Set NGO</md-tooltip>
+           <md-tooltip md-direction="left" md-delay="250">{{ 'NGO zuweisen' | translate }}</md-tooltip>
              <i class="material-icons">business</i>
          </md-button>
 
