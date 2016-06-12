@@ -29,7 +29,9 @@
     "ng-flow": "~2",
     "angular-wizard": "^0.6.1",
     "leaflet-fullscreen": "^1.0.1",
-    "angular-paging": "^2.2.1"
+    "angular-paging": "^2.2.1",
+    "angular-translate": "2.11.x",
+    "angular-translate-loader-static-files": "2.11.x"
   },
   "overrides": {
     "font-awesome": {
