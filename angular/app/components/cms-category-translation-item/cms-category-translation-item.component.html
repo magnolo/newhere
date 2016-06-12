@@ -7,7 +7,7 @@
             {{vm.translation.description | limitTo: 40}}<span ng-if="vm.translation.description.length > 40">...</span>
         </span>
         <span class="version">
-            Version: {{vm.translation.version}}
+            {{ 'Version: {{version}}' | translate: '{ version: vm.translation.version }' }}
         </span>
     </span>
     <md-button ng-if="vm.translation.title == ''" ng-click="vm.translate()" class="md-icon-button" aria-label="Translate to {{vm.language.i18n}} ({{vm.language.language}})">
