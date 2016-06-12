@@ -2,29 +2,29 @@
 	<form ng-submit="vm.login()" name="loginForm">
 		<div>
 			<md-input-container class="md-block">
-				<label>Email</label>
+				<label>{{ 'Email' | translate }}</label>
 				<input type="email" ng-model="vm.email" name="email" required>
 				<div ng-messages="loginForm.email.$error">
-          <div ng-message="required">Das ist eine Pflichtfeld.</div>
+          <div ng-message="required">{{ 'Das ist ein Pflichtfeld.' | translate }}</div>
         </div>
 			</md-input-container>
 		</div>
 
 		<div>
 			<md-input-container class="md-block">
-				<label>Password</label>
+				<label>{{ 'Passwort' | translate }}</label>
 				<input type="password" ng-model="vm.password" name="password" required>
 				<div ng-messages="loginForm.password.$error">
-          <div ng-message="required">Das ist eine Pflichtfeld.</div>
+          <div ng-message="required">{{ 'Das ist ein Pflichtfeld.' | translate }}</div>
         </div>
 			</md-input-container>
 		</div>
 
-		<md-button type="submit" class="LoginForm-submit md-primary md-raised" ng-disabled="loginForm.$invalid">Log in</md-button>
+		<md-button type="submit" class="LoginForm-submit md-primary md-raised" ng-disabled="loginForm.$invalid">{{ 'Anmelden' | translate }}</md-button>
 
 	</form>
 	<div layout="row" layout-align="space-around center">
-		<a ui-sref="app.ngoRegister"  class="md-primary">Registrieren</a>
-		<a ui-sref="app.forgotpassword" md-no-ink class="md-primary">Passwort vergessen?</a>
+		<a ui-sref="app.ngoRegister"  class="md-primary">{{ 'Registrieren' | translate }}</a>
+		<a ui-sref="app.forgotpassword" md-no-ink class="md-primary">{{ 'Passwort vergessen?' | translate }}</a>
 	</div>
 </div>
