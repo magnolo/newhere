@@ -3,7 +3,7 @@
 
         <div layout="row" layout-align="space-between start">
             <md-input-container class="md-icon-float md-block">
-                <label>User suchen</label>
+                <label>{{ 'Benutzer suchen' | translate }}</label>
                 <md-icon class="material-icons">search</md-icon>
                 <input ng-model="vm.listFilter.search" type="text">
             </md-input-container>
@@ -24,9 +24,9 @@
         <table md-table md-row-select multiple ng-model="vm.selectedUsers">
             <thead md-head md-order="vm.listOrderByColumn" md-on-reorder="vm.onOrderChange">
             <tr md-row>
-                <th md-column md-order-by="name">User Name</th>
-                <th md-column md-order-by="email">Email</th>
-                <th md-column md-order-by="isNgoAdmin">NGO Amdin</th>
+                <th md-column md-order-by="name">{{ 'Benutzer' | translate }}</th>
+                <th md-column md-order-by="email">{{ 'Email' | translate }}</th>
+                <th md-column md-order-by="isNgoAdmin">{{ 'NGO-Amdin' | translate }}</th>
             </tr>
             </thead>
             <tbody md-body>
@@ -37,7 +37,7 @@
                 <td class="md-cell">{{user.email}}</td>
                 <td class="md-cell">
                     <md-switch ng-model="user.isNgoAdmin" ng-change="vm.toggleAdmin(user)"
-                               aria-label="NGO Administrator"></md-switch>
+                               aria-label="{{ 'NGO-Amdin' | translate }}"></md-switch>
                 </td>
             </tr>
             </tbody>

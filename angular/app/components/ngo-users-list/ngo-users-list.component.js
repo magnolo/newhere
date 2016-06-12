@@ -70,6 +70,7 @@ class NgoUsersListController{
     }
 
     removeUsers() {
+        // @todo translations!!!
         this.DialogService.prompt('Mitarbeiter löschen?', 'Sie sind dabei Mitarbeiter zu löschen. Falls Sie das wirklich möchten, geben sie DELETE ein', 'Delete Secret').then((response) => {
             if (response === "DELETE") {
                 this.UserService.bulkRemove(this.selectedUsers, (list) => {

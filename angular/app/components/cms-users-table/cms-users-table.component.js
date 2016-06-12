@@ -102,6 +102,7 @@ class CmsUsersTableController {
         });
     }
     remove() {
+        // @todo translations
         this.DialogService.prompt('Deleting Users?', 'You are about to delete user(s). Is that really a good idea? If so, type in DELETE and confirm?', 'Delete Secret').then((response) => {
             if (response === "DELETE") {
                 this.UserService.bulkRemove(this.selectedUsers, (list) => {

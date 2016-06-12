@@ -5,18 +5,18 @@
 
 
             <md-input-container class="md-icon-float md-block">
-                <label>Search</label>
+                <label>{{ 'Suchen' | translate }}</label>
                 <md-icon class="material-icons">search</md-icon>
                 <input ng-model="vm.filter.name" type="text">
             </md-input-container>
 
             <div layout="row" layout-align="end center" ng-cloak style="font-size:16px">
                 <md-input-container>
-                    <label>Confirmed</label>
+                    <label>{{ 'Bestätigt' | translate }}</label>
                     <md-select ng-model="vm.filter.confirmed">
-                        <md-option ng-value="">All</md-option>
-                        <md-option ng-value="true">Yes</md-option>
-                        <md-option ng-value="false">No</md-option>
+                        <md-option ng-value="">{{ 'Alle' | translate }}</md-option>
+                        <md-option ng-value="true">{{ 'Ja' | translate }}</md-option>
+                        <md-option ng-value="false">{{ 'Nein' | translate }}</md-option>
                     </md-select>
                 </md-input-container>
             </div>
@@ -40,11 +40,11 @@
             <thead md-head md-order="vm.query.order" md-on-reorder="vm.onOrderChange">
                 <tr md-row>
                     <th md-column class="icon"></th>
-                    <th md-column md-order-by="name">Name</th>
-                    <th md-column md-order-by="email">Email</th>
-                    <th md-column md-order-by="confirmed">Confirmed</th>
-                    <th md-column md-order-by="roles">Roles</th>
-                    <th md-column md-order-by="ngos">Ngo</th>
+                    <th md-column md-order-by="name">{{ 'Name' | translate }}</th>
+                    <th md-column md-order-by="email">{{ 'Email' | translate }}</th>
+                    <th md-column md-order-by="confirmed">{{ 'Bestätigt' | translate }}</th>
+                    <th md-column md-order-by="roles">{{ 'Rolle' | translate }}</th>
+                    <th md-column md-order-by="ngos">{{ 'NGO' | translate }}</th>
                 </tr>
             </thead>
             <tbody md-body>
@@ -53,7 +53,7 @@
                     <td md-cell><strong>{{user.name}}</strong></td>
                     <td md-cell>{{user.email}}</td>
                     <td md-cell>
-                        <md-switch  class="md-primary" ng-model="user.confirmed" ng-change="vm.save(user)" aria-label="User aktivieren/deaktivieren?"></md-switch>
+                        <md-switch  class="md-primary" ng-model="user.confirmed" ng-change="vm.save(user)" aria-label="{{ 'Benutzer aktivieren/deaktivieren?' | translate }}"></md-switch>
                     </td>
                     <td md-cell>
                         <md-chips ng-model="user.roles" readonly="true">

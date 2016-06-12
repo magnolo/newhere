@@ -11,30 +11,30 @@
 
     <div layout-gt-sm="row" ng-cloak>
         <div ng-if="vm.ngo.street" layout="column" layout-align="center start" flex-gt-xs>
-            <h4><md-icon >location_on</md-icon>Addresse</h4>
+            <h4><md-icon >location_on</md-icon>{{ 'Adresse' | translate }}</h4>
             <p>{{vm.ngo.street + " " + vm.ngo.street_number + ", " + vm.ngo.zip + " " + vm.ngo.city}}</p>
         </div>
         <div ng-if="vm.ngo.website" layout="column" layout-align="center start" flex-gt-xs>
-            <h4><md-icon >home</md-icon>Website</h4>
+            <h4><md-icon >home</md-icon>{{ 'Webseite' | translate }}</h4>
             <a ng-href="{{vm.ngo.website}}">{{vm.ngo.website}}</a>
         </div>
     </div>
     <div layout-gt-sm="row">
         <div ng-if="vm.ngo.contact" layout="column" layout-align="center start" flex-gt-xs>
-            <h4><md-icon >account_box</md-icon>Kontakt Person</h4>
+            <h4><md-icon >account_box</md-icon>{{ 'Kontaktperson' | translate }}</h4>
             <p>{{vm.ngo.contact}}</p>
         </div>
         <div ng-if="vm.ngo.contact_email" layout="column" layout-align="center start" flex-gt-xs>
-            <h4><md-icon >email</md-icon>Kontakt Email</h4>
+            <h4><md-icon >email</md-icon>{{ 'Kontaktemail' | translate }}</h4>
             <a href="mailto:{{vm.ngo.contact_email}}">{{vm.ngo.contact_email}}</a>
         </div>
         <div ng-if="vm.ngo.contact_phone" layout="column" layout-align="center start" flex-gt-xs>
-            <h4><md-icon >phone</md-icon>Kontakt Nummer</h4>
+            <h4><md-icon >phone</md-icon>{{ 'Kontakttelefon' | translate }}</h4>
             <p>{{vm.ngo.contact_phone}}</p>
         </div>
     </div>
     <div ng-if="vm.ngo.description" layout="column" layout-align="center start">
-        <h4><md-icon >description</md-icon>Beschreibung</h4>
+        <h4><md-icon >description</md-icon>{{ 'Beschreibung' | translate }}</h4>
         <p>{{vm.ngo.description}}</p>
     </div>
 </div>
