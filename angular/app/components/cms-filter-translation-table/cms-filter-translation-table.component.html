@@ -1,7 +1,7 @@
 <md-toolbar class="md-table-toolbar md-default" layout-padding>
     <div layout="row" layout-align="end start">
         <md-checkbox ng-model="vm.showAll" aria-label="Alle anzeigen" ng-click="vm.reload(!vm.showAll)">
-            show all
+            {{ 'Alle anzeigen' | translate }}
         </md-checkbox>
     </div>
 </md-toolbar>
@@ -45,8 +45,8 @@
 
 <md-content ng-if="vm.untranslatedFilters.length == 0 && vm.loading == false">
     <div flex layout="column" layout-align="center center" layout-padding>
-        <div class="md-display-1">Wow, everything seems to be translated!</div>
-        <div class="md-subhead">Wanna see all filters and their translations? Check show all.</div>
+        <div class="md-display-1">{{ 'Alle Filter sind übersetzt!' | translate }}</div>
+        <div class="md-subhead">{{ 'Um alle Filter und deren Übersetzungen anzuzeigen, aktivieren Sie "alle anzeigen".' | translate }}</div>
     </div>
 </md-content>
 
