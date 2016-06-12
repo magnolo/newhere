@@ -1,8 +1,9 @@
 class RegisterFormController {
-	constructor($auth, ToastService) {
+	constructor($auth, $translate, ToastService) {
 		'ngInject';
 
 		this.$auth = $auth;
+		this.$translate = $translate;
 		this.ToastService = ToastService;
 
 		this.name = '';
@@ -21,13 +22,13 @@ class RegisterFormController {
 			.then((response) => {
 				//remove this if you require email verification
 				this.$auth.setToken(response.data);
-
-				this.ToastService.show('Successfully registered.');
+		
+				this.$translate('Registrierung erfolgreich.').then((msg) => {
+					this.ToastService.show(msg);
+				});			
 			})
 			.catch(this.failedRegistration.bind(this));
 	}
-
-
 
 	failedRegistration(response) {
 		if (response.status === 422) {
