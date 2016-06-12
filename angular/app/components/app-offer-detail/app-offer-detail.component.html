@@ -1,0 +1,52 @@
+<md-toolbar md-theme="whitey">
+  <div class="md-toolbar-tools">
+    <md-button aria-label="Back" ng-click="vm.goBack()">
+      <md-icon>chevron_left</md-icon>
+      <span>Back</span>
+    </md-button>
+    <md-icon class="big-icon" md-svg-src="{{vm.CategoryService.category.image.src }}"></md-icon>
+    <small>{{vm.CategoryService.category.title}}</small>
+    <span flex></span>
+  </div>
+</md-toolbar>
+<div>
+  <div class="check-element animation" ng-if="vm.showMap" flex hide-gt-sm>
+    <map style="height: 300px"></map>
+  </div>
+
+  <div class= "offer-detail" >
+
+    <h2>{{vm.offer.title}}</h2>
+
+    <p ng-if="vm.offer.phone!=null"><md-icon>phone</md-icon><a href="tel:{{vm.offer.phone}}">{{vm.offer.phone}}</a></p>
+
+    <p ng-if="vm.offer.website!=null"><md-icon>insert_link</md-icon><a href="{{vm.offer.website}}">{{vm.offer.website}}</a></p>
+
+    <p ng-if="vm.offer.email!=null"><md-icon>mail</md-icon><a href="mailto:{{vm.offer.email}}">{{vm.offer.email}}</a></p>
+
+    <p ng-if="vm.offer.street!=null" ><md-icon>place</md-icon>{{vm.offer.street}} {{vm.offer.streetnumber}}</br>
+      <span ng-if="vm.offer.streetnumberadditional!=null" class="offer-detail-address" >{{vm.offer.streetnumberadditional}} {{vm.offer.zip}}</br></span>
+      <span ng-if="vm.offer.streetnumberadditional==null" class="offer-detail-address">{{vm.offer.zip}}</br></span>
+      <span ng-if="vm.offer.street!=null" class="offer-detail-address" >{{vm.offer.city}}</span>
+   </p>
+
+
+    <p ng-if="vm.offer.opening_hours!=null"><md-icon>schedule</md-icon>{{vm.offer.opening_hours}}</p>
+
+    <p ng-if="vm.offer.age_from!=null && vm.offer.age_to!=null"><md-icon>people</md-icon>Geeignetes Alter: {{vm.offer.age_from}} - {{vm.offer.age_to}} Jahre</p>
+
+    <p ng-if="vm.offer.description!=null" class="offer-detail-description"><md-icon>info</md-icon>{{vm.offer.description}}</p>
+
+    <br>
+    <div>
+      <img class="offer-detail-image" ng-if="vm.offer.image" ng-src="{{vm.offer.image.dir+'/'+vm.offer.image.filename}}">
+    </div>
+
+    <md-content flex hide-gt-sm >
+      <md-button ng-if="vm.offer !=null" style="float: right" class="md-raised md-icon-button md-primary" ng-click="vm.toggleMap()" layout-align="center center">
+        <i class="material-icons">map</i>
+      </md-button>
+    </md-content>
+
+  </div>
+</div>

@@ -39,9 +39,9 @@ export class MapService {
                     }
                 };
 
-      /*this.$on("leafletDirectiveMarker.click", function(event, args){
-                            console.log('event click aojsdnajs');
-                        });*/
+               /* $scope.$on("leafletDirectiveMarker.click", function(event, args){
+                                     console.log('event click aojsdnajs');
+                                 });*/
 
 
         this.markers = {};
@@ -50,6 +50,7 @@ export class MapService {
 
             angular.forEach(offers, (offer, key) => {
               var marker = {
+                 offer_id:offer.id,
                   lng:parseFloat(offer.latitude),
                   lat:parseFloat(offer.longitude),
                   message:offer.title
