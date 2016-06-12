@@ -1,6 +1,6 @@
 <md-toolbar class="md-table-toolbar md-default" layout-padding>
     <div layout="row" layout-align="end start">
-        <md-checkbox ng-model="vm.showAll" aria-label="Alle anzeigen" ng-click="vm.reload(!vm.showAll)">
+        <md-checkbox ng-model="vm.showAll" aria-label="{{ 'Alle anzeigen' | translate }}" ng-click="vm.reload(!vm.showAll)">
             {{ 'Alle anzeigen' | translate }}
         </md-checkbox>
     </div>
