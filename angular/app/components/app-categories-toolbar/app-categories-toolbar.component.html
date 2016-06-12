@@ -2,7 +2,7 @@
     <div class="md-toolbar-tools">
         <md-button aria-label="Back" ng-click="vm.goBack()">
             <md-icon>chevron_left</md-icon>
-            <span>Back</span>
+            <span>{{ 'Zurück' | translate }}</span>
         </md-button>
         <md-icon class="big-icon" md-svg-src="{{vm.CategoryService.category.image.src }}"></md-icon>
         <small>{{vm.CategoryService.category.title}}</small>

@@ -20,9 +20,6 @@ class AppCategoriesContentSubController {
             }
             this.CategoryService.getOffers(this.offersCallback);
         });
-
-
-
     }
 
     toggleMap() {
@@ -32,8 +29,6 @@ class AppCategoriesContentSubController {
     showOffer(id) {
         this.state.go('app.start.detail',{id:id});
     }
-
-
 }
 
 export const AppCategoriesContentSubComponent = {
