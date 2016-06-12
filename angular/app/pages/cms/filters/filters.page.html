@@ -7,10 +7,10 @@
         </md-sidenav>
         <md-content ui-view="details" layout="column" flex="80">
             <div flex layout="column" layout-align="center center" layout-padding>
-                <div class="md-display-1">Choose a filter</div>
-                <div class="md-subhead">or create a new one</div>
+                <div class="md-display-1">{{ 'Filter auswählen' | translate }}</div>
+                <div class="md-subhead">{{ 'oder einen neuen erstellen' | translate }}</div>
                 <md-button ui-sref="cms.filters.details({id:'new'})" class="md-raised md-primary" layout="row" layout-align="center center">
-                    <i class="material-icons">add</i> New Filter
+                    <i class="material-icons">add</i> {{ 'Neuer Filter' | translate }}
                 </md-button>
             </div>
         </md-content>

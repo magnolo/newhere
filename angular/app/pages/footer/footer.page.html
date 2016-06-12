@@ -4,10 +4,10 @@
 <br/>
 <div class="Footer-text">
 
-Nähere Informationen und Rückfragen unter:<br >
-E-Mail: <a href="mailto:info@newhere.at">info@newhere.at</a>
+{{ 'Nähere Informationen und Rückfragen unter:' | translate }}<br >
+{{ 'Email: <a href="mailto:info@newhere.at">info@newhere.at</a>' | translate }}
 </div>
 <div class="Footer-text">
-	&copy; 2016 New Here
+	{{ '&copy; {{year}} New Here' | translate: '{ year: 2016 }' }}
 </div>
 </md-content>
