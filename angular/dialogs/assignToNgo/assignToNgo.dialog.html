@@ -9,7 +9,7 @@
 
         <md-dialog-content>
             <div class="md-dialog-content">
-                <p>{{ '{{count}} Angebote ausgewählt' | translate: '{ count: vm.selectedOffers.length }' }}</p>
+                <p>{{ '%d Angebote ausgewählt' | translate | sprintf: vm.selectedOffers.length }}</p>
                 <md-input-container flex>
                     <label>{{ 'NGO auswählen' | translate }}</label>
                     <md-select ng-model="vm.ngo" aria-label="{{ 'NGO auswählen' | translate }}">

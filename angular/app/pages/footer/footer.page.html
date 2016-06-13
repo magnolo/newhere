@@ -8,6 +8,6 @@
 {{ 'Email: <a href="mailto:info@newhere.at">info@newhere.at</a>' | translate }}
 </div>
 <div class="Footer-text">
-	{{ '&copy; {{year}} New Here' | translate: '{ year: 2016 }' }}
+	{{ '\&copy; %s New Here' | translate | sprintf: 2016 }}
 </div>
 </md-content>

@@ -19,7 +19,7 @@
                 <label>{{ 'Passwort' | translate }}</label>
                 <input name="password" ng-model="vm.ngo.password" type="password" minlength="5" ng-required="!(vm.cms && vm.ngo.useCmsAccount)" ng-disabled="vm.cms && vm.ngo.useCmsAccount">
                 <div ng-messages="ngoForm.password.$error" ng-show="ngoForm.password.$dirty">
-                    <div ng-message="minlength">{{ 'Mindestens {{count}} Zeichen' | translate: '{ count: 5 }' }}</div>
+                    <div ng-message="minlength">{{ 'Mindestens %d Zeichen' | translate | sprintf: 5 }}</div>
                 </div>
             </md-input-container>
         <md-input-container class="md-block" flex-gt-sm>

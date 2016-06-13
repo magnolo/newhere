@@ -27,7 +27,7 @@
                     <label>{{ 'Passwort' | translate }}</label>
                     <input name="password" type="password" ng-model="vm.user.password" minlength="5">
                     <div ng-messages="userForm.password.$error" ng-show="userForm.password.$dirty">
-                        <div ng-message="minlength">{{ 'Mindestens {{count}} Zeichen' | translate: '{ count: 5 }' }}</div>
+                        <div ng-message="minlength">{{ 'Mindestens %d Zeichen' | translate | sprintf: 5 }}</div>
                     </div>
                 </md-input-container>
                 <md-input-container class="md-block" flex-gt-sm>

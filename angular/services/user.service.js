@@ -94,8 +94,8 @@ export class UserService {
         ids.push(item.id);
       });
       this.API.several('users', ids).remove().then((response) => {
-          this.$translate('{{count}} Benutzer gelöscht.', {count: response.data.deletedRows}).then((msg) => {
-            this.ToastService.show(msg);
+          this.$translate('%d Benutzer gelöscht.').then((msg) => {
+            this.ToastService.show(sprintf(msg, response.data.deletedRows));
           });
          success(response.data.users);
       });

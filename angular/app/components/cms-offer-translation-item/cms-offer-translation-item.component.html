@@ -7,10 +7,10 @@
             {{vm.translation.description | limitTo: 40}}<span ng-if="vm.translation.description.length > 40">...</span>
         </span>
         <span class="version">
-            {{ 'Version: {{version}}' | translate: '{ version: vm.translation.version }' }}
+            {{ 'Version: %d' | translate | sprintf: vm.translation.version }}
         </span>
     </span>
-    <md-button ng-if="vm.translation.title == ''" ng-click="vm.translate()" class="md-icon-button" aria-label="{{ 'Übersetzen nach {{language}} ({{code}})' | translate : '{ translate: vm.language.i18n, code: vm.language.language }' }}">
+    <md-button ng-if="vm.translation.title == ''" ng-click="vm.translate()" class="md-icon-button" aria-label="{{ 'Übersetzen nach %s (%s)' | translate | sprintf: vm.language.i18n:vm.language.language }}">
         <md-icon>edit</md-icon>
     </md-button>
 </span>

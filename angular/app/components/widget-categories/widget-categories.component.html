@@ -2,7 +2,7 @@
         <md-card-title>
           <md-card-title-text>
             <span class="md-headline">{{ 'Kategorien' | translate }}</span>
-            <span class="md-subhead">{{ '{{count}} insgesamt' | translate: '{ count: vm.categories.length}' }}</span>
+            <span class="md-subhead">{{ '%s insgesamt' | translate | sprintf: vm.categories.length }}</span>
           </md-card-title-text>
         </md-card-title>
 </md-card>

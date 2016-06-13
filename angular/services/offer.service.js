@@ -122,8 +122,10 @@ export class OfferService{
             ids.push(item.id);
         });
         this.API.several('offers', ids).remove().then((response) => {
-            this.$translate('{{count}} Angebote gelöscht.', {count: response.data.deletedRows}).then((msg) => {
-                this.ToastService.show(msg);
+            this.$translate('%d Angebote gelöscht.').then((msg) => {
+                this.ToastService.show(
+                    sprintf(msg, response.data.deletedRows)
+                );
             });
             success(response.data.offers);
         });

@@ -88,10 +88,10 @@
                             <div ng-if="!vm.offer.toAll">
                                 <div ng-repeat="filter in vm.offer.filters">
                                     <div ng-if="filter.parent_id == 4">
-                                        {{ 'Für das Alter: {{age}}' | translate: '{ age: filter.title }'}}
+                                        {{ 'Für das Alter: %s' | translate | sprintf: filter.title }}
                                     </div>
                                     <div ng-if="filter.parent_id == 14">
-                                        {{ 'Für das Herkunftsland: {{age}}' | translate: '{ age: filter.title }'}}
+                                        {{ 'Für das Herkunftsland: %s' | translate | sprintf: filter.title }}
                                     </div>
                                 </div>
                             </div>

@@ -52,7 +52,7 @@
             <md-card-title>
                 <md-card-title-text>
                     <span class="md-headline">Filter</span>
-                      <span class="md-subhead">{{ '{{count}} ausgewählt' | translate: '{ count: vm.offer.filters.length }' }}</span>
+                      <span class="md-subhead">{{ '%d ausgewählt' | translate | sprintf: vm.offer.filters.length }}</span>
                 </md-card-title-text>
             </md-card-title>
               <md-content layout-padding>
@@ -65,7 +65,7 @@
               <md-card-title>
                   <md-card-title-text>
                       <span class="md-headline">{{ 'Kategorien' | translate }}</span>
-                      <span class="md-subhead">{{ '{{count}} ausgewählt' | translate: '{ count: vm.offer.categories.length }' }}</span>
+                      <span class="md-subhead">{{ '%d ausgewählt' | translate | sprintf: vm.offer.categories.length }}</span>
                   </md-card-title-text>
               </md-card-title>
               <treeview items="vm.categories"  selection="vm.offer.categories" options="vm.categoriesOptions"></treeview>
