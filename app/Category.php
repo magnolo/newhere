@@ -19,7 +19,7 @@ class Category extends Model
 
     public function parent()
     {
-        return $this->hasOne('App\Category', 'id', 'parent_id');
+        return $this->hasOne('App\Category', 'id', 'parent_id')->with('image');
     }
 
     public function offers()
