@@ -44,7 +44,7 @@ export class CategoryService {
 
     }
     getOffers(success){
-      console.log(this.category);
+
       if(this.category){
         this.API.one('categories', this.category.slug).getList('offers').then((offers) => {
           success(offers);

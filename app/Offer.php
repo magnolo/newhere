@@ -28,7 +28,7 @@ class Offer extends Model
 
     public function categories()
     {
-        return $this->belongsToMany('App\Category', 'offer_categories', 'offer_id', 'category_id');
+        return $this->belongsToMany('App\Category', 'offer_categories', 'offer_id', 'category_id')->with(['parent', 'image']);
     }
 
     public function countries()

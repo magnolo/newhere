@@ -1,13 +1,23 @@
 <md-toolbar md-theme="whitey">
-    <div class="md-toolbar-tools">
+    <div class="md-toolbar-tools" layout="row" layout-align="center center">
         <md-button aria-label="Back" ng-click="vm.goBack()">
             <md-icon>chevron_left</md-icon>
             <span>Back</span>
         </md-button>
-        <md-icon class="big-icon" md-svg-src="{{vm.CategoryService.category.image.src }}"></md-icon>
-        <small>{{vm.CategoryService.category.title}}</small>
+        <md-icon class="big-icon" md-svg-src="{{vm.CategoryService.category.image.src || vm.CategoryService.category.parent.image.src || vm.CategoryService.category.parent.parent.image.src}}"></md-icon>
+        <div style="cursor:pointer" hide-xs ng-if="vm.CategoryService.category.parent.parent" ui-sref="app.start.categories.sub({slug:vm.CategoryService.category.parent.slug })">
+          <small >{{vm.CategoryService.category.parent.parent.title}} </small>
+          <md-icon>chevron_right</md-icon>
+        </div>
+        <div style="cursor:pointer" hide-xs ng-if="vm.CategoryService.category.parent" ui-sref="app.start.categories.sub({slug:vm.CategoryService.category.parent.slug })">
+          <small >{{vm.CategoryService.category.parent.title}} </small>
+          <md-icon>chevron_right</md-icon>
+        </div>
+        <div>
+          <small>{{vm.CategoryService.category.title}}</small>
+        </div>
         <span flex></span>
-        <md-button aria-label="More">
+        <md-button aria-label="More" ng-click="vm.showFilter()" ng-if="!vm.hideFilter">
             <md-icon>filter_list</md-icon>
             Filter
         </md-button>

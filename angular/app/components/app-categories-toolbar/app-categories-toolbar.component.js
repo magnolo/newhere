@@ -1,14 +1,22 @@
 class AppCategoriesToolbarController{
-    constructor(CategoryService, $state){
+    constructor(CategoryService, $state, $mdSidenav){
         'ngInject';
 
         //
         this.$state = $state;
+        this.$mdSidenav = $mdSidenav;
         this.CategoryService = CategoryService;
-
+        this.hideFilter = false;
+        if($state.current.data.hideFilter){
+          this.hideFilter = $state.current.data.hideFilter;
+        }
     }
 
     $onInit(){
+    }
+    showFilter(){
+      this.$mdSidenav('main-menu').close();
+      this.$mdSidenav('filter').toggle();
     }
     goBack(){
       if(this.CategoryService.category.parent_id){
@@ -26,5 +34,7 @@ export const AppCategoriesToolbarComponent = {
     templateUrl: './views/app/components/app-categories-toolbar/app-categories-toolbar.component.html',
     controller: AppCategoriesToolbarController,
     controllerAs: 'vm',
-    bindings: {}
+    bindings: {
+      hideFilterBtn: '='
+    }
 }
