@@ -1,10 +1,13 @@
 class AppMainMenuController{
-    constructor(){
+    constructor($mdSidenav){
         'ngInject';
 
         //
+        this.$mdSidenav = $mdSidenav;
     }
-
+    closeMainMenu(){
+      this.$mdSidenav('main-menu').close();
+    }
     $onInit(){
     }
 }

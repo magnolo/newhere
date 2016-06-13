@@ -22,11 +22,9 @@ export function RoutesConfig($stateProvider, $urlRouterProvider) {
                     templateUrl: getView('main')
                 },
                 'header@app': {
-                    templateUrl: getView('header')
+                    templateUrl: getAppView('header')
                 },
-                'footer@app': {
-                    templateUrl: getView('footer')
-                },
+                'footer@app': {},
                 'main@app': {}
             }
         })

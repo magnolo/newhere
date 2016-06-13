@@ -1,14 +1,17 @@
 <md-sidenav class="md-sidenav-left md-whiteframe-4dp" md-component-id="main-menu">
+  <md-toolbar>
+  <md-button ng-click="vm.closeMainMenu()"><md-icon>close</md-icon></md-button>
+  </md-toolbar>
  <md-content layout-padding>
     <md-list>
-      <md-list-item>
+      <md-list-item ng-if="!$root.$auth.isAuthenticated()">
         <md-button class="" ui-sref="app.login">Login</md-button>
       </md-list-item>
       <md-list-item>
-        <md-button class="" ui-sref="app.login">Choose a Category</md-button>
+        <md-button class="" ui-sref="app.start.categories">Choose a Category</md-button>
       </md-list-item>
       <md-list-item>
-        <md-button class="" ui-sref="app.login">Register as NGO</md-button>
+        <md-button class="" ui-sref="app.ngoRegister">Register as NGO</md-button>
       </md-list-item>
       <md-list-item>
         <md-button class="" ui-sref="app.login">Help to Translate</md-button>
@@ -22,6 +25,12 @@
       <md-list-item>
         <md-button class="" ui-sref="app.login">Advanced Search</md-button>
       </md-list-item>
+    </md-list>
+    <md-list ng-if="$root.$auth.isAuthenticated()">
+          <md-divider></md-divider>
+            <md-list-item >
+            <md-button class="" ui-sref="app.login">Profile</md-button>
+          </md-list-item>
     </md-list>
  </md-content>
 </md-sidenav>

@@ -9,8 +9,9 @@
                     <md-icon md-svg-src="/img/newhere-logo_white.svg" class="newHere-logo"></md-icon>
                 </md-button>
                 <span flex hide-xs></span>
-                <locator flex flex-gt-md="25"></locator>
+                <locator flex flex-gt-md="25" ng-if="vm.showLocator"></locator>
             </div>
         </div>
     </div>
 </md-content>
+<app-main-menu></app-main-menu>
