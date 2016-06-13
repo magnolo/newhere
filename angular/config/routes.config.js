@@ -67,10 +67,15 @@ export function RoutesConfig($stateProvider, $urlRouterProvider) {
 
         .state('app.start.detail', {
         url: '/offer/:id',
-        data: {},
+        data: {
+          hideFilter: true
+        },
         views: {
            'content@app.start': {
                 templateUrl: getAppView('offer-detail')
+           },
+           'toolbar@app.start': {
+               templateUrl: getAppView('categories-toolbar')
            }
         }
    })

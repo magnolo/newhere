@@ -1,31 +1,49 @@
 @import "../../../material/colors";
 
 .offer-grid-list{
-  margin-top: 20px;
+  // margin-top: 20px;
 }
 
 .offer-grid-list md-grid-tile {
    cursor: pointer;
+   &:nth-child(odd){
+     background-color:#f8f8f8;
+   }
 }
 
 .offer-header{
-  background-color: @blue;
+  // background-color: @blue;
+  background-color: transparent;
+  color:@blue;
+  height: 100%;
+  padding-top: 1em;
+  h4{
+    text-transform: uppercase;
+    margin-right: 10px;
+    font-size:1.2em;
+    overflow: hidden;
+    @media screen and (max-width: 599px){
+      font-size:1em;
+      // text-overflow: ellipsis;
+      // white-space: nowrap;
+    }
+  }
+  .material-icons{
+    color:@blue;
+  }
 }
 
 .offer-container figure {
    align-items: stretch;
+   color:@blue;
 }
 
 .offer-header figcaption {
    width: 100%;
+   height:100%;
 }
 
-.offer-header h4{
-   padding-right: 10px;
-   overflow: hidden;
-   text-overflow: ellipsis;
-   white-space: nowrap;
-}
+
 
 .offer-container:hover{
   background-color: #efefef;
@@ -33,10 +51,17 @@
 
 .offer-content{
   font-size: smaller;
-  padding: 1em;
-  padding-top: 54px;
+  padding: 16px;
   overflow: hidden;
   text-overflow: ellipsis;
+  color:@blue;
+  .offer-address{
+    text-transform: uppercase;
+    margin-top:16px;
+    position:absolute;
+    bottom:16px;
+    font-weight:bold;
+  }
 }
 
 .btn-bottom {

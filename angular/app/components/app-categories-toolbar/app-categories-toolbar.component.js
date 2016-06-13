@@ -6,7 +6,10 @@ class AppCategoriesToolbarController{
         this.$state = $state;
         this.$mdSidenav = $mdSidenav;
         this.CategoryService = CategoryService;
-
+        this.hideFilter = false;
+        if($state.current.data.hideFilter){
+          this.hideFilter = $state.current.data.hideFilter;
+        }
     }
 
     $onInit(){

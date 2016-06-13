@@ -1,42 +1,43 @@
 <div ng-if="vm.showMap" layout="column">
     <map></map>
     <div class="view-toggler">
-    <md-button ng-if="vm.showMap" ng-click="vm.toggleMap()" class="btn-bottom md-primary md-raised btn-big">
-        <md-icon>list</md-icon>
-        Show List
-    </md-button>
-  </div>
+        <md-button ng-if="vm.showMap" ng-click="vm.toggleMap()" class="btn-bottom md-primary md-raised btn-big">
+            <md-icon>list</md-icon>
+            Show List
+        </md-button>
+    </div>
 </div>
 
 <div ng-if="!vm.showMap">
     <div layout="row" layout-wrap>
-      <md-button ui-sref="app.start.categories.sub({slug: category.slug})"
-                 class="big-thumb animate-repeat" ng-repeat="category in vm.category.children" flex="33" layout="column" layout-align="center center">
+        <md-button ui-sref="app.start.categories.sub({slug: category.slug})" class="big-thumb animate-repeat" ng-repeat="category in vm.category.children" flex="33" layout="column" layout-align="center center">
 
-        {{category.title}}
-      </md-button>
+            {{category.title}}
+        </md-button>
     </div>
-    <md-grid-list class="offer-grid-list" flex-gt-sm="80" flex="90" flex-offset="5" flex-offset-gt-sm="10" ng-if="vm.showOffers"
-            md-cols-xs="2" md-cols-sm="3" md-cols-md="2" md-cols-gt-md="2"
-            md-row-height-gt-md="2:2" md-row-height="4:5"
-            md-gutter="15px" md-gutter-gt-sm="8px" >
-        <md-grid-tile class="offer-container animate-repeat" ng-repeat="offer in vm.offers" ng-click="vm.showOffer(offer.id)">
+    <md-grid-list class="offer-grid-list" flex ng-if="vm.showOffers" md-cols-xs="2" md-cols-sm="3" md-cols-md="2" md-cols-gt-md="3" md-row-height-gt-md="2:2" md-row-height="4:5">
+        <md-grid-tile layout="column" class="offer-container animate-repeat" ng-repeat="offer in vm.offers" ng-click="vm.showOffer(offer.id)">
             <md-grid-tile-header class="offer-header">
                 <h4>
-                    <md-icon>location_on</md-icon>
-                    {{offer.title}}
+                  <md-icon>location_on</md-icon>
+                  <div style="margin-top:10px">{{offer.title}}</div>
                 </h4>
+                <div class="offer-content" flex>
+                    <div class="offer-description">{{offer.description}}</div>
+                    <div class="offer-address" flex hide-xs>
+                        <span ng-if="offer.street!=null">{{offer.street}} {{offer.streetnumber}}</br></span>
+                        <span ng-if="offer.streetnumberadditional==null">{{offer.zip}}</span>
+                        <span ng-if="offer.street!=null">{{offer.city}}</span>
+                    </div>
+                </div>
             </md-grid-tile-header>
-            <div class="offer-content">
-                {{offer.description}}
-            </div>
 
         </md-grid-tile>
     </md-grid-list>
 </div>
 
 <div ng-if="vm.offers.length || vm.category.children.length" layout="row" class="view-toggler">
-    <md-button ng-if="!vm.showMap" ng-click="vm.toggleMap()" hide-gt-sm  flex class="md-primary md-raised btn-big">
+    <md-button ng-if="!vm.showMap" ng-click="vm.toggleMap()" hide-gt-sm flex class="md-primary md-raised btn-big">
         <md-icon>map</md-icon>
         Explore Map
     </md-button>
