@@ -5,7 +5,7 @@
             <span>Back</span>
         </md-button>
         <md-icon class="big-icon" md-svg-src="{{vm.CategoryService.category.image.src || vm.CategoryService.category.parent.image.src}}"></md-icon>
-        <div ng-if="vm.CategoryService.category.parent" ui-sref="app.start.categories.sub({slug:vm.CategoryService.category.parent.slug })">
+        <div hide-xs ng-if="vm.CategoryService.category.parent" ui-sref="app.start.categories.sub({slug:vm.CategoryService.category.parent.slug })">
           <small >{{vm.CategoryService.category.parent.title}} </small>
           <md-icon>chevron_right</md-icon>
         </div>
@@ -13,7 +13,7 @@
           <small>{{vm.CategoryService.category.title}}</small>
         </div>
         <span flex></span>
-        <md-button aria-label="More" ng-click="vm.showFilter()">
+        <md-button aria-label="More" ng-click="vm.showFilter()" ng-if="!vm.hideFilterBtn">
             <md-icon>filter_list</md-icon>
             Filter
         </md-button>

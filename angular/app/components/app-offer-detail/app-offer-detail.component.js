@@ -3,7 +3,7 @@ class AppOfferDetailController{
         'ngInject';
 
         var vm = this;
-        vm.showMap = false;
+        vm.showMap = true;
 
         this.CategoryService = CategoryService;
         this.MapService = MapService;

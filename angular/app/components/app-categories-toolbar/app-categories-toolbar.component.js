@@ -31,5 +31,7 @@ export const AppCategoriesToolbarComponent = {
     templateUrl: './views/app/components/app-categories-toolbar/app-categories-toolbar.component.html',
     controller: AppCategoriesToolbarController,
     controllerAs: 'vm',
-    bindings: {}
+    bindings: {
+      hideFilterBtn: '='
+    }
 }
