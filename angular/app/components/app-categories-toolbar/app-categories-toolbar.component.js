@@ -1,14 +1,19 @@
 class AppCategoriesToolbarController{
-    constructor(CategoryService, $state){
+    constructor(CategoryService, $state, $mdSidenav){
         'ngInject';
 
         //
         this.$state = $state;
+        this.$mdSidenav = $mdSidenav;
         this.CategoryService = CategoryService;
 
     }
 
     $onInit(){
+    }
+    showFilter(){
+      this.$mdSidenav('main-menu').close();
+      this.$mdSidenav('filter').toggle();
     }
     goBack(){
       if(this.CategoryService.category.parent_id){

@@ -7,7 +7,7 @@
         <md-icon class="big-icon" md-svg-src="{{vm.CategoryService.category.image.src }}"></md-icon>
         <small>{{vm.CategoryService.category.title}}</small>
         <span flex></span>
-        <md-button aria-label="More">
+        <md-button aria-label="More" ng-click="vm.showFilter()">
             <md-icon>filter_list</md-icon>
             Filter
         </md-button>

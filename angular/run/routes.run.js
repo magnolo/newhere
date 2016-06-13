@@ -1,4 +1,4 @@
-export function RoutesRun($rootScope, $state, $auth, $window, ToastService) {
+export function RoutesRun($rootScope, $state, $auth, $window, $mdSidenav,ToastService) {
     'ngInject';
 
     $rootScope.cms = false;
@@ -19,6 +19,8 @@ export function RoutesRun($rootScope, $state, $auth, $window, ToastService) {
               }
             }
         }
+        $mdSidenav('filter').close();
+        $mdSidenav('main-menu').close();
 
     });
     $rootScope.$on('$destroy', deregisterationCallback)
