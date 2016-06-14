@@ -40,8 +40,8 @@
         "css/font-awesome.css"
       ]
     },
-    "leaflet-fullscreen" :{
-      "main":[
+    "leaflet-fullscreen": {
+      "main": [
         "dist/Leaflet.fullscreen.js",
         "dist/leaflet.fullscreen.css"
       ]

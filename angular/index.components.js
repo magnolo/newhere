@@ -1,3 +1,6 @@
+import {AppMainMenuComponent} from './app/components/app-main-menu/app-main-menu.component';
+import {AppHeaderComponent} from './app/components/app-header/app-header.component';
+import {AppOfferDetailComponent} from './app/components/app-offer-detail/app-offer-detail.component';
 import {CmsFilterTranslationItemComponent} from './app/components/cms-filter-translation-item/cms-filter-translation-item.component';
 import {CmsFilterTranslationTableComponent} from './app/components/cms-filter-translation-table/cms-filter-translation-table.component';
 import {OffersListComponent} from './app/components/offers-list/offers-list.component';
@@ -44,6 +47,9 @@ import {CmsFiltersListComponent} from './app/components/cms-filters-list/cms-fil
 import {CmsFilterFormComponent} from './app/components/cms-filter-form/cms-filter-form.component';
 
 angular.module('app.components')
+	.component('appMainMenu', AppMainMenuComponent)
+	.component('appHeader', AppHeaderComponent)
+	.component('appOfferDetail', AppOfferDetailComponent)
 	.component('cmsFilterTranslationItem', CmsFilterTranslationItemComponent)
 	.component('cmsFilterTranslationTable', CmsFilterTranslationTableComponent)
 	.component('offersList', OffersListComponent)
