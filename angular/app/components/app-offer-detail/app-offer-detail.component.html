@@ -22,7 +22,7 @@
 
     <p ng-if="vm.offer.opening_hours!=null"><md-icon>schedule</md-icon>{{vm.offer.opening_hours}}</p>
 
-    <p ng-if="vm.offer.age_from!=null && vm.offer.age_to!=null"><md-icon>people</md-icon>Geeignetes Alter: {{vm.offer.age_from}} - {{vm.offer.age_to}} Jahre</p>
+    <p ng-if="vm.offer.age_from!=null && vm.offer.age_to!=null"><md-icon>people</md-icon>{{ 'Geeignetes Alter: %s - %s Jahre' | translate | sprintf: vm.offer.age_from:vm.offer.age_to }}</p>
 
     <p ng-if="vm.offer.description!=null" class="offer-detail-description"><md-icon>info</md-icon>{{vm.offer.description}}</p>
 
