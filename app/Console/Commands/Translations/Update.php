@@ -92,7 +92,7 @@ class Update extends Command
 
         $languages = array_diff(scandir($this->catalogDir), ['.', '..', '.svn', '.git']);
         foreach ($languages as $idx => $language) {
-            if (preg_match('/^([a-z_-]+)\.po$/', $language, $matches)) {
+            if (preg_match('/^([a-z_-]+)$/', $language, $matches)) {
                 $languages[$idx] = $matches[1];
             } else {
                 unset($languages[$idx]);

@@ -5,31 +5,31 @@
  <md-content layout-padding>
     <md-list>
       <md-list-item ng-if="!$root.$auth.isAuthenticated()">
-        <md-button class="" ui-sref="app.login">Login</md-button>
+        <md-button class="" ui-sref="app.login">{{ 'Anmelden' | translate }}</md-button>
       </md-list-item>
       <md-list-item>
-        <md-button class="" ui-sref="app.start.categories">Choose a Category</md-button>
+        <md-button class="" ui-sref="app.start.categories">{{ 'Wähle eine Kategorie' | translate }}</md-button>
       </md-list-item>
       <md-list-item>
-        <md-button class="" ui-sref="app.ngoRegister">Register as NGO</md-button>
+        <md-button class="" ui-sref="app.ngoRegister">{{ 'Als NGO registrieren' | translate }}</md-button>
       </md-list-item>
       <md-list-item>
-        <md-button class="" ui-sref="app.login">Help to Translate</md-button>
+        <md-button class="" ui-sref="app.login">{{ 'Hilf uns beim übersetzen' | translate }}</md-button>
       </md-list-item>
       <md-list-item>
-        <md-button class="" ui-sref="app.login">Add an Offer</md-button>
+        <md-button class="" ui-sref="app.login">{{ 'Angebot hinzufügen' | translate }}</md-button>
       </md-list-item>
       <md-list-item>
-        <md-button class="" ui-sref="app.login">Questions & Answers</md-button>
+        <md-button class="" ui-sref="app.login">{{ 'Fragen & Antworten' | translate }}</md-button>
       </md-list-item>
       <md-list-item>
-        <md-button class="" ui-sref="app.login">Advanced Search</md-button>
+        <md-button class="" ui-sref="app.login">{{ 'Erweiterte Suche' | translate }}</md-button>
       </md-list-item>
     </md-list>
     <md-list ng-if="$root.$auth.isAuthenticated()">
           <md-divider></md-divider>
             <md-list-item >
-            <md-button class="" ui-sref="app.login">Profile</md-button>
+            <md-button class="" ui-sref="app.login">{{ 'Profil' | translate }}</md-button>
           </md-list-item>
     </md-list>
  </md-content>

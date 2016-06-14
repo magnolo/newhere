@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: New Here\n"
 "Report-Msgid-Bugs-To: info@newhere.at\n"
-"POT-Creation-Date: 2016-06-14 20:43:13+0000\n"
+"POT-Creation-Date: 2016-06-14 21:41:30+0000\n"
 "PO-Revision-Date: 2016-06-14 20:42:56+0000\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -16,9 +16,53 @@ msgstr ""
 msgid "Liste anzeigen"
 msgstr ""
 
+#: /var/www/routes-vienna/newhere/angular/app/components/app-categories-content-sub/app-categories-content-sub.component.html
+msgid "Karte erkunden"
+msgstr ""
+
 #: /var/www/routes-vienna/newhere/angular/app/components/app-categories-toolbar/app-categories-toolbar.component.html
 msgid "Zurück"
 msgstr "Back"
+
+#: /var/www/routes-vienna/newhere/angular/app/components/app-categories-toolbar/app-categories-toolbar.component.html
+msgid "Filter"
+msgstr ""
+
+#: /var/www/routes-vienna/newhere/angular/app/components/app-main-menu/app-main-menu.component.html
+msgid "Anmelden"
+msgstr "Log in"
+
+#: /var/www/routes-vienna/newhere/angular/app/components/app-main-menu/app-main-menu.component.html
+msgid "Wähle eine Kategorie"
+msgstr ""
+
+#: /var/www/routes-vienna/newhere/angular/app/components/app-main-menu/app-main-menu.component.html
+msgid "Als NGO registrieren"
+msgstr ""
+
+#: /var/www/routes-vienna/newhere/angular/app/components/app-main-menu/app-main-menu.component.html
+msgid "Hilf uns beim übersetzen"
+msgstr "Help us to translate"
+
+#: /var/www/routes-vienna/newhere/angular/app/components/app-main-menu/app-main-menu.component.html
+msgid "Angebot hinzufügen"
+msgstr "Add offer"
+
+#: /var/www/routes-vienna/newhere/angular/app/components/app-main-menu/app-main-menu.component.html
+msgid "Fragen & Antworten"
+msgstr "FAQs"
+
+#: /var/www/routes-vienna/newhere/angular/app/components/app-main-menu/app-main-menu.component.html
+msgid "Erweiterte Suche"
+msgstr "Advanced search"
+
+#: /var/www/routes-vienna/newhere/angular/app/components/app-main-menu/app-main-menu.component.html
+msgid "Profil"
+msgstr ""
+
+#: /var/www/routes-vienna/newhere/angular/app/components/app-offer-detail/app-offer-detail.component.html
+msgid "Geeignetes Alter: %s - %s Jahre"
+msgstr ""
 
 #: /var/www/routes-vienna/newhere/angular/app/components/cms-category-form/cms-category-form.component.html
 msgid "Übergeordnete Kategorie"
@@ -46,11 +90,11 @@ msgstr "Description"
 
 #: /var/www/routes-vienna/newhere/angular/app/components/cms-category-translation-item/cms-category-translation-item.component.html
 msgid "Version: %d"
-msgstr ""
+msgstr "Version: %d"
 
 #: /var/www/routes-vienna/newhere/angular/app/components/cms-category-translation-item/cms-category-translation-item.component.html
 msgid "Übersetzen nach %s (%s)"
-msgstr ""
+msgstr "Translate to %s (%s)"
 
 #: /var/www/routes-vienna/newhere/angular/app/components/cms-category-translation-table/cms-category-translation-table.component.html
 msgid "Alle anzeigen"
@@ -82,7 +126,7 @@ msgstr ""
 
 #: /var/www/routes-vienna/newhere/angular/app/components/cms-language-table/cms-language-table.component.html
 msgid "Suchen"
-msgstr ""
+msgstr "Search"
 
 #: /var/www/routes-vienna/newhere/angular/app/components/cms-language-table/cms-language-table.component.html
 msgid "Zeige aktivierte"
@@ -94,7 +138,7 @@ msgstr ""
 
 #: /var/www/routes-vienna/newhere/angular/app/components/cms-language-table/cms-language-table.component.html
 msgid "Sprache"
-msgstr ""
+msgstr "Language"
 
 #: /var/www/routes-vienna/newhere/angular/app/components/cms-language-table/cms-language-table.component.html
 msgid "Sprachkürzel"
@@ -132,15 +176,15 @@ msgstr ""
 
 #: /var/www/routes-vienna/newhere/angular/app/components/cms-ngos-list/cms-ngos-list.component.html
 msgid "Alle"
-msgstr ""
+msgstr "All"
 
 #: /var/www/routes-vienna/newhere/angular/app/components/cms-ngos-list/cms-ngos-list.component.html
 msgid "Ja"
-msgstr ""
+msgstr "Yes"
 
 #: /var/www/routes-vienna/newhere/angular/app/components/cms-ngos-list/cms-ngos-list.component.html
 msgid "Nein"
-msgstr ""
+msgstr "No"
 
 #: /var/www/routes-vienna/newhere/angular/app/components/cms-ngos-list/cms-ngos-list.component.html
 msgid "NGO-Name"
@@ -160,11 +204,11 @@ msgstr ""
 
 #: /var/www/routes-vienna/newhere/angular/app/components/cms-offer-detail/cms-offer-detail.component.html
 msgid "Straße"
-msgstr ""
+msgstr "Street"
 
 #: /var/www/routes-vienna/newhere/angular/app/components/cms-offer-detail/cms-offer-detail.component.html
 msgid "Email"
-msgstr ""
+msgstr "Email"
 
 #: /var/www/routes-vienna/newhere/angular/app/components/cms-offer-translation-table/cms-offer-translation-table.component.html
 msgid "Alle Angebote sind übersetzt!"
@@ -190,11 +234,11 @@ msgstr ""
 
 #: /var/www/routes-vienna/newhere/angular/app/components/cms-offers-list/cms-offers-list.component.html
 msgid "Telefon"
-msgstr ""
+msgstr "Phone"
 
 #: /var/www/routes-vienna/newhere/angular/app/components/cms-offers-list/cms-offers-list.component.html
 msgid "Webseite"
-msgstr ""
+msgstr "Website"
 
 #: /var/www/routes-vienna/newhere/angular/app/components/cms-offers-list/cms-offers-list.component.html
 msgid "Angebot aktivieren/deaktivieren"
@@ -236,25 +280,25 @@ msgstr ""
 msgid "Benutzer aktivieren/deaktivieren?"
 msgstr ""
 
+#: /var/www/routes-vienna/newhere/angular/app/components/filter-selector/filter-selector.component.html
+msgid "Kein Filter"
+msgstr "No filter"
+
 #: /var/www/routes-vienna/newhere/angular/app/components/forgotpassword-form/forgotpassword-form.component.html
 msgid "Link zusenden"
 msgstr ""
 
 #: /var/www/routes-vienna/newhere/angular/app/components/locator/locator.component.html
 msgid "Keine Adressen/Angebote gefunden"
-msgstr ""
+msgstr "No address/offer found"
 
 #: /var/www/routes-vienna/newhere/angular/app/components/login-form/login-form.component.html
 msgid "Das ist ein Pflichtfeld."
-msgstr ""
+msgstr "The field is required"
 
 #: /var/www/routes-vienna/newhere/angular/app/components/login-form/login-form.component.html
 msgid "Passwort"
 msgstr "Password"
-
-#: /var/www/routes-vienna/newhere/angular/app/components/login-form/login-form.component.html
-msgid "Anmelden"
-msgstr "Log in"
 
 #: /var/www/routes-vienna/newhere/angular/app/components/login-form/login-form.component.html
 msgid "Registrieren"
@@ -286,7 +330,7 @@ msgstr ""
 
 #: /var/www/routes-vienna/newhere/angular/app/components/ngo-form/ngo-form.component.html
 msgid "Mindestens %d Zeichen"
-msgstr ""
+msgstr "Minimum %d characters"
 
 #: /var/www/routes-vienna/newhere/angular/app/components/ngo-form/ngo-form.component.html
 msgid "Passwort wiederholen"
@@ -314,7 +358,7 @@ msgstr ""
 
 #: /var/www/routes-vienna/newhere/angular/app/components/ngo-form/ngo-form.component.html
 msgid "Ort"
-msgstr ""
+msgstr "City"
 
 #: /var/www/routes-vienna/newhere/angular/app/components/ngo-form/ngo-form.component.html
 msgid "PLZ"
@@ -334,7 +378,7 @@ msgstr ""
 
 #: /var/www/routes-vienna/newhere/angular/app/components/offer-form/offer-form.component.html
 msgid "Neues Angebot"
-msgstr ""
+msgstr "New offer"
 
 #: /var/www/routes-vienna/newhere/angular/app/components/offer-form/offer-form.component.html
 msgid "Details"
@@ -402,10 +446,6 @@ msgstr ""
 
 #: /var/www/routes-vienna/newhere/angular/app/components/resetpassword-form/resetpassword-form.component.html
 msgid "Passwort ändern"
-msgstr ""
-
-#: /var/www/routes-vienna/newhere/angular/app/components/user-menu/user-menu.component.html
-msgid "Profil"
 msgstr ""
 
 #: /var/www/routes-vienna/newhere/angular/app/components/user-menu/user-menu.component.html
@@ -501,10 +541,6 @@ msgid "Angebot ohne Adresse (Website)"
 msgstr ""
 
 #: /var/www/routes-vienna/newhere/angular/app/pages/cms/categories/categories.page.html
-msgid "Wähle eine Kategorie"
-msgstr ""
-
-#: /var/www/routes-vienna/newhere/angular/app/pages/cms/categories/categories.page.html
 msgid "oder erstelle eine neue"
 msgstr ""
 
@@ -526,10 +562,6 @@ msgstr ""
 
 #: /var/www/routes-vienna/newhere/angular/app/pages/cms/footer/footer.page.html
 msgid "\\\"&copy; %s New Here"
-msgstr ""
-
-#: /var/www/routes-vienna/newhere/angular/app/pages/cms/translations/translations.page.html
-msgid "Filter"
 msgstr ""
 
 #: /var/www/routes-vienna/newhere/angular/app/pages/footer/footer.page.html
