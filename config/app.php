@@ -169,6 +169,8 @@ return [
         //Matriphe\Imageupload\ImageuploadServiceProvider::class,
         Orchestra\Imagine\ImagineServiceProvider::class,
         Snowfire\Beautymail\BeautymailServiceProvider::class,
+
+        Xinax\LaravelGettext\LaravelGettextServiceProvider::class,
     ],
 
     /*

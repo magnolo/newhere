@@ -1,3 +1,4 @@
+import {SprintfFilter} from './filters/sprintf.filter';
 import {NgoPublishedFilter} from './filters/ngo_published.filter';
 import {TranslationFilter} from './filters/translation.filter';
 import {CapitalizeFilter} from './filters/capitalize.filter';
@@ -9,6 +10,7 @@ import {UcFirstFilter} from './filters/ucfirst.filter';
 import {OfferEnabledFilter} from './filters/offer_enabled.filter';
 
 angular.module('app.filters')
+	.filter('sprintf', SprintfFilter)
 	.filter('ngoPublished', NgoPublishedFilter)
 	.filter('translation', TranslationFilter)
 	.filter('capitalize', CapitalizeFilter)

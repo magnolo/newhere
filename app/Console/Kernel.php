@@ -14,6 +14,10 @@ class Kernel extends ConsoleKernel
      */
     protected $commands = [
         // Commands\Inspire::class,
+        Commands\Translations\Update::class,
+        Commands\Translations\NewLanguage::class,
+        Commands\Translations\Compile::class,
+        Commands\Translations\Help::class,
     ];
 
     /**

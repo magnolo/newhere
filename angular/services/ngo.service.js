@@ -1,5 +1,5 @@
 export class NgoService{
-    constructor(API, $q, ToastService, $state, DialogService){
+    constructor(API, $q, ToastService, $state, $translate, DialogService){
         'ngInject';
 
         this.API = API;
@@ -7,7 +7,7 @@ export class NgoService{
         this.$q = $q;
         this.$state = $state;
         this.DialogService = DialogService;
-
+        this.$translate = $translate;
     }
 
     one(){
@@ -16,7 +16,9 @@ export class NgoService{
             vm.API.one('ngos/my').get().then(function (response) {
                 resolve(response)
             }, function (error) {
-                vm.ToastService.show("Fetching NGO failed");
+                this.$translate('Fehler beim Laden der Daten.').then((msg) => {
+                    this.ToastService.error(msg);
+                });
             });
         });
     }
@@ -52,7 +54,9 @@ export class NgoService{
 
     update(ngo) {
         return ngo.save().then((response) => {
-            this.ToastService.show('NGO updated.');
+            this.$translate('NGO aktualisiert.').then((msg) => {
+                this.ToastService.show(msg);
+            });
             this.DialogService.hide();
         })
     }
@@ -68,7 +72,9 @@ export class NgoService{
     create(ngo) {
         this.API.all('ngos').post(ngo).then(()=>{
             this.$state.go(this.$state.current, {}, {reload: true});
-            this.ToastService.show('Saved successfully');
+            this.$translate('Erfolgreich gespeichert.').then((msg) => {
+                this.ToastService.show(msg);
+            });
             this.DialogService.hide();
         });
     }
@@ -78,10 +84,14 @@ export class NgoService{
             published: ngo.published ? 1 : 0
         },'togglePublished').then(
             (success) => {
-                this.ToastService.show('NGO updated.');
+                this.$translate('NGO aktualisiert.').then((msg) => {
+                    this.ToastService.show(msg);
+                });
             },
             (error) => {
-                this.ToastService.show('NGO update failed. Please try again');
+                this.$translate('Fehler beim Speichern der Daten.').then((msg) => {
+                    this.ToastService.error(msg);
+                });
                 ngo.published = !ngo.published;
             }
         );

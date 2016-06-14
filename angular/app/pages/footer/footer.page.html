@@ -4,10 +4,10 @@
 <br/>
 <div class="Footer-text">
 
-Nähere Informationen und Rückfragen unter:<br >
-E-Mail: <a href="mailto:info@newhere.at">info@newhere.at</a>
+{{ 'Nähere Informationen und Rückfragen unter:' | translate }}<br >
+<span ng-bind-html="'Email: <a href=mailto:%s>%s</a>' | translate | sprintf: 'info@newhere.at':'info@newhere.at'"></span>
 </div>
 <div class="Footer-text">
-	&copy; 2016 New Here
+	{{ '\&copy; %s New Here' | translate | sprintf: 2016 }}
 </div>
 </md-content>

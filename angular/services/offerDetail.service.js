@@ -1,6 +1,6 @@
 export class OfferDetailService {
 
-    constructor(API, $q, ToastService, $state, DialogService) {
+    constructor(API, $q, ToastService, $state, $translate, DialogService) {
         'ngInject';
 
         this.API = API;
@@ -8,7 +8,7 @@ export class OfferDetailService {
         this.$q = $q;
         this.$state = $state;
         this.DialogService = DialogService;
-
+        this.$translate = $translate;
     }
 
     fetchAll() {
@@ -18,7 +18,9 @@ export class OfferDetailService {
                 resolve(response)
             }, function (error) {
                 console.log(error);
-                vm.ToastService.show("Fetching Offers failed");
+                vm.$translate('Fehler beim Laden der Daten.').then((msg) => {
+                    vm.ToastService.error(msg);
+                });
             });
         });
     }
@@ -30,7 +32,9 @@ export class OfferDetailService {
                 resolve(response)
             }, function (error) {
                 console.log(error);
-                vm.ToastService.show("Fetching Offers failed");
+                vm.$translate('Fehler beim Laden der Daten.').then((msg) => {
+                    this.ToastService.error(msg);
+                });
             });
         });
     }

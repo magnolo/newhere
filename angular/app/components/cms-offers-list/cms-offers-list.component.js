@@ -1,5 +1,5 @@
 class CmsOffersListController{
-    constructor($sessionStorage, OfferService, NgoService, $filter, $state, DialogService){
+    constructor($sessionStorage, OfferService, NgoService, $filter, $state, $translate, DialogService){
         'ngInject';
         var vm = this;
         vm.menu = {
@@ -9,6 +9,7 @@ class CmsOffersListController{
         this.$sessionStorage = $sessionStorage;
         this.$filter = $filter;
         this.$state = $state;
+        this.$translate = $translate;
         this.DialogService = DialogService;
         this.NgoService = NgoService;
         this.OfferService = OfferService;
@@ -68,6 +69,7 @@ class CmsOffersListController{
     }
 
     remove() {
+        //@todo translation!!!
       this.DialogService.prompt('Deleting Offers?', 'You are about to delete offer(s). Type in DELETE and confirm?', 'Delete Secret').then((response) => {
          if (response === "DELETE") {
              this.OfferService.bulkRemove(this.selectedOffers, (list) => {

@@ -1,0 +1,90 @@
+REQUIREMENTS
+============
+
+On the system where translations are prepared:
+* gettext (available as CLI command)
+* i18next-conv (https://github.com/i18next/i18next-gettext-converter, installed through NPM)
+
+In the application (see also bower.json)
+* angular-translate (https://angular-translate.github.io)
+* angular-translate-loader-static-files
+* sprintf (https://github.com/alexei/sprintf.js)
+* xinax/laravel-gettext (for Laravel, see composer.json)
+
+
+USE TRANSLATOR IN CODE
+======================
+
+* General
+  To handle translations in a simple and proofed way, this is in general done through wellknown Gettext (PO/MO Files).
+  This is a defacto standard in software translation (esp. Linux) and also supported by every translation office.
+
+  For an easy handling of the translation, the translation-key is always the string in a defined source language.
+  So DO NOT MIX the language of the translation-keys!!!
+  Why this? The translation-keys are parsed and used in the generated PO file as the source for translation.
+  In the end you can give for example the French PO-File to a sourcelanguage -> French translator, and he can start his work.
+
+  Some tips:
+  - take care on additional (useless) characters: 'Hello World!' and 'Hello World !' will be two strings for translation!
+  - use variable replacement if it makes sense!
+    Example: 'The password must be at least 6 characters' --> better: 'The password must be at least %d characters'
+  - Do NOT, NOT, NOT, really NOT split strings (sentences) in two or more partially strings.
+    The translator can not reconstruct the context of a partial string, which will cause translation errors.
+    And of course, not in every language the grammar and the position of adjectives, verbs, subjects is the same.
+
+  For the moment:
+  Plural forms are NOT supported!!!
+
+* JavaScript
+  -> Code:
+  	 To use the translator in the JS-code, use the $translate provider.
+
+  	 this.$translate('Hello World!').then((msg) => { console.log(msg); });
+
+  	 If you need to replace something in your string, use this:
+  	 this.$translate('Hello %s!').then((msg) => { console.log(sprintf(msg, 'Peter')); });
+
+  	 Do NOT use the variable replacement as described in the angular-translate docs.
+  	 this.$translate('Hello {{name}}!', 'Peter').then((msg) => { console.log(msg); });
+
+  -> Views:
+     angular-translate supports two methods to handline translations: as filter and as directive.
+     This implementation ONLY supports filters (the parser that extracts the strings and put it in the catalog)!!
+
+     So the default case is:
+     {{ 'Hello World!' | translate }} --> will output: Hello World!
+
+     If you need to replace something in the string, use this:
+     {{ 'Hello %s!' | translate | sprintf: 'Peter' }} --> will output: Hello Peter!
+
+     Do NOT use the variable replacement as described in the angular-translate docs.
+     {{ 'Hello {{name}}!' | translate: '{ name: "Peter"} '}} --> WON'T WORK!!! JS/Angular will return an error.
+
+	 If you need to insert some HTML-tags into the string, you have to use this in combination with ng-bind-html.
+	 <p ng-bind-html="'Hello<br />World!' | translate"></p>
+
+* PHP
+  In PHP you can use the translation function __().
+  It will use the same translation catalogs as JavaScript/Angular.
+
+  For example:
+  echo __('Hello World!'); --> will output: Hello World!
+
+  Variable replacments are also done with this function:
+  echo __('Hello %s!', 'Peter'); --> will output: Hello Peter!
+
+PREPARE TRANSLATIONS
+====================
+
+* update the catalogs: > php artisan translations:update <sourcelanguage>
+* translate the generated PO files with an editor, e.g. PO Edit (https://poedit.net/)
+* compile the translations: > php artisan translations:compile
+  -> This will generate the binary MO files and also the required JSON files for angular
+* commit and deploy :)
+
+
+NEW LANGUAGE
+============
+
+* execute > php artisan translations:newlanguage <language>
+* do the steps as in PREPARE TRANSLATIONS ;)

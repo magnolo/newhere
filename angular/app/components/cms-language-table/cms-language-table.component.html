@@ -3,17 +3,17 @@
 
         <div layout="row" layout-align="space-between start">
             <md-input-container class="md-icon-float md-block">
-                <label>Search</label>
+                <label>{{ 'Suchen' | translate }}</label>
                 <md-icon class="material-icons">search</md-icon>
                 <input ng-model="vm.filter.language" type="text">
             </md-input-container>
             <span flex></span>
             <div layout="row" layout-align="end center" ng-cloak style="font-size:16px">
-                <md-checkbox ng-model="vm.filter.enabled" aria-label="Zeige nur aktivierte" ng-false-value="''">
-                    show enabled
+                <md-checkbox ng-model="vm.filter.enabled" aria-label="{{ 'Zeige aktivierte' | translate }}" ng-false-value="''">
+                    {{ 'Zeige aktivierte' | translate }}
                 </md-checkbox>
-                <md-checkbox ng-model="vm.filter.published" aria-label="Zeige nur veröffentlichte" ng-false-value="''">
-                    show public
+                <md-checkbox ng-model="vm.filter.published" aria-label="{{ 'Zeige veröffentlichte' | translate }}" ng-false-value="''">
+                    {{ 'Zeige veröffentlichte' | translate }}
                 </md-checkbox>
             </div>
         </div>
@@ -25,10 +25,10 @@
         <table md-table>
             <thead md-head md-order="vm.query.order" md-on-reorder="vm.onOrderChange">
                 <tr md-row>
-                    <th md-column md-order-by="i18n">Sprache</th>
-                    <th md-column md-order-by="language">Code</th>
-                    <th md-column md-order-by="enabled">Aktiviert</th>
-                    <th md-column md-order-by="published">Veröffentlicht</th>
+                    <th md-column md-order-by="i18n">{{ 'Sprache' | translate }}</th>
+                    <th md-column md-order-by="language">{{ 'Sprachkürzel' | translate }}</th>
+                    <th md-column md-order-by="enabled">{{ 'Aktiviert' | translate }}</th>
+                    <th md-column md-order-by="published">{{ 'Veröffentlicht' | translate }}</th>
                 </tr>
             </thead>
             <tbody md-body>
@@ -38,10 +38,10 @@
                     </td>
                     <td class="md-cell">{{language.language}}</td>
                     <td class="md-cell">
-                        <md-switch ng-model="language.enabled" ng-change="vm.save(language, 'enabled')" aria-label="Sprache aktivieren/deaktivieren?"></md-switch>
+                        <md-switch ng-model="language.enabled" ng-change="vm.save(language, 'enabled')" aria-label="{{ 'Sprache aktivieren?' | translate }}"></md-switch>
                     </td>
                     <td class="md-cell">
-                        <md-switch ng-model="language.published" ng-change="vm.save(language, 'published')" aria-label="Sprache veröffentlichen?"></md-switch>
+                        <md-switch ng-model="language.published" ng-change="vm.save(language, 'published')" aria-label="{{ 'Sprache veröffentlichen?' | translate }}"></md-switch>
                     </td>
                 </tr>
             </tbody>

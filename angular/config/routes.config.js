@@ -291,54 +291,6 @@ export function RoutesConfig($stateProvider, $urlRouterProvider) {
 				}
 			}
 		})
-		.state('cms.offer-translations',{
-			url:'/offer-translations',
-			data:{
-				auth:true,
-				roles:['admin', 'superadmin']
-			},
-			views: {
-				'main@cms': {
-					templateUrl: getCmsView('offer-translations')
-				}
-			}
-		})
-		.state('cms.category-translations',{
-			url:'/category-translations',
-			data:{
-				auth:true,
-				roles:['admin', 'superadmin']
-			},
-			views: {
-				'main@': {
-					templateUrl: getCmsView('category-translations')
-				}
-			}
-		})
-		.state('cms.ngo-translations',{
-			url:'/ngo-translations',
-			data:{
-				auth:true,
-				roles:['admin', 'superadmin']
-			},
-			views: {
-				'main@': {
-					templateUrl: getCmsView('ngo-translations')
-				}
-			}
-		})
-		.state('cms.filter-translations',{
-			url:'/filter-translations',
-			data:{
-				auth:true,
-				roles:['admin', 'superadmin']
-			},
-			views: {
-				'main@': {
-					templateUrl: getCmsView('filter-translations')
-				}
-			}
-		})
 		.state('cms.ngos',{
 			url:'/ngos',
 			data:{

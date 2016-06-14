@@ -2,7 +2,7 @@
     <div class="md-toolbar-tools" layout="row" layout-align="center center">
         <md-button aria-label="Back" ng-click="vm.goBack()">
             <md-icon>chevron_left</md-icon>
-            <span>Back</span>
+            <span>{{ 'Zurück' | translate }}</span>
         </md-button>
         <md-icon class="big-icon" md-svg-src="{{vm.CategoryService.category.image.src || vm.CategoryService.category.parent.image.src || vm.CategoryService.category.parent.parent.image.src}}"></md-icon>
         <div style="cursor:pointer" hide-xs ng-if="vm.CategoryService.category.parent.parent" ui-sref="app.start.categories.sub({slug:vm.CategoryService.category.parent.slug })">

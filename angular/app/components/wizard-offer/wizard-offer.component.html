@@ -1,15 +1,15 @@
 <md-card>
 
     <wizard on-finish="vm.finishedWizard()">
-        <wz-step wz-title="Kategorien">
+        <wz-step wz-title="{{ 'Kategorien' | translate }}">
             <md-toolbar>
                 <div class="md-toolbar-tools">
                     <h2>
-                      <span>Wähle die Kategorien</span>
+                      <span>{{ 'Wähle die Kategorien' | translate }}</span>
                     </h2>
                     <span flex></span>
                     <md-button class="md-raised" wz-next>
-                        Weiter
+                        {{ 'Weiter' | translate }}
                     </md-button>
                 </div>
             </md-toolbar>
@@ -17,31 +17,31 @@
                 <treeview items="vm.categories" selection="vm.offer.categories"></treeview>
             </md-content>
         </wz-step>
-        <wz-step wz-title="Zielgruppe">
+        <wz-step wz-title="{{ 'Zielgruppe' | translate }}">
             <md-toolbar>
                 <div class="md-toolbar-tools">
                     <h2>
-                    <span>Wähle sorgfältig deine Zielgruppe</span>
+                    <span>{{ 'Wähle sorgfältig deine Zielgruppe' | translate }}</span>
                   </h2>
                     <span flex></span>
                     <md-button wz-previous>
-                        Zurück
+                        {{ 'Zurück' | translate }}
                     </md-button>
                     <md-button class="md-raised" wz-next>
-                        Weiter
+                        {{ 'Weiter' | translate }}
                     </md-button>
                 </div>
             </md-toolbar>
             <md-content layout-padding layout="column" layout-align="center center">
-                <md-switch style="font-size:1.5em" ng-model="vm.offer.toAll" ng-change="vm.clearFilters()" class="md-primary" aria-label="Offer is dedicated to all">
-                    Das Angebot richtet sich an alle
+                <md-switch style="font-size:1.5em" ng-model="vm.offer.toAll" ng-change="vm.clearFilters()" class="md-primary" aria-label="{{ 'Das Angebot richtet sich an alle' | translate }}">
+                    {{ 'Das Angebot richtet sich an alle' | translate }}
                 </md-switch>
                 <div ng-if="!vm.offer.toAll" layout="column" layout-gt-xs="row">
 
                     <div flex flex-gt-xs="33">
                         <div layout-padding>
                             <div layout="column" class="colored">
-                                <h4>Sprachen </h4>
+                                <h4>{{ 'Sprachen' | translate }}</h4>
 
                             </div>
                             <div layout-padding layout="column">
@@ -62,14 +62,14 @@
             <md-toolbar>
                 <div class="md-toolbar-tools">
                     <h2>
-                    <span>Details</span>
+                    <span>{{ 'Details' | translate }}</span>
                   </h2>
                     <span flex></span>
                     <md-button wz-previous>
-                        Zurück
+                        {{ 'Zurück' | translate }}
                     </md-button>
                     <md-button class="md-raised" wz-next>
-                        Speichern
+                        {{ 'Speichern' | translate }}
                     </md-button>
                 </div>
             </md-toolbar>
@@ -77,29 +77,29 @@
                 <div flex flex-gt-xs="50" layout-padding>
                     <div>
                         <md-input-container class="md-block bigger no-error">
-                            <label>Name</label>
+                            <label>{{ 'Name' | translate }}</label>
                             <input type="text" ng-model="vm.offer.translations['de'].title" required />
                         </md-input-container>
                         <div layout="column" class="colored">
-                            <h4>Ausgewählt</h4>
+                            <h4>{{ 'Ausgewählt' | translate }}</h4>
                             <div ng-if="vm.offer.toAll || ! vm.offer.filters.length">
-                                Das Angebot gilt für Alle
+                                {{ 'Das Angebot gilt für alle' | translate }}
                             </div>
                             <div ng-if="!vm.offer.toAll">
                                 <div ng-repeat="filter in vm.offer.filters">
                                     <div ng-if="filter.parent_id == 4">
-                                        Für das Alter: {{ filter.title}}
+                                        {{ 'Für das Alter: %s' | translate | sprintf: filter.title }}
                                     </div>
                                     <div ng-if="filter.parent_id == 14">
-                                        Für das Herkunftsland: {{ filter.title}}
+                                        {{ 'Für das Herkunftsland: %s' | translate | sprintf: filter.title }}
                                     </div>
                                 </div>
                             </div>
                             <div ng-if="!vm.offer.toAll">
-                                Für die Sprachen: <span ng-repeat="lang in vm.offer.languages">{{ lang.i18n}}, </span>
+                                {{ 'Für die Sprachen:' | translate }} <span ng-repeat="lang in vm.offer.languages">{{ lang.i18n}}, </span>
                             </div>
                             <div layout="row" layout-align="start center" ng-if="!vm.offer.toAll">
-                                <span>Für: </span>
+                                <span>{{ 'Für:' | translate }} </span>
                                 <div ng-repeat="filter in vm.offer.filters | filter: {'type': 'icon'}" style="margin:.5em">
                                     <md-icon class="icon-colored" md-svg-src="/img/icons/filter/{{filter.icon}}.svg" class="md-48"></md-icon>
                                 </div>
@@ -108,7 +108,7 @@
                     </div>
                 </div>
                 <div flex="50" layout-padding>
-                    <image-uploader ng-model="vm.offer" label="Logo oder Bild hochladen"></image-uploader>
+                    <image-uploader ng-model="vm.offer" label="{{ 'Logo oder Bild hochladen' | translate }}"></image-uploader>
                 </div>
 
             </md-content>
@@ -119,19 +119,19 @@
                             <div layout-padding>
                                 <div ng-if="lang.language != 'de'">
                                     <md-input-container class="md-block no-error">
-                                        <label>Titel</label>
+                                        <label>{{ 'Titel' | translate }}</label>
                                         <input ng-model="vm.offer.translations[lang.language].title" md-maxlength="200">
                                     </md-input-container>
                                 </div>
                                 <div>
                                     <md-input-container class="md-block  no-error">
-                                        <label>Beschreibung des Angebotes</label>
+                                        <label>{{ 'Beschreibung des Angebotes' | translate }}</label>
                                         <textarea ng-model="vm.offer.translations[lang.language].description" ng-required="lang.language == 'de'" md-maxlength="200"></textarea>
                                     </md-input-container>
                                 </div>
                                 <div>
                                     <md-input-container class="md-block  no-error">
-                                        <label>Öffnungszeiten</label>
+                                        <label>{{ 'Öffnungszeiten' | translate }}</label>
                                         <textarea ng-model="vm.offer.translations[lang.language].opening_hours" ng-required="lang.language == 'de'" md-maxlength="200" rows="5"></textarea>
                                     </md-input-container>
                                 </div>
@@ -143,19 +143,19 @@
                 <div flex="50" layout-padding>
                     <div>
                         <md-input-container class="md-block">
-                            <label>Email</label>
+                            <label>{{ 'Email' | translate }}</label>
                             <input ng-model="vm.offer.email" type="email" reqiured placeholder="email@offer.com">
                         </md-input-container>
                     </div>
                     <div>
                         <md-input-container class="md-block">
-                            <label>Telefonnummer</label>
+                            <label>{{ 'Telefonnummer' | translate }}</label>
                             <input ng-model="vm.offer.phone" ng-pattern="/^((\+\d{1,3}(-| )?\(?\d\)?(-| )?\d{1,5})|(\(?\d{2,6}\)?))(-| )?(\d{3,4})(-| )?(\d{4})(( x| ext)\d{1,5}){0,1}$/" placeholder="+43 660 12345678">
                         </md-input-container>
                     </div>
                     <div>
                         <md-input-container class="md-block">
-                            <label>Webseite</label>
+                            <label>{{ 'Webseite' | translate }}</label>
                             <input ng-model="vm.offer.website" type="url" placeholder="http://www.your-offer.com">
                         </md-input-container>
                     </div>
@@ -164,21 +164,21 @@
             <md-content layout="column" layout-gt-xs="row">
                 <div flex="50" layout-padding>
                     <div layout="column" >
-                        <h4 class="colored">Adresse </h4>
+                        <h4 class="colored">{{ 'Adresse' | translate }}</h4>
                         <div>
                             <md-checkbox ng-model="vm.offer.withoutAddress" ng-true-value="true" ng-false-value="false">
-                                Angebot ohne Adresse (Website)
+                                {{ 'Angebot ohne Adresse (Website)' | translate }}
                             </md-checkbox>
                         </div>
                     </div>
                     <div ng-show="!vm.offer.withoutAddress">
                         <md-autocomplete ng-init="vm.offer.street=''" md-selected-item="vm.selectedItem" md-selected-item-change="vm.selectedItemChange(item)" md-search-text="vm.searchText" md-items="item in vm.querySearch(vm.searchText)" md-item-text="item.street+' '+item.number+', '+item.zip+' '+item.city"
-                          md-min-length="2" md-floating-label="Adress-Suche" placeholder="z.B. Stephansplatz 1, 1010 Wien">
+                          md-min-length="2" md-floating-label="{{ 'Adresssuche' | translate }}" placeholder="z.B. Stephansplatz 1, 1010 Wien">
                             <md-item-template>
                                 <span md-highlight-text="vm.searchText">{{item.street+' '+item.number+', '+item.zip+' '+item.city}}</span>
                             </md-item-template>
                             <md-not-found>
-                                Keine passende Adresse gefunden!
+                                {{ 'Keine passende Adresse gefunden!' | translate }}
                             </md-not-found>
                         </md-autocomplete>
 
@@ -189,7 +189,7 @@
                         </p>
                         <div>
                             <md-input-container class="md-block">
-                                <label>Adresszusatz</label>
+                                <label>{{ 'Adresszusatz' | translate }}</label>
                                 <input ng-model="vm.offer.streetnumberadditional">
                             </md-input-container>
                         </div>
@@ -197,16 +197,16 @@
                 </div>
                 <div flex="50" layout-padding>
                     <div layout="column" class="colored">
-                        <h4>Angebot gültig </h4>
+                        <h4>{{ 'Angebot gültig' | translate }}</h4>
 
                     </div>
                     <div layout="column" layout-align="center center">
-                        <span>von
-                <md-datepicker ng-model="vm.valid_from" md-placeholder="Datum eingeben"></md-datepicker>
+                        <span>{{ 'von' | translate }}
+                <md-datepicker ng-model="vm.valid_from" md-placeholder="{{ 'Datum eingeben' | translate }}"></md-datepicker>
             </span>
                         <span>
-                bis
-                <md-datepicker ng-model="vm.valid_until" md-placeholder="Datum eingeben"></md-datepicker>
+                {{ 'bis' | translate }}
+                <md-datepicker ng-model="vm.valid_until" md-placeholder="{{ 'Datum eingeben' | translate }}"></md-datepicker>
             </span>
                     </div>
                 </div>

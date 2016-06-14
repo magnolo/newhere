@@ -1,7 +1,7 @@
 <!-- <a hide-xs ng-if="!vm.isAuthenticated()" class="DemoHeader-link md-subhead" ui-sref="app.login">Login</a> -->
 <md-menu ng-if="!vm.isAuthenticated()">
     <md-button aria-label="Open user menu" ng-click="$mdOpenMenu($event)">
-        <md-icon md-menu-origin>exit_to_app</md-icon>&nbsp;Login
+        <md-icon md-menu-origin>exit_to_app</md-icon>&nbsp;{{ 'Anmelden' | translate }}
     </md-button>
     <md-menu-content width="4">
         <md-content layout-padding>
@@ -17,26 +17,26 @@
         <md-menu-item>
             <md-button>
                 <md-icon md-menu-align-target>person</md-icon>
-                Profile
+                {{ 'Profil' | translate }}
             </md-button>
         </md-menu-item>
         <md-menu-item>
             <md-button  ui-sref="app.offers">
                 <md-icon>library_books</md-icon>
-                Offers
+                {{ 'Angebote' | translate }}
             </md-button>
         </md-menu-item>
         <md-menu-item>
             <md-button ui-sref="app.myngo">
                 <md-icon >business</md-icon>
-                Organisation
+                {{ 'Organisation' | translate }}
             </md-button>
         </md-menu-item>
         <md-menu-divider></md-menu-divider>
         <md-menu-item>
             <md-button ng-click="vm.logout()">
                 <md-icon >power_settings_new</md-icon>
-                Logout
+                {{'Abmelden' | translate }}
             </md-button>
         </md-menu-item>
     </md-menu-content>

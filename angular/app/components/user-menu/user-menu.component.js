@@ -1,19 +1,21 @@
 class UserMenuController{
-    constructor($auth,$state, ToastService){
+    constructor($auth, $state, $translate, ToastService){
         'ngInject';
 
         //
         this.$auth = $auth;
         this.$state = $state;
+        this.$translate = $translate;
         this.ToastService = ToastService;
-      
     }
 
     logout(){
       this.$auth.logout().then((response) => {
-        this.ToastService.show('Logged out successfully.');
-        this.$state.go('app.landing');
-      })
+          this.$translate('Erfolgreich abgemeldet.').then((msg) => {
+              this.ToastService.show(msg);
+          });
+          this.$state.go('app.landing');
+      });
     }
     isAuthenticated(){
       return this.$auth.isAuthenticated();

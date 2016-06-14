@@ -15,30 +15,30 @@
                 <div>
                     <h3>{{ vm.sourceLanguage.i18n || 'de' }} ({{ vm.sourceLanguage.language || 'de' }})</h3>
                     <md-input-container ng-if="vm.sourceTranslation.hasOwnProperty('title')" class="md-block">
-                        <label>Title</label>
+                        <label>{{ 'Titel' | translate }}</label>
                         <input ng-model="vm.sourceTranslation.title" readonly>
                     </md-input-container>
 
-                    <h4 class="md-subhead">Description</h4>
+                    <h4 class="md-subhead">{{ 'Beschreibung' | translate }}</h4>
                     <text-angular ng-model="vm.sourceTranslation.description" ta-disabled="true"></text-angular>
 
                     <span ng-if="vm.sourceTranslation.hasOwnProperty('opening_hours')">
-                        <h4 class="md-subhead">Opening Hours</h4>
+                        <h4 class="md-subhead">{{ 'Öffnungszeiten' | translate }}</h4>
                         <text-angular ng-model="vm.sourceTranslation.opening_hours" ta-disabled="true"></text-angular>
                     </span>
                 </div>
                 <div>
                     <h3>{{ vm.language.i18n || 'de' }} ({{ vm.language.language || 'de' }})</h3>
                     <md-input-container ng-if="vm.sourceTranslation.hasOwnProperty('title')" class="md-block">
-                        <label>Title</label>
+                        <label>{{ 'Titel' | translate }}</label>
                         <input ng-model="vm.translation.title" required>
                     </md-input-container>
 
-                    <h4 class="md-subhead">Description</h4>
+                    <h4 class="md-subhead">{{ 'Beschreibung' | translate }}</h4>
                     <text-angular ng-model="vm.translation.description"></text-angular>
 
                     <span ng-if="vm.sourceTranslation.hasOwnProperty('opening_hours')">
-                        <h4 class="md-subhead">Opening Hours</h4>
+                        <h4 class="md-subhead">{{ 'Öffnungszeiten' | translate }}</h4>
                         <text-angular ng-model="vm.translation.opening_hours"></text-angular>
                     </span>
                 </div>
@@ -46,8 +46,8 @@
         </md-dialog-content>
 
         <md-dialog-actions>
-            <md-button type="button" ng-click="vm.cancel()">Cancel</md-button>
-            <md-button class="md-primary md-raised" type="submit">Save</md-button>
+            <md-button type="button" ng-click="vm.cancel()">{{ 'Abbrechen' | translate }}</md-button>
+            <md-button class="md-primary md-raised" type="submit">{{ 'Speichern' | translate }}</md-button>
         </md-dialog-actions>
     </form>
 </md-dialog>

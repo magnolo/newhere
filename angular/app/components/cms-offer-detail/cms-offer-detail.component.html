@@ -2,9 +2,9 @@
     <table md-table md-row-select multiple ng-model="vm.selectedUsers">
         <thead md-head md-order="vm.query.order" md-on-reorder="vm.onOrderChange">
         <tr md-row>
-            <th md-column md-order-by="name">Titel</th>
-            <th md-column md-order-by="email">Beschreibung</th>
-            <th md-column md-order-by="language">Sprache</th>
+            <th md-column md-order-by="name">{{ 'Titel' | translate }}</th>
+            <th md-column md-order-by="email">{{ 'Beschreibung' | translate }}</th>
+            <th md-column md-order-by="language">{{ 'Sprache' | translate }}</th>
         </tr>
         </thead>
         <tbody md-body>
@@ -21,8 +21,8 @@
     <table md-table md-row-select multiple ng-model="vm.selectedUsers">
         <thead md-head md-order="vm.query.order" md-on-reorder="vm.onOrderChange">
         <tr md-row>
-            <th md-column md-order-by="name">Strasse</th>
-            <th md-column md-order-by="email">Email</th>
+            <th md-column md-order-by="name">{{ 'Straße' | translate }}</th>
+            <th md-column md-order-by="email">{{ 'Email' | translate }}</th>
         </tr>
         </thead>
         <tbody md-body>
@@ -33,5 +33,3 @@
         </tbody>
     </table>
 </md-table-container>
-
-

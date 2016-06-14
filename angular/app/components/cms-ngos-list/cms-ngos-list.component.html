@@ -3,18 +3,18 @@
 
         <div layout="row" layout-align="space-between start">
             <md-input-container class="md-icon-float md-block">
-                <label>NGO suchen</label>
+                <label>{{ 'NGO suchen' | translate }}</label>
                 <md-icon class="material-icons">search</md-icon>
                 <input ng-model="vm.listFilter.search" type="text">
             </md-input-container>
 
             <div layout="row" layout-align="end center" ng-cloak style="font-size:16px">
                 <md-input-container>
-                    <label>Published</label>
+                    <label>{{ 'Veröffentlicht' | translate }}</label>
                     <md-select ng-model="vm.listFilter.published">
-                        <md-option ng-value="">All</md-option>
-                        <md-option ng-value="true">Yes</md-option>
-                        <md-option ng-value="false">No</md-option>
+                        <md-option ng-value="">{{ 'Alle' | translate }}</md-option>
+                        <md-option ng-value="true">{{ 'Ja' | translate }}</md-option>
+                        <md-option ng-value="false">{{ 'Nein' | translate }}</md-option>
                     </md-select>
                 </md-input-container>
             </div>
@@ -34,10 +34,10 @@
             <thead md-head md-order="vm.listOrderByColumn" md-on-reorder="vm.onOrderChange">
             <tr md-row>
                 <th md-column class="icon"></th>
-                <th md-column md-order-by="organisation">NGO Name</th>
-                <th md-column md-order-by="published">Published</th>
-                <th md-column>Offers</th>
-                <th md-column>Users</th>
+                <th md-column md-order-by="organisation">{{ 'NGO-Name' | translate }}</th>
+                <th md-column md-order-by="published">{{ 'Veröffentlicht' | translate }}</th>
+                <th md-column>{{ 'Angebote' | translate }}</th>
+                <th md-column>{{ 'Benutzer' | translate }}</th>
             </tr>
             </thead>
             <tbody md-body>
@@ -49,7 +49,7 @@
                 <td class="md-cell">{{ngo.organisation}}</td>
                 <td class="md-cell">
                     <md-switch ng-model="ngo.published" ng-change="vm.togglePublished(ngo)"
-                               aria-label="Publish/Unpublish NGO"></md-switch>
+                               aria-label="{{ 'NGO veröffentlichen/deaktivieren' | translate }}"></md-switch>
                 </td>
                 <td md-cell>
                   {{ngo.offers.length}}

@@ -1,10 +1,11 @@
 class LoginFormController {
-	constructor($auth, $state, $window, ToastService) {
+	constructor($auth, $state, $window, $translate, ToastService) {
 		'ngInject';
 
 		this.$window = $window;
 		this.$auth = $auth;
 		this.$state = $state;
+		this.$translate = $translate;
 		this.ToastService = ToastService;
 
 		this.email = '';
@@ -25,7 +26,10 @@ class LoginFormController {
 					roles.push(role.name);
 				});
 				this.$window.localStorage.roles = JSON.stringify(roles);
-				this.ToastService.show('Logged in successfully.');
+				this.$translate('Sie haben sich erfolgreich angemeldet.').then((msg) => {
+					this.ToastService.show(msg);
+				});
+				
 				if (this.isNgoUser(roles)) {
 					this.$state.go('app.myngo');
 				} else {

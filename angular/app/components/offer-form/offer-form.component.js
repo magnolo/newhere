@@ -1,5 +1,5 @@
 class OfferFormController {
-    constructor($http, $q, OfferService, ToastService, NgoService, CategoryService, $state, LanguageService, OfferTranslationService) {
+    constructor($http, $q, OfferService, ToastService, NgoService, CategoryService, $state, $translate, LanguageService, OfferTranslationService) {
         'ngInject';
 
         this.$q = $q;
@@ -12,6 +12,7 @@ class OfferFormController {
         this.OfferService = OfferService;
         this.ToastService = ToastService;
         this.$state = $state;
+        this.$translate = $translate;
         this.LanguageService = LanguageService;
         this.LanguageService.fetchDefault((defaultLanguage) => {
             this.defaultLanguage = defaultLanguage;
@@ -87,14 +88,18 @@ class OfferFormController {
 
     save() {
       if(!this.offer.street || !this.offer.streetnumber || !this.offer.zip ){
-        this.ToastService.error('Es ist keine Adresse vorhanden!');
-        return false;
+          this.$translate('Es ist keine Adresse vorhanden!').then((msg) => {
+              this.ToastService.error(msg);
+          });
+          return false;
       }
 
       this.offer.valid_until = this.valid_until;
       this.offer.valid_from = this.valid_from;
         if (new Date() > this.offer.valid_until) {
-            this.ToastService.error('Enddatum ist in der Vergangenheit!');
+            this.$translate('Enddatum liegt in der Vergangenheit!').then((msg) => {
+                this.ToastService.error(msg);
+            });
             return false;
         }
 

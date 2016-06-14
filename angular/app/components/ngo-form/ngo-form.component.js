@@ -1,5 +1,5 @@
 class NgoFormController{
-    constructor($auth, NgoService, ToastService, $state, LanguageService, $http, $q) {
+    constructor($auth, NgoService, ToastService, $state, $translate, LanguageService, $http, $q) {
         'ngInject';
 
         this.$q = $q;
@@ -12,6 +12,7 @@ class NgoFormController{
         this.NgoService = NgoService;
         this.ToastService = ToastService;
         this.$state = $state;
+        this.$translate = $translate;
         this.$LanguageService = LanguageService;
     }
 
@@ -49,8 +50,9 @@ class NgoFormController{
                     .then((response) => {
                         //remove this if you require email verification
                         //this.$auth.setToken(response.data);
-
-                        this.ToastService.show('Successfully registered.');
+                        this.$translate('Registrierung erfolgreich.').then((msg) => {
+                            this.ToastService.show(msg);
+                        });                 
                         this.$state.go('app.login');
                     })
                     .catch(this.failedRegistration.bind(this));
@@ -58,7 +60,6 @@ class NgoFormController{
                 this.NgoService.create(this.ngo);
             }
         }
-
     }
 
     cancel() {

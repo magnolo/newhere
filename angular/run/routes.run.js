@@ -1,4 +1,4 @@
-export function RoutesRun($rootScope, $state, $auth, $window, $mdSidenav,ToastService) {
+export function RoutesRun($rootScope, $state, $auth, $window, $mdSidenav, $translate, ToastService) {
     'ngInject';
 
     $rootScope.cms = false;
@@ -16,7 +16,9 @@ export function RoutesRun($rootScope, $state, $auth, $window, $mdSidenav,ToastSe
 
               if(toState.data.roles.indexOf(JSON.parse(roles)[0]) == -1){
                 event.preventDefault();
-                ToastService.error('No permission to go there!')
+                $translate('Sie sind zum Aufruf dieser Seite nicht berechtigt!').then((msg) => {
+                    ToastService.error(msg);
+                });
               }
             }
         }

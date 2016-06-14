@@ -1,5 +1,5 @@
 export class FilterService {
-    constructor(API, ToastService, LanguageService, Restangular, $state) {
+    constructor(API, ToastService, LanguageService, Restangular, $state, $translate) {
         'ngInject';
 
         this._promise;
@@ -17,7 +17,7 @@ export class FilterService {
         this.LanguageService = LanguageService;
         this.Restangular = Restangular;
         this.$state = $state;
-
+        this.$translate = $translate;
     }
     all(success, error, force) {
         if (angular.isDefined(this.filters) && !force) {
@@ -67,7 +67,9 @@ export class FilterService {
     save(filter) {
         if (filter.id && filter.id != 'new') {
             return this.filter.save().then((response) => {
-                this.ToastService.show('Saved successfully');
+                this.$translate('Erfolgreich gespeichert.').then((msg) => {
+                    this.ToastService.show(msg);
+                });
                 angular.forEach(this.filters, (item) => {
                     if (item.id == filter.id) {
                         angular.copy(filter, item);
@@ -83,7 +85,9 @@ export class FilterService {
                 parent_id: filter.parent_id
             };
             this.API.all('filters').post(data).then((response) => {
-                this.ToastService.show('Saved successfully');
+                this.$translate('Erfolgreich gespeichert.').then((msg) => {
+                    this.ToastService.show(msg);
+                });
                 this.$state.go('cms.filters.details', {
                     id: response.id
                 });
@@ -106,11 +110,15 @@ export class FilterService {
             enabled: filter.enabled ? 1 : 0
         },'toggleEnabled').then(
             (success) => {
-                this.ToastService.show('Filter updated.');
+                this.$translate('Filter aktualisiert.').then((msg) => {
+                    this.ToastService.show(msg);
+                });
             },
             (error) => {
                 console.log(error);
-                this.ToastService.error('Filter update failed. Please try again');
+                this.$translate('Filter konnte nicht aktualisiert werden.').then((msg) => {
+                    this.ToastService.error(msg);
+                });
                 filter.enabled = !filter.enabled;
             }
         );

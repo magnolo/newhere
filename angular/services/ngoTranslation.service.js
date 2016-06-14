@@ -1,9 +1,10 @@
 export class NgoTranslationService{
-    constructor(API, ToastService){
+    constructor(API, ToastService, $translate){
         'ngInject';
 
         this.API = API;
         this.ToastService = ToastService;
+        this.$translate = $translate;
 
         this.untranslatedNgos = [];
 
@@ -36,7 +37,9 @@ export class NgoTranslationService{
             language: language.language,
             description: translation.description,
         }).then((ngo) => {
-            this.ToastService.show('Saved successfully');
+            this.$translate('Erfolgreich gespeichert.').then((msg) => {
+                this.ToastService.show(msg);
+            });
             var translation;
             angular.forEach(ngo.translations, function (t, ignore) {
                 if (t.locale == language.language) {

@@ -1,5 +1,5 @@
 export class OfferService{
-    constructor(API, $q, ToastService, $state, DialogService){
+    constructor(API, $q, ToastService, $state, $translate, DialogService){
         'ngInject';
 
         this.API = API;
@@ -8,6 +8,7 @@ export class OfferService{
         this.$state = $state;
         this.DialogService = DialogService;
         this.offer;
+        this.$translate = $translate;
     }
 
     count(){
@@ -20,7 +21,9 @@ export class OfferService{
                 resolve(response)
             }, function (error) {
                 console.log(error);
-                vm.ToastService.show("Fetching Offers failed");
+                this.$translate('Fehler beim Laden der Daten.').then((msg) => {
+                    this.ToastService.error(msg);
+                });
             });
         });
     }
@@ -54,26 +57,34 @@ export class OfferService{
     create(offer) {
         this.API.all('offer').post(offer).then(()=>{
             this.$state.go(this.$state.current, {}, {reload: true});
-            this.ToastService.show('Saved successfully');
+            this.$translate('Erfolgreich gespeichert.').then((msg) => {
+                this.ToastService.show(msg);
+            });
             this.DialogService.hide();
         });
     }
     save(offer, success, error, goto){
       if(offer.id){
         offer.save().then((response) => {
-                this.ToastService.show('Offer updated.');
+                this.$translate('Angebot aktualisiert.').then((msg) => {
+                    this.ToastService.show(msg);
+                });
                 if(success) success(response);
-          this.$state.go("cms.offers");
+                this.$state.go("cms.offers");
             },
             (error) => {
-                this.ToastService.error('Offer update failed. Please try again');
+                this.$translate('Fehler beim Speichern der Daten.').then((msg) => {
+                    this.ToastService.error(msg);
+                });
             }
         );
       }
       else{
         this.API.all('offers').post(offer).then((response)=>{
             this.$state.go(this.$state.current, {}, {reload: true});
-            this.ToastService.show('Saved successfully');
+            this.$translate('Erfolgreich gespeichert.').then((msg) => {
+                this.ToastService.show(msg);
+            });
             this.DialogService.hide();
               if(success) success(response);
               if(goto){
@@ -92,11 +103,15 @@ export class OfferService{
             enabled: offer.enabled ? 1 : 0
         },'toggleEnabled').then(
             (success) => {
-                this.ToastService.show('Offer updated.');
+                this.$translate('Angebot aktualisiert.').then((msg) => {
+                    this.ToastService.show(msg);
+                });
             },
             (error) => {
                 console.log(error);
-                this.ToastService.error('Offer update failed. Please try again');
+                this.$translate('Fehler beim Speichern der Daten.').then((msg) => {
+                    this.ToastService.error(msg);
+                });
                 offer.enabled = !offer.enabled;
             }
         );
@@ -107,7 +122,11 @@ export class OfferService{
             ids.push(item.id);
         });
         this.API.several('offers', ids).remove().then((response) => {
-            this.ToastService.show(response.data.deletedRows+' item(s) successfully deleted!');
+            this.$translate('%d Angebote gelöscht.').then((msg) => {
+                this.ToastService.show(
+                    sprintf(msg, response.data.deletedRows)
+                );
+            });
             success(response.data.offers);
         });
     }
@@ -120,6 +139,9 @@ export class OfferService{
         field: field,
         value: value
       }).then((response) => {
+          this.$translate('Angebot aktualisiert.').then((msg) => {
+            this.ToastService.show(msg);
+          });
           this.ToastService.show('Offers successfully updated!');
           success(response.data.offers);
       });
