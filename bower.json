@@ -31,7 +31,8 @@
     "leaflet-fullscreen": "^1.0.1",
     "angular-paging": "^2.2.1",
     "angular-translate": "2.11.x",
-    "angular-translate-loader-static-files": "2.11.x"
+    "angular-translate-loader-static-files": "2.11.x",
+    "sprintf": ">=1.0.0"
   },
   "overrides": {
     "font-awesome": {
