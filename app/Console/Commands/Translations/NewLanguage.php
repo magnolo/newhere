@@ -52,7 +52,15 @@ class NewLanguage extends Command
             return;
         }
 
-        $poFile = sprintf('%1$s/%2$s.po', $this->catalogDir, $language);
+        $catalogDir = sprintf('%1$s/%2$s', $this->catalogDir, $language);
+        if (file_exists($catalogDir)) {
+            $this->error(sprintf('Language directory already exists: %1$s', $catalogDir));
+            return;
+        } else {
+            mkdir($catalogDir);
+        }
+        
+        $poFile = sprintf('%1$s/%2$s/newhere.po', $this->catalogDir, $language);
         if (file_exists($poFile)) {
             $this->error(sprintf('PO catalog for language %1$s already exists: %2$s', $language, $poFile));
             return;

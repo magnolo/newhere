@@ -63,8 +63,8 @@ class Compile extends Command
 
         $languages = array_diff(scandir($this->catalogDir), ['.', '..', '.svn', '.git']);
         foreach ($languages as $idx => $language) {
-            if (preg_match('/^([a-z_-]+)\.po$/', $language, $matches)) {
-                $poFile = sprintf('%1$s/%2$s.po', $this->catalogDir, $matches[1]);
+            if (preg_match('/^([a-z_-]+)$/', $language, $matches)) {
+                $poFile = sprintf('%1$s/%2$s/newhere.po', $this->catalogDir, $matches[1]);
                 $this->compilePo($poFile);
                 $this->info(sprintf('PO catalog for language %1$s compiled', $matches[1]));
 

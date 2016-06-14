@@ -101,7 +101,7 @@ class Update extends Command
         $this->supportedLanguages = $languages;
         $this->info(sprintf('Will update catalogs for languages: %1$s', implode(', ', $this->supportedLanguages)));
         foreach ($this->supportedLanguages as $language) {
-            $this->updatePo($this->catalogDir . '/' . $language . '.po', $potFile);
+            $this->updatePo($this->catalogDir . '/' . $language . '/newhere.po', $potFile);
         }
 
         $this->info('Update finished. Bye, bye.');

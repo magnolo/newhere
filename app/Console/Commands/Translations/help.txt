@@ -32,6 +32,9 @@ USE TRANSLATOR IN CODE
     The translator can not reconstruct the context of a partial string, which will cause translation errors.
     And of course, not in every language the grammar and the position of adjectives, verbs, subjects is the same.
 
+  For the moment:
+  Plural forms are NOT supported!!!
+
 * JavaScript
   -> Code:
   	 To use the translator in the JS-code, use the $translate provider.
