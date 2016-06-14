@@ -12,7 +12,7 @@ class AppOfferDetailController{
             if(typeof this.CategoryService.category.id == "undefined"){
               this.CategoryService.category = vm.offer.categories[0];
             }
-            vm.MapService.setMarkers({offer});
+            vm.MapService.highlightMarker(offer);
             vm.MapService.zoomTo(offer);
         });
     }
