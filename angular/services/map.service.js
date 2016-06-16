@@ -6,6 +6,18 @@ export class MapService {
             mapbox: 'pk.eyJ1IjoibWFnbm9sbyIsImEiOiJuSFdUYkg4In0.5HOykKk0pNP1N3isfPQGTQ'
         }
 
+        this.blueIcon = {
+           iconUrl: 'img/icons/map-marker-blue.png',
+           iconSize:     [28, 40],
+           iconAnchor:   [14, 40],
+        };
+
+        this.whiteIcon = {
+           iconUrl: 'img/icons/map-marker-white.png',
+           iconSize:     [28, 40],
+           iconAnchor:   [14, 40],
+        }
+
         this.ToastService = ToastService;
         this.$translate = $translate;
         this.$rootScope = $rootScope;
@@ -51,20 +63,36 @@ export class MapService {
             var markers = {}
 
             angular.forEach(offers, (offer, key) => {
+
               var marker = {
                  offer_id:offer.id,
                   lng:parseFloat(offer.latitude),
                   lat:parseFloat(offer.longitude),
-                  message:offer.title
+                  icon: this.blueIcon
               };
-              markers[offer.id+'_'+key] = marker;
+              markers[offer.id] = marker;
             });
-            console.log(markers);
             this.markers = markers;
         }
 
 
     }
+
+    highlightMarker(offer) {
+
+      angular.forEach(this.markers, (marker, key) => {
+        marker.icon = this.blueIcon;
+      });
+
+      var marker = {
+         offer_id:offer.id,
+          lng:parseFloat(offer.latitude),
+          lat:parseFloat(offer.longitude),
+          icon: this.whiteIcon
+      };
+      this.markers[offer.id] = marker;
+
+   }
 
     zoomTo(offer) {
       this.center = {

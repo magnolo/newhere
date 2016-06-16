@@ -1,10 +1,10 @@
 class LocatorController{
-    constructor(MapService, OfferService){
+    constructor(MapService, OfferService, $state){
         'ngInject';
 
-        //
         this.MapService = MapService;
         this.OfferService = OfferService;
+        this.state = $state;
 
         var vm = this;
         this.OfferService.fetchAll().then((response) => {
@@ -25,8 +25,7 @@ class LocatorController{
    }
 
    selectedItemChange(item) {
-      this.MapService.zoomTo(item);
-      this.MapService.setMarkers({item});
+      this.state.go('app.start.detail',{id:item.id});
    }
 
 
