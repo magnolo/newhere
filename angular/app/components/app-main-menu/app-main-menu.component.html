@@ -25,6 +25,9 @@
       <md-list-item>
         <md-button class="" ui-sref="app.login">{{ 'Erweiterte Suche' | translate }}</md-button>
       </md-list-item>
+        <md-list-item>
+        <md-button class="" ng-click="vm.changeLanguage()">Sprache ändern</md-button>
+      </md-list-item>
     </md-list>
     <md-list ng-if="$root.$auth.isAuthenticated()">
           <md-divider></md-divider>

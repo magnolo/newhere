@@ -81,7 +81,7 @@ class OfferController extends Controller
   //     return response()->json($ngo);
   //  }
   public function show($id) {
-      $offer = Offer::where('id', $id)->with(['ngo', 'filters', 'categories', 'countries', 'image', 'translations'])->firstOrFail();
+      $offer = Offer::where('id', $id)->with(['translations'])->firstOrFail();
       return response()->json($offer);
    }
 

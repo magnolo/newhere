@@ -85,7 +85,12 @@ export function RoutesConfig($stateProvider, $urlRouterProvider) {
             data: {},
             views: {
                 'main@app': {
-                    templateUrl: getView('landing')
+                    templateUrl: getView('landing'),
+					controller: function($window, $state){
+						if ($window.localStorage.language) {
+							$state.go('app.start.categories');
+						}
+					}
                 }
             }
         })
