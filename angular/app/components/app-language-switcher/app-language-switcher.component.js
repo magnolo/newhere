@@ -2,7 +2,7 @@ class AppLanguageSwitcherController{
     constructor(LanguageService, $state){
         'ngInject';
         this.LanguageService = LanguageService;
-        this.LanguageService.fetchEnabled((publishedLanguages) => {
+        this.LanguageService.fetchPublished((publishedLanguages) => {
             this.languages = publishedLanguages;
         });
         this.$state = $state;

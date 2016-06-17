@@ -45,7 +45,7 @@ $api->group(['middleware' => ['api']], function ($api) {
     $api->get('offerDetail', 'Cms\OfferDetailController@index');
     $api->get('offers/{id}', 'Cms\OfferController@show');
 
-    $api->get('languages/enabled', 'Cms\LanguageController@enabledIndex');
+    $api->get('languages/published', 'Cms\LanguageController@publishedIndex');
 
 
 });
@@ -72,7 +72,7 @@ $api->group(['middleware' => ['api', 'api.auth']], function ($api) {
     $api->get('filter-translations/untranslated', 'Cms\FilterTranslationController@untranslatedIndex');
     $api->put('filter-translations/{id}', 'Cms\FilterTranslationController@translate');
 
-    $api->get('languages/published', 'Cms\LanguageController@publishedIndex');
+    $api->get('languages/enabled', 'Cms\LanguageController@enabledIndex');
     $api->get('languages/default', 'Cms\LanguageController@defaultLanguage');
     
     $api->get('users/me', 'Cms\UserController@me');
