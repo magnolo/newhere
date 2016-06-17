@@ -40,12 +40,12 @@ $api->group(['middleware' => ['api']], function ($api) {
 
     $api->get('ngo/{id}', 'Cms\NgoController@show');
     $api->get('offers', 'Cms\OfferController@index');
-    $api->get('offer/autocomplete/{search}', 'Cms\OfferController@autocomplete'); // no auth necessary for ngo-registration
+    $api->get('offer/autocomplete/{search}', 'Cms\OfferController@autocomplete');
 
     $api->get('offerDetail', 'Cms\OfferDetailController@index');
     $api->get('offers/{id}', 'Cms\OfferController@show');
 
-    $api->get('languages/enabled', 'Cms\LanguageController@enabledIndex'); // TODO: should be published? not working though
+    $api->get('languages/enabled', 'Cms\LanguageController@enabledIndex');
 
 
 });
@@ -72,10 +72,9 @@ $api->group(['middleware' => ['api', 'api.auth']], function ($api) {
     $api->get('filter-translations/untranslated', 'Cms\FilterTranslationController@untranslatedIndex');
     $api->put('filter-translations/{id}', 'Cms\FilterTranslationController@translate');
 
+    $api->get('languages/published', 'Cms\LanguageController@publishedIndex');
     $api->get('languages/default', 'Cms\LanguageController@defaultLanguage');
-
-
-
+    
     $api->get('users/me', 'Cms\UserController@me');
 
     $api->post('offers', 'Cms\OfferController@create');
