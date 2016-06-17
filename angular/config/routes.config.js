@@ -85,10 +85,24 @@ export function RoutesConfig($stateProvider, $urlRouterProvider) {
             data: {},
             views: {
                 'main@app': {
-                    templateUrl: getView('landing')
+                    templateUrl: getView('landing'),
+					controller: function($window, $state){
+						if ($window.localStorage.language) {
+							$state.go('app.start.categories');
+						}
+					}
                 }
             }
         })
+		.state('app.ngoLanding', {
+			url: '/',
+			data: {},
+			views: {
+				'main@app': {
+					templateUrl: getView('ngoLanding')
+				}
+			}
+		})
         .state('app.login', {
             url: '/login',
             data: {}, //{auth: true} would require JWT auth for this route
