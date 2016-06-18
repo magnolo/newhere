@@ -36,7 +36,7 @@ export class OfferTranslationService{
             language: language.language,
             title: translation.title,
             description: translation.description,
-            opening_hours: translation.opening_hours
+            opening_hours: translation.opening_hours,
         }).then((offer) => {
             this.$translate('Erfolgreich gespeichert.').then((msg) => {
                 this.ToastService.show(msg);
