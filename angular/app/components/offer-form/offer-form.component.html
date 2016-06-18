@@ -133,16 +133,15 @@
                       </md-card-title>
                       <md-table-container>
                           <table md-table>
-                              <tbody md-body>
-                              <tr ng-repeat="trans in vm.offer.translations" ng-init="sourceTranslation = (vm.offer.translations| filter : {locale: 'de'})[0]" ng-if="trans.locale != 'de'">
-                                  <td class="md-cell" ng-repeat="language in vm.enabledLanguages | filter: {language: trans.locale}">
+                              <tbody md-body ng-repeat="untranslatedOffer in vm.untranslatedOffers">
+                              <tr  ng-repeat="trans in untranslatedOffer.translations" ng-init="sourceTranslation = (vm.offer.translations| filter : {locale: 'de'})[0]" ng-if="untranslatedOffer.id == vm.offer.id && trans.locale != 'de'">
+                                  <td md-cell  ng-repeat="language in vm.enabledLanguages | filter: {language: trans.locale}"  >
                                       <cms-offer-translation-item
                                               translation="trans"
                                               source-translation="sourceTranslation"
-                                              source-language="vm.defaultLanguage"
                                               language="language"
-                                              offer="vm.offer"
-                                      >
+                                              source-language="vm.defaultLanguage"
+                                              offer="untranslatedOffer">
                                       </cms-offer-translation-item>
                                   </td>
                                   <td class="md-cell">{{trans.locale}}</td>
