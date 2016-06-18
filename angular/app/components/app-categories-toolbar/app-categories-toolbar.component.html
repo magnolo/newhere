@@ -14,7 +14,8 @@
           <md-icon>chevron_right</md-icon>
         </div>
         <div>
-          <small>{{vm.CategoryService.category.title}}</small>
+          <small flex hide-xs>{{vm.CategoryService.category.title}}</small>
+            <small flex hide-gt-xs>{{vm.CategoryService.category.title | limitTo: 30}}</small><small flex hide-gt-xs ng-if="vm.CategoryService.category.title.length > 30">...</small>
         </div>
         <span flex></span>
         <md-button aria-label="More" ng-click="vm.showFilter()" ng-if="!vm.hideFilter">

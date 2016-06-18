@@ -23,7 +23,8 @@
                   <div style="margin-top:10px">{{offer.title}}</div>
                 </h4>
                 <div class="offer-content" flex>
-                    <div class="offer-description">{{offer.description}}</div>
+                    <div class="offer-description"><span>{{offer.description | limitTo : 75}}</span><span ng-if="offer.description.length > 75">...</span>
+                    </div>
                     <div class="offer-address" flex hide-xs>
                         <span ng-if="offer.street!=null">{{offer.street}} {{offer.streetnumber}}</br></span>
                         <span ng-if="offer.streetnumberadditional==null">{{offer.zip}}</span>
