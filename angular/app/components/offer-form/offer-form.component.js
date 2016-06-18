@@ -127,22 +127,6 @@ class OfferFormController {
             this.offer.city = ngo.city;
         }
     }
-    getTranslation(untranslatedOffer, targetLanguage) {
-        var dummy = {title: '', description: '', opening_hours: '', version: 0};
-
-        if (angular.isUndefined(untranslatedOffer) || angular.isUndefined(targetLanguage)) {
-            return;
-        }
-
-        var translation = null;
-        angular.forEach(untranslatedOffer.translations, function(t, ignore) {
-            if (t.locale == targetLanguage.language && t.locale !='de') {
-                translation = t;
-            }
-        });
-
-        return translation;
-    }
 
 
 }
