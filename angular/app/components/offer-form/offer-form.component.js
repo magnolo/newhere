@@ -4,9 +4,11 @@ class OfferFormController {
 
         this.$q = $q;
         this.aborter = $q.defer();
+        var vm = this;
 
         this.categories = [];
         this.translations = [];
+        this.untranslatedOffers = [];
         this.defaultLanguage = {};
         this.$http = $http;
         this.OfferService = OfferService;
@@ -23,6 +25,9 @@ class OfferFormController {
         this.OfferTranslationService = OfferTranslationService;
         this.OfferTranslationService.fetchAll((list) => {
             this.translations = list;
+         });
+        this.OfferTranslationService.fetchUntranslated((untranslatedOffers) => {
+            this.untranslatedOffers = untranslatedOffers;
          });
         this.NgoService = NgoService;
         if(this.cms){
@@ -122,6 +127,7 @@ class OfferFormController {
             this.offer.city = ngo.city;
         }
     }
+
 
 }
 
