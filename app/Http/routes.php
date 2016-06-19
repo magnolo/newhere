@@ -40,11 +40,12 @@ $api->group(['middleware' => ['api']], function ($api) {
 
     $api->get('ngo/{id}', 'Cms\NgoController@show');
     $api->get('offers', 'Cms\OfferController@index');
-    $api->get('offer/autocomplete/{search}', 'Cms\OfferController@autocomplete'); // no auth necessary for ngo-registration
+    $api->get('offer/autocomplete/{search}', 'Cms\OfferController@autocomplete');
 
     $api->get('offerDetail', 'Cms\OfferDetailController@index');
     $api->get('offers/{id}', ['uses' => 'Cms\OfferController@show'])->where('id', '[0-9]+');
 
+    $api->get('languages/published', 'Cms\LanguageController@publishedIndex');
 });
 
 //protected routes with JWT (must be logged in)
@@ -69,7 +70,6 @@ $api->group(['middleware' => ['api', 'api.auth']], function ($api) {
     $api->get('filter-translations/untranslated', 'Cms\FilterTranslationController@untranslatedIndex');
     $api->put('filter-translations/{id}', 'Cms\FilterTranslationController@translate');
 
-    $api->get('languages/published', 'Cms\LanguageController@publishedIndex');
     $api->get('languages/enabled', 'Cms\LanguageController@enabledIndex');
     $api->get('languages/default', 'Cms\LanguageController@defaultLanguage');
 

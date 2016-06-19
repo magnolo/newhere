@@ -9,7 +9,7 @@
 </div>
 
 <div ng-if="!vm.showMap">
-    <div layout="row" layout-wrap>
+    <div style="word-break: break-all" layout="row" layout-wrap>
         <md-button ui-sref="app.start.categories.sub({slug: category.slug})" class="big-thumb animate-repeat" ng-repeat="category in vm.category.children" flex="33" layout="column" layout-align="center center">
 
             {{category.title}}

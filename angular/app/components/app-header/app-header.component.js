@@ -1,10 +1,14 @@
 class AppHeaderController{
-    constructor($mdSidenav, $state){
+    constructor($mdSidenav, $state, $scope){
         'ngInject';
-
-        //
         this.$mdSidenav = $mdSidenav;
-        this.showLocator = $state.current.name.indexOf('start') > -1;
+        $scope.currState = $state;
+        var vm = this;
+        $scope.$watch('currState.current.name', function(stateName, oldStateName) {
+            vm.showNgoLink = stateName.indexOf('app.landing') > -1;
+            vm.showLocator = stateName.indexOf('start') > -1;
+        });
+
     }
 
     $onInit(){

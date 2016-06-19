@@ -7,6 +7,7 @@ use Illuminate\Http\Request,
     App\Http\Requests,
     App\Http\Controllers\Controller,
     App\Language;
+use Locale;
 
 class LanguageController extends Controller
 {
@@ -54,14 +55,19 @@ class LanguageController extends Controller
 
     public function publishedIndex()
     {
-        $languages = Language::where('enabled', true)
+        $published = \App\Language::where('enabled', true)
             ->where('published', true)
             ->get();
 
-        $this->translationService->translateLanguage($languages, App::getLocale());
+        foreach ($published as $language) {
+            $language->translatedName = Locale::getDisplayLanguage($language->language, $language->language);
+        }
 
-        return response()->json($languages);
+        $this->translationService->translateLanguage($published, App::getLocale());
+
+        return response()->success(compact('published'));
     }
+
 
     public function update(Request $request, $id)
     {

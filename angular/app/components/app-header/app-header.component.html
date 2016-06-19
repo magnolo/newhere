@@ -10,6 +10,7 @@
                 </md-button>
                 <span flex hide-xs></span>
                 <locator flex flex-gt-md="25" ng-if="vm.showLocator"></locator>
+                <md-button ng-if="vm.showNgoLink" ui-sref="app.ngoLanding">{{'NGO login / Angeboterstellung' | translate}}</md-button>
             </div>
         </div>
     </div>

@@ -3,6 +3,7 @@ import {CmsDashboardWidgetOfferComponent} from './app/components/cms-dashboard-w
 import {CmsDashboardWidgetNgoComponent} from './app/components/cms-dashboard-widget-ngo/cms-dashboard-widget-ngo.component';
 import {CmsDashboardWidgetPlaceholderComponent} from './app/components/cms-dashboard-widget-placeholder/cms-dashboard-widget-placeholder.component';
 import {CmsDashboardGridComponent} from './app/components/cms-dashboard-grid/cms-dashboard-grid.component';
+import {AppLanguageSwitcherComponent} from './app/components/app-language-switcher/app-language-switcher.component';
 import {AppMainMenuComponent} from './app/components/app-main-menu/app-main-menu.component';
 import {AppHeaderComponent} from './app/components/app-header/app-header.component';
 import {AppOfferDetailComponent} from './app/components/app-offer-detail/app-offer-detail.component';
@@ -54,6 +55,7 @@ angular.module('app.components')
 	.component('cmsDashboardWidgetNgo', CmsDashboardWidgetNgoComponent)
 	.component('cmsDashboardWidgetPlaceholder', CmsDashboardWidgetPlaceholderComponent)
 	.component('cmsDashboardGrid', CmsDashboardGridComponent)
+	.component('appLanguageSwitcher', AppLanguageSwitcherComponent)
 	.component('appMainMenu', AppMainMenuComponent)
 	.component('appHeader', AppHeaderComponent)
 	.component('appOfferDetail', AppOfferDetailComponent)

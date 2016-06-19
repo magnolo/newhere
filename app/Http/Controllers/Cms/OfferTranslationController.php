@@ -98,7 +98,7 @@ class OfferTranslationController extends AbstractTranslationController
             'language' => 'required|min:2|max:2',
             'title' => 'required|string|min:1|max:255',
             'description' => 'required|string|min:1|max:10000',
-            'opening_hours' => 'string|max:10000'
+            'opening_hours' => 'string|max:10000',
         ]);
 
         $offer = \App\Offer::find((int)$id);
@@ -124,7 +124,7 @@ class OfferTranslationController extends AbstractTranslationController
             return response()->error('Language not found', 404);
         }
 
-        $hasChanged = $this->getTranslationService->hasChanged(
+        $hasChanged = $this->getTranslationService()->hasChanged(
             ($offer->translate($translationLanguage->language) ?
                 [
                     'title' => $offer->translate($translationLanguage->language)->title,

@@ -83,6 +83,7 @@ export class LanguageService {
     }
     changeLanguage(language, doneFn) {
         this.selectedLanguage = this.$window.localStorage.language = language;
+        this.$translate.use(language);
         if (typeof doneFn == "function") {
             doneFn();
         }
@@ -94,6 +95,7 @@ export class LanguageService {
         }
         return this.selectedLanguage;
     }
+
     update(language) {
         return language.save().then((response) => {
             this.$translate('Sprache aktualisiert.').then((msg) => {

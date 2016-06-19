@@ -32,8 +32,9 @@ class LocatorController{
 }
 
 function createFilterFor(query) {
+   var regex = new RegExp(query, "i");
    return function filterFn(item) {
-     return (item.title.match(query) || item.street.match(query) || item.zip.match(query));
+      return (item.title.match(regex) !==null || item.street.match(regex) !==null || item.zip.match(regex) !==null);
    };
 }
 

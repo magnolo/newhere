@@ -7,7 +7,7 @@ export class UserService {
 
         this.API = API;
         this.ToastService = ToastService;
-        this.$translate;
+        this.$translate = $translate;
         this.users;
         this.user;
         this.me;
