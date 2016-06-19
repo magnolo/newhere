@@ -43,11 +43,9 @@ $api->group(['middleware' => ['api']], function ($api) {
     $api->get('offer/autocomplete/{search}', 'Cms\OfferController@autocomplete');
 
     $api->get('offerDetail', 'Cms\OfferDetailController@index');
-    $api->get('offers/{id}', 'Cms\OfferController@show');
+    $api->get('offers/{id}', ['uses' => 'Cms\OfferController@show'])->where('id', '[0-9]+');
 
     $api->get('languages/published', 'Cms\LanguageController@publishedIndex');
-
-
 });
 
 //protected routes with JWT (must be logged in)
@@ -58,7 +56,7 @@ $api->group(['middleware' => ['api', 'api.auth']], function ($api) {
 
     $api->get('offer-translations', 'Cms\OfferTranslationController@index');
     $api->get('offer-translations/untranslated', 'Cms\OfferTranslationController@untranslatedIndex');
-    $api->put('offer-translations/{id}', 'Cms\OfferTranslationController@translate');
+    $api->put('offer-translations/{id}', ['uses' => 'Cms\OfferTranslationController@show'])->where('id', '[0-9]+');
 
     $api->get('category-translations', 'Cms\CategoryTranslationController@index');
     $api->get('category-translations/untranslated', 'Cms\CategoryTranslationController@untranslatedIndex');
@@ -74,7 +72,14 @@ $api->group(['middleware' => ['api', 'api.auth']], function ($api) {
 
     $api->get('languages/enabled', 'Cms\LanguageController@enabledIndex');
     $api->get('languages/default', 'Cms\LanguageController@defaultLanguage');
-    
+
+    $api->get('dashboard/widgets', 'Cms\DashboardController@widgets');
+    $api->get('dashboard', 'Cms\DashboardController@userWidgets');
+    $api->post('dashboard', 'Cms\DashboardController@saveUserWidget');
+    $api->get('ngos/stats', 'Cms\NgoController@stats');
+    $api->get('offers/stats', 'Cms\OfferController@stats');
+    $api->get('offer-translations/stats', 'Cms\OfferTranslationController@stats');
+
     $api->get('users/me', 'Cms\UserController@me');
 
     $api->post('offers', 'Cms\OfferController@create');

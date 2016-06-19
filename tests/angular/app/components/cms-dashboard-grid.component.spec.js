@@ -1,7 +1,7 @@
 ngDescribe({
-    name: 'Test widget-categories component',
+    name: 'Test cms-dashboard-grid component',
     modules: 'app',
-    element: '<widget-categories></widget-categories>',
+    element: '<cms-dashboard-grid></cms-dashboard-grid>',
     tests: function (deps) {
 
         it('basic test', () => {

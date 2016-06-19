@@ -21,5 +21,6 @@ class DatabaseSeeder extends Seeder
         $this->call(UserSeeder::class);
         $this->call(NgoSeeder::class);
         $this->call(OfferTableSeeder::class);
+        $this->call(DashboardWidgetsSeeder::class);
     }
 }

@@ -1,7 +1,7 @@
 ngDescribe({
-    name: 'Test widget-ngo component',
+    name: 'Test cms-dashboard-widget-ngo component',
     modules: 'app',
-    element: '<widget-ngo></widget-ngo>',
+    element: '<cms-dashboard-widget-ngo></cms-dashboard-widget-ngo>',
     tests: function (deps) {
 
         it('basic test', () => {

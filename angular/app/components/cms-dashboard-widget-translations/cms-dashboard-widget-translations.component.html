@@ -1,0 +1,12 @@
+<div id="widget-translations">
+    <span ng-if="vm.loading">
+        <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+    </span>
+    <span ng-if="!vm.loading">
+        <ul>
+            <li ng-repeat="stat in vm.stats">
+                {{ stat.language.i18n }}: {{ '%d Angebote warten auf Übersetzung' | translate | sprintf: stat.untranslated }}
+            </li>
+        </ul>
+    </span>
+</div>

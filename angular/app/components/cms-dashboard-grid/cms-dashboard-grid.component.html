@@ -1,0 +1,27 @@
+<md-grid-list id="dashboard-grid"
+        md-cols-xs="1" md-cols-sm="2" md-cols-md="4" md-cols-gt-md="6"
+        md-row-height-gt-md="1:1" md-row-height="2:2"
+        md-gutter="12px" md-gutter-gt-sm="8px" >
+    <md-grid-tile class="placeholder"
+                  md-rowspan="2" md-colspan="2" md-colspan-sm="1" md-colspan-xs="1"
+                  ng-repeat="slot in vm.availableSlots">
+        <span id="{{slot}}">
+            <cms-dashboard-widget-placeholder></cms-dashboard-widget-placeholder>
+        </span>
+        <md-grid-tile-footer>
+            <md-menu>
+                <md-button aria-label="Open dashboard widget menu" class="md-icon-button" ng-click="$mdOpenMenu($event)">
+                    <md-icon md-menu-origin>now_widgets</md-icon>
+                </md-button>
+                <md-menu-content width="3">
+                    <md-menu-item ng-repeat="widget in vm.availableWidgets">
+                        <md-button ng-click="vm.useWidget(widget, slot)">
+                            <md-icon md-menu-align-target>{{ vm.getIcon(widget.name) }}</md-icon>
+                            {{ widget.name }}
+                        </md-button>
+                    </md-menu-item>
+                </md-menu-content>
+            </md-menu>
+        </md-grid-tile-footer>
+    </md-grid-tile>
+</md-grid-list>

@@ -181,4 +181,18 @@ class NgoController extends Controller
 
         return response()->success(compact('ngo'));
     }
+
+    public function stats()
+    {
+        $publishedNgos = Ngo::where('published', 1)->count();
+        $unpublishedNgos = Ngo::where('published', 0)->count();
+        
+        return response()->success([
+            'stats' => [
+                'published' => $publishedNgos, 
+                'unpublished' => $unpublishedNgos, 
+                'total' => $publishedNgos + $unpublishedNgos
+            ]
+        ]);
+    }
 }
