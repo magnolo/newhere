@@ -16,20 +16,20 @@ class DashboardWidgetsSeeder extends Seeder
         $widget->angular_component = 'cms-dashboard-widget-ngo';
         $widget->save();
 
-        $widget = new \App\DashboardWidget();
+        /*$widget = new \App\DashboardWidget();
         $widget->name = 'category-stats';
         $widget->angular_component = 'cms-dashboard-widget-category';
-        $widget->save();
+        $widget->save();*/
 
         $widget = new \App\DashboardWidget();
         $widget->name = 'offer-stats';
         $widget->angular_component = 'cms-dashboard-widget-offer';
         $widget->save();
 
-        $widget = new \App\DashboardWidget();
+        /*$widget = new \App\DashboardWidget();
         $widget->name = 'filter-stats';
         $widget->angular_component = 'cms-dashboard-widget-filter';
-        $widget->save();
+        $widget->save();*/
 
         $widget = new \App\DashboardWidget();
         $widget->name = 'translations';
