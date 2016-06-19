@@ -16,8 +16,8 @@
                 <md-menu-content width="3">
                     <md-menu-item ng-repeat="widget in vm.availableWidgets">
                         <md-button ng-click="vm.useWidget(widget, slot)">
-                            <md-icon md-menu-align-target>business</md-icon>
-                            {{widget.name}}
+                            <md-icon md-menu-align-target>{{ vm.getIcon(widget.name) }}</md-icon>
+                            {{ widget.name }}
                         </md-button>
                     </md-menu-item>
                 </md-menu-content>

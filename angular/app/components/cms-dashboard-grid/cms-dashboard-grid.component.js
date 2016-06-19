@@ -6,7 +6,7 @@ class CmsDashboardGridController{
         this.$scope = $scope;
         this.API = API;
 
-        this.availableSlots = ['slot-1', 'slot-2', 'slot-3', 'slot-4'];
+        this.availableSlots = ['slot-1', 'slot-2', 'slot-3'];
         this.availableWidgets = [];
         this.userWidgets = [];
 
@@ -39,6 +39,19 @@ class CmsDashboardGridController{
         angular.element(document.getElementById(slot)).append(
             this.$compile('<' + widget.angular_component + '></' + widget.angular_component + '>')(this.$scope)
         );
+    }
+    
+    getIcon(widgetname) {
+        switch (widgetname) {
+            case 'ngo-stats':
+                return 'business';
+            case 'offer-stats':
+                return 'local_offer';
+            case 'translations':
+                return 'translate';
+            default:
+                return 'dashboard';
+        }
     }
 
     $onInit(){
