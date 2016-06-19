@@ -76,6 +76,7 @@ $api->group(['middleware' => ['api', 'api.auth']], function ($api) {
     $api->get('dashboard/widgets', 'Cms\DashboardController@widgets');
     $api->get('dashboard', 'Cms\DashboardController@userWidgets');
     $api->post('dashboard', 'Cms\DashboardController@saveUserWidget');
+    $api->get('ngos/stats', 'Cms\NgoController@stats');
 
     $api->get('users/me', 'Cms\UserController@me');
 

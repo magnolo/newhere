@@ -1,0 +1,8 @@
+<span ng-if="vm.loading">
+    <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+</span>
+<span ng-if="!vm.loading">
+    {{ '%d NGOs registriert' | translate | sprintf: vm.stats.total }}<br />
+    {{ '%d NGOs veröffentlicht' | translate | sprintf: vm.stats.published }}<br />
+    {{ '%d NGOs warten auf Bestätigung' | translate | sprintf: vm.stats.unpublished }}<br />
+</span>
