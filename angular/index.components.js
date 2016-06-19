@@ -1,3 +1,7 @@
+import {CmsDashboardWidgetOfferComponent} from './app/components/cms-dashboard-widget-offer/cms-dashboard-widget-offer.component';
+import {CmsDashboardWidgetNgoComponent} from './app/components/cms-dashboard-widget-ngo/cms-dashboard-widget-ngo.component';
+import {CmsDashboardWidgetPlaceholderComponent} from './app/components/cms-dashboard-widget-placeholder/cms-dashboard-widget-placeholder.component';
+import {CmsDashboardGridComponent} from './app/components/cms-dashboard-grid/cms-dashboard-grid.component';
 import {AppMainMenuComponent} from './app/components/app-main-menu/app-main-menu.component';
 import {AppHeaderComponent} from './app/components/app-header/app-header.component';
 import {AppOfferDetailComponent} from './app/components/app-offer-detail/app-offer-detail.component';
@@ -47,6 +51,10 @@ import {CmsFiltersListComponent} from './app/components/cms-filters-list/cms-fil
 import {CmsFilterFormComponent} from './app/components/cms-filter-form/cms-filter-form.component';
 
 angular.module('app.components')
+	.component('cmsDashboardWidgetOffer', CmsDashboardWidgetOfferComponent)
+	.component('cmsDashboardWidgetNgo', CmsDashboardWidgetNgoComponent)
+	.component('cmsDashboardWidgetPlaceholder', CmsDashboardWidgetPlaceholderComponent)
+	.component('cmsDashboardGrid', CmsDashboardGridComponent)
 	.component('appMainMenu', AppMainMenuComponent)
 	.component('appHeader', AppHeaderComponent)
 	.component('appOfferDetail', AppOfferDetailComponent)
