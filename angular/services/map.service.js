@@ -1,7 +1,7 @@
 export class MapService {
-    constructor($rootScope, ToastService, $translate) {
+    constructor($rootScope, ToastService, $translate, leafletData) {
         'ngInject';
-        //
+
         this.tokens = {
             mapbox: 'pk.eyJ1IjoibWFnbm9sbyIsImEiOiJuSFdUYkg4In0.5HOykKk0pNP1N3isfPQGTQ'
         }
@@ -46,17 +46,7 @@ export class MapService {
                 }
             }
         };
-        this.events = { // or just {} //all events
-                    markers:{
-                      enable: [ 'clicked' ],
-                      logic: 'emit'
-                    }
-                };
-
-               /* $scope.$on("leafletDirectiveMarker.click", function(event, args){
-                                     console.log('event click aojsdnajs');
-                                 });*/
-
+        this.events = {};
 
         this.markers = {};
         this.setMarkers = (offers) => {
@@ -68,7 +58,8 @@ export class MapService {
                  offer_id:offer.id,
                   lng:parseFloat(offer.latitude),
                   lat:parseFloat(offer.longitude),
-                  icon: this.blueIcon
+                  icon: this.blueIcon,
+                  riseOnHover: true
               };
               markers[offer.id] = marker;
             });
@@ -79,7 +70,6 @@ export class MapService {
     }
 
     highlightMarker(offer) {
-
       angular.forEach(this.markers, (marker, key) => {
         marker.icon = this.blueIcon;
       });
@@ -88,10 +78,10 @@ export class MapService {
          offer_id:offer.id,
           lng:parseFloat(offer.latitude),
           lat:parseFloat(offer.longitude),
-          icon: this.whiteIcon
+          icon: this.whiteIcon,
+          riseOnHover: true
       };
       this.markers[offer.id] = marker;
-
    }
 
     zoomTo(offer) {
@@ -101,11 +91,6 @@ export class MapService {
           zoom: 14
       };
     }
-
-    $onInit(){
-      this.markers = {};
-    }
-
 
 
     getLocation(success, error) {
