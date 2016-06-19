@@ -1,3 +1,4 @@
+import {CmsDashboardWidgetTranslationsComponent} from './app/components/cms-dashboard-widget-translations/cms-dashboard-widget-translations.component';
 import {CmsDashboardWidgetOfferComponent} from './app/components/cms-dashboard-widget-offer/cms-dashboard-widget-offer.component';
 import {CmsDashboardWidgetNgoComponent} from './app/components/cms-dashboard-widget-ngo/cms-dashboard-widget-ngo.component';
 import {CmsDashboardWidgetPlaceholderComponent} from './app/components/cms-dashboard-widget-placeholder/cms-dashboard-widget-placeholder.component';
@@ -51,6 +52,7 @@ import {CmsFiltersListComponent} from './app/components/cms-filters-list/cms-fil
 import {CmsFilterFormComponent} from './app/components/cms-filter-form/cms-filter-form.component';
 
 angular.module('app.components')
+	.component('cmsDashboardWidgetTranslations', CmsDashboardWidgetTranslationsComponent)
 	.component('cmsDashboardWidgetOffer', CmsDashboardWidgetOfferComponent)
 	.component('cmsDashboardWidgetNgo', CmsDashboardWidgetNgoComponent)
 	.component('cmsDashboardWidgetPlaceholder', CmsDashboardWidgetPlaceholderComponent)
