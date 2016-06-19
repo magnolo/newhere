@@ -1,0 +1,9 @@
+<span ng-if="vm.loading">
+    <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+</span>
+<span ng-if="!vm.loading">
+    {{ '%d Angebote aktiv' | translate | sprintf: vm.stats.active.enabled }}<br />
+    {{ '%d Angebote inaktiv' | translate | sprintf: vm.stats.active.disabled }}<br />
+    {{ '%d Angebote abgelaufen' | translate | sprintf: vm.stats.expired }}<br />
+    {{ '%d Angebote starten demnächst' | translate | sprintf: vm.stats.future }}<br />
+</span>

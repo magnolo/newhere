@@ -43,7 +43,7 @@ $api->group(['middleware' => ['api']], function ($api) {
     $api->get('offer/autocomplete/{search}', 'Cms\OfferController@autocomplete'); // no auth necessary for ngo-registration
 
     $api->get('offerDetail', 'Cms\OfferDetailController@index');
-    $api->get('offers/{id}', 'Cms\OfferController@show');
+    $api->get('offers/{id}', ['uses' => 'Cms\OfferController@show'])->where('id', '[0-9]+');
 
 });
 
@@ -77,6 +77,7 @@ $api->group(['middleware' => ['api', 'api.auth']], function ($api) {
     $api->get('dashboard', 'Cms\DashboardController@userWidgets');
     $api->post('dashboard', 'Cms\DashboardController@saveUserWidget');
     $api->get('ngos/stats', 'Cms\NgoController@stats');
+    $api->get('offers/stats', 'Cms\OfferController@stats');
 
     $api->get('users/me', 'Cms\UserController@me');
 
