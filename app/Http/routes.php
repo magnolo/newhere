@@ -73,7 +73,9 @@ $api->group(['middleware' => ['api', 'api.auth']], function ($api) {
     $api->get('languages/enabled', 'Cms\LanguageController@enabledIndex');
     $api->get('languages/default', 'Cms\LanguageController@defaultLanguage');
 
-
+    $api->get('dashboard/widgets', 'Cms\DashboardController@widgets');
+    $api->get('dashboard', 'Cms\DashboardController@userWidgets');
+    $api->post('dashboard', 'Cms\DashboardController@saveUserWidget');
 
     $api->get('users/me', 'Cms\UserController@me');
 
