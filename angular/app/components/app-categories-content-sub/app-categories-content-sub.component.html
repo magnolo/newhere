@@ -16,7 +16,7 @@
         </md-button>
     </div>
     <md-grid-list class="offer-grid-list" flex ng-if="vm.showOffers" md-cols-xs="2" md-cols-sm="3" md-cols-md="2" md-cols-gt-md="3" md-row-height-gt-md="2:2" md-row-height="4:5">
-        <md-grid-tile layout="column" class="offer-container animate-repeat" ng-repeat="offer in (filteredOffers = (vm.offers | subarray: $root.filters))" ng-click="vm.showOffer(offer.id)">
+        <md-grid-tile layout="column" class="offer-container animate-repeat" ng-repeat="offer in (vm.filteredOffers = (vm.offers | subarray: $root.filters))" ng-click="vm.showOffer(offer.id)">
             <md-grid-tile-header class="offer-header">
                 <h4>
                   <md-icon ng-if="offer.street">location_on</md-icon>

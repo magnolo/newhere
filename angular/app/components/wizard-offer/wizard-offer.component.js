@@ -32,6 +32,13 @@ class WizardOfferController{
           this.categories = list;
         })
 
+        this.offer = {
+          categories:[],
+          filters:[],
+          translations:{},
+          languages:[],
+          toAll: true
+        }
     }
     querySearch(query) {
         if (this.$http.pendingRequests.length) {
