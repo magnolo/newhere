@@ -19,10 +19,12 @@
         <md-grid-tile layout="column" class="offer-container animate-repeat" ng-repeat="offer in vm.offers" ng-click="vm.showOffer(offer.id)">
             <md-grid-tile-header class="offer-header">
                 <h4>
-                  <md-icon>location_on</md-icon>
+                  <md-icon ng-if="offer.street">location_on</md-icon>
+                  <md-icon ng-if="!offer.street">insert_link</md-icon>
                   <div style="margin-top:10px">{{offer.title}}</div>
                 </h4>
                 <div class="offer-content" flex>
+                    <p class="offer-ngo-title">{{ 'Anbieter' | translate }}:<a class="offer-ngo" ui-sref="app.ngo({id: offer.ngo.id})">{{offer.ngo.organisation}}</a></p>
                     <div class="offer-description">{{offer.description}}</div>
                     <div class="offer-address" flex hide-xs>
                         <span ng-if="offer.street!=null">{{offer.street}} {{offer.streetnumber}}</br></span>

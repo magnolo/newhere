@@ -17,16 +17,15 @@ class OffersListController{
         });
     }
 
-    getImageSrc(offer) {
-        var fileExtension = offer.image.filename.substr(offer.image.filename.indexOf('.'), offer.image.filename.length);
-        return offer.image.dir + '/' + offer.image.basename  + '_small' + fileExtension;
-    }
-
     goToPage(page) {
         this.query.page = page;
         this.OfferService.fetchFiltered(this.query, (response) => {
             this.offers = response;
         });
+    }
+
+    showOffer(id) {
+        this.state.go('app.start.detail',{id:id});
     }
 
 

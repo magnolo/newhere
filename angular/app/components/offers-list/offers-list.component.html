@@ -7,22 +7,25 @@
         </div>
     </md-toolbar>
     <div layout="row" layout-align="center" layout-wrap >
-        <md-card class="md-padding" style="width: 320px;" ng-repeat="offer in vm.offers">
-            <md-card-title>
-                <md-card-title-text>
-                    <span class="md-headline">{{offer.title}}</span>
-                    <span class="md-subhead">
-                        {{offer.description  | limitTo: 100}}<span ng-if="offer.description.length > 100">...</span>
-                    </span>
-                </md-card-title-text>
-                <md-card-title-media>
-                    <img ng-if="offer.image" ng-src="{{vm.getImageSrc(offer)}}" class="md-card-image">
-                </md-card-title-media>
-            </md-card-title>
-            <md-card-actions layout="row" layout-align="end center">
-                <md-button>{{ 'Anzeigen' | translate }}</md-button>
-            </md-card-actions>
-        </md-card>
+        <md-grid-list class="offer-grid-list" flex md-cols-xs="2" md-cols-sm="3" md-cols-md="2" md-cols-gt-md="3" md-row-height-gt-md="2:2" md-row-height="4:5">
+            <md-grid-tile layout="column" class="offer-container animate-repeat" ng-repeat="offer in vm.offers" ng-click="vm.showOffer(offer.id)">
+                <md-grid-tile-header class="offer-header">
+                    <h4>
+                        <md-icon>location_on</md-icon>
+                        <div style="margin-top:10px">{{offer.title}}</div>
+                    </h4>
+                    <div class="offer-content" flex>
+                        <div class="offer-description">{{offer.description}}</div>
+                        <div class="offer-address" flex hide-xs>
+                            <span ng-if="offer.street!=null">{{offer.street}} {{offer.streetnumber}}</br></span>
+                            <span ng-if="offer.streetnumberadditional==null">{{offer.zip}}</span>
+                            <span ng-if="offer.street!=null">{{offer.city}}</span>
+                        </div>
+                    </div>
+                </md-grid-tile-header>
+
+            </md-grid-tile>
+        </md-grid-list>
     </div>
     <div layout="row" layout-align="center">
         <div ng-if="vm.offerCount > vm.query.limit"
