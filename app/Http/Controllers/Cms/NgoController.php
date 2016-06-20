@@ -58,12 +58,17 @@ class NgoController extends Controller
 
     public function create(Request $request) {
         $useCmsAccount = $request->has('useCmsAccount');
+
         if (!$useCmsAccount) {
             $this->validate($request, [
                 'organisation' => 'required',
                 'email' => 'required|email|unique:users',
                 'password' => 'required|min:5',
-                'description' => 'max:200'
+                'description' => 'max:200',
+                'street' => 'required',
+                'street_number' => 'required',
+                'city' => 'required',
+                'zip' => 'required'
             ]);
         } else {
             $this->validate($request, [
@@ -186,11 +191,11 @@ class NgoController extends Controller
     {
         $publishedNgos = Ngo::where('published', 1)->count();
         $unpublishedNgos = Ngo::where('published', 0)->count();
-        
+
         return response()->success([
             'stats' => [
-                'published' => $publishedNgos, 
-                'unpublished' => $unpublishedNgos, 
+                'published' => $publishedNgos,
+                'unpublished' => $unpublishedNgos,
                 'total' => $publishedNgos + $unpublishedNgos
             ]
         ]);

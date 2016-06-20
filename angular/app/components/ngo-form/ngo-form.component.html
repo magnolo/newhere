@@ -84,6 +84,6 @@
         <textarea ng-model="vm.ngo.description" md-maxlength="200" rows="3"></textarea>
     </md-input-container>
 
-    <md-button type="submit" class="md-primary md-raised" ng-disabled="ngoForm.$invalid">{{ 'Speichern' | translate }}</md-button>
+    <md-button type="submit" class="md-primary md-raised" ng-disabled="ngoForm.$invalid || !((vm.ngo.street && vm.ngo.street_number && vm.ngo.city && vm.ngo.zip) || (vm.cms && vm.ngo.useCmsAccount))">{{ 'Speichern' | translate }}</md-button>
     <md-button class="md-primary" ng-click="vm.cancel()">{{ 'Abbrechen' | translate }}</md-button>
 </form>
