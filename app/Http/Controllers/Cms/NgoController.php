@@ -99,12 +99,17 @@ class NgoController extends Controller
 
     public function create(Request $request) {
         $useCmsAccount = $request->has('useCmsAccount');
+
         if (!$useCmsAccount) {
             $this->validate($request, [
                 'organisation' => 'required',
                 'email' => 'required|email|unique:users',
                 'password' => 'required|min:5',
-                'description' => 'max:200'
+                'description' => 'max:200',
+                'street' => 'required',
+                'street_number' => 'required',
+                'city' => 'required',
+                'zip' => 'required'
             ]);
         } else {
             $this->validate($request, [

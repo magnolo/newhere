@@ -82,13 +82,16 @@ class AuthController extends Controller
             'organisation' => 'required',
             'email' => 'required|email|unique:users',
             'password' => 'required|min:5',
-            'description' => 'max:200'
+            'description' => 'max:200',
+            'street' => 'required',
+            'street_number' => 'required',
+            'city' => 'required',
+            'zip' => 'required'
         ]);
 
-        if ($request->has('street') && $request->has('street_number') && $request->has('zip')) {
-            $addressApi = new AddressAPI();
-            $coordinates = $addressApi->getCoordinates($request->get('street'), $request->get('street_number'), $request->get('zip'));
-        }
+        $addressApi = new AddressAPI();
+        $coordinates = $addressApi->getCoordinates($request->get('street'), $request->get('street_number'), $request->get('zip'));
+
 
         DB::beginTransaction();
 
