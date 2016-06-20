@@ -1,40 +1,25 @@
-<div ng-if="vm.ngo" class="ngo-detail" ng-cloak>
+<div>
+    <div class= "ngo-detail" >
 
-    <div ng-if="vm.ngo.image" layout="row" layout-align="center">
-        <img ng-src="{{'/' + vm.ngo.image.dir + '/' + vm.ngo.image.filename}}">
-    </div>
+        <h2>{{vm.ngo.organisation}}</h2>
 
+        <div ng-if="vm.ngo.image">
+            <img class="ngo-detail-image" ng-src="{{vm.ngo.image.dir+'/'+vm.ngo.image.filename}}">
+        </div>
 
-    <div layout="column" layout-align="center start">
-        <h1>{{vm.ngo.organisation}}</h1>
-    </div>
+        <p ng-if="vm.ngo.contact_phone"><md-icon>phone</md-icon><a href="tel:{{vm.ngo.contact_phone}}">{{vm.ngo.contact_phone}}</a></p>
 
-    <div layout-gt-sm="row" ng-cloak>
-        <div ng-if="vm.ngo.street" layout="column" layout-align="center start" flex-gt-xs>
-            <h4><md-icon >location_on</md-icon>{{ 'Adresse' | translate }}</h4>
-            <p>{{vm.ngo.street + " " + vm.ngo.street_number + ", " + vm.ngo.zip + " " + vm.ngo.city}}</p>
-        </div>
-        <div ng-if="vm.ngo.website" layout="column" layout-align="center start" flex-gt-xs>
-            <h4><md-icon >home</md-icon>{{ 'Webseite' | translate }}</h4>
-            <a ng-href="{{vm.ngo.website}}">{{vm.ngo.website}}</a>
-        </div>
-    </div>
-    <div layout-gt-sm="row">
-        <div ng-if="vm.ngo.contact" layout="column" layout-align="center start" flex-gt-xs>
-            <h4><md-icon >account_box</md-icon>{{ 'Kontaktperson' | translate }}</h4>
-            <p>{{vm.ngo.contact}}</p>
-        </div>
-        <div ng-if="vm.ngo.contact_email" layout="column" layout-align="center start" flex-gt-xs>
-            <h4><md-icon >email</md-icon>{{ 'Kontaktemail' | translate }}</h4>
-            <a href="mailto:{{vm.ngo.contact_email}}">{{vm.ngo.contact_email}}</a>
-        </div>
-        <div ng-if="vm.ngo.contact_phone" layout="column" layout-align="center start" flex-gt-xs>
-            <h4><md-icon >phone</md-icon>{{ 'Kontakttelefon' | translate }}</h4>
-            <p>{{vm.ngo.contact_phone}}</p>
-        </div>
-    </div>
-    <div ng-if="vm.ngo.description" layout="column" layout-align="center start">
-        <h4><md-icon >description</md-icon>{{ 'Beschreibung' | translate }}</h4>
-        <p>{{vm.ngo.description}}</p>
+        <p ng-if="vm.ngo.website"><md-icon>insert_link</md-icon><a href="{{vm.ngo.website}}" target="_blank">{{vm.ngo.website}}</a></p>
+
+        <p ng-if="vm.ngo.contact_email"><md-icon>mail</md-icon><a href="mailto:{{vm.ngo.contact_email}}">{{vm.ngo.contact_email}}</a></p>
+
+        <p ng-if="vm.ngo.contact_person"><md-icon>account_box</md-icon><a href="mailto:{{vm.ngo.contact_person}}">{{vm.ngo.contact_person}}</a></p>
+
+        <p ng-if="vm.ngo.street" ><md-icon>place</md-icon>{{vm.ngo.street}} {{vm.ngo.street_number}}</br>
+            <span ng-if="vm.ngo.zip" class="offer-detail-address" >{{vm.ngo.zip}} {{vm.ngo.city}}</br></span>
+        </p>
+
+        <p ng-if="vm.ngo.description" class="ngo-detail-description"><md-icon>info</md-icon>{{vm.ngo.description}}</p>
+
     </div>
 </div>
