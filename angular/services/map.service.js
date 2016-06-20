@@ -1,5 +1,5 @@
 export class MapService {
-    constructor($rootScope, ToastService, $translate, leafletData) {
+    constructor($rootScope, ToastService, $translate, leafletData, leafletMarkerEvents) {
         'ngInject';
 
         this.tokens = {
@@ -46,7 +46,11 @@ export class MapService {
                 }
             }
         };
-        this.events = {};
+        this.events = {
+          markers:{
+            enable: leafletMarkerEvents.getAvailableEvents()
+          }
+        };
 
         this.markers = {};
         this.setMarkers = (offers) => {
