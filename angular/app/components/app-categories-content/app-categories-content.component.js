@@ -1,5 +1,5 @@
 class AppCategoriesContentController {
-    constructor(CategoryService, MapService) {
+    constructor(CategoryService, MapService, $rootScope) {
         'ngInject';
 
         this.categories = [];
