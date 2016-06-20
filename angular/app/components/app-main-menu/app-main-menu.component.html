@@ -16,15 +16,15 @@
       <md-list-item>
         <md-button class="" ui-sref="app.login">{{ 'Hilf uns beim übersetzen' | translate }}</md-button>
       </md-list-item>
-      <md-list-item>
+      <!-- <md-list-item>
         <md-button class="" ui-sref="app.login">{{ 'Angebot hinzufügen' | translate }}</md-button>
-      </md-list-item>
-      <md-list-item>
+      </md-list-item> -->
+      <!-- <md-list-item>
         <md-button class="" ui-sref="app.login">{{ 'Fragen & Antworten' | translate }}</md-button>
       </md-list-item>
       <md-list-item>
         <md-button class="" ui-sref="app.login">{{ 'Erweiterte Suche' | translate }}</md-button>
-      </md-list-item>
+      </md-list-item> -->
         <md-list-item>
         <md-button class="" ng-click="vm.changeLanguage()">{{ 'Sprache ändern' | translate }}</md-button>
       </md-list-item>
@@ -32,10 +32,10 @@
     <md-list ng-if="$root.$auth.isAuthenticated()">
           <md-divider></md-divider>
             <md-list-item >
-            <md-button class="" ui-sref="app.logout">{{ 'Abmelden' | translate }}</md-button>
+            <md-button class="" ng-click="vm.logout()">{{ 'Abmelden' | translate }}</md-button>
           </md-list-item>
             <md-list-item >
-            <md-button class="" ui-sref="app.login">{{ 'Profil' | translate }}</md-button>
+            <md-button class="" ui-sref="app.myngo">{{ 'Profil' | translate }}</md-button>
           </md-list-item>
     </md-list>
  </md-content>

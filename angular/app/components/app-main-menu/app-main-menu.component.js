@@ -1,11 +1,14 @@
 class AppMainMenuController{
-    constructor($mdSidenav, $window, $state, $auth, ToastService){
+    constructor($mdSidenav, $translate, $window, $state, $auth, ToastService){
         'ngInject';
 
         //
         this.$mdSidenav = $mdSidenav;
         this.$window = $window;
         this.$state = $state;
+        this.$auth = $auth;
+        this.ToastService = ToastService;
+        this.$translate = $translate;
     }
     closeMainMenu(){
       this.$mdSidenav('main-menu').close();
