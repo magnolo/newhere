@@ -87,12 +87,12 @@ class NgoController extends Controller
         $user->confirmation_code = $confirmation_code;
         $user->save();
 
-        /*
+
         Mail::send('email.verify', $confirmation_code, function($message) use($user) {
             $message->to($user->email, $user->name)
                 ->subject('Verify your email address');
         });
-        */
+        
 
         return $user;
     }
