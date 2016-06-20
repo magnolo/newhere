@@ -20,7 +20,7 @@ class NgoController extends Controller
     }
 
     public function show($id){
-        $ngo = Ngo::findOrFail($id)->load(['image']);
+        $ngo = Ngo::findOrFail($id)->load(['image', 'offers']);
         return response()->json($ngo);
     }
 
