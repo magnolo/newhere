@@ -53,6 +53,9 @@ class OfferFormController {
             if(this.offer.valid_until != null) {
                this.valid_until = new Date(this.offer.valid_until);
             }
+              if (!this.offer.street) {
+                  this.offer.withoutAddress = true;
+              }
          })
         }
         else{

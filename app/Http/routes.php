@@ -85,6 +85,7 @@ $api->group(['middleware' => ['api', 'api.auth']], function ($api) {
     $api->post('offers', 'Cms\OfferController@create');
     $api->put('offers/{id}', 'Cms\OfferController@update');
     $api->delete('offers/{id}', 'Cms\OfferController@bulkRemove');
+    $api->get('myoffers', 'Cms\NgoController@myOffers');
 
     $api->get('ngos/my', 'Cms\NgoController@my');
     $api->put('ngos/my/{id}', 'Cms\NgoController@update');

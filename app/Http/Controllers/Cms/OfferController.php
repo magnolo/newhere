@@ -20,23 +20,10 @@ use Log;
 
 class OfferController extends Controller
 {
-  //  public function index() {
-  //     $ngos = Ngo::with(['image','users', 'offers'])->get();
-  //     return response()->json($ngos);
-  //  }
+
    public function index(Request $request) {
-       $user = Auth::user();
-       if ($user) {
-           if($user->hasRole(['superadmin', 'admin']) ){
-               $offers = Offer::with(['ngo', 'filters','categories', 'countries', 'image']);
-           }
-           else{
-               $ngo = $user->ngos()->firstOrFail();
-               $offers = $ngo->offers()->with(['ngo', 'filters','categories', 'countries', 'image']);
-           }
-       } else {
-           $offers = Offer::with(['image']);
-       }
+
+       $offers = Offer::with(['ngo', 'filters','categories', 'countries', 'image']);
 
       $count = $offers->count();
 
@@ -172,8 +159,16 @@ class OfferController extends Controller
    }
    public function update(Request $request, $id){
 
-     $addressApi = new AddressAPI();
-     $coordinates = $addressApi->getCoordinates($request->get('street'), $request->get('streetnumber'), $request->get('zip'));
+       $hasAddress = false;
+
+       if ($request->has('street') && $request->has('streetnumber') && $request->has('zip')) {
+           $hasAddress = true;
+       }
+
+       if ($hasAddress) {
+        $addressApi = new AddressAPI();
+        $coordinates = $addressApi->getCoordinates($request->get('street'), $request->get('streetnumber'), $request->get('zip'));
+       }
 
      DB::beginTransaction();
      $offer = Offer::findOrFail($id);
@@ -183,16 +178,20 @@ class OfferController extends Controller
      $offer->website = $request->get('website');
      $offer->email = $request->get('email');
      $offer->phone = $request->get('phone');
-     $offer->street = $request->get('street');
-     $offer->streetnumber = $request->get('streetnumber');
-     $offer->streetnumberadditional = $request->get('streetnumberadditional');
-     $offer->zip = $request->get('zip');
-     $offer->city = $request->get('city');
+       if ($hasAddress) {
+           $offer->street = $request->get('street');
+           $offer->streetnumber = $request->get('streetnumber');
+           $offer->streetnumberadditional = $request->get('streetnumberadditional');
+           $offer->zip = $request->get('zip');
+           $offer->city = $request->get('city');
+           $offer->latitude = $coordinates[0];
+           $offer->longitude = $coordinates[1];
+       }
+
      $offer->valid_from = $request->get('valid_from');
      $offer->valid_until = $request->get('valid_until');
      $offer->image_id = $request->get('image_id');
-     $offer->latitude = $coordinates[0];
-     $offer->longitude = $coordinates[1];
+
      $offer->ngo_id = $request->get('ngo_id');
      $success = $offer->save();
 
