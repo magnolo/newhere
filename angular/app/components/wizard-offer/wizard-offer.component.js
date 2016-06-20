@@ -8,9 +8,15 @@ class WizardOfferController{
         this.OfferService = OfferService;
         this.NgoService = NgoService;
         this.valid_from = new Date();
-          this.NgoService.one().then((ngo) => {
+        this.offer = {
+            categories:[],
+            filters:[],
+            translations:{},
+            languages:[]
+        }
+        this.NgoService.one().then((ngo) => {
               this.adoptFieldsFromNgo(ngo);
-          });
+        });
         this.LanguageService = LanguageService;
         this.LanguageService.fetchEnabled((list) => {
           this.languages = list;
@@ -25,7 +31,7 @@ class WizardOfferController{
         this.CategoryService.all((list) => {
           this.categories = list;
         })
-        //
+
         this.offer = {
           categories:[],
           filters:[],
@@ -86,7 +92,6 @@ class WizardOfferController{
       console.log(mode);
     }
     finishedWizard(){
-      console.log(this.offer);
         if (this.offer.withoutAddress) {
             this.offer.street = null;
             this.offer.streetnumber = null;

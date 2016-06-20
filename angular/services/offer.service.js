@@ -35,6 +35,14 @@ export class OfferService{
       return q;
     }
 
+    fetchMyOffers(query,success, error, force){
+        var q = this.API.all('myoffers').getList(query);
+        q.then((response) =>{
+            success(response);
+        });
+        return q;
+    }
+
     one(id, success, error) {
 
         if (!id) return false;
@@ -51,6 +59,8 @@ export class OfferService{
     cancel(cms) {
         if (cms) {
             this.$state.go("cms.offers");
+        } else {
+            history.back();
         }
     }
 
@@ -70,7 +80,11 @@ export class OfferService{
                     this.ToastService.show(msg);
                 });
                 if(success) success(response);
-                this.$state.go("cms.offers");
+                if (this.cms) {
+                    this.$state.go("cms.offers");
+                } else {
+                    history.back();
+                }
             },
             (error) => {
                 this.$translate('Fehler beim Speichern der Daten.').then((msg) => {
