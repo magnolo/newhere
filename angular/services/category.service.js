@@ -21,9 +21,9 @@ export class CategoryService {
     }
 
     all(success, error, force) {
-        // if (angular.isDefined(this.categories) && !force) {
-        //     success(this.categories);
-        if (angular.isDefined(this._promise)) {
+        if (angular.isDefined(this.categories) && !force) {
+            success(this.categories);
+        } else if (angular.isDefined(this._promise)) {
             this._callbacks.push(success);
         } else {
             this._callbacks.push(success);
