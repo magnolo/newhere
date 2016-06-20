@@ -1,5 +1,5 @@
 class AppCategoriesContentSubController {
-    constructor(CategoryService, OfferService, MapService, $state) {
+    constructor(CategoryService, OfferService, MapService, $state, $rootScope) {
         'ngInject';
 
         this.showMap = false;
@@ -20,6 +20,7 @@ class AppCategoriesContentSubController {
             }
             this.CategoryService.getOffers(this.offersCallback);
         });
+        console.log($rootScope);
     }
 
     toggleMap() {
