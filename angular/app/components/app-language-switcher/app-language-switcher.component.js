@@ -15,9 +15,7 @@ class AppLanguageSwitcherController{
     switchLanguage(language) {
         var vm = this;
         this.LanguageService.changeLanguage(language, function(){
-            vm.$state.go('app.start.categories', {},{
-              reload:true
-            });
+            vm.$state.go('app.start.categories');
         });
     }
 }
