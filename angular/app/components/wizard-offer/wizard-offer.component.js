@@ -30,7 +30,8 @@ class WizardOfferController{
           categories:[],
           filters:[],
           translations:{},
-          languages:[]
+          languages:[],
+          toAll: true
         }
     }
     querySearch(query) {

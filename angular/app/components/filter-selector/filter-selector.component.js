@@ -61,6 +61,9 @@ class FilterSelectorController{
     $onInit(){
 
     }
+    $onChanges(){
+      console.log('filter changed');
+    }
 }
 
 export const FilterSelectorComponent = {

@@ -1,10 +1,11 @@
 class AppCategoriesContentSubController {
-    constructor(CategoryService, OfferService, MapService, $state, $rootScope) {
+    constructor($scope, CategoryService, OfferService, MapService, $state, $rootScope) {
         'ngInject';
 
         this.showMap = false;
         this.showOffers = false;
         this.category = {};
+        this.filteredOffers;
         this.CategoryService = CategoryService;
         this.OfferService = OfferService;
         this.MapService = MapService;
@@ -12,6 +13,7 @@ class AppCategoriesContentSubController {
         this.offersCallback = (offers) => {
             this.offers = offers;
             this.MapService.setMarkers(offers);
+            console.log(this.filteredOffers);
         };
         this.CategoryService.bySlug($state.params.slug, (category) => {
             this.category = category;
@@ -20,7 +22,9 @@ class AppCategoriesContentSubController {
             }
             this.CategoryService.getOffers(this.offersCallback);
         });
-        console.log($rootScope);
+        $scope.$watch(this.filteredOffers, function(n,o){
+          console.log(n);
+        }, true)
     }
 
     toggleMap() {

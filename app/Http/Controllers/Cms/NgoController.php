@@ -20,7 +20,7 @@ class NgoController extends Controller
     }
 
     public function show($id){
-        $ngo = Ngo::findOrFail($id)->load(['image']);
+        $ngo = Ngo::findOrFail($id)->load(['image', 'offers']);
         return response()->json($ngo);
     }
 
@@ -186,11 +186,11 @@ class NgoController extends Controller
     {
         $publishedNgos = Ngo::where('published', 1)->count();
         $unpublishedNgos = Ngo::where('published', 0)->count();
-        
+
         return response()->success([
             'stats' => [
-                'published' => $publishedNgos, 
-                'unpublished' => $unpublishedNgos, 
+                'published' => $publishedNgos,
+                'unpublished' => $unpublishedNgos,
                 'total' => $publishedNgos + $unpublishedNgos
             ]
         ]);
