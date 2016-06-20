@@ -25,6 +25,9 @@ class CmsRolesTableController{
         };
 
     }
+    cancel() {
+        this.RoleService.cancel();
+    }
 
     $onInit(){
 

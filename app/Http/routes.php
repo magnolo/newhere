@@ -46,6 +46,9 @@ $api->group(['middleware' => ['api']], function ($api) {
     $api->get('offers/{id}', ['uses' => 'Cms\OfferController@show'])->where('id', '[0-9]+');
 
     $api->get('languages/published', 'Cms\LanguageController@publishedIndex');
+
+    $api->get('filters', 'Cms\FilterController@index');
+
 });
 
 //protected routes with JWT (must be logged in)
@@ -90,7 +93,6 @@ $api->group(['middleware' => ['api', 'api.auth']], function ($api) {
     $api->put('ngos/my/{id}', 'Cms\NgoController@update');
 
 
-    $api->get('filters', 'Cms\FilterController@index');
 
     // FOR ADMINS AND NGO-admins
     $api->group(['middleware' => ['role:superadmin|admin|organisation-admin']], function ($api) {
