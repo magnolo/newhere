@@ -45,7 +45,6 @@ class NgoController extends Controller
 
         $myoffers = $ngo->offers()->with(['filters','categories', 'countries', 'image']);
         $myoffers = $myoffers->get();
-        Log::debug($myoffers);
 
         $count = $myoffers->count();
 
