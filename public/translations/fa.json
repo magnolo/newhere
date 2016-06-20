@@ -1,5 +1,5 @@
 {
-    "Zurück": "Zurück",
+    "Zurück": "برگشت",
     "Anmelden": "Anmelden",
     "Hilf uns beim übersetzen": "Hilf mit beim Übersetzen",
     "Angebot hinzufügen": "Neues Angebot",
@@ -31,9 +31,9 @@
     "PLZ": "PLZ",
     "Neues Angebot": "Neues Angebot",
     "Profil": "Profil",
-    "Sprache ändern": "Sprache ändern",
-    "Wähle eine Kategorie": "Wähle eine Kategorie",
+    "Sprache ändern": "تغيير زبان",
+    "Wähle eine Kategorie": "انتخاب گروه",
     "Als NGO registrieren": "Als NGO registrieren",
-    "Filter" : "Filter",
-    "nach einem Ort suchen" : "nach einem Ort suchen"
+    "Filter" : "فيلتر",
+    "nach einem Ort suchen" : "جست و جو براي مكان"
 }

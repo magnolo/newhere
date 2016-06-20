@@ -19,7 +19,7 @@ Route::group(['middleware' => ['web']], function () {
 
 });
 
-$api->group(['middleware' => ['api']], function ($api) {
+$api->group(['middleware' => ['api', 'language']], function ($api) {
     /**
      * @var \Dingo\Api\Routing\Router $api
      */
@@ -52,7 +52,7 @@ $api->group(['middleware' => ['api']], function ($api) {
 });
 
 //protected routes with JWT (must be logged in)
-$api->group(['middleware' => ['api', 'api.auth']], function ($api) {
+$api->group(['middleware' => ['api', 'api.auth', 'language']], function ($api) {
     /**
      * @var \Dingo\Api\Routing\Router $api
      */

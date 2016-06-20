@@ -24,7 +24,7 @@
                   <div style="margin-top:10px">{{offer.title}}</div>
                 </h4>
                 <div class="offer-content" flex>
-                    <p class="offer-ngo-title">{{ 'Anbieter' | translate }}:<a class="offer-ngo" ui-sref="app.ngo({id: offer.ngo.id})">{{offer.ngo.organisation}}</a></p>
+                    <p class="offer-ngo-title">{{ 'Anbieter' | translate }}:&nbsp;<a class="offer-ngo" ui-sref="app.ngo({id: offer.ngo.id})">{{offer.ngo.organisation}}</a></p>
                     <div class="offer-description">{{offer.description}}</div>
                     <div class="offer-address" flex hide-xs>
                         <span ng-if="offer.street!=null">{{offer.street}} {{offer.streetnumber}}</br></span>
