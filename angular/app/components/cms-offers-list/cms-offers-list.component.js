@@ -41,12 +41,20 @@ class CmsOffersListController{
         //     //console.log(page, limit);
         // };
         this.getOffers = ()=>{
-          vm.$sessionStorage.offerQuery = vm.query;
-          vm.promise = this.OfferService.fetchFiltered(vm.query, (response) => {
-                vm.offers = response;
-                vm.loading = false;
-                vm.count = response.count;
-          });
+            if (this.cms) {
+                vm.$sessionStorage.offerQuery = vm.query;
+                vm.promise = this.OfferService.fetchFiltered(vm.query, (response) => {
+                    vm.offers = response;
+                    vm.loading = false;
+                    vm.count = response.count;
+                });
+            } else {
+                this.OfferService.fetchMyOffers(this.query, (response) => {
+                    vm.offers = response;
+                    vm.loading = false;
+                    vm.count = response.count;
+                });
+            }
         };
         this.getOffers();
     }
@@ -111,7 +119,11 @@ class CmsOffersListController{
       });
     }
     cancel(){
-      this.DialogService.hide();
+        if (this.cms) {
+            this.DialogService.hide();
+        } else {
+            alert("go back");
+        }
     }
     $onInit(){
     }
