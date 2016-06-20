@@ -1,10 +1,11 @@
 export class RoleService{
-    constructor(API, ToastService){
+    constructor(API, ToastService, $state){
         'ngInject';
 
         this.API = API;
         this._promise;
         this._callbacks = new Array();
+        this.$state = $state;
 
         this.roles;
 
@@ -26,5 +27,8 @@ export class RoleService{
           this._promise = null;
         }, error);
       }
+    }
+    cancel() {
+            this.$state.go("cms.users");
     }
 }
