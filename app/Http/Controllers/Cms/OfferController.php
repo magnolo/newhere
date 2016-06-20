@@ -21,6 +21,7 @@ use Log;
 class OfferController extends Controller
 {
 
+
    public function index(Request $request) {
 
        $offers = Offer::with(['ngo', 'filters','categories', 'countries', 'image']);

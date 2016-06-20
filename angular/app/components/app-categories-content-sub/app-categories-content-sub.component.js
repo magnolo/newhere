@@ -13,7 +13,6 @@ class AppCategoriesContentSubController {
         this.offersCallback = (offers) => {
             this.offers = offers;
             this.MapService.setMarkers(offers);
-            console.log(this.filteredOffers);
         };
         this.CategoryService.bySlug($state.params.slug, (category) => {
             this.category = category;
@@ -22,9 +21,7 @@ class AppCategoriesContentSubController {
             }
             this.CategoryService.getOffers(this.offersCallback);
         });
-        $scope.$watch(this.filteredOffers, function(n,o){
-          console.log(n);
-        }, true)
+
     }
 
     toggleMap() {
