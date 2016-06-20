@@ -1,5 +1,5 @@
 class AppMainMenuController{
-    constructor($mdSidenav, $window, $state){
+    constructor($mdSidenav, $window, $state, $auth, ToastService){
         'ngInject';
 
         //
@@ -14,6 +14,14 @@ class AppMainMenuController{
         this.$window.localStorage.removeItem('language');
         this.closeMainMenu();
         this.$state.go('app.landing');
+    }
+    logout(){
+      this.$auth.logout().then((response) => {
+          this.$translate('Erfolgreich abgemeldet.').then((msg) => {
+              this.ToastService.show(msg);
+          });
+          this.$state.go('app.landing');
+      });
     }
     $onInit(){
     }
