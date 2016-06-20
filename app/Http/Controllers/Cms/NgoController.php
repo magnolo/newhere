@@ -38,18 +38,19 @@ class NgoController extends Controller
     public function myOffers(Request $request) {
         $user = Auth::user();
 
+
         $ngo = $user->ngos()->with('image', 'users', 'offers')->firstOrFail();
         if (!$ngo) {
             return response()->error('NGO not found', 404);
         }
 
         $myoffers = $ngo->offers()->with(['filters','categories', 'countries', 'image']);
-        $myoffers = $myoffers->get();
+
 
         $count = $myoffers->count();
 
         if($request->has('enabled')){
-            $offers = $myoffers->where('enabled', $request->get('enabled'));
+            $myoffers = $myoffers->where('enabled', $request->get('enabled'));
             $count = $myoffers->count();
         }
         if($request->has('title')){
@@ -71,7 +72,7 @@ class NgoController extends Controller
         if($request->has('page')){
             $myoffers = $myoffers->skip(($request->get('page') - 1) * $request->get('limit'));
         }
-
+        $myoffers = $myoffers->get();
         return response()->success(compact('myoffers'));
     }
 
@@ -226,11 +227,11 @@ class NgoController extends Controller
     {
         $publishedNgos = Ngo::where('published', 1)->count();
         $unpublishedNgos = Ngo::where('published', 0)->count();
-        
+
         return response()->success([
             'stats' => [
-                'published' => $publishedNgos, 
-                'unpublished' => $unpublishedNgos, 
+                'published' => $publishedNgos,
+                'unpublished' => $unpublishedNgos,
                 'total' => $publishedNgos + $unpublishedNgos
             ]
         ]);
