@@ -92,12 +92,12 @@ class OfferFormController {
     }
 
     save() {
-      if(!this.offer.street || !this.offer.streetnumber || !this.offer.zip ){
-          this.$translate('Es ist keine Adresse vorhanden!').then((msg) => {
-              this.ToastService.error(msg);
-          });
-          return false;
-      }
+        if (this.offer.withoutAddress) {
+            this.offer.street = null;
+            this.offer.streetnumber = null;
+            this.offer.zip = null;
+            this.offer.city = null;
+        }
 
       this.offer.valid_until = this.valid_until;
       this.offer.valid_from = this.valid_from;

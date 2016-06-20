@@ -64,13 +64,15 @@ export class MapService {
 
             angular.forEach(offers, (offer, key) => {
 
-              var marker = {
-                 offer_id:offer.id,
-                  lng:parseFloat(offer.latitude),
-                  lat:parseFloat(offer.longitude),
-                  icon: this.blueIcon
-              };
-              markers[offer.id] = marker;
+                if (offer.latitude && offer.longitude) {
+                    var marker = {
+                        offer_id:offer.id,
+                        lng:parseFloat(offer.latitude),
+                        lat:parseFloat(offer.longitude),
+                        icon: this.blueIcon
+                    };
+                    markers[offer.id] = marker;
+                }
             });
             this.markers = markers;
         }

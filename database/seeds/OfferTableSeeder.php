@@ -25,12 +25,6 @@ class OfferTableSeeder extends Seeder
         $reader->setDelimiter(";");
         $results = $reader->fetch();
 
-        $street = "";
-        $streetnumber = "";
-        $zip = "";
-        $city = "";
-
-
         $wrongCats = array();
         $wrongFilters = array();
         $wrongNgos = array();
@@ -50,20 +44,16 @@ class OfferTableSeeder extends Seeder
             $offer = new Offer();
             $offer->ngo_id = $ngo->id;
             if(!empty($row[6]))
-              $street = $row[6];
-            $offer->street = $street;
+                $offer->street = $row[6];
 
             if(!empty($row[7]))
-              $streetnumber = $row[7];
-            $offer->streetnumber = $streetnumber;
+                $offer->streetnumber = $row[7];
 
             if(!empty($row[10]))
-              $zip = $row[10];
-            $offer->zip = $zip;
+                $offer->zip = $row[10];
 
             if(!empty($row[11]))
-              $city = $row[11];
-            $offer->city = $city;
+                $offer->city = $row[11];
 
             if(!empty($row[19]))
               $offer->phone = $row[19];
@@ -72,8 +62,7 @@ class OfferTableSeeder extends Seeder
             if(!empty($row[18]))
               $offer->website = $row[18];
 
-            $this->command->info($offer->street." ".$offer->streetnumber.", ". $offer->zip);
-            if($offer->street != "" && $offer->streetnumber != "" && $offer->zip != ""){
+            if($offer->street != NULL && $offer->streetnumber != NULL && $offer->zip != NULL){
               $coordinates = $addressApi->getCoordinates($offer->street, $offer->streetnumber, $offer->zip);
               $offer->latitude = $coordinates[0];
               $offer->longitude = $coordinates[1];

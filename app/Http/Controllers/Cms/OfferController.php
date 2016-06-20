@@ -90,14 +90,18 @@ class OfferController extends Controller
       $this->validate($request, [
          'title' => 'required|max:255',
          'description' => 'required',
-         'street' => 'required',
-         'streetnumber' => 'required',
-         'zip' => 'required',
-         'city' => 'required'
       ]);
 
-      $addressApi = new AddressAPI();
-      $coordinates = $addressApi->getCoordinates($request->get('street'), $request->get('streetnumber'), $request->get('zip'));
+       $hasAddress = false;
+
+       if ($request->has('street') && $request->has('streetnumber') && $request->has('zip')) {
+           $hasAddress = true;
+       }
+
+       if ($hasAddress) {
+          $addressApi = new AddressAPI();
+          $coordinates = $addressApi->getCoordinates($request->get('street'), $request->get('streetnumber'), $request->get('zip'));
+       }
 
 
       DB::beginTransaction();
@@ -112,16 +116,19 @@ class OfferController extends Controller
       $offer->website = $request->get('website');
       $offer->email = $request->get('email');
       $offer->phone = $request->get('phone');
-      $offer->street = $request->get('street');
-      $offer->streetnumber = $request->get('streetnumber');
-      $offer->streetnumberadditional = $request->get('streetnumberadditional');
-      $offer->zip = $request->get('zip');
-      $offer->city = $request->get('city');
+       if ($hasAddress) {
+           $offer->street = $request->get('street');
+           $offer->streetnumber = $request->get('streetnumber');
+           $offer->streetnumberadditional = $request->get('streetnumberadditional');
+           $offer->zip = $request->get('zip');
+           $offer->city = $request->get('city');
+           $offer->latitude = $coordinates[0];
+           $offer->longitude = $coordinates[1];
+       }
       $offer->valid_from = $request->get('valid_from');
       $offer->valid_until = $request->get('valid_until');
       $offer->image_id = $request->get('image_id');
-      $offer->latitude = $coordinates[0];
-      $offer->longitude = $coordinates[1];
+
 
       if($request->has('ngo_id')){
         $offer->ngo_id = $request->get('ngo_id');
