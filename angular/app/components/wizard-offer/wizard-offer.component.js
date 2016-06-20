@@ -86,10 +86,12 @@ class WizardOfferController{
     }
     finishedWizard(){
       console.log(this.offer);
-      // if(this.withoutAddress && !this.offer.street || !this.offer.streetnumber || !this.offer.zip ){
-      //   this.ToastService.error('Es ist keine Adresse vorhanden!');
-      //   return false;
-      // }
+        if (this.offer.withoutAddress) {
+            this.offer.street = null;
+            this.offer.streetnumber = null;
+            this.offer.zip = null;
+            this.offer.city = null;
+        }
 
       this.offer.valid_until = this.valid_until;
       this.offer.valid_from = this.valid_from;
