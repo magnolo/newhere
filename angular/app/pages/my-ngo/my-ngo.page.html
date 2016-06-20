@@ -1,4 +1,4 @@
-<div class="Page-container greyed" layout-fill>
+<div class="" layout-fill>
     <md-toolbar>
         <div class="md-toolbar-tools">
             <h2>
@@ -10,11 +10,11 @@
     <div flex-gt-sm="70" flex flex-offset-gt-sm="15" layout-padding>
         <md-card>
             <md-tabs md-dynamic-height>
-                <md-tab label="{{ 'Infos' | translate }}">
-                    <my-ngo-detail></my-ngo-detail>
-                </md-tab>
                 <md-tab label="{{ 'Meine Angebote' | translate }}">
                     <cms-offers-list></cms-offers-list>
+                </md-tab>
+                <md-tab label="{{ 'Infos' | translate }}">
+                    <my-ngo-detail></my-ngo-detail>
                 </md-tab>
                 <md-tab ng-if="isNgoAdmin" label="{{ 'Mitarbeiter' | translate }}">
                     <ngo-users-list></ngo-users-list>

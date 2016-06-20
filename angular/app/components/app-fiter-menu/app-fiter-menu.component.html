@@ -1,0 +1,18 @@
+<md-sidenav class="md-sidenav-right md-whiteframe-4dp" md-component-id="filter">
+ <md-toolbar class="md-theme-light">
+   <div class="md-toolbar-tools">
+     <md-button ng-click="vm.closeWithReset()" class="md-icon-button">
+       <md-icon>close</md-icon>
+     </md-button>
+   <h1 class="md-toolbar-tools">Filter</h1>
+   <span flex></span>
+
+   <md-button ng-click="vm.close()" class="md-icon-button">
+     <md-icon>check</md-icon>
+   </md-button>
+    </div>
+ </md-toolbar>
+ <md-content layout-padding>
+   <filter-selector ng-model="$root.filters"></filter-selector>
+ </md-content>
+</md-sidenav>

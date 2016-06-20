@@ -34,7 +34,7 @@ class NgoSeeder extends Seeder
             $ngo->street_number = $row[8];
             $ngo->zip = $row[9];
             $ngo->city = $row[10];
-
+            $ngo->published = true;
             $ngo->save();
 
             $ngo->translateOrNew('de')->description = $row[12];

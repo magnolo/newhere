@@ -67,7 +67,9 @@ class OfferTableSeeder extends Seeder
               $offer->latitude = $coordinates[0];
               $offer->longitude = $coordinates[1];
             }
-
+            if(!empty($row[18]))
+              $offer->website = $row[18];
+            $offer->enabled = true;
             $offer->save();
 
             if(!empty($row[4])) $offer->translateOrNew('de')->title = $row[4];
@@ -79,6 +81,8 @@ class OfferTableSeeder extends Seeder
             if(!empty($row[26])) $offer->translateOrNew('fa')->description = $row[26];
             if(!empty($row[28])) $offer->translateOrNew('ar')->title = $row[28];
             if(!empty($row[29])) $offer->translateOrNew('ar')->description = $row[29];
+            if(!empty($row[31])) $offer->translateOrNew('fr')->title = $row[31];
+            if(!empty($row[31])) $offer->translateOrNew('fr')->description = $row[32];
 
             $offer->save();
 

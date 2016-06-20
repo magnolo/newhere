@@ -20,7 +20,7 @@ class NgoController extends Controller
     }
 
     public function show($id){
-        $ngo = Ngo::findOrFail($id)->load(['image']);
+        $ngo = Ngo::findOrFail($id)->load(['image', 'offers']);
         return response()->json($ngo);
     }
 
@@ -35,6 +35,47 @@ class NgoController extends Controller
         return response()->json($ngo);
     }
 
+    public function myOffers(Request $request) {
+        $user = Auth::user();
+
+
+        $ngo = $user->ngos()->with('image', 'users', 'offers')->firstOrFail();
+        if (!$ngo) {
+            return response()->error('NGO not found', 404);
+        }
+
+        $myoffers = $ngo->offers()->with(['filters','categories', 'countries', 'image']);
+
+
+        $count = $myoffers->count();
+
+        if($request->has('enabled')){
+            $myoffers = $myoffers->where('enabled', $request->get('enabled'));
+            $count = $myoffers->count();
+        }
+        if($request->has('title')){
+            $myoffers = $myoffers->whereTranslationLike('title', '%'.$request->get('title').'%');
+            $count = $myoffers->count();
+        }
+        if($request->has('order')){
+            $order = $request->get('order');
+            $dir = 'DESC';
+            if(substr($order,0,1) == '-'){
+                $dir = 'ASC';
+                $order = substr($order,1);
+            }
+            $myoffers = $myoffers->orderBy($order, $dir);
+        }
+        if($request->has('limit')){
+            $myoffers = $myoffers->take($request->get('limit'));
+        }
+        if($request->has('page')){
+            $myoffers = $myoffers->skip(($request->get('page') - 1) * $request->get('limit'));
+        }
+        $myoffers = $myoffers->get();
+        return response()->success(compact('myoffers'));
+    }
+
     private function storeAndSendMail($name, $email, $password)
     {
         $confirmation_code = str_random(30);
@@ -46,12 +87,12 @@ class NgoController extends Controller
         $user->confirmation_code = $confirmation_code;
         $user->save();
 
-        /*
+
         Mail::send('email.verify', $confirmation_code, function($message) use($user) {
             $message->to($user->email, $user->name)
                 ->subject('Verify your email address');
         });
-        */
+        
 
         return $user;
     }

@@ -11,7 +11,6 @@ class AppCategoriesContentController {
             this.categories = categories;
         });
 
-
     }
 
     $onInit() {}
