@@ -9,7 +9,7 @@ export function SubarrayFilter(){
 
         var matchList = new Array();
         angular.forEach(input, function(item){
-          if(item.filters.length){
+          // if(item.filters.length){
             angular.forEach(item.filters, function(filter){
               var found = new Array();
               angular.forEach(list, function(f){
@@ -21,10 +21,10 @@ export function SubarrayFilter(){
                 matchList.push(item);
               }
             });
-          }
-          else{
-              matchList.push(item);
-          }
+          // }
+          // else{
+          //     matchList.push(item);
+          // }
 
         });
         return matchList;
