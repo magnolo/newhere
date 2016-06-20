@@ -107,7 +107,7 @@ class WizardOfferController{
         }
       this.offer.title = this.offer.translations['de'].title;
       this.offer.description = this.offer.translations['de'].description;
-      this.OfferService.save(this.offer, ()=>{}, ()=>{}, 'app.offers');
+      this.OfferService.save(this.offer, ()=>{}, ()=>{}, 'app.myngo');
 
     }
     $onInit(){

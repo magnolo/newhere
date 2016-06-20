@@ -38,18 +38,19 @@ class NgoController extends Controller
     public function myOffers(Request $request) {
         $user = Auth::user();
 
+
         $ngo = $user->ngos()->with('image', 'users', 'offers')->firstOrFail();
         if (!$ngo) {
             return response()->error('NGO not found', 404);
         }
 
         $myoffers = $ngo->offers()->with(['filters','categories', 'countries', 'image']);
-        $myoffers = $myoffers->get();
+
 
         $count = $myoffers->count();
 
         if($request->has('enabled')){
-            $offers = $myoffers->where('enabled', $request->get('enabled'));
+            $myoffers = $myoffers->where('enabled', $request->get('enabled'));
             $count = $myoffers->count();
         }
         if($request->has('title')){
@@ -71,7 +72,7 @@ class NgoController extends Controller
         if($request->has('page')){
             $myoffers = $myoffers->skip(($request->get('page') - 1) * $request->get('limit'));
         }
-
+        $myoffers = $myoffers->get();
         return response()->success(compact('myoffers'));
     }
 
@@ -86,12 +87,12 @@ class NgoController extends Controller
         $user->confirmation_code = $confirmation_code;
         $user->save();
 
-        /*
+
         Mail::send('email.verify', $confirmation_code, function($message) use($user) {
             $message->to($user->email, $user->name)
                 ->subject('Verify your email address');
         });
-        */
+        
 
         return $user;
     }
