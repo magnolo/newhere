@@ -32,7 +32,7 @@
     </div>
 
     <md-content flex hide-gt-sm>
-      <md-button ng-if="vm.offer !=null" style="float: right;position:fixed;bottom:1em;right:1em" class="md-raised md-icon-button md-primary" ng-click="vm.toggleMap()" layout-align="center center">
+      <md-button ng-if="vm.offer !=null && !vm.noAddress" style="float: right;position:fixed;bottom:1em;right:1em" class="md-raised md-icon-button md-primary" ng-click="vm.toggleMap()" layout-align="center center">
         <i class="material-icons" ng-if="!vm.showMap">map</i>
         <i class="material-icons" ng-if="vm.showMap">info</i>
       </md-button>

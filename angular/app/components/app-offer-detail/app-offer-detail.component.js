@@ -1,14 +1,20 @@
 class AppOfferDetailController{
-    constructor(OfferService, MapService,CategoryService, $state){
+    constructor(OfferService, MapService,CategoryService, $state, $scope){
         'ngInject';
 
         var vm = this;
-        vm.showMap = true;
+        vm.showMap = false;
+        vm.noAddress = false;
 
         this.MapService = MapService;
         this.CategoryService = CategoryService;
         OfferService.one($state.params.id, (offer) => {
             vm.offer = offer;
+            if (offer.street) {
+                vm.showMap = true;
+            } else {
+                vm.noAddress = true;
+            }
             if(typeof this.CategoryService.category.id == "undefined"){
               this.CategoryService.category = vm.offer.categories[0];
             }
