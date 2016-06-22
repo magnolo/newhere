@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="{!! elixir('css/app.css') !!}">
     <link href='https://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
     <title>new here : welcome</title>
 
     <!--[if lte IE 10]>
