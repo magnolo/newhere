@@ -1,6 +1,6 @@
 {
-    "Zurück": "Back",
-    "Anmelden": "Log in",
+    "Zurück": "ظهر",
+    "Anmelden": "تسجيل",
     "Hilf uns beim übersetzen": "Help us to translate",
     "Angebot hinzufügen": "Add offer",
     "Fragen & Antworten": "FAQs",
@@ -36,5 +36,6 @@
     "Wähle eine Kategorie": "Choose a category",
     "Als NGO registrieren": "register as NGO",
     "Filter" : "Filter",
-    "nach einem Ort suchen" : "search for a place"
+    "nach einem Ort suchen" : "search for a place",
+    "Anbieter": "مزود"
 }

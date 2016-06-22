@@ -2,7 +2,9 @@ export function RoutesRun($rootScope, $state, $auth, $window, $mdSidenav, $trans
     'ngInject';
 
     $rootScope.cms = false;
-    var deregisterationCallback =  $rootScope.$on("$stateChangeStart", function(event, toState) {
+    var deregisterationCallback =  $rootScope.$on("$stateChangeStart", function(event, toState, toParams, fromState, fromParams) {
+        $rootScope.fromState = fromState;
+        $rootScope.fromParams = fromParams;
         $rootScope.cms = toState.name.indexOf('cms') > -1 ? true : false;
         $rootScope.$auth = $auth;
         if (toState.data && toState.data.auth) {
