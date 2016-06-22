@@ -97,6 +97,7 @@ class AuthController extends Controller
         $ngoUser->attachRole($organisationRole);
 
         $ngo = new Ngo();
+        $ngo->published = false;
         $ngo->organisation = $request->get('organisation');
         $ngo->website = $request->get('website');
         $ngo->contact = $request->get('contact');
