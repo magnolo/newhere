@@ -1,6 +1,6 @@
 {
     "Zurück": "برگشت",
-    "Anmelden": "Anmelden",
+    "Anmelden": "ثبات",
     "Hilf uns beim übersetzen": "Hilf mit beim Übersetzen",
     "Angebot hinzufügen": "Neues Angebot",
     "Fragen & Antworten": "FAQs",
@@ -35,5 +35,6 @@
     "Wähle eine Kategorie": "انتخاب گروه",
     "Als NGO registrieren": "Als NGO registrieren",
     "Filter" : "فيلتر",
-    "nach einem Ort suchen" : "جست و جو براي مكان"
+    "nach einem Ort suchen" : "جست و جو براي مكان",
+    "Anbieter": "ارائه دهنده"
 }

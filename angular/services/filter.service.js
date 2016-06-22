@@ -22,7 +22,7 @@ export class FilterService {
     all(success, error, force) {
         if (angular.isDefined(this.filters) && !force) {
             success(this.filters);
-        } else if (angular.isDefined(this._promise)) {
+        } else if (angular.isDefined(this._promise) && !force) {
             this._callbacks.push(success);
         } else {
             this._callbacks.push(success);

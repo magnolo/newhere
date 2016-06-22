@@ -15,17 +15,14 @@ class CategoryTableSeeder extends Seeder
         $german = Reader::createFromPath(base_path() . '/database/seeds/csvs/categories_german.csv');
         $english = Reader::createFromPath(base_path() . '/database/seeds/csvs/categories_english.csv');
         $french = Reader::createFromPath(base_path() . '/database/seeds/csvs/categories_french.csv');
-        $french = Reader::createFromPath(base_path() . '/database/seeds/csvs/categories_french.csv');
-
-        // Farsi translation not working cause of conflict in table data 50/51
+        $arabic = Reader::createFromPath(base_path() . '/database/seeds/csvs/categories_arabic.csv');
         $farsi = Reader::createFromPath(base_path() . '/database/seeds/csvs/categories_farsi.csv');
 
         $german->setDelimiter(";");
         $english->setDelimiter(";");
         $french->setDelimiter(";");
-
-        // Farsi translation not working cause of conflict in table data 50/51
         $farsi->setDelimiter(";");
+        $arabic->setDelimiter(";");
 
 
         $englishResults = $english->fetch();
@@ -42,6 +39,7 @@ class CategoryTableSeeder extends Seeder
             // Farsi translation not working cause of conflict in table data 50/51
             $farsiTrans = $farsi->fetchOne($key);
             $frenchTrans = $french->fetchOne($key);
+            $arabicTrans = $arabic->fetchOne($key);
 
             if (!empty($row[0])) {
                 $sortIndex[1] = $sortIndex[2] = 0;
@@ -63,12 +61,14 @@ class CategoryTableSeeder extends Seeder
                 $parent->translateOrNew('de')->title = $germanTrans[0];
                 $parent->translateOrNew('de')->description = $germanTrans[1];
 
-                // Farsi translation not working cause of conflict in table data 50/51
                 $parent->translateOrNew('fa')->title = $farsiTrans[0];
                 $parent->translateOrNew('fa')->description = $farsiTrans[1];
 
                 $parent->translateOrNew('fr')->title = $frenchTrans[0];
                 $parent->translateOrNew('fr')->description = $frenchTrans[1];
+
+                $parent->translateOrNew('ar')->title = $arabicTrans[0];
+                $parent->translateOrNew('ar')->description = $arabicTrans[1];
 
                 $parent->sortindex = $sortIndex[0];
                 $sortIndex[0]++;
@@ -98,6 +98,9 @@ class CategoryTableSeeder extends Seeder
                     $sub1->translateOrNew('fr')->title = $frenchTrans[2];
                     $sub1->translateOrNew('fr')->description = $frenchTrans[3];
 
+                    $sub1->translateOrNew('ar')->title = $arabicTrans[2];
+                    $sub1->translateOrNew('ar')->description = $arabicTrans[3];
+
                     $sub1->save();
                     if (!empty($row[4])) {
                         $sub2 = new Category;
@@ -121,6 +124,9 @@ class CategoryTableSeeder extends Seeder
 
                         $sub2->translateOrNew('fr')->title = $frenchTrans[4];
                         $sub2->translateOrNew('fr')->description = $frenchTrans[5];
+
+                        $sub2->translateOrNew('ar')->title = $arabicTrans[4];
+                        $sub2->translateOrNew('ar')->description = $arabicTrans[5];
 
                         $sub2->save();
                     }
@@ -146,6 +152,9 @@ class CategoryTableSeeder extends Seeder
 
                 $sub1->translateOrNew('fr')->title = $frenchTrans[2];
                 $sub1->translateOrNew('fr')->description = $frenchTrans[3];
+
+                $sub1->translateOrNew('ar')->title = $arabicTrans[2];
+                $sub1->translateOrNew('ar')->description = $arabicTrans[3];
 
                 $sub1->save();
 
@@ -173,6 +182,8 @@ class CategoryTableSeeder extends Seeder
                     $sub2->translateOrNew('fr')->title = $frenchTrans[4];
                     $sub2->translateOrNew('fr')->description = $frenchTrans[5];
 
+                    $sub2->translateOrNew('ar')->title = $arabicTrans[4];
+                    $sub2->translateOrNew('ar')->description = $arabicTrans[5];
 
                     $sub2->save();
                 }
@@ -197,6 +208,9 @@ class CategoryTableSeeder extends Seeder
 
                 $sub2->translateOrNew('fr')->title = $frenchTrans[4];
                 $sub2->translateOrNew('fr')->description = $frenchTrans[5];
+
+                $sub2->translateOrNew('ar')->title = $arabicTrans[4];
+                $sub2->translateOrNew('ar')->description = $arabicTrans[5];
 
                 $sub2->save();
               }

@@ -1,25 +1,32 @@
 class FilterSelectorController{
-    constructor(FilterService){
+    constructor(FilterService, $rootScope){
         'ngInject';
-
+        var vm = this;
         //
         this.selectedFilter = [];
         this.dropdownFilters = {};
         this.filters = [];
         this.FilterService = FilterService;
-        this.FilterService.all((list) => {
-          this.filters = list;
-          if(this.item){
-            this.selectedFilter = angular.copy(this.item);
-
-            angular.forEach(this.selectedFilter, (filter, key) =>{
-              if(filter.parent_id){
-                this.dropdownFilters[filter.slug] = filter;
-              }
-            });
-          }
+        this.$rootScope = $rootScope;
+        this.$rootScope.$on('languageChanged', ()=>{
+          console.log('language changed');
+            vm.fetchFilters();
         });
+        this.fetchFilters();
+    }
+    fetchFilters(){
+      this.FilterService.all((list) => {
+        this.filters = list;
+        if(this.item){
+          this.selectedFilter = angular.copy(this.item);
 
+          angular.forEach(this.selectedFilter, (filter, key) =>{
+            if(filter.parent_id){
+              this.dropdownFilters[filter.slug] = filter;
+            }
+          });
+        }
+      },()=>{}, true);
     }
     toggleFilter(filter){
       if(filter.parent_id){

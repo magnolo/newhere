@@ -11,10 +11,6 @@ use App\Language;
 
 class CategoryController extends Controller
 {
-    public function __construct()
-    {
-        App::setLocale(app('request')->header('language'));
-    }
 
     public function index(Request $request)
     {
