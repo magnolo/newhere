@@ -1,4 +1,7 @@
-<div >
+<div>
+    <div ng-if="!vm.isNgoPublished && !vm.loading" layout="row" layout-padding>
+        <p class="ngo-unpublished">{{ 'Ihre NGO wurde noch nicht freigeschalten. Sie können Angebote erstellen, diese werden jedoch erst freigeschalten, sobald Sie ein Administrator freigeschalten hat. ' | translate }}</p>
+    </div>
     <md-toolbar class="md-table-toolbar md-default" layout-padding ng-if="!vm.showfilter">
         <div layout="row" layout-align="space-between start">
             <h3>{{ 'Angebote' | translate }}</h3>
@@ -72,7 +75,7 @@
             <tr md-row md-select="offer" ng-repeat="offer in vm.offers">
                 <td md-cell><md-button ui-sref="{{ vm.cms ? 'cms.offers.detail({id:'+offer.id+'})' : 'app.offers.details({id:'+offer.id+'})' }}"class="md-icon-button md-accent md-hue-2"><md-icon>edit</md-icon></md-button></td>
                 <td md-cell><strong>{{offer.title}}</strong></td>
-                <td ng-if="!vm.cms" md-cell><md-switch ng-model="offer.enabled" class="md-primary" ng-disabled="true"></md-switch></td>
+                <td ng-if="!vm.cms" md-cell><md-switch ng-model="offer.enabled" class="md-primary" ng-disabled="!vm.isNgoPublished" ng-change="vm.toggleEnabled(offer)"></md-switch></td>
                 <td md-cell>{{offer.street}} {{offer.streetnumber}} {{offer.streetnumberadditional}}, {{offer.zip}} {{offer.city}}</td>
                 <!--<td md-cell>{{offer.ngo_id}}</td>-->
 

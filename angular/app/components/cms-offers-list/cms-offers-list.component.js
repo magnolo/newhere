@@ -6,6 +6,7 @@ class CmsOffersListController{
           isOpen:false
         };
         vm.loading = true;
+        vm.isNgoPublished = false;
         this.$sessionStorage = $sessionStorage;
         this.$filter = $filter;
         this.$state = $state;
@@ -53,6 +54,7 @@ class CmsOffersListController{
                     vm.offers = response;
                     vm.loading = false;
                     vm.count = response.count;
+                    vm.isNgoPublished = response.ngoPublished;
                 });
             }
         };

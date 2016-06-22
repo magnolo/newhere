@@ -73,7 +73,10 @@ class NgoController extends Controller
             $myoffers = $myoffers->skip(($request->get('page') - 1) * $request->get('limit'));
         }
         $myoffers = $myoffers->get();
-        return response()->success(compact('myoffers', 'count'));
+
+        $ngoPublished = $ngo->published;
+
+        return response()->success(compact('myoffers', 'count', 'ngoPublished'));
     }
 
     private function storeAndSendMail($name, $email, $password)
