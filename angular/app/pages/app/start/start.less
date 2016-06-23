@@ -13,6 +13,7 @@
             transform: translateY(0) !important;
             display: flex !important;
             border-top: 1px solid #357DBA;
+            padding-bottom: 0;
         }
     }
 
@@ -33,6 +34,7 @@
                 border-top: 0 solid #357DBA;
                 overflow: auto;
                 z-index: 2;
+                padding-bottom: 0;
             }
         }
     }
@@ -43,11 +45,19 @@ md-content#list-container[ui-view="content"] {
         transform: translateY(0) !important;
         display: block !important;
     }
+
+    @media screen and (max-width:959px) {
+        padding-bottom: 64px;
+    }
 }
 
 #map-container.map-container {
     @media screen and (min-width: 960px) {
         transform: translateY(0) !important;
         display: flex !important;
+    }
+
+    @media screen and (max-width:959px) {
+        z-index: 1;
     }
 }

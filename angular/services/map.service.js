@@ -1,6 +1,9 @@
 export class MapService {
-    constructor($rootScope, ToastService, $translate, leafletData, leafletMarkerEvents) {
+    constructor($rootScope, ToastService, $translate, leafletData, leafletMarkerEvents, leafletMapEvents, leafletMapDefaults) {
         'ngInject';
+
+        // console.log(leafletMapEvents.getAvailableMapEvents());
+        // console.log(leafletMapDefaults.getDefaults());
         L.Icon.Default.imagePath = '/img';
         var vm = this;
         this.map = null;
@@ -54,7 +57,7 @@ export class MapService {
         };
         this.events = {
             markers: {
-                enable: leafletMarkerEvents.getAvailableEvents()
+                enable: ['touchend', 'click'], //leafletMarkerEvents.getAvailableEvents()
             }
         };
 

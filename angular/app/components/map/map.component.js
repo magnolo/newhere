@@ -13,7 +13,13 @@ class MapController {
         });
 
         $scope.$on("leafletDirectiveMarker.touchend", function(event, args) {
-
+            console.log('touched');
+            vm.$state.go('app.start.detail', {
+                id: args.model.offer_id
+            });
+        });
+        $scope.$on("leafletDirectiveMarkersClick", function(event, args) {
+            console.log('touched');
             vm.$state.go('app.start.detail', {
                 id: args.model.offer_id
             });

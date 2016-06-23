@@ -2,11 +2,11 @@
     <div ui-view="toolbar"></div>
     <md-content layout-gt-sm="row" layout="column" flex layout-fill ng-class="{'split-screen': $root.isSplit, 'show-details': $root.showDetails}">
         <md-content id="list-container" ng-show="!$root.showMap || $mdMedia('gt-sm')" flex flex-order="2" flex-order-gt-sm="1" ui-view="content" md-scroll-y class="anim-show"></md-content>
-        <md-content id="map-container" ng-show="$root.showMap || $mdMedia('gt-sm')" flex flex-order="1" flex-order-gt-sm="2" layout="column" class="anim-show map-container">
+        <md-content id="map-container" flex flex-order="1" flex-order-gt-sm="2" layout="column" class="anim-show map-container">
             <map></map>
         </md-content>
-        <div class="view-toggler" ng-if="$root.showMap && !$root.isSplit" hide-gt-sm>
-            <md-button  ng-click="$root.showMap = !$root.showMap" class="btn-bottom md-primary md-raised btn-big">
+        <div layout="row" class="view-toggler" ng-if="$root.showMap && !$root.isSplit" hide-gt-sm>
+            <md-button  ng-click="$root.showMap = !$root.showMap" flex class="btn-bottom md-primary md-raised btn-big">
                 <md-icon>list</md-icon>
                 {{ 'Liste anzeigen' | translate }}
             </md-button>

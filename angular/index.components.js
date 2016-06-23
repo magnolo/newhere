@@ -1,3 +1,4 @@
+import {LoaderComponent} from './app/components/loader/loader.component';
 import {AppFiterMenuComponent} from './app/components/app-fiter-menu/app-fiter-menu.component';
 import {CmsDashboardWidgetTranslationsComponent} from './app/components/cms-dashboard-widget-translations/cms-dashboard-widget-translations.component';
 import {CmsDashboardWidgetOfferComponent} from './app/components/cms-dashboard-widget-offer/cms-dashboard-widget-offer.component';
@@ -51,6 +52,7 @@ import {CmsFiltersListComponent} from './app/components/cms-filters-list/cms-fil
 import {CmsFilterFormComponent} from './app/components/cms-filter-form/cms-filter-form.component';
 
 angular.module('app.components')
+	.component('loader', LoaderComponent)
 	.component('appFiterMenu', AppFiterMenuComponent)
 	.component('cmsDashboardWidgetTranslations', CmsDashboardWidgetTranslationsComponent)
 	.component('cmsDashboardWidgetOffer', CmsDashboardWidgetOfferComponent)
