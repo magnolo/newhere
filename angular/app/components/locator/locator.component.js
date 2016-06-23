@@ -7,9 +7,12 @@ class LocatorController{
         this.state = $state;
 
         var vm = this;
-        this.OfferService.fetchAll().then((response) => {
-          vm.offers = response;
-       });
+        vm.query = {
+            enabled: true
+        };
+        this.OfferService.fetchFiltered(vm.query, (response) => {
+            vm.offers = response;
+        });
     }
 
     $onInit(){

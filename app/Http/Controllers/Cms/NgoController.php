@@ -73,7 +73,10 @@ class NgoController extends Controller
             $myoffers = $myoffers->skip(($request->get('page') - 1) * $request->get('limit'));
         }
         $myoffers = $myoffers->get();
-        return response()->success(compact('myoffers'));
+
+        $ngoPublished = $ngo->published;
+
+        return response()->success(compact('myoffers', 'count', 'ngoPublished'));
     }
 
     private function storeAndSendMail($name, $email, $password)
@@ -166,7 +169,8 @@ class NgoController extends Controller
             'published' => 'required'
         ]);
 
-        $ngo = Ngo::find((int)$id);
+        $ngo = Ngo::find((int)$id)->load(['offers']);
+
         if (!$ngo) {
             return response()->error('NGO not found', 404);
         }
