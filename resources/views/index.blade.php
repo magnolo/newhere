@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="{!! elixir('css/app.css') !!}">
     <link href='https://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://npmcdn.com/lrm-mapzen/dist/leaflet.routing.mapzen.css">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="mobile-web-app-capable" content="yes">
     <title>new here : welcome</title>
@@ -22,7 +23,7 @@
     <script src="{!! elixir('js/vendor.js') !!}"></script>
     <script src="{!! elixir('js/partials.js') !!}"></script>
     <script src="{!! elixir('js/app.js') !!}"></script>
-
+    <script src="https://npmcdn.com/lrm-mapzen/dist/lrm-mapzen.js">
     {{--livereload--}}
     @if ( env('APP_ENV') === 'local' )
     <script type="text/javascript">

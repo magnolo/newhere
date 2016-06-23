@@ -2,7 +2,7 @@ export function RoutesRun($rootScope, $state, $auth, $window, $mdSidenav, $trans
     'ngInject';
 
     $rootScope.cms = false;
-    var deregisterationCallback =  $rootScope.$on("$stateChangeStart", function(event, toState, toParams, fromState, fromParams) {
+    var deregisterationCallback = $rootScope.$on("$stateChangeStart", function(event, toState, toParams, fromState, fromParams) {
         $rootScope.fromState = fromState;
         $rootScope.fromParams = fromParams;
         $rootScope.cms = toState.name.indexOf('cms') > -1 ? true : false;
@@ -12,17 +12,21 @@ export function RoutesRun($rootScope, $state, $auth, $window, $mdSidenav, $trans
             if (!$auth.isAuthenticated()) {
                 event.preventDefault();
                 return $state.go('app.login');
-            }
-            else if(toState.data.roles){
-              var roles = $window.localStorage.roles;
+            } else if (toState.data.roles) {
+                var roles = $window.localStorage.roles;
 
-              if(toState.data.roles.indexOf(JSON.parse(roles)[0]) == -1){
-                event.preventDefault();
-                $translate('Sie sind zum Aufruf dieser Seite nicht berechtigt!').then((msg) => {
-                    ToastService.error(msg);
-                });
-              }
+                if (toState.data.roles.indexOf(JSON.parse(roles)[0]) == -1) {
+                    event.preventDefault();
+                    $translate('Sie sind zum Aufruf dieser Seite nicht berechtigt!').then((msg) => {
+                        ToastService.error(msg);
+                    });
+                }
             }
+        }
+        if (typeof toState.splitScreen != "undefined") {
+            $rootScope.isSplit = toState.splitScreen;
+        } else {
+            $rootScope.isSplit = false;
         }
         $mdSidenav('filter').close();
         $mdSidenav('main-menu').close();

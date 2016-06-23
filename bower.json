@@ -32,7 +32,8 @@
     "angular-paging": "^2.2.1",
     "angular-translate": "2.11.x",
     "angular-translate-loader-static-files": "2.11.x",
-    "sprintf": ">=1.0.0"
+    "sprintf": ">=1.0.0",
+    "leaflet-routing-machine": "https://github.com/perliedman/leaflet-routing-machine.git#^3.0.3"
   },
   "overrides": {
     "font-awesome": {

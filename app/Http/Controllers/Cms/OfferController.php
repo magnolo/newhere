@@ -18,13 +18,13 @@ use App\Logic\Address\AddressAPI;
 use Auth;
 use Log;
 
+
 class OfferController extends Controller
 {
 
 
    public function index(Request $request) {
-
-       $offers = Offer::with(['ngo', 'filters','categories', 'countries', 'image']);
+      $offers = Offer::with(['ngo', 'filters','categories', 'countries', 'image']);
 
       $count = $offers->count();
 
@@ -57,6 +57,10 @@ class OfferController extends Controller
       }
       $offers = $offers->get();
       return response()->success(compact('offers', 'count'));
+   }
+
+   public function getAll(Request $request){
+
    }
    public function autocomplete($search) {
       $addressApi = new AddressAPI();

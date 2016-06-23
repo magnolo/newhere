@@ -2,6 +2,8 @@ class AppCategoriesContentSubController {
     constructor($scope, CategoryService, OfferService, MapService, $state, $rootScope) {
         'ngInject';
 
+        this.$rootScope = $rootScope;
+        this.$rootScope.showMap = false;
         this.showMap = false;
         this.showOffers = false;
         this.category = {};
@@ -26,10 +28,13 @@ class AppCategoriesContentSubController {
 
     toggleMap() {
         this.showMap = !this.showMap;
+        this.$rootScope.showMap = !this.$rootScope.showMap;
     }
 
     showOffer(id) {
-        this.state.go('app.start.detail',{id:id});
+        this.state.go('app.start.detail', {
+            id: id
+        });
     }
 }
 

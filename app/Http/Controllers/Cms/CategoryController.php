@@ -48,15 +48,15 @@ class CategoryController extends Controller
         return response()->json($category);
     }
     public function offers($slug){
-      $category = Category::where('slug', $slug)->with(['children', 'offers'])->firstOrFail();
+      $category = Category::where('slug', $slug)->with(['children', 'public_offers'])->firstOrFail();
       $offers = $category->offers;
       if(count($category->children)){
         foreach($category->children as $child){
-          $child->load('offers');
+          $child->load('public_offers');
           $offers->push($child->offers);
           if(count($child->children)){
             foreach($child->children as $c){
-              $c->load('offers');
+              $c->load('public_offers');
               $offers->push($c->offers);
             }
           }
