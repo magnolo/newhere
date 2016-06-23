@@ -48,6 +48,7 @@ class CategoryController extends Controller
         return response()->json($category);
     }
     public function offers($slug){
+
       $category = Category::where('slug', $slug)->with(['children', 'offers'])->firstOrFail();
       $offers = $category->offers()->where('enabled', true)->get();
       if(count($category->children)){

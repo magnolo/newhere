@@ -1,14 +1,6 @@
-<div ng-if="vm.showMap" layout="column">
-    <map></map>
-    <div class="view-toggler">
-        <md-button ng-if="vm.showMap" ng-click="vm.toggleMap()" class="btn-bottom md-primary md-raised btn-big">
-            <md-icon>list</md-icon>
-            {{ 'Liste anzeigen' | translate }}
-        </md-button>
-    </div>
-</div>
 
-<div ng-if="!vm.showMap">
+
+
     <div style="word-break: break-all" layout="row" layout-wrap>
         <md-button ui-sref="app.start.categories.sub({slug: category.slug})" class="big-thumb animate-repeat" ng-repeat="category in vm.category.children" flex="33" layout="column" layout-align="center center">
 
@@ -36,11 +28,6 @@
 
         </md-grid-tile>
     </md-grid-list>
-</div>
-
-<div ng-if="vm.offers.length || vm.category.children.length" layout="row" class="view-toggler">
-    <md-button ng-if="!vm.showMap" ng-click="vm.toggleMap()" hide-gt-sm flex class="md-primary md-raised btn-big">
-        <md-icon>map</md-icon>
-        {{ 'Karte erkunden' | translate }}
-    </md-button>
-</div>
+    <div  ng-if="!vm.category.children" layout-fill layout="row" layout-align="center center">
+    <loader></loader>
+    </div>

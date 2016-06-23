@@ -1,19 +1,30 @@
-class MapController{
-    constructor(MapService, OfferService, $scope, $state){
+class MapController {
+    constructor(MapService, OfferService, $scope, $state) {
         'ngInject';
         var vm = this;
         this.MapService = MapService;
         this.OfferService = OfferService;
         this.$state = $state;
 
-        $scope.$on("leafletDirectiveMarker.click", function(event, args){
-           vm.$state.go('app.start.detail', {id:args.model.offer_id});
-         });
+        $scope.$on("leafletDirectiveMarker.click", function(event, args) {
+            vm.$state.go('app.start.detail', {
+                id: args.model.offer_id
+            });
+        });
 
-         $scope.$on("leafletDirectiveMarker.touchend", function(event, args){
+        $scope.$on("leafletDirectiveMarker.touchend", function(event, args) {
+            console.log('touched');
+            vm.$state.go('app.start.detail', {
+                id: args.model.offer_id
+            });
+        });
+        $scope.$on("leafletDirectiveMarkersClick", function(event, args) {
+            console.log('touched');
+            vm.$state.go('app.start.detail', {
+                id: args.model.offer_id
+            });
+        });
 
-            vm.$state.go('app.start.detail', {id:args.model.offer_id});
-          });
     }
 
 }

@@ -1,4 +1,63 @@
-.main{
-      min-height: calc(~'100% - 55px');
-      max-height: calc(~'100% - 55px');
+.main {
+    min-height: calc(~'100% - 55px');
+    max-height: calc(~'100% - 55px');
+}
+
+.split-screen {
+    md-content[ui-view="content"] {
+        @media screen and (max-width: 959px) {
+            height: 30%;
+            top: auto;
+            bottom: 0;
+            overflow: hidden;
+            transform: translateY(0) !important;
+            display: flex !important;
+            border-top: 1px solid #357DBA;
+            padding-bottom: 0;
+        }
+    }
+
+    md-content.map-container {
+        @media screen and (max-width: 959px) {
+            height: 70%;
+            top: 0;
+            transform: translateY(0) !important;
+            display: flex !important;
+        }
+    }
+
+    &.show-details {
+        md-content#list-container[ui-view="content"] {
+            @media screen and (max-width: 959px) {
+                transform: translateY(0) !important;
+                height: 100%;
+                border-top: 0 solid #357DBA;
+                overflow: auto;
+                z-index: 2;
+                padding-bottom: 0;
+            }
+        }
+    }
+}
+
+md-content#list-container[ui-view="content"] {
+    @media screen and (min-width: 960px) {
+        transform: translateY(0) !important;
+        display: block !important;
+    }
+
+    @media screen and (max-width:959px) {
+        padding-bottom: 64px;
+    }
+}
+
+#map-container.map-container {
+    @media screen and (min-width: 960px) {
+        transform: translateY(0) !important;
+        display: flex !important;
+    }
+
+    @media screen and (max-width:959px) {
+        z-index: 1;
+    }
 }

@@ -9,7 +9,8 @@ class AppCategoriesContentController {
         this.CategoryService = CategoryService;
         this.CategoryService.all((categories) => {
             this.categories = categories;
-        },()=>{}, true);
+            this.MapService.showRoute();
+        }, () => {}, true);
 
     }
 

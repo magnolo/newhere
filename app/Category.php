@@ -26,6 +26,12 @@ class Category extends Model
     {
         return $this->belongsToMany('App\Offer', 'offer_categories', 'category_id', 'offer_id')->with(['ngo', 'filters', 'categories', 'image']);
     }
+    public function public_offers()
+    {
+        return $this->belongsToMany('App\Offer', 'offer_categories', 'category_id', 'offer_id')->with(['ngo', 'filters', 'categories', 'image'])->whereHas('ngo', function($query){
+          $query->where('id', 5);
+        });
+    }
     public function image()
     {
         return $this->belongsTo('App\Image');
