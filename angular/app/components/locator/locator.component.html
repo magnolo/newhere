@@ -14,12 +14,12 @@
 
            <md-item-template>
              <span class="item-title">
-                <md-icon>place</md-icon>
+                <md-icon ng-if="item.street">place</md-icon>
+                <md-icon ng-if="!item.street">insert_link</md-icon>
                 <strong> {{item.title}} </strong>
             </span>
-            <span class="item-address" md-highlight-text="vm.searchText" md-highlight-flags="i">
-          {{item.street}} {{item.streetnumer}}, {{item.zip}} {{item.city}}
-      </span>
+               <span class="item-description" md-highlight-text="vm.searchText" md-highlight-flags="i" ng-if="item.street != null && item.zip != null">{{item.street}} {{item.streetnumer}}, {{item.zip}} {{item.city}}</span>
+               <span class="item-description" ng-if="item.street == null || item.zip == null">{{item.website}}</span>
            </md-item-template>
            <md-not-found>
                 {{ 'Keine Adressen/Angebote gefunden' | translate }}
