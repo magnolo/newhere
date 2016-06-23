@@ -182,19 +182,6 @@ class NgoController extends Controller
         }
 
         if ($modified) {
-            if ($ngo->published) {
-                $unpublishedOffers = $ngo->offers()->where('enabled', false)->get();
-                foreach ($unpublishedOffers as $offer) {
-                    $offer->enabled = true;
-                    $offer->save();
-                }
-            } else {
-                $publishedOffers = $ngo->offers()->where('enabled', true)->get();
-                foreach ($publishedOffers as $offer) {
-                    $offer->enabled = false;
-                    $offer->save();
-                }
-            }
             $ngo->save();
         }
 
