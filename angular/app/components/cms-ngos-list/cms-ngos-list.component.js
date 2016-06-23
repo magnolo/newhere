@@ -6,8 +6,10 @@ class CmsNgosListController{
         this.$state = $state;
         this.DialogService = DialogService;
         this.NgoService = NgoService;
-        this.NgoService.fetchAll().then(function(response) {
-            vm.ngos = response;
+        this.listOrderByColumn = '-organisation';
+        this.NgoService.fetchAll().then(function(ngos) {
+            vm.ngos = vm.$filter('orderBy')(ngos, [vm.listOrderByColumn], true);
+
         });
 
         this.listFilter = {
@@ -19,9 +21,8 @@ class CmsNgosListController{
             page: 1
         };
 
-        this.listOrderByColumn = '-organisation';
         this.onOrderChange = (order) => {
-            return vm.ngos = this.$filter('orderBy')(vm.ngos, [order], true);
+            return vm.ngos = vm.$filter('orderBy')(vm.ngos, [order], true);
         };
     }
 
