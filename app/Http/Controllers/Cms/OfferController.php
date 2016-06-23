@@ -122,14 +122,20 @@ class OfferController extends Controller
       $offer->image_id = $request->get('image_id');
 
 
+
       if($request->has('ngo_id')){
         $offer->ngo_id = $request->get('ngo_id');
+        $ngo = Ngo::find((int)$offer->ngo_id);
       }
       else{
         $ngo = $ngoUser->ngos()->firstOrFail();
         $offer->ngo_id = $ngo->id;
       }
 
+      $offer->enabled = false;
+      if ($ngo->published) {
+           $offer->enabled = true;
+      }
 
       //Standard Translation
       //if ($request->has('description')) {

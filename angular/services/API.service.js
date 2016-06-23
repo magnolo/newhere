@@ -36,6 +36,9 @@ export class APIService {
 						 if(data.data['count']){
 							 extractedData.count = data.data['count'];
 						 }
+						 if(data.data['ngoPublished']){
+							   extractedData.ngoPublished = data.data['ngoPublished'];
+						 }
              extractedData.error = data.errors;
            } else {
              extractedData = data;

@@ -48,16 +48,19 @@ class CategoryController extends Controller
         return response()->json($category);
     }
     public function offers($slug){
-      $category = Category::where('slug', $slug)->with(['children', 'public_offers'])->firstOrFail();
-      $offers = $category->offers;
+
+      $category = Category::where('slug', $slug)->with(['children', 'offers'])->firstOrFail();
+      $offers = $category->offers()->where('enabled', true)->get();
       if(count($category->children)){
         foreach($category->children as $child){
-          $child->load('public_offers');
-          $offers->push($child->offers);
+          $child->load('offers');
+          $childOffers = $child->offers()->where('enabled', true)->get();
+          $offers->push($childOffers);
           if(count($child->children)){
             foreach($child->children as $c){
-              $c->load('public_offers');
-              $offers->push($c->offers);
+              $c->load('offers');
+                $cOffers = $c->offers()->where('enabled', true)->get();
+                $offers->push($cOffers);
             }
           }
         }
