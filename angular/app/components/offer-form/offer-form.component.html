@@ -135,13 +135,13 @@
                       <md-card-title>
                           <md-card-title-text>
                               <span class="md-headline">{{ 'Übersetzungen' | translate }}</span>
-                              <span class="md-subhead" ng-if = "vm.offer.translations.length-1 != -1">{{ vm.offer.translations.length-1 }} vorhanden</span>
+                              <span class="md-subhead">{{ '%d vorhanden' | translate | sprintf: vm.offer.translations.length }}</span>
                           </md-card-title-text>
                       </md-card-title>
                       <md-table-container>
                           <table md-table>
                               <tbody md-body ng-repeat="untranslatedOffer in vm.untranslatedOffers">
-                              <tr  ng-repeat="trans in untranslatedOffer.translations" ng-init="sourceTranslation = (vm.offer.translations| filter : {locale: 'de'})[0]" ng-if="untranslatedOffer.id == vm.offer.id && trans.locale != 'de'">
+                              <tr  ng-repeat="trans in untranslatedOffer.translations" ng-init="sourceTranslation = (vm.offer.translations| filter : {locale: vm.defaultLanguage.language})[0]" ng-if="untranslatedOffer.id == vm.offer.id">
                                   <td md-cell  ng-repeat="language in vm.enabledLanguages | filter: {language: trans.locale}"  >
                                       <cms-offer-translation-item
                                               translation="trans"
