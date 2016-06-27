@@ -1,4 +1,4 @@
-export function TranslateConfig($translateProvider){
+export function TranslateConfig($translateProvider) {
     'ngInject';
 
     $translateProvider.useStaticFilesLoader({
@@ -8,4 +8,5 @@ export function TranslateConfig($translateProvider){
 
     $translateProvider.preferredLanguage('en');
     $translateProvider.fallbackLanguage('de');
+    $translateProvider.useLocalStorage();
 }
