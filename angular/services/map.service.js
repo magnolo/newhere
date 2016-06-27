@@ -46,18 +46,34 @@ export class MapService {
         this.layers = {
             baselayers: {
                 xyz: {
-                    name: 'Outdoor',
-                    url: 'https://{s}.tiles.mapbox.com/v4/valderrama.d86114b6/{z}/{x}/{y}.png?access_token=' + this.tokens.mapbox,
+                    name: 'LightAll',
+                    url: 'http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png',
                     type: 'xyz',
                     layerOptions: {
                         noWrap: true,
                         continuousWorld: false,
                         detectRetina: true,
-                        showOnSelector: false
+                        showOnSelector: false,
+                        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>'
                     }
                 }
             }
         };
+        // this.layers = {
+        //     baselayers: {
+        //         xyz: {
+        //             name: 'Outdoor',
+        //             url: 'https://{s}.tiles.mapbox.com/v4/valderrama.d86114b6/{z}/{x}/{y}.png?access_token=' + this.tokens.mapbox,
+        //             type: 'xyz',
+        //             layerOptions: {
+        //                 noWrap: true,
+        //                 continuousWorld: false,
+        //                 detectRetina: true,
+        //                 showOnSelector: false
+        //             }
+        //         }
+        //     }
+        // };
         this.events = {
             markers: {
                 enable: ['touchend', 'click'], //leafletMarkerEvents.getAvailableEvents()
