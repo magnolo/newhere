@@ -120,6 +120,8 @@ $api->group(['middleware' => ['api', 'api.auth', 'language']], function ($api) {
       $api->post('ngos', 'Cms\NgoController@create');
       $api->put('ngos/{id}', 'Cms\NgoController@update');
       $api->put('ngos/{id}/togglePublished', 'Cms\NgoController@togglePublished');
+      $api->patch('ngos/{ids}', 'Cms\NgoController@bulkAssign');
+      $api->delete('ngos/{id}', 'Cms\NgoController@bulkRemove');
 
       $api->get('users', 'Cms\UserController@index');
       $api->get('users/role/{role}', 'Cms\UserController@byRole');
@@ -136,6 +138,7 @@ $api->group(['middleware' => ['api', 'api.auth', 'language']], function ($api) {
       $api->put('categories/{id}/move', 'Cms\CategoryController@move');
 
       $api->patch('offers/{ids}', 'Cms\OfferController@bulkAssign');
+
 
       $api->put('filters/{id}/toggleEnabled', 'Cms\FilterController@toggleEnabled');
       $api->get('filters/{id}', ['uses' => 'Cms\FilterController@show']);

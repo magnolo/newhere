@@ -95,7 +95,7 @@ class NgoController extends Controller
             $message->to($user->email, $user->name)
                 ->subject('Verify your email address');
         });
-        
+
 
         return $user;
     }
@@ -244,5 +244,19 @@ class NgoController extends Controller
                 'total' => $publishedNgos + $unpublishedNgos
             ]
         ]);
+    }
+    public function bulkAssign(Request $request, $ids){
+      $ngosQ = Ngo::whereIn('id', explode(',', $ids));
+      $ngos = $ngosQ->get();
+      $updatedRows = $ngosQ->update([$request->get('field') => $request->get('value')]);
+
+      return response()->success(compact('ngos', 'updatedRows'));
+    }
+    function bulkRemove($ids){
+      $ngosQ = Ngo::whereIn('id', explode(',', $ids));
+      $ngos = $ngosQ->get();
+      $deletedRows = $ngosQ->delete();
+
+      return response()->success(compact('ngos', 'deletedRows'));
     }
 }
