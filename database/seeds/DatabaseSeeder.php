@@ -11,16 +11,17 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $this->call(LanguageTableSeeder::class);
-        $this->call(CatIconsSeeder::class);
-        $this->call(FilterIconsSeeder::class);
-        $this->call(CountriesSeeder::class);
-        $this->call(FilterTableSeeder::class);
-        $this->call(CategoryTableSeeder::class);
-        $this->call(RolesSeeder::class);
-        $this->call(UserSeeder::class);
-        $this->call(NgoSeeder::class);
-        $this->call(OfferTableSeeder::class);
-        $this->call(DashboardWidgetsSeeder::class);
+        // $this->call(LanguageTableSeeder::class);
+        // $this->call(CatIconsSeeder::class);
+        // $this->call(FilterIconsSeeder::class);
+        // $this->call(CountriesSeeder::class);
+        // $this->call(FilterTableSeeder::class);
+        // $this->call(CategoryTableSeeder::class);
+        // $this->call(RolesSeeder::class);
+        // $this->call(UserSeeder::class);
+        // $this->call(NgoSeeder::class);
+        // $this->call(OfferTableSeeder::class);
+        // $this->call(DashboardWidgetsSeeder::class);
+        $this->call(NgoFakeStarsSeeder::class);
     }
 }
