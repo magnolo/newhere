@@ -6,8 +6,10 @@ export class MapService {
         // console.log(leafletMapDefaults.getDefaults());
         L.Icon.Default.imagePath = '/img';
         var vm = this;
+        this.located = false;
         this.map = null;
         this.route = null;
+        this.meMarker = null;
         this.leafletData = leafletData;
         leafletData.getMap().then((map) => {
             vm.map = map;
@@ -94,7 +96,8 @@ export class MapService {
             lng: parseFloat(offer.latitude),
             lat: parseFloat(offer.longitude),
             icon: this.whiteIcon,
-            riseOnHover: true
+            riseOnHover: true,
+            zIndex: 10
         };
         this.markers[offer.id] = marker;
     }
@@ -149,9 +152,14 @@ export class MapService {
                     //     color: '#357DBA',
                     //     weight: 0
                     // }).addTo(map);
-                    L.marker(e.latlng, {
+                    this.meMarker = L.marker(e.latlng, {
                         icon: pulsingIcon
-                    }).addTo(map);
+                    });
+
+                    if (!this.located) {
+                        this.meMarker.addTo(map);
+                        this.located = true;
+                    }
                 })
                 .on('locationerror', () => {
                     this.ToastService.error('Standort konnte nicht ermittelt werden!');
