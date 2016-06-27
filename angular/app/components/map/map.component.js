@@ -5,7 +5,7 @@ class MapController {
         this.MapService = MapService;
         this.OfferService = OfferService;
         this.$state = $state;
-
+        //this.MapService.locate();
         $scope.$on("leafletDirectiveMarker.click", function(event, args) {
             vm.$state.go('app.start.detail', {
                 id: args.model.offer_id

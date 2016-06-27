@@ -6,8 +6,11 @@ export class MapService {
         // console.log(leafletMapDefaults.getDefaults());
         L.Icon.Default.imagePath = '/img';
         var vm = this;
+        this.located = false;
         this.map = null;
         this.route = null;
+        this.meMarker = null;
+        this.leafletData = leafletData;
         leafletData.getMap().then((map) => {
             vm.map = map;
         })
@@ -43,18 +46,34 @@ export class MapService {
         this.layers = {
             baselayers: {
                 xyz: {
-                    name: 'Outdoor',
-                    url: 'https://{s}.tiles.mapbox.com/v4/valderrama.d86114b6/{z}/{x}/{y}.png?access_token=' + this.tokens.mapbox,
+                    name: 'LightAll',
+                    url: 'http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png',
                     type: 'xyz',
                     layerOptions: {
                         noWrap: true,
                         continuousWorld: false,
                         detectRetina: true,
-                        showOnSelector: false
+                        showOnSelector: false,
+                        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>'
                     }
                 }
             }
         };
+        // this.layers = {
+        //     baselayers: {
+        //         xyz: {
+        //             name: 'Outdoor',
+        //             url: 'https://{s}.tiles.mapbox.com/v4/valderrama.d86114b6/{z}/{x}/{y}.png?access_token=' + this.tokens.mapbox,
+        //             type: 'xyz',
+        //             layerOptions: {
+        //                 noWrap: true,
+        //                 continuousWorld: false,
+        //                 detectRetina: true,
+        //                 showOnSelector: false
+        //             }
+        //         }
+        //     }
+        // };
         this.events = {
             markers: {
                 enable: ['touchend', 'click'], //leafletMarkerEvents.getAvailableEvents()
@@ -93,7 +112,8 @@ export class MapService {
             lng: parseFloat(offer.latitude),
             lat: parseFloat(offer.longitude),
             icon: this.whiteIcon,
-            riseOnHover: true
+            riseOnHover: true,
+            zIndex: 10
         };
         this.markers[offer.id] = marker;
     }
@@ -130,6 +150,37 @@ export class MapService {
                 error();
             }
         }
+    }
+    locate() {
+        this.leafletData.getMap().then((map) => {
+            map.locate({
+                setView: true,
+                maxZoom: 14
+            });
+            map.on('locationfound', (e) => {
+
+                    var pulsingIcon = L.icon.pulse({
+                        iconSize: [10, 10],
+                        color: '#357DBA'
+                    });
+                    // L.circleMarker(e.latlng, {
+                    //     fillColor: '#357DBA',
+                    //     color: '#357DBA',
+                    //     weight: 0
+                    // }).addTo(map);
+                    this.meMarker = L.marker(e.latlng, {
+                        icon: pulsingIcon
+                    });
+
+                    if (!this.located) {
+                        this.meMarker.addTo(map);
+                        this.located = true;
+                    }
+                })
+                .on('locationerror', () => {
+                    this.ToastService.error('Standort konnte nicht ermittelt werden!');
+                })
+        })
     }
     getLocationByAddress(address) {
 

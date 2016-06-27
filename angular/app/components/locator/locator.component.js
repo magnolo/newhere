@@ -1,5 +1,5 @@
-class LocatorController{
-    constructor(MapService, OfferService, $state){
+class LocatorController {
+    constructor(MapService, OfferService, $state) {
         'ngInject';
 
         this.MapService = MapService;
@@ -15,35 +15,36 @@ class LocatorController{
         });
     }
 
-    $onInit(){
-    }
+    $onInit() {}
 
-    locateMe(){
-      this.MapService.getLocation();
+    locateMe() {
+        this.MapService.locate();
     }
 
     searchPlaces(search) {
-      var filteredOffers = this.offers.filter(createFilterFor(search));
-      return filteredOffers;
-   }
+        var filteredOffers = this.offers.filter(createFilterFor(search));
+        return filteredOffers;
+    }
 
-   selectedItemChange(item) {
-      this.state.go('app.start.detail',{id:item.id});
-   }
+    selectedItemChange(item) {
+        this.state.go('app.start.detail', {
+            id: item.id
+        });
+    }
 
 
 }
 
 function createFilterFor(query) {
-   var regex = new RegExp(query, "i");
-   return function filterFn(item) {
-      if(item.title.match(regex) !==null) return true;
+    var regex = new RegExp(query, "i");
+    return function filterFn(item) {
+        if (item.title.match(regex) !== null) return true;
 
-      if(item.street !== null && item.street.match(regex) !==null) return true;
-      if(item.zip !== null && item.zip.match(regex) !==null) return true;
+        if (item.street !== null && item.street.match(regex) !== null) return true;
+        if (item.zip !== null && item.zip.match(regex) !== null) return true;
 
-      return false;
-   };
+        return false;
+    };
 }
 
 export const LocatorComponent = {

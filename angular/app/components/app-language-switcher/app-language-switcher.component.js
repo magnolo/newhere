@@ -1,5 +1,5 @@
-class AppLanguageSwitcherController{
-    constructor(LanguageService, $state, $rootScope){
+class AppLanguageSwitcherController {
+    constructor(LanguageService, $state, $rootScope) {
         'ngInject';
         this.LanguageService = LanguageService;
         this.LanguageService.fetchPublished((publishedLanguages) => {
@@ -9,14 +9,12 @@ class AppLanguageSwitcherController{
         this.$rootScope = $rootScope;
     }
 
-    $onInit(){
-    }
+    $onInit() {}
 
     switchLanguage(language) {
         var vm = this;
-        this.LanguageService.changeLanguage(language, function(){
+        this.LanguageService.changeLanguage(language, function() {
             vm.$state.go('app.start.categories');
-            console.log(vm.$rootScope.fromState);
             vm.$rootScope.$broadcast('languageChanged');
         });
     }
