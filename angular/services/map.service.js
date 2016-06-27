@@ -8,6 +8,7 @@ export class MapService {
         var vm = this;
         this.map = null;
         this.route = null;
+        this.leafletData = leafletData;
         leafletData.getMap().then((map) => {
             vm.map = map;
         })
@@ -130,6 +131,32 @@ export class MapService {
                 error();
             }
         }
+    }
+    locate() {
+        this.leafletData.getMap().then((map) => {
+            map.locate({
+                setView: true,
+                maxZoom: 14
+            });
+            map.on('locationfound', (e) => {
+
+                    var pulsingIcon = L.icon.pulse({
+                        iconSize: [10, 10],
+                        color: '#357DBA'
+                    });
+                    // L.circleMarker(e.latlng, {
+                    //     fillColor: '#357DBA',
+                    //     color: '#357DBA',
+                    //     weight: 0
+                    // }).addTo(map);
+                    L.marker(e.latlng, {
+                        icon: pulsingIcon
+                    }).addTo(map);
+                })
+                .on('locationerror', () => {
+                    this.ToastService.error('Standort konnte nicht ermittelt werden!');
+                })
+        })
     }
     getLocationByAddress(address) {
 

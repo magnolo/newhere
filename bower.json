@@ -35,7 +35,8 @@
     "sprintf": ">=1.0.0",
     "leaflet-routing-machine": "https://github.com/perliedman/leaflet-routing-machine.git#^3.0.3",
     "angular-translate-storage-local": "^2.11.0",
-    "angular-translate-storage-cookie": "^2.11.0"
+    "angular-translate-storage-cookie": "^2.11.0",
+    "leaflet-icon-pulse": "leaflet-pulse-icon#^0.1.0"
   },
   "overrides": {
     "font-awesome": {
@@ -47,6 +48,12 @@
       "main": [
         "dist/Leaflet.fullscreen.js",
         "dist/leaflet.fullscreen.css"
+      ]
+    },
+    "leaflet-icon-pulse": {
+      "main": [
+        "src/L.Icon.Pulse.js",
+        "src/L.Icon.Pulse.css"
       ]
     }
   },
