@@ -1,5 +1,5 @@
 <div>
-    <div ng-if="!vm.isNgoPublished && !vm.loading" layout="row" layout-padding>
+    <div ng-if="!vm.cms && !vm.isNgoPublished && !vm.loading" layout="row" layout-padding>
         <p class="ngo-unpublished">{{ 'Ihre NGO wurde noch nicht freigeschalten. Sie können Angebote erstellen, diese werden jedoch erst freigeschalten, sobald Sie ein Administrator freigeschalten hat. ' | translate }}</p>
     </div>
     <md-toolbar class="md-table-toolbar md-default" layout-padding ng-if="!vm.showfilter">
