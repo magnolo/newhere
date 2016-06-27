@@ -138,34 +138,34 @@ export class MapService {
 
     }
     showRoute(start, end, type) {
-        if (this.route) {
-            this.map.removeLayer(this.route);
-        }
-        this.route = L.Routing.control({
-            waypoints: [
-                L.latLng(end),
-                L.latLng(start)
-            ],
-            lineOptions: {
-                styles: [{
-                    color: 'white',
-                    opacity: 0.8,
-                    weight: 12
-                }, {
-                    color: '#357DBA',
-                    opacity: 1,
-                    weight: 6
-                }]
-            },
-            router: L.Routing.mapzen('valhalla-ojkyxg5', {
-                costing: type
-            }),
-            formatter: new L.Routing.mapzenFormatter(),
-            summaryTemplate: '<div class="start">{name}</div><div class="info {costing}">{distance}, {time}</div>',
-            routeWhileDragging: false,
-            language: 'de-DE'
-        });
-        this.route.addTo(this.map);
+        // if (this.route) {
+        //     this.map.removeLayer(this.route);
+        // }
+        // this.route = L.Routing.control({
+        //     waypoints: [
+        //         L.latLng(end),
+        //         L.latLng(start)
+        //     ],
+        //     lineOptions: {
+        //         styles: [{
+        //             color: 'white',
+        //             opacity: 0.8,
+        //             weight: 12
+        //         }, {
+        //             color: '#357DBA',
+        //             opacity: 1,
+        //             weight: 6
+        //         }]
+        //     },
+        //     router: L.Routing.mapzen('valhalla-ojkyxg5', {
+        //         costing: type
+        //     }),
+        //     formatter: new L.Routing.mapzenFormatter(),
+        //     summaryTemplate: '<div class="start">{name}</div><div class="info {costing}">{distance}, {time}</div>',
+        //     routeWhileDragging: false,
+        //     language: 'de-DE'
+        // });
+        // this.route.addTo(this.map);
     }
 
 }

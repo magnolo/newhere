@@ -11,7 +11,7 @@ class AppCategoriesContentController {
             this.categories = categories;
             this.MapService.showRoute();
         }, () => {}, true);
-
+        $rootScope.showMap = false;
     }
 
     $onInit() {}
