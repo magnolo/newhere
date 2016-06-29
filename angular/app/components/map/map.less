@@ -7,6 +7,10 @@ map {
     left: 0;
     height: 100%;
     
+    .leaflet-control-layers {
+        display: none !important;
+    }
+
     .angular-leaflet-map {
         height: 100%;
         width: 100%;
@@ -74,5 +78,57 @@ map {
 
     .leaflet-fullscreen-on .leaflet-control-fullscreen a {
         background-position: 0 -32px;
+    }
+
+    .leaflet-marker-icon {
+        &.marker-cluster {
+            background-color: transparent !important;
+            
+            div {
+                position: relative;
+                width: 40px;
+                height: 23.09px;
+                background-color: @blue;
+                margin: 11.55px 0;
+                border-left: solid 3px #fff;
+                border-right: solid 3px #fff;
+                top: -4px;
+                left: -1px;
+                border-radius: 0;
+                
+                span {
+                    line-height: 1.9em;
+                    position: relative;
+                    z-index: 3;
+                    color: #fff;
+                }
+            }
+
+            div:before,
+            div:after {
+                content: "";
+                position: absolute;
+                z-index: 1;
+                width: 28.28px;
+                height: 28.28px;
+                -webkit-transform: scaleY(0.5774) rotate(-45deg);
+                -ms-transform: scaleY(0.5774) rotate(-45deg);
+                transform: scaleY(0.5774) rotate(-45deg);
+                background-color: inherit;
+                left: 2.8579px;
+            }
+
+            div:before {
+                top: -14.1421px;
+                border-top: solid 4.2426px #fff;
+                border-right: solid 4.2426px #fff;
+            }
+
+            div:after {
+                bottom: -14.1421px;
+                border-bottom: solid 4.2426px #fff;
+                border-left: solid 4.2426px #fff;
+            }
+        }
     }
 }

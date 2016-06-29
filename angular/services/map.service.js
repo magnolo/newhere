@@ -2,16 +2,17 @@ export class MapService {
     constructor($rootScope, ToastService, $translate, leafletData, leafletMarkerEvents, leafletMapEvents, leafletMapDefaults) {
         'ngInject';
 
-        // console.log(leafletMapEvents.getAvailableMapEvents());
-        // console.log(leafletMapDefaults.getDefaults());
         L.Icon.Default.imagePath = '/img';
         var vm = this;
         this.located = false;
         this.map = null;
         this.route = null;
         this.meMarker = null;
+        this.defaults = {};
+        this.markers = {};
         this.leafletData = leafletData;
-        leafletData.getMap().then((map) => {
+        this.leafletMarkerEvents = leafletMarkerEvents;
+        leafletData.getMap('nhMap').then((map) => {
             vm.map = map;
         })
         this.tokens = {
@@ -33,6 +34,11 @@ export class MapService {
         this.ToastService = ToastService;
         this.$translate = $translate;
         this.$rootScope = $rootScope;
+        this.defaults = {
+            //tap: false,
+            //dragging: false,
+            tapTolerance: 150
+        }
         this.center = {
             lat: 48.209272,
             lng: 16.372801,
@@ -54,7 +60,19 @@ export class MapService {
                         continuousWorld: false,
                         detectRetina: true,
                         showOnSelector: false,
+                        reuseTiles: true,
                         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>'
+                    }
+                }
+            },
+            overlays: {
+                offers: {
+                    name: 'Offers',
+                    type: 'markercluster',
+                    visible: true,
+                    layerOptions: {
+                        showCoverageOnHover: false,
+                        disableClusteringAtZoom: 15
                     }
                 }
             }
@@ -76,13 +94,14 @@ export class MapService {
         // };
         this.events = {
             markers: {
-                enable: ['touchend', 'click'], //leafletMarkerEvents.getAvailableEvents()
+                enable: this.leafletMarkerEvents.getAvailableEvents(),
             }
         };
 
         this.markers = {};
         this.setMarkers = (offers) => {
-            var markers = {}
+
+            var markers = {};
 
             angular.forEach(offers, (offer, key) => {
 
@@ -91,15 +110,27 @@ export class MapService {
                         offer_id: offer.id,
                         lng: parseFloat(offer.latitude),
                         lat: parseFloat(offer.longitude),
-                        icon: this.blueIcon
+                        icon: this.blueIcon,
+                        layer: 'offers',
+                        clickable: true,
+                        draggable: true
                     };
                     markers[offer.id] = marker;
+
                 }
             });
+
             this.markers = markers;
+
+
         }
 
-
+        $rootScope.$on("leafletDirectiveMarker.nhMap.click", function(event, args) {
+            // vm.$state.go('app.start.detail', {
+            //     id: args.model.offer_id
+            // });
+            console.log('click')
+        });
     }
 
     highlightMarker(offer) {
@@ -113,7 +144,7 @@ export class MapService {
             lat: parseFloat(offer.longitude),
             icon: this.whiteIcon,
             riseOnHover: true,
-            zIndex: 10
+            zIndexOffset: 9999999
         };
         this.markers[offer.id] = marker;
     }
@@ -152,7 +183,7 @@ export class MapService {
         }
     }
     locate() {
-        this.leafletData.getMap().then((map) => {
+        this.leafletData.getMap('nhMap').then((map) => {
             map.locate({
                 setView: true,
                 maxZoom: 14

@@ -9,7 +9,7 @@ class AppCategoriesContentController {
         this.CategoryService = CategoryService;
         this.CategoryService.all((categories) => {
             this.categories = categories;
-            this.MapService.showRoute();
+            //this.MapService.showRoute();
         }, () => {}, true);
         $rootScope.showMap = false;
     }

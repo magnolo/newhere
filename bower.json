@@ -18,7 +18,6 @@
     "restangular": "~1.5.2",
     "angular-loading-bar": "~0.8.0",
     "satellizer": "^0.14.0",
-    "angular-leaflet-directive": "^0.10.0",
     "angular-material-data-table": "~0.10.*",
     "angular-ui-tree": "~2.15.*",
     "angular-drag-and-drop-lists": "^1.4.0",
@@ -28,6 +27,7 @@
     "angular-sanitize": "^1.5.5",
     "ng-flow": "~2",
     "angular-wizard": "^0.6.1",
+    "ui-leaflet": "^1.0.1",
     "leaflet-fullscreen": "^1.0.1",
     "angular-paging": "^2.2.1",
     "angular-translate": "2.11.x",
@@ -36,7 +36,8 @@
     "leaflet-routing-machine": "https://github.com/perliedman/leaflet-routing-machine.git#^3.0.3",
     "angular-translate-storage-local": "^2.11.0",
     "angular-translate-storage-cookie": "^2.11.0",
-    "leaflet-icon-pulse": "leaflet-pulse-icon#^0.1.0"
+    "leaflet-icon-pulse": "leaflet-pulse-icon#^0.1.0",
+    "leaflet.markercluster": "https://github.com/Leaflet/Leaflet.markercluster.git#leaflet-0.7"
   },
   "overrides": {
     "font-awesome": {

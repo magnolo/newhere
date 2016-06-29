@@ -2,8 +2,7 @@
 <html ng-app="app" ng-strict-di>
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{!! elixir('css/vendor.css') !!}">
     <link rel="stylesheet" href="{!! elixir('css/app.css') !!}">
     <link href='https://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'>
@@ -23,7 +22,7 @@
     <script src="{!! elixir('js/vendor.js') !!}"></script>
     <script src="{!! elixir('js/partials.js') !!}"></script>
     <script src="{!! elixir('js/app.js') !!}"></script>
-    <script src="https://npmcdn.com/lrm-mapzen/dist/lrm-mapzen.js">
+    <!-- <script src="https://npmcdn.com/lrm-mapzen/dist/lrm-mapzen.js"> -->
     {{--livereload--}}
     @if ( env('APP_ENV') === 'local' )
     <script type="text/javascript">
