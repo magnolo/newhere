@@ -6,9 +6,15 @@
 
 .offer-grid-list md-grid-tile {
     cursor: pointer;
-    
+
     &:nth-child(odd) {
         background-color: #f8f8f8;
+        .offer-content{
+          .offer-address{
+              box-shadow: 0px 0px 15px 5px #f8f8f8;
+              background: #f8f8f8;
+          }
+        }
     }
 }
 
@@ -18,13 +24,13 @@
     color: @blue;
     height: 100%;
     padding-top: 1em;
-    
+
     h4 {
         text-transform: uppercase;
         margin-right: 10px;
         font-size: 1.2em;
         overflow: hidden;
-        
+
         @media screen and (max-width: 599px) {
             font-size: 1em;
             // text-overflow: ellipsis;
@@ -57,13 +63,24 @@
     overflow: hidden;
     text-overflow: ellipsis;
     color: @blue;
-    
+
     .offer-address {
+        // text-transform: uppercase;
+        // margin-top: 16px;
+        // position: absolute;
+        // bottom: 16px;
+        // font-weight: bold;
         text-transform: uppercase;
-        margin-top: 16px;
-        position: absolute;
-        bottom: 16px;
-        font-weight: bold;
+          margin-top: 16px;
+          position: absolute;
+          bottom: 0;
+          font-weight: bold;
+          background: #fff;
+          left: 0;
+          padding: 16px;
+          padding-top:.5em;
+          width: 100%;
+          box-shadow: 0px 0px 15px 5px #fff;
     }
 
     .offer-ngo-title {
@@ -87,7 +104,7 @@
     bottom: 0;
     width: 100%;
     z-index: 3;
-    
+
     .md-button {
         border-radius: 0;
     }
