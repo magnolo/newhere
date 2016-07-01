@@ -53,7 +53,7 @@ export class MapService {
             baselayers: {
                 xyz: {
                     name: 'LightAll',
-                    url: 'http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png',
+                    url: 'https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png',
                     type: 'xyz',
                     layerOptions: {
                         noWrap: true,
