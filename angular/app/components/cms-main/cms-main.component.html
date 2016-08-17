@@ -1,8 +1,12 @@
-<md-sidenav  md-is-locked-open="$mdMedia('gt-sm')" md-component-id="left" class="md-whiteframe-z1 md-sidenav-left main">
+<md-sidenav  md-is-locked-open="$mdMedia('gt-sm')" md-component-id="left" class="md-whiteframe-z1 md-sidenav-left main" style="min-height:100%">
   <md-toolbar md-theme="custom" >
-    <md-button layout="row" layout-align="center center" class="md-toolbar-tools" ui-sref="cms.dashboard">
+    <md-button layout="row" layout-align="space-between center" layout-align-gt-sm="center center" class="md-toolbar-tools" ui-sref="cms.dashboard">
       <h1><md-icon md-svg-src="/img/newhere-logo_white.svg" class="newHere-logo"></md-icon></h1>
+      <md-button class="md-icon-button" hide-gt-sm ng-click="vm.toggleItemsList()">
+        <md-icon>close</md-icon>
+      </md-button>
     </md-button>
+
   </md-toolbar>
   <cms-menu></cms-menu>
 </md-sidenav>

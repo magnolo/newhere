@@ -28,9 +28,7 @@
         <md-list-item>
         <md-button class="" ng-click="vm.changeLanguage()">{{ 'Sprache ändern' | translate }}</md-button>
       </md-list-item>
-      <!-- <md-list-item>
-        <md-button ui-sref="app.impressum">Impressum &amp; AGBs</md-button>
-      </md-list-item> -->
+
     </md-list>
     <md-list ng-if="$root.$auth.isAuthenticated()">
           <md-divider></md-divider>
@@ -40,6 +38,11 @@
             <md-list-item >
             <md-button class="" ui-sref="app.myngo">{{ 'Profil' | translate }}</md-button>
           </md-list-item>
+    </md-list>
+    <md-list class="bottom-nav">
+      <md-list-item>
+        <md-button ui-sref="app.impressum">Impressum &amp; AGBs</md-button>
+      </md-list-item>
     </md-list>
  </md-content>
 </md-sidenav>

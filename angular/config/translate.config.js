@@ -9,4 +9,5 @@ export function TranslateConfig($translateProvider) {
     $translateProvider.preferredLanguage('en');
     $translateProvider.fallbackLanguage('de');
     $translateProvider.useLocalStorage();
+    $translateProvider.useSanitizeValueStrategy('sanitize');
 }

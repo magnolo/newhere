@@ -1,4 +1,4 @@
-export function RoutesRun($rootScope, $state, $auth, $window, $mdSidenav, $translate, ToastService) {
+export function RoutesRun($rootScope, $state, $auth, $window, $mdComponentRegistry, $mdSidenav, $translate, ToastService) {
     'ngInject';
 
     $rootScope.cms = false;
@@ -28,8 +28,15 @@ export function RoutesRun($rootScope, $state, $auth, $window, $mdSidenav, $trans
         } else {
             $rootScope.isSplit = false;
         }
-        $mdSidenav('filter').close();
-        $mdSidenav('main-menu').close();
+        if($mdComponentRegistry.get('filter')){
+          $mdSidenav('filter').close()
+        }
+        if($mdComponentRegistry.get('main-menu')){
+            $mdSidenav('main-menu').close();
+        }
+        if($mdComponentRegistry.get('left')){
+          $mdSidenav('left').close();
+        }
 
     });
     $rootScope.$on('$destroy', deregisterationCallback)

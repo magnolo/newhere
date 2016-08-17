@@ -14,8 +14,9 @@ class AppHeaderController{
     $onInit(){
     }
     openMainMenu(){
+      this.$mdSidenav('main-menu').open();
       this.$mdSidenav('filter').close();
-      this.$mdSidenav('main-menu').toggle();
+
     }
 }
 

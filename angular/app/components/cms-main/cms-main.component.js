@@ -8,7 +8,6 @@ class CmsMainController{
     }
     toggleItemsList() {
       this.mdSidenav('left').toggle();
-
     }
     $onInit(){
     }
