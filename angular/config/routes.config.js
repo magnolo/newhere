@@ -201,6 +201,14 @@ export function RoutesConfig($stateProvider, $urlRouterProvider) {
                 }
             }
         })
+        .state('app.impressum',{
+          url:'/impressum-agbs',
+          views:{
+            'main@app':{
+              templateUrl:getView('impressum')
+            }
+          }
+        })
 
     //
     // CMS
