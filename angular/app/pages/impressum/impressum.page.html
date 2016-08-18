@@ -1,42 +1,47 @@
 <md-content class="Page-container" flex>
     <md-toolbar>
-        <div class="md-toolbar-tools">
+        <div class="md-toolbar-tools" layout="row" layout-align="space-between center">
             <h2>
-                <span>Impressum &amp; AGBs</span>
+                <span>Impressum &amp; Nutzungsbedingungen</span>
             </h2>
+            <md-button hide-xs hide-sm href="/nutzungsbedingungen.pdf" download="Impressum-Nutzungsbedingungen.pdf" title="Nutzungsbedingungen herunterladen"><md-icon>file_download</md-icon>&nbsp;Download</md-button>
+
         </div>
     </md-toolbar>
-    <div layout-gt-sm="row" layout="column">
-        <div flex-gt-sm="25" flex layout-padding>
-            <h2>Impressum</h2>
-            <div>
-                <h3>New Here.</h3>
-                <p>Venediger Au 5<br/>
-                  A 1020 Wien<br/>
-                </p>
-                <p>
-                    E:
-                    <a href="mailto:info@newhere.org">info@newhere.org</a><br>
-                    W:
-                    <a href="https://www.newhere.org">https://www.newhere.org</a>
-                </p>
+        <div layout="row" layout-align="center center" hide-gt-sm >
+          <md-button class="md-primary" href="/nutzungsbedingungen.pdf" download="Impressum-Nutzungsbedingungen.pdf" title="Nutzungsbedingungen herunterladen"><md-icon>file_download</md-icon>&nbsp;Download</md-button>
 
-            </div>
         </div>
-        <div flex-gt-sm="75" flex layout-padding>
-            <h2>ABGs</h2>
+        <div flex="80" flex-offset="10" layout-padding>
+            <h2>IMPRESSUM</h2>
             <div>
+              <p class="Standard">Medieneigentümer des Stadtplans New Here. ist der Verein New Here.</p>
+              <p class="Standard"></p>
+              <p class="Standard">Verein: New Here.</p>
+              <p class="Standard">Adresse: Venediger Au 5, 1020-Wien</p>
+              <p class="Standard">Vereinsregisternummer: 015621708</p>
+              <p class="P2">Vereinsvorstand: Katherine Thompson (Obfrau), Petr Kudelka (Obfrau Stellvertreter), Leon Cusculeca (Kassier), Anna Müller-Funk (Kassier Stellvertreterin), Manuel Grohs (Schriftführer), Johannes Jäschke (Schriftführer Stellvertreter),
+                  Natalie Assmann (Vorstandsmitglied)</p>
+                  <p>
+                      E:
+                      <a href="mailto:info@newhere.org">info@newhere.org</a><br>
+                      W:
+                      <a href="https://www.newhere.org">https://www.newhere.org</a>
+                  </p>
               <p class="Heading_20_3">Grundlegende Richtung</p>
-              <p class="Standard">Diese Seiten sind [...] des Vereins [...]. Der Verein [...] [Vereinszweck] bzw. Auszug des Vereinszwecks gemäß Statuten</p>
+              <p class="P2">Der Vereinszweck des Verein New Here ist die
+                  <span class="T1"></span>Förderung und Vermittlung von Angeboten für Flüchtlinge und Stärkung zivilgesellschaftlicher Solidarität<span class="T1">.</span>
+              </p>
               <p class="Heading_20_3">Haftungsausschluss</p>
               <p class="Standard">Im Hinblick auf die technischen Eigenschaften des Internet kann keine Gewähr für die Authentizität, Richtigkeit und Vollständigkeit der im Internet zur Verfügung gestellten Informationen übernommen werden. Es wird auch keine
                   Gewähr für die Verfügbarkeit oder den Betrieb der gegenständlichen Homepage und ihrer übernommenen Inhalte übernommen.</p>
               <p class="Standard"></p>
-              <p class="Standard">Sämtliche Texte von [dem Verein] selbst auf der Homepage von [<span class="T2">new here</span>] wurden sorgfältig geprüft. Dessen ungeachtet kann keine Garantie für die Richtigkeit, Vollständigkeit und Aktualität der Angaben übernommen werden. Eine Haftung von [<span class="T2">new here</span>] wird daher ausgeschlossen.
+              <p class="Standard">Sämtliche Texte auf der Homepage von New Here. selbst wurden sorgfältig geprüft. Dessen ungeachtet kann keine Garantie für die Richtigkeit, Vollständigkeit und Aktualität der Angaben übernommen werden. Eine Haftung von New Here.
+                  wird daher ausgeschlossen.
               </p>
               <p class="Standard"></p>
-              <p class="Standard">Weiters wird jede Haftung für unmittelbare, mittelbare oder sonstige Schäden, unabhängig von deren Ursachen, die aus der Benutzung oder Nichtverfügbarkeit der Daten und Informationen dieser Homepage erwachsen, wird, soweit
-                  rechtlich zulässig, ausgeschlossen.</p>
+              <p class="P2">Weiters wird jede Haftung für unmittelbare, mittelbare oder sonstige Schäden, unabhängig von deren Ursachen, die aus der Benutzung oder Nichtverfügbarkeit der Daten und Informationen dieser Homepage erwachsen, soweit rechtlich zulässig,
+                  ausgeschlossen.</p>
               <p class="Heading_20_3">Haftung für Informationen und Angebote von BenutzerInnen dieser Website</p>
               <p class="Standard">Auf den Inhalt der von BenutzerInnen zur Verfügung gestellten Informationen und Angebote, kann kein Einfluss genommen werden, es wird daher keine Haftung übernommen. Für die Inhalte sind stets die sie zur Verfügung stellenden
                   BenutzerInnen verantwortlich, die ihrerseits in die Nutzungsbedingungen eingewilligt haben. Der Inhalt der Informationen wurde zum Zeitpunkt ihres zur Verfügung-Stellens überprüft. Eine permanente inhaltliche Kontrolle ist jedoch ohne konkrete
@@ -46,165 +51,185 @@
                   ist stets der jeweilige Anbieter oder Betreiber der Seiten verantwortlich. Die verlinkten Seiten wurden zum Zeitpunkt der Verlinkung auf mögliche Rechtsverstöße überprüft. Rechtswidrige Inhalte waren zum Zeitpunkt der Verlinkung nicht erkennbar. Eine
                   permanente inhaltliche Kontrolle der verlinkten Seiten ist jedoch ohne konkrete Anhaltspunkte einer Rechtsverletzung nicht zumutbar. Bei bekannt werden von Rechtsverletzungen werden derartige Links umgehend entfernt.</p>
               <p class="Heading_20_3">Copyright</p>
-              <p class="Standard">© Das grafisches Konzept und die Programmierung der Homepage [<span class="T2">new here</span>] wurden von [<span class="T2">...</span>] erstellt. Die Inhalte der Website sind
-                  <span class="T2">im World-Wide-Web für den Online-Zugriff
-                  </span>
-                  <span class="T2">veröffentlicht</span>, das Urheberrecht und die Nutzungsrechte (Copyright) für Texte, Graphiken, Design und Quellcode liegen bei [...], ebenso das Nutzungsrecht für die Bilder.</p>
-              <p class="Standard"></p>
-              <p class="Standard">Die Erstellung, die Verwendung und die nicht kommerzielle Weitergabe von Kopien in elektronischer oder ausgedruckter Form sind erlaubt, [<span class="T2">wenn der Inhalt unverändert bleibt und die Quelle angegeben wird (Quelle: [...])</span>]. (oder eben nicht erlaubt)</p>
-              <p class="Heading_20_3">NUTZUNGSBEDINGUNGEN</p>
-              <p class="Standard">Herzlich willkommen auf der Website www [...] des Vereins [....]., im Folgenden kurz „Verein“ genannt.
+              <p class="Standard">© Das grafisches Konzept und die Programmierung der Homepage
+                  <a href="http://www.newhere.org" class="Internet_20_link">www.newhere.org</a>
+                  wurden von Manfred Waldner (Programmierung) und Markus Riedler (grafisches Konzept) erstellt. Die Inhalte der Website sind im World-Wide-Web für den Online-Zugriff veröffentlicht. Das Urheberrecht und die Nutzungsrechte (Copyright) für Texte,
+                  Graphiken, Design und Quellcode liegen bei Manfred Waldner und Markus Riedler. Der Quellcode steht als GNU Lizenz (General Public License). Das Nutzungsrecht der Bilder liegt bei dem Verein New Here.
               </p>
               <p class="Standard"></p>
-              <p class="Standard">Für sämtliche Aktivitäten auf der Website www.[...] und der Mobile-App-[...] [sowie ...] gelten die vorliegenden Nutzungsbedingungen des Vereins [...]. Nutzungs- oder Geschäftsbedingungen der BenutzerInnen, der
-                  Extranet-Vertragspartner, der Projekt- Partner oder Mobile-App-Partner erlangen keinerlei Gültigkeit, außer sie werden Teil einer gesonderten vertraglichen Vereinbarung mit dem Verein.</p>
+              <p class="Standard">Eine Nutzung von Texten und Bildern oder sonstiger Inhalte im Sinne einer Unterstützung oder Verbreitung der Ideen ist nach Rückfrage möglich, wobei der Verein jederzeit das Recht hat diese beschränkte Nutzungsfreigabe zu widerrufen.</p>
               <p class="Standard"></p>
-              <p class="Heading_20_3">MÖGLICHKEITEN DER NUTZUNG DER WEBSITE/DER APP</p>
-              <p class="Standard">Der Zugang zur Website [...] bzw. der auf ihr angebotnene Plattform ist in unterschiedlicher Form möglich. Anonymen BenutzerInnen stehen alle frei zugänglichen Bereiche sowie der statische Inhalt offen. Sie können das auf der
-                  Plattform angebotene Informationsangebot nützen. Sie können aber selbst keine Informationsangebote auf der Website zur Verfügung stellen. Auch für anonyme BenutzerInnen gelten die gegenständlichen Nutzungsbedingungen.</p>
-              <p class="Standard"></p>
-              <p class="Standard">Aktive BenutzerInnen können entsprechend diesen Nutzungsbedingunen auf der Website Informationen betreffend Angebote [NÄHER UND GENAU AUSFÜHREN. NICHT, DASS HIER DANN SCHUHE VERKAUFT WERDEN] zur Verfügung stellen. Um ein/e
-                  aktive/r BenutzerIn zu werden, müssen Sie sich auf der Website registrieren und diesen Nutzungsbestimmungen zustimmen. Wenn Sie sich auf der Website registrieren, dann wird ein Benutzerkonto (User-Profil) für Sie eingerichtet und Sie können
-                  Informationsangebote auf die Website stellen, bzw. auf dieser sichtbar machen. Sie gelten auf der Website als „registrierte“ BenutzerIn. Als registrierte BenutzerIn können Sie auch eine Organisation (juristische Person) anlegen, die dann ebenfalls
-                  als registrierte Benutzerin gilt.
+              <p class="Standard">Die Erstellung, die Verwendung und die nicht kommerzielle Weitergabe von Kopien in elektronischer oder ausgedruckter Form sind erlaubt, [wenn der Inhalt unverändert bleibt und die Quelle angegeben wird (Quelle:
+                  <a href="http://www.newhere.org/" class="Internet_20_link">www.newhere.org</a>).</p>
+
+
+            </div>
+
+            <h2>NUTZUNGSBEDINGUNGEN</h2>
+            <div>
+              <p class="Standard">Herzlich willkommen auf der Website www.newhere.org des Vereins New Here., im Folgenden kurz „Verein“ genannt.
               </p>
               <p class="Standard"></p>
+              <p class="Standard">Für sämtliche Aktivitäten auf der Website www.newhere.org und www.newhere.at gelten die vorliegenden Nutzungsbedingungen des Vereins New Here. Nutzungs- oder Geschäftsbedingungen der BenutzerInnen, der Extranet-Vertragspartner,
+                  der Projekt- Partner oder anderer Partner erlangen keinerlei Gültigkeit, außer sie werden Teil einer gesonderten vertraglichen Vereinbarung mit dem Verein.</p>
+              <p class="Standard"></p>
+              <p class="P5">MÖGLICHKEITEN DER NUTZUNG DER WEBSITE</p>
+              <p class="P2">Der Zugang zur Website newhere.org bzw. zu der auf ihr angebotenen Plattform ist in unterschiedlicher Form möglich. Anonymen BenutzerInnen stehen alle frei zugänglichen Bereiche sowie der statische Inhalt offen. Sie können das auf der
+                  Plattform angebotene Informationsangebot nützen. Sie können aber selbst keine Informationsangebote auf der Website zur Verfügung stellen. Auch für anonyme BenutzerInnen gelten die gegenständlichen Nutzungsbedingungen.</p>
+              <p class="Standard"></p>
+              <p class="Standard">Aktive BenutzerInnen können entsprechend diesen Nutzungsbedingungen auf der Website Informationen betreffend Angebote für den Alltagsbedarf von Asylberechtigten in Wien zur Verfügung stellen. Um ein/e aktive/r BenutzerIn zu
+                  werden, müssen Sie sich auf der Website registrieren und diesen Nutzungsbestimmungen zustimmen. Wenn Sie sich auf der Website registrieren, dann wird ein Benutzerkonto (User-Profil) für Sie eingerichtet und Sie können Informationsangebote auf die
+                  Website stellen, bzw. auf dieser sichtbar machen. Sie gelten auf der Website als „registrierte“ BenutzerIn. Als registrierte BenutzerIn können Sie auch eine Organisation (juristische Person) anlegen, die dann ebenfalls als registrierte Benutzerin
+                  gilt.
+              </p>
               <p class="Heading_20_3">URHEBERRECHTE UND NUTZUNGSRECHTE</p>
-              <p class="Standard">Das Urheberrecht und die Nutzungsrechte (Copyright) für Texte, Graphiken, Design und Quellcode liegen bei [...], ebenso das Nutzungsrecht für die Bilder der Website www [...] sowie der App [...] liegen bei dem Verein [...]
-                  verbleiben auch unbeschränkt bei diesem. Eine Nutzung von Texten und Bildern oder sonstiger Inhalte sowie [...] im Sinne einer Unterstützung oder Verbreitung der Ideen von [...] ist nach Rückfrage möglich, wobei der Verein jederzeit das Recht hat
-                  diese beschränkte Nutzungsfreigabe zu widerrufen.GENERELLE VERANTWORTUNG ALLER BENUTZERINNEN DER WEBSITE</p>
-              <p class="Standard">Die Website [bzw. Projekt/Vereinsname] ist den Werten von Respekt, Toleranz, Offenheit und Solidarität sowie dem Anspruchskatalog der Allgemeinen Erklärung der UN- Menschenrechte verpflichtet. Alle BenutzerInnen verpflichten
-                  sich zu einem respektvollen Umgang untereinander und bei allen weiteren Tätigkeiten, die im Zusammenhang mit der Erbringung den auf der Website bekanntgemachten Services stehen.</p>
+              <p class="Standard">Das Urheberrecht und die Nutzungsrechte (Copyright) für Texte, Graphiken, Design und Quellcode liegen bei Manfred Waldner und Markus Riedler. Der Quellcode steht als GNU Lizenz (General Public License). Das Nutzungsrecht für die Bilder der Website
+                  <a href="http://www.newhere.org" class="Internet_20_link">www.newhere.org</a>
+                  liegen bei dem Verein New Here. verbleiben auch unbeschränkt bei diesem. Eine Nutzung von Texten und Bildern oder sonstiger Inhalte im Sinne einer Unterstützung oder Verbreitung der Ideen von New Here. ist nach Rückfrage möglich, wobei der Verein
+                  jederzeit das Recht hat diese beschränkte Nutzungsfreigabe zu widerrufen.</p>
+              <p class="Heading_20_3">GENERELLE VERANTWORTUNG ALLER BENUTZERINNEN DER WEBSITE</p>
+              <p class="Standard">Die Website New Here ist den Werten von Respekt, Toleranz, Offenheit und Solidarität sowie dem Anspruchskatalog der Allgemeinen Erklärung der UN- Menschenrechte verpflichtet. Alle BenutzerInnen verpflichten sich zu einem
+                  respektvollen Umgang untereinander und bei allen weiteren Tätigkeiten, die im Zusammenhang mit der Erbringung den auf der Website bekanntgemachten Services stehen.</p>
               <p class="Standard"></p>
-              <p class="Standard">Alle BenutzerInnen haben selbst zu prüfen, dass ihre Aktivitäten auf der Website bzw. die von ihnen auf der Website bekanntgemachten Angebote nicht gegen geltendes Recht, gegen die guten Sitten oder gegen Rechtsansprüche
-                  Dritter (insbesondere Urheber-, Marken-, Namensrecht, sonstige Persönlichkeitsrechte etc.) verstoßen.</p>
+              <p class="Standard">Alle BenutzerInnen haben selbst zu prüfen, dass ihre Aktivitäten auf der Website bzw. die von ihnen auf der Website bekanntgemachten Angebote nicht gegen geltendes Recht, gegen die guten Sitten oder gegen Rechtsansprüche Dritter
+                  (insbesondere Urheber-, Marken-, Namensrecht, sonstige Persönlichkeitsrechte etc.) verstoßen.</p>
               <p class="Standard"></p>
-              <p class="Standard">Insbesondere verpflichten sich alle BenutzerInnen folgendes Verbot nicht zu verletzen: Es ist verboten auf der Website [...] nachfolgende Inhalte zu posten, zu publizieren, einzustellen oder Links mit derartigen Inhalten zu
-                  platzieren oder darauf zu verweisen sonst irgendeinen Zugang zu derartigen Inhalten zu ermöglichen oder anzubieten:</p>
+              <p class="Standard">Insbesondere verpflichten sich alle BenutzerInnen folgendes Verbot nicht zu verletzen: Es ist verboten auf der Website www. Newhere.org nachfolgende Inhalte zu posten, zu publizieren, einzustellen oder Links mit derartigen
+                  Inhalten zu platzieren oder darauf zu verweisen sonst irgendeinen Zugang zu derartigen Inhalten zu ermöglichen oder anzubieten:</p>
               <p class="Standard"></p>
               <p class="Standard">• Inhalte, die den oben dargestellten Werten Respekt, Toleranz und Offenheit im Umgang mit anderen BenutzerInnen oder allen Menschen widersprechen;</p>
               <p class="Standard">• Inhalte, die zu rechtswidrigen Handlungen oder Gewalt aufrufen;</p>
-              <p class="Standard">• Menschenfeindliche, gewaltverherrlichende oder rassistische Äußerungen bzw.</p>
+              <p class="Standard">• Menschenfeindliche, gewaltverherrlichende oder rassistische Äußerungen bzw.</p>
               <p class="Standard">Inhalte;</p>
-              <p class="Standard">• Pornographische; obszöne, sonstige sittenwidrige oder jugendgefährdende Inhalte;</p>
+              <p class="Standard">• Pornographische; obszöne, sonstige sittenwidrige oder jugendgefährdende Inhalte;</p>
               <p class="Standard">• Unwahre Tatsachenbehauptungen, Beleidigungen oder Beschimpfungen;</p>
-              <p class="Standard">• Irreführende Inhalte oder Angebote;</p>
+              <p class="Standard">• Irreführende Inhalte oder Angebote;</p>
               <p class="Standard">• Rechtswidrige und/oder strafbare Inhalte oder Inhalte, die Rechte Dritter verletzen</p>
-              <p class="Standard">bzw. (Schaden)-Ersatzansprüche auslösen können.</p>
+              <p class="Standard">bzw. (Schaden)-Ersatzansprüche auslösen können.</p>
               <p class="Standard"></p>
-              <p class="Standard">Der Verein behält sich vor, derartige Inhalte samt allen Verweisen dazu auf der Website zu löschen. Alle BenutzerInnen der Website werden ersucht, das Auftauchen derartiger Inhalte umgehend bei der Administration unter
-                  <span class="T2">email@email.com</span>
-                  zu melden. Gleiches gilt für das Auftauchen von Betriebsproblemen oder Sicherheitsmängeln.</p>
+              <p class="Standard">Der Verein behält sich vor, derartige Inhalte samt allen Verweisen dazu auf der Website zu löschen. Alle BenutzerInnen der Website werden ersucht, das Auftauchen derartiger Inhalte umgehend bei der Administration unter
+                  <a href="mailto:info@newhere.org" class="Internet_20_link">info@newhere.org</a>
+                  zu melden. Gleiches gilt für das Auftauchen von Betriebsproblemen oder Sicherheitsmängeln.</p>
               <p class="Standard"></p>
-              <p class="Standard">Alle BenutzerInnen sind uneingeschränkt für ihre eigenen Inhalte, Kommentare, Aussagen oder ihr sonstiges Verhalten auf der Website und in der Mobile-App verantwortlich. Der Verein stellt die Website als Plattform zur
-                  Verfügung, aber überprüft die von BenutzerInnen eingegebenen Texte oder sonstigen Inhalte nicht. Die Verein übernimmt daher keine Haftung für Äußerungen oder Inhalte der BenutzerInnen.</p>
+              <p class="Standard">Alle BenutzerInnen sind uneingeschränkt für ihre eigenen Inhalte, Kommentare, Aussagen oder ihr sonstiges Verhalten auf der Website verantwortlich. Der Verein stellt die Website als Plattform zur Verfügung, aber überprüft die von
+                  BenutzerInnen eingegebenen Texte oder sonstigen Inhalte nicht. Der Verein übernimmt daher keine Haftung für Äußerungen oder Inhalte der BenutzerInnen.</p>
               <p class="Standard"></p>
-              <p class="Standard">Sämtliche BenutzerInnen -BenutzerInnen sind verpflichtet, für eine sichere Verwahrung der Zugangsdaten zu sorgen und nichtberechtigten Zugriff zu verhindern. Die Weitergabe von Zugangsdaten wie Benutzername und Passwort ist untersagt.</p>
-              <p class="Standard">Es sind alle Maßnahmen untersagt, die einen nichtberechtigten Zugriff auf Datenbanken der Website bewirken oder bewirken könnten. Es sind auch alle Maßnahmen untersagt, die einen reibungslosen Betrieb der Website einschränken
-                  oder gefährden. BenutzerInnen, die gegen diese Regeln verstoßen, können vom Verein vom Zutritt zur zur Website und ihren Anwendungen fristlos ausgeschlossen werden.</p>
+              <p class="Standard">Sämtliche BenutzerInnen sind verpflichtet, für eine sichere Verwahrung der Zugangsdaten zu sorgen und nichtberechtigten Zugriff zu verhindern. Die Weitergabe von Zugangsdaten wie Benutzername und Passwort ist untersagt.</p>
+              <p class="Standard">Es sind alle Maßnahmen untersagt, die einen nichtberechtigten Zugriff auf Datenbanken der Website bewirken oder bewirken könnten. Es sind auch alle Maßnahmen untersagt, die einen reibungslosen Betrieb der Website einschränken oder
+                  gefährden. BenutzerInnen, die gegen diese Regeln verstoßen, können vom Verein vom Zutritt zur Website und ihren Anwendungen fristlos ausgeschlossen werden.</p>
               <p class="Heading_20_3">REGISITRIEREN EINES BENUTZERINNENKONTOS</p>
-              <p class="Standard">Sie können bei der Online-Registrierung einen Benutzernamen und ein Passwort selbst festlegen. Pflichtfelder direkt bei der Registrierung sind Vor- und Nachname sowie die E- Mailadresse und das Geburtsdatum. Unmittelbar nach dem
-                  Registrierungsvorgang erhalten Sie eine Information über die Anlage ihrer Benutzerkontos.</p><p class="Standard"/>
-              <p class="Standard">Sie erhalten nach der Registrierung ein E-Mail, als schriftliche Bestätigung Ihrer Registrierung. Sie müssen Ihre Registrierung durch das Anklicken eines Bestätigungslinks bestätigen. Damit verhindern wir, dass sich jemand
-                  ohne Information an Sie unter Ihrer E- Mail fälschlicherweise anmeldet und stellen zudem sicher, dass die angegebene E-Mail- Adresse korrekt ist. Bitte melden Sie rück, wenn Sie fälschlich registriert wurden.</p>
+              <p class="Standard">Sie können bei der Online-Registrierung einen Benutzernamen und ein Passwort selbst festlegen. Pflichtfelder direkt bei der Registrierung sind Vor- und Nachname bzw. Name der juristischen Person (NGO), E- Mailadresse, Passwort,
+                  Kontaktname sowie eine Telefonnummer zwecks Erreichbarkeit.
+              </p>
               <p class="Standard"></p>
-              <p class="Standard">Sie müssen im Zuge des Registrierungsvorgangs bestätigen, dass Sie die vorliegenden Nutzungsbedingungen der Website akzeptieren. Sie können die Nutzungsbedingungen einfach downloaden (wo genau) oder auch direkt aus dem
-                  angegebenen Link die Nutzungsbedingungen ausdrucken. Ein Zugang zu den registrierungspflichtigen Bereichen ohne Bestätigung der Nutzungsbedingungen ist<span class="T1">
+              <p class="Standard">Nach dem Registrierungsvorgang wird die Richtigkeit der von Ihnen angegeben Daten, auch durch persönliche Kontaktaufnahme seitens des Vereins, verifiziert. Damit verhindern wir, dass sich jemand ohne Information an Sie unter Ihrer
+                  E- Mail fälschlicherweise anmeldet und stellen zudem sicher, dass die angegebene E-Mail- Adresse korrekt ist. Bitte melden Sie rück, wenn Sie fälschlich registriert wurden.</p>
+              <p class="Standard"></p>
+              <p class="Standard">Sobald die Richtigkeit der von Ihnen angegeben Daten überprüft wurde, wird ihr BenutzerInnenkonto erstellt bzw. freigeschalten. Sobald ihr Konto aktiv ist, können Sie selbstständig auf der Website Angebote eintragen.
+              </p>
+              <p class="Standard"></p>
+              <p class="P2">Sie müssen im Zuge des Registrierungsvorgangs bestätigen, dass Sie die vorliegenden Nutzungsbedingungen der Website akzeptieren. Sie können die Nutzungsbedingungen einfach downloaden:
+                  <a href="http://www.newhere.org/nutzungsbedingungen.pdf" class="Internet_20_link">
+                      <span class="T5">www.newhere.org/nutzungsbedingungen.pdf</span>
+                  </a>
+                  <span class="T5">.
+                  </span>Ein Zugang zu den registrierungspflichtigen Bereichen ohne Bestätigung der Nutzungsbedingungen ist<span class="T1">
                       ausgeschlossen</span>.</p>
               <p class="Standard"></p>
               <p class="Standard">
-                  <span class="T3">Zur Überprüfung der Volljährigkeit ist im Benutzerprofil (Menüpunkt „..“) die korrekte Angabe des Geburtsdatums notwendig. Ein Zugang zu den Bereichen, die uneingeschränkte Geschäftsfähigkeit erfordern, ist erst nach Eingabe
-                      des Geburtsdatums möglich.
-                  </span>
-              </p>
-              <p class="Standard">
-                  <span class="T3">Alle BenutzerInnen verpflichten sich, richtige und vollständige Angaben zu ihrer Person (gilt sowohl für natürliche Personen [= Privatpersonen] als auch juristische Personen [= Organisationen]) zu machen.
+                  <span class="T3">Alle BenutzerInnen – sowohl natürliche als auch juristische Personen - verpflichten sich, richtige und vollständige Angaben zu ihrer Person zu machen. Zur Überprüfung der Volljährigkeit von natürlichen Personen ist die korrekte
+                      Angabe des Geburtsdatums notwendig. Ein Zugang zu den Bereichen, die uneingeschränkte Geschäftsfähigkeit erfordern, ist erst nach Bekanntgabe des Geburtsdatums, und bei Erreichen der Volljährigkeit, möglich.
                   </span>
               </p>
               <p class="P1"></p>
+              <p class="P1"></p>
               <p class="Standard">
-                  <span class="T4">Sie ermächtigen den Verein ausdrücklich zur Überprüfung der Personenangaben und, zur Durchsetzung der Bestimmungen dieser Nutzungsbedingungen, auch dazu, eine Abfrage beim zentralen Melderegister (ZMR) bei natürlichen Personen
-                      oder im Falle juristischer Personen (Organisationen) beim Vereinsregister oder Firmenbuch durch dafür befugte Dienstleister vornehmen zu lassen. Gibt es keine vollständige Übereinstimmung der angegebenen und aus der ZMR-, Vereinsregister- oder
+                  <span class="T4">Sie ermächtigen den Verein ausdrücklich zur Überprüfung der Personenangaben und, zur Durchsetzung der Bestimmungen dieser Nutzungsbedingungen, auch dazu, eine Abfrage beim zentralen Melderegister (ZMR) bei natürlichen Personen oder
+                      im Falle juristischer Personen (Organisationen) beim Vereinsregister oder Firmenbuch durch dafür befugte Dienstleister vornehmen zu lassen. Gibt es keine vollständige Übereinstimmung der angegebenen und aus der ZMR-, Vereinsregister- oder
                       Firmenbuchabfrage stammenden Personendaten, werden Sie zur Berichtigung aufgefordert. Ist die Berichtigung nicht erfolgreich, so wird Ihr Benutzerkonto bzw. der von Ihnen zur Verfügung gestellte Inhalt gesperrt.</span>
               </p>
               <p class="Heading_20_3">VERANTWORTUNG SOWIE RECHTE UND PFLICHTEN DER BENUTZERINNEN</p>
               <p class="Standard">
-                  <span class="T3">Die BenutzerInnen übernehmen die alleinige Verantwortung für von Ihnen zur Verfügung gestellten Informationen und Angebote. Die Verein ist nicht verpflichtet, die zur Verfügung gestellten Informationen und Angebote zu überprüfen,
-                      ist aber berechtigt, eine solche Überprüfung durchzuführen.</span>
+                  <span class="T3">Die BenutzerInnen übernehmen die alleinige Verantwortung für von Ihnen zur Verfügung gestellten Informationen und Angebote. Die Verein ist nicht verpflichtet, die zur Verfügung gestellten Informationen und Angebote zu überprüfen, ist
+                      aber berechtigt, eine solche Überprüfung durchzuführen.</span>
               </p>
               <p class="P1"></p>
-              <p class="Standard">Bezüglich der Präsentation der Informationen und Angebote und aller damit verbundenen Inhalte auf der Website treten die BenutzerInnen alle erforderlichen Nutzungsrechte (Urheber-, Marken-, Namensrecht etc.) zur Bewerbung und
-                  Dokumentation der Informationen und Angebote an den Verein ab. Die Abtretung der Nutzungsrechte erfolgt nur in dem beschränken Umfang wie es für das Zurverfügungstellen der Informationen und Angebote bzw. der Dokumentation derselben durch den
-                  Verein sowie für die Präsentation auf der Website erforderlich ist. Die Einräumung der Rechte im beschriebenen Umfang erfolgt nicht-exklusiv. Der Verein wird von den BenutzerInnen uneingeschränkt berechtigt, die auf der Website allgemein zugänglich
-                  gemachten Informationen und Angebote für die Bewerbung der Website sowie für andere Projekte des Vereins im Zusammenhang mit der Website [zB...] einzusetzen. Eine anderwärtige kommerzielle Verwertung außerhalb des Kontextes der Website und damit
-                  verbundener Projekte wie zB oder ähnlicher Aktivitäten ist dem Verein nicht erlaubt.</p>
-              <p class="Standard"></p>
-              <p class="Standard">BenutzerInnen können ihren Austritt per E-Mail erklären. Bei Organisationen (juristischen Personen) kann ein Austritt nur durch eine vertretungsbefugte Person erfolgen. Damit sind diese BenutzerInnen bzw. die von Ihnen auf der
-                  Website bekanntgemachten Angebote auf der Website für andere BenutzerInnen nicht mehr sichtbar.
+              <p class="Standard">Bezüglich der Präsentation der Informationen und Angebote und aller damit verbundenen Inhalte auf der Website treten die BenutzerInnen alle erforderlichen Nutzungsrechte (Urheber-, Marken-, Namensrecht etc.) zur Bewerbung und
+                  Dokumentation der Informationen und Angebote an den Verein ab. Die Abtretung der Nutzungsrechte erfolgt nur in dem beschränkten Umfang wie es für die Zurverfügungstellung der Informationen und Angebote bzw. der Dokumentation derselben durch den
+                  Verein sowie für die Präsentation auf der Website erforderlich ist. Die Einräumung der Rechte im beschriebenen Umfang erfolgt nicht-exklusiv.
               </p>
-              <p class="Standard">Der Verein hält die Daten von registrierten BenutzerInnen zumindest für einen Zeitraum von 7 Jahren gespeichert, um etwaigen gesetzlichen Verpflichtungen oder richterlichen Anordnungen entsprechen zu können.</p>
               <p class="Standard"></p>
-              <p class="Standard">Der Verein kann alle BenutzerInnen jederzeit, mit oder ohne Angabe von Gründen vom Zugang zur Website sperren. Dies erfolgt insbesondere bei Verstößen gegen die Nutzungsbedingungen. Abhängig von der Schwere des Verstoßes, kann
-                  BenutzerInnen die Möglichkeit einer Stellungnahme eingeräumt werden. Bei Angabe falscher personenbezogener Daten wird keine Möglichkeit zur Stellungnahme eingeräumt.</p>
-              <p class="Standard">Wenn sich BenutzerInnen ungerechtfertigt gesperrt fühlen, dann können sie beim Back Office des Vereins unter email@email.com eine begründete Beschwerde einbringen. Wenn die Begründung eine Aufhebung der Sperre ausreichend
-                  unterstützt, dann kann eine Aufhebung der Sperre veranlasst werden.</p>
+              <p class="Standard">Der Verein wird von den BenutzerInnen uneingeschränkt berechtigt, die auf der Website allgemein zugänglich gemachten Informationen und Angebote für die Bewerbung der Website sowie für andere Projekte des Vereins im Zusammenhang
+                  mit der Website einzusetzen. Eine andere kommerzielle Verwertung außerhalb des Kontextes der Website und damit verbundener Projekte ist dem Verein nicht erlaubt.</p>
+              <p class="Standard"></p>
+              <p class="Standard">BenutzerInnen können ihre auf der Website bekanntgemachten Angebote für andere BenutzerInnen unsichtbar machen, ohne sich abzumelden.</p>
+              <p class="Standard"></p>
+              <p class="Standard">BenutzerInnen können ihren Austritt per E-Mail erklären. Bei Organisationen (juristischen Personen) kann ein Austritt nur durch eine vertretungsbefugte Person erfolgen. Damit sind diese BenutzerInnen bzw. die von Ihnen auf der
+                  Website bekanntgemachten Angebote auf der Website für andere BenutzerInnen nicht mehr sichtbar.
+              </p>
+              <p class="Standard"></p>
+              <p class="Standard">Der Verein hält die Daten von registrierten BenutzerInnen zumindest für einen Zeitraum von 7 Jahren gespeichert, um etwaigen gesetzlichen Verpflichtungen oder richterlichen Anordnungen entsprechen zu können.</p>
+              <p class="Standard"></p>
+              <p class="Standard">Der Verein kann alle BenutzerInnen jederzeit, mit oder ohne Angabe von Gründen vom Zugang zur Website sperren. Dies erfolgt insbesondere bei Verstößen gegen die Nutzungsbedingungen. Abhängig von der Schwere des Verstoßes, kann
+                  BenutzerInnen die Möglichkeit einer Stellungnahme eingeräumt werden. Bei Angabe falscher personenbezogener Daten von natürlichen wie von juristischen Personen wird keine Möglichkeit zur Stellungnahme eingeräumt.</p>
+              <p class="Standard"></p>
+              <p class="Standard">Wenn sich BenutzerInnen ungerechtfertigt gesperrt fühlen, können sie beim Back Office des Vereins unter
+                  <a href="mailto:info@newhere.org" class="Internet_20_link">info@newhere.org</a>
+                  eine begründete Beschwerde einbringen. Wenn die Begründung eine Aufhebung der Sperre ausreichend unterstützt, dann kann eine Aufhebung der Sperre veranlasst werden.</p>
               <p class="Heading_20_3">VERFÜGBARKEIT UND ÄNDERUNGEN DER WEBSITE</p>
-              <p class="Standard">Es gibt keine Zusagen oder Verpflichtungen für den Verein bezüglich der Verfügbarkeit der Website sowie der Mobile-App. Die Website sowie die Mobile-App kann ihren Dienst jederzeit ohne Angabe von Gründen einstellen.
+              <p class="Standard">Es gibt keine Zusagen oder Verpflichtungen für den Verein bezüglich der Verfügbarkeit der Website. Die Website kann ihren Dienst jederzeit ohne Angabe von Gründen einstellen.
               </p>
               <p class="Standard"></p>
-              <p class="Standard">Der Verein ist berechtigt, jederzeit Änderungen an den Inhalten der Website sowie der Mobile-App- vorzunehmen. Insbesondere dann, wenn Inhalte gegen die Nutzungsbedingungen verstoßen oder von BenutzerInnen Hinweise gegeben
-                  werden, dass es sich um Inhalte handelt, die Rechte Dritter berühren oder gegen bestehende Gesetze verstoßen. Es besteht keine Verpflichtung des Vereins, Hinweisen von BenutzerInnen nachzugehen oder diese Hinweise zu beachten.</p>
+              <p class="Standard">Der Verein ist berechtigt, jederzeit Änderungen an den Inhalten der Website vorzunehmen. Insbesondere dann, wenn Inhalte gegen die Nutzungsbedingungen verstoßen oder von BenutzerInnen Hinweise gegeben werden, dass es sich um
+                  Inhalte handelt, die Rechte Dritter berühren oder gegen bestehende Gesetze verstoßen. Es besteht keine Verpflichtung des Vereins, Hinweisen von BenutzerInnen nachzugehen oder diese Hinweise zu beachten.</p>
               <p class="Standard"></p>
-              <p class="Standard">Der Verein behält sich vor, diese Nutzungsbedingungen jederzeit ohne Nennung von Gründen zu ändern. Der Verein wird alle registrierten BenutzerInnen über Änderungen der Nutzungsbedingungen rechtzeitig benachrichtigen.
-                  Widersprechen BenutzerInnen der Geltung der neuen Nutzungsbedingungen nicht innerhalb von zwei (2) Wochen nach der Benachrichtigung, gelten die geänderten Nutzungsbedingungen als von den BenutzerInnen angenommen. Der Verein wird alle BenutzerInnen
-                  in der Benachrichtigung auf das Widerspruchsrecht und die Bedeutung der Widerspruchsfrist hinweisen.</p>
+              <p class="Standard">Der Verein behält sich vor, diese Nutzungsbedingungen jederzeit ohne Nennung von Gründen zu ändern. Der Verein wird alle registrierten BenutzerInnen über Änderungen der Nutzungsbedingungen rechtzeitig benachrichtigen.
+                  Widersprechen BenutzerInnen der Geltung der neuen Nutzungsbedingungen nicht innerhalb von zwei (2) Wochen nach der Benachrichtigung, gelten die geänderten Nutzungsbedingungen als von den BenutzerInnen angenommen. Der Verein wird alle BenutzerInnen in
+                  der Benachrichtigung auf das Widerspruchsrecht und die Bedeutung der Widerspruchsfrist hinweisen.</p>
               <p class="Standard"></p>
-              <p class="Standard">Bei Gefahr im Verzug kann der Verein Änderungen auch umgehend vornehmen. Gibt es gesetzliche Verpflichtungen, richterliche Anordnungen oder sonstige Umstände, die Gefahr im Verzug bedeuten, kann der Verein Änderungen auch
-                  kurzfristig oder sofort und bei erst nachträglicher Information vornehmen.</p>
+              <p class="Standard">Bei Gefahr im Verzug kann der Verein Änderungen auch umgehend vornehmen. Gibt es gesetzliche Verpflichtungen, richterliche Anordnungen oder sonstige Umstände, die Gefahr im Verzug bedeuten, kann der Verein Änderungen auch
+                  kurzfristig oder sofort und bei erst nachträglicher Information vornehmen.</p>
               <p class="Standard"></p>
-              <p class="Standard">Der Vertragspartner aller BenutzerInnen der Verein [<span class="T2">Name, volle Anschrift, Vereinsregisternummer</span>].Bezüglich der in den Nutzungsbedingungen festgelegten Regelungen, zum Zwecke der Vertragserfüllung und zur
-      Ausübung der der jeweiligen Vertragspartei gemäß diesen Nutzungsbedingungen zustehenden Rechte, kann sich der Verein auch anderer Unternehmen bedienen.</p>
+              <p class="Standard">Der Vertragspartner aller BenutzerInnen der Verein [New Here. Venediger Au 5, 1020-Wien, Vereinsregisternummer: 015621708].Bezüglich der in den Nutzungsbedingungen festgelegten Regelungen, zum Zwecke der Vertragserfüllung und zur
+                  Ausübung der der jeweiligen Vertragspartei gemäß diesen Nutzungsbedingungen zustehenden Rechte, kann sich der Verein auch anderer Unternehmen bedienen.</p>
               <p class="Heading_20_3">HAFTUNGSEINSCHRÄNKUNG</p>
-              <p class="Standard">Die auf der Website von dem Verein selbst bereitgestellten Informationen wurden von dem Verein mit bester Absicht und gutem Gewissen erstellt, haben aber keinen Anspruch auf Vollständigkeit und garantieren auch keine Richtigkeit.</p>
+              <p class="Standard">Die auf der Website von dem Verein selbst bereitgestellten Informationen wurden von dem Verein mit bester Absicht und gutem Gewissen erstellt, haben aber keinen Anspruch auf Vollständigkeit und garantieren auch keine Richtigkeit.</p>
               <p class="Standard"></p>
-              <p class="Standard">Alle BenutzerInnen haben sich selbst ein Bild über die vom Verein selbst bereitgestellten Inhalte auf der Website oder auf der Mobile-App zu machen. Wenn BenutzerInnen direkt Handlungen auf der Website oder der Mobile-App setzen,
-                  die zu einer eigenen Verpflichtung führen, dann haben sie sich selbst über alle Folgewirkungen zu informieren. Der Verein übernimmt dafür keine Verantwortung oder Haftung.</p>
+              <p class="Standard">Alle BenutzerInnen haben sich selbst ein Bild über die vom Verein selbst bereitgestellten Inhalte auf der Website zu machen. Wenn BenutzerInnen direkt Handlungen auf der Website setzen, die zu einer eigenen Verpflichtung führen,
+                  dann haben sie sich selbst über alle Folgewirkungen zu informieren. Der Verein übernimmt dafür keine Verantwortung oder Haftung.</p>
               <p class="Standard"></p>
-              <p class="Standard">Eine Haftung des Vereins für Schäden aus den von den BenutzerInnen zur Verfügung gestellten Angeboten oder Informationen ist aus jeglichem Rechtsgrund (einschließlich Verzug, Unmöglichkeit, schlechte Erfüllung oder
-                  außervertraglicher deliktischer Haftung) ausgeschlossen, es sei denn, der Schaden wurde durch den Verein grob fahrlässig oder vorsätzlich verursacht.Der Verein haftet aber in keinem Fall für atypische und daher nicht vorhersehbare Folgeschäden.
-                  Der Verein haftet ebenfalls nicht für Schäden, soweit die BenutzerInnen deren Eintritt hätten verhindern können.</p>
-              <p class="Standard">Darüber hinaus können Schadenersatzansprüche gegen den Verein nur binnen einem Jahr ab Kenntnis von Schaden und Schädiger geltend gemacht werden. Die Verjährungsfrist für Schadenersatzansprüche wird daher auf ein Jahr
-                  verkürzt. Auch die Gewährleistungsfrist wird auf ein Jahr verkürzt.</p>
+              <p class="Standard">Eine Haftung des Vereins für Schäden aus den von den BenutzerInnen zur Verfügung gestellten Angeboten oder Informationen ist aus jeglichem Rechtsgrund (einschließlich Verzug, Unmöglichkeit, schlechte Erfüllung oder
+                  außervertraglicher deliktischer Haftung) ausgeschlossen, es sei denn, der Schaden wurde durch den Verein grob fahrlässig oder vorsätzlich verursacht. Der Verein haftet aber in keinem Fall für atypische und daher nicht vorhersehbare Folgeschäden. Der
+                  Verein haftet ebenfalls nicht für Schäden, soweit die BenutzerInnen deren Eintritt hätten verhindern können.</p>
+              <p class="Standard">Darüber hinaus können Schadenersatzansprüche gegen den Verein nur binnen einem Jahr ab Kenntnis von Schaden und Schädiger geltend gemacht werden. Die Verjährungsfrist für Schadenersatzansprüche wird daher auf ein Jahr verkürzt.
+                  Auch die Gewährleistungsfrist wird auf ein Jahr verkürzt.</p>
               <p class="Standard"></p>
-              <p class="Standard">Der Verein übernimmt keine Haftung für die Tätigkeit der der BenutzerInnen, VertragspartnerInnen oder Dritter. Es handelt sich bei diesen Personen nicht um Erfüllungsgehilfen des Vereins. Der Verein haftet auch dann nicht,
-                  wenn er den BenutzerInnen Ratschläge erteilt hat. Für den Fall, dass der Verein Dritten dennoch wegen von BenutzerInnen übermittelten Texte, Informationen, Angebote oder sonstigen Inhalte zur Haftung herangezogen wird, verpflichten sich diese, den
-                  Verein schad- und klaglos zu halten.</p>
+              <p class="Standard">Der Verein übernimmt keine Haftung für die Tätigkeit der BenutzerInnen, VertragspartnerInnen oder Dritter. Es handelt sich bei diesen Personen nicht um Erfüllungsgehilfen des Vereins. Der Verein haftet auch dann nicht, wenn er den
+                  BenutzerInnen Ratschläge erteilt hat. Für den Fall, dass der Verein Dritten dennoch wegen von BenutzerInnen übermittelten Texte, Informationen, Angebote oder sonstigen Inhalte zur Haftung herangezogen wird, verpflichten sich diese, den Verein schad-
+                  und klaglos zu halten.</p>
               <p class="Heading_20_3">DATENSCHUTZBESTIMMUNG</p>
-              <p class="Standard">Der Verein darf von allen BenutzerInnen deren in das Benutzerprofil eingetragene bzw. hochgeladene Informationen auf den dafür vorgesehenen Bereichen der Website anzeigen. Dazu ist erforderlich, dass die jeweiligen BenutzerInnen
-                  diese Datenschutzbestimmungen akzeptieren. Ein Zugang zu den registrierungspflichtigen Bereichen ohne Bestätigung der Datenschutzbestimmung ist daher ausgeschlossen. Persönliche Daten und Kontaktdaten bleiben für die Öffentlichkeit verborgen.</p>
+              <p class="Standard">Der Verein darf von allen BenutzerInnen deren in das Benutzerprofil eingetragene bzw. hochgeladene Informationen auf den dafür vorgesehenen Bereichen der Website anzeigen. Dazu ist erforderlich, dass die jeweiligen BenutzerInnen
+                  diese Datenschutzbestimmungen akzeptieren. Ein Zugang zu den registrierungspflichtigen Bereichen ohne Bestätigung der Datenschutzbestimmung ist daher ausgeschlossen. Persönliche Daten und Kontaktdaten bleiben für die Öffentlichkeit verborgen.</p>
               <p class="Standard"></p>
-              <p class="Standard">Im Einzelfall, nach Einholung der Zustimmung der Betroffenen darf der Verein auch Namen, Beruf, Alter und Fotos von Benutzer/innen für die Bewerbung der Website auch außerhalb des Internet einsetzen.</p>
+              <p class="Standard">Im Einzelfall, nach Einholung der Zustimmung der Betroffenen darf der Verein auch Namen, Beruf, Alter und Fotos von Benutzer/innen für die Bewerbung der Website auch außerhalb des Internet einsetzen.</p>
               <p class="Standard"></p>
-              <p class="Standard">Die BenutzerInnen erteilen ihr ausdrückliches Einverständnis im Sinn des Datenschutzgesetzes dazu, dass der Verein die personenbezogenen Daten (Name, Adresse, Telefonnummer, Geburtsdatum, Geburtsort, E-Mail-Adresse, Beruf,
-                  Staatsbürgerschaft, Bankverbindung, Alter sowie Bilder der BenutzerInnen) zur Erreichung sämtlicher Vertragsinhalte insbesondere der wechselseitigen Information erhebt, verarbeitet und nutzt. Damit ist keine Berechtigung für eine darüber hinaus
-                  gehende kommerzielle Nutzung oder gar Weitergabe der Daten der BenutzerInnen durch den Verein verbunden.. Eine Weitergabe durch den Verein an Dritte ist ausdrücklich untersagt. Davon ausgenommen sind Projekte mit Dankeschöngeschenk, da bei einer
-                  Spende die Übermittlung der Daten an Dritte zur Erfüllung der Geschenkübermittlung zwingend notwendig ist.</p>
+              <p class="Standard">Die BenutzerInnen erteilen ihr ausdrückliches Einverständnis im Sinn des Datenschutzgesetzes dazu, dass der Verein die personenbezogenen Daten (Name, Adresse, Telefonnummer, Geburtsdatum, Geburtsort, E-Mail-Adresse, Beruf,
+                  Staatsbürgerschaft, Bankverbindung, Alter sowie Bilder der BenutzerInnen) zur Erreichung sämtlicher Vertragsinhalte insbesondere der wechselseitigen Information erhebt, verarbeitet und nutzt. Damit ist keine Berechtigung für eine darüber hinaus
+                  gehende kommerzielle Nutzung oder gar Weitergabe der Daten der BenutzerInnen durch den Verein verbunden. Eine Weitergabe durch den Verein an Dritte ist ausdrücklich untersagt.
+              </p>
               <p class="Heading_20_3">DIVERSE BESTIMMUNGEN</p>
-              <p class="Standard">Es gilt das anzuwendende Recht der Republik Österreich unter Ausschluss seiner Verweisungsnormen auf fremde Rechtsordnungen und des UN-Kaufrechts.</p>
+              <p class="Standard">Es gilt das anzuwendende Recht der Republik Österreich unter Ausschluss seiner Verweisungsnormen auf fremde Rechtsordnungen und des UN-Kaufrechts.</p>
               <p class="Standard">Gerichtsstand ist Wien. Handelt es sich beim Beklagten um einen Konsumenten, dessen allgemeiner Gerichtsstand.</p>
               <p class="Standard"></p>
-              <p class="Standard">Sämtliche Erklärungen, die im Rahmen dieser Nutzungsbedingungen von BenutzerInnen an den Verein übermittelt werden, müssen in Schriftform an die Adresse des Vereins oder per E-Mail an
-                  <a href="mailto:email@email.com" class="Internet_20_link">
-                      <span class="Internet_20_link">email@email.com</span>
-                  </a>
+              <p class="Standard">Sämtliche Erklärungen, die im Rahmen dieser Nutzungsbedingungen von BenutzerInnen an den Verein übermittelt werden, müssen in Schriftform an die Adresse des Vereins oder per E-Mail an
+                  <a href="mailto:info@newhere.org" class="Internet_20_link">info@newhere.org</a>
                   erfolgen.</p>
-              <p class="Standard">Sollte eine Bestimmung dieser Nutzungsbedingungen unwirksam sein, bleiben die übrigen Bestimmungen davon unberührt. Die unwirksame Bestimmung gilt als durch eine solche ersetzt, die dem Sinn und Zweck der unwirksamen Bestimmung
-                  in rechtswirksamer Weise wirtschaftlich am nächsten kommt. Gleiches gilt für eventuelle Regelungslücken.</p>
-              <p class="Standard">￼</p>
-              <p class="Standard">Diese Zustimmungserklärung zu den Datenschutzregelungen und zu den Nutzungsbedingungen kann von den BenutzerInnen im Einzelfall schriftlich widerrufen werden. Erfolgt ein solcher Widerruf, so behält sich der Verein vor den
-                  gegenständlichen Nutzungsvertrag aufzulösen und den Zugang zur Website zu unterbinden.</p>
-
-            </div>
+              <p class="Standard"></p>
+              <p class="Standard">Sollte eine Bestimmung dieser Nutzungsbedingungen unwirksam sein, bleiben die übrigen Bestimmungen davon unberührt. Die unwirksame Bestimmung gilt als durch eine solche ersetzt, die dem Sinn und Zweck der unwirksamen Bestimmung in
+                  rechtswirksamer Weise wirtschaftlich am nächsten kommt. Gleiches gilt für eventuelle Regelungslücken.</p>
+              <p class="Standard"></p>
+              <p class="Standard">Diese Zustimmungserklärung zu den Datenschutzregelungen und zu den Nutzungsbedingungen kann von den BenutzerInnen im Einzelfall schriftlich widerrufen werden. Erfolgt ein solcher Widerruf, so behält sich der Verein vor den
+                  gegenständlichen Nutzungsvertrag aufzulösen und den Zugang zur Website zu unterbinden.</p>
         </div>
     </div>
 </md-content>
