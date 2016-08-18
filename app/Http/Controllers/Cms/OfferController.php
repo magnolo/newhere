@@ -58,7 +58,14 @@ class OfferController extends Controller
       $offers = $offers->get();
       return response()->success(compact('offers', 'count'));
    }
-
+    public function search(Request $request) {
+      $offers = Offer::whereTranslationLike('title', '%'.$request->get('query').'%')
+      ->orWhere('street', 'like', '%'.$request->get('query').'%')
+      ->orWhere('zip', 'like', '%'.$request->get('query').'%')
+       ->get();
+       $count = $offers->count();
+      return response()->success(compact('offers', 'count'));
+    }
    public function getAll(Request $request){
 
    }

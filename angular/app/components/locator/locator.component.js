@@ -10,9 +10,7 @@ class LocatorController {
         vm.query = {
             enabled: true
         };
-        this.OfferService.fetchFiltered(vm.query, (response) => {
-            vm.offers = response;
-        });
+
     }
 
     $onInit() {}
@@ -22,8 +20,10 @@ class LocatorController {
     }
 
     searchPlaces(search) {
-        var filteredOffers = this.offers.filter(createFilterFor(search));
-        return filteredOffers;
+      if(!search) return [];
+      return this.OfferService.fetchSearch(search, (response) => {
+          return response;
+      });
     }
 
     selectedItemChange(item) {
@@ -31,20 +31,6 @@ class LocatorController {
             id: item.id
         });
     }
-
-
-}
-
-function createFilterFor(query) {
-    var regex = new RegExp(query, "i");
-    return function filterFn(item) {
-        if (item.title.match(regex) !== null) return true;
-
-        if (item.street !== null && item.street.match(regex) !== null) return true;
-        if (item.zip !== null && item.zip.match(regex) !== null) return true;
-
-        return false;
-    };
 }
 
 export const LocatorComponent = {

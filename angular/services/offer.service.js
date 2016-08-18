@@ -34,6 +34,13 @@ export class OfferService{
       });
       return q;
     }
+    fetchSearch(term,success, error, force){
+      var q = this.API.all('offers').customGETLIST('search', {query:term});
+      q.then((response) =>{
+        success(response);
+      });
+      return q;
+    }
 
     fetchMyOffers(query,success, error, force){
         var q = this.API.all('myoffers').getList(query);

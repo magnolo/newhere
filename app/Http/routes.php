@@ -40,6 +40,7 @@ $api->group(['middleware' => ['api', 'language']], function ($api) {
 
     $api->get('ngo/{id}', 'Cms\NgoController@show');
     $api->get('offers', 'Cms\OfferController@index');
+    $api->get('offers/search', 'Cms\OfferController@search');
     $api->get('offer/autocomplete/{search}', 'Cms\OfferController@autocomplete');
 
     $api->get('offerDetail', 'Cms\OfferDetailController@index');
