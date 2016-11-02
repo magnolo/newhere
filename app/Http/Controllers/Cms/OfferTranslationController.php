@@ -21,7 +21,7 @@ class OfferTranslationController extends AbstractTranslationController
 
         App::setLocale(app('request')->header('language'));
     }
-    
+
     public function index()
     {
         list($activeLanguages, $activeLanguageCount) = $this->loadLanguages();
@@ -124,7 +124,7 @@ class OfferTranslationController extends AbstractTranslationController
             return response()->error('Language not found', 404);
         }
 
-        $hasChanged = $this->getTranslationService()->hasChanged(
+        $hasChanged = $this->translationService->hasChanged(
             ($offer->translate($translationLanguage->language) ?
                 [
                     'title' => $offer->translate($translationLanguage->language)->title,
@@ -145,11 +145,15 @@ class OfferTranslationController extends AbstractTranslationController
             $offer->translateOrNew($translationLanguage->language)->title = $request->get('title');
             $offer->translateOrNew($translationLanguage->language)->description = $request->get('description');
             $offer->translateOrNew($translationLanguage->language)->opening_hours = $request->get('opening_hours');
-            if ($translationLanguage->default_language) {
-                $offer->translateOrNew($translationLanguage->language)->version = $defaultTranslation->version + 1;
-            } else {
-                $offer->translateOrNew($translationLanguage->language)->version = $defaultTranslation->version;
+            // if ($translationLanguage->default_language) {
+            //     $offer->translateOrNew($translationLanguage->language)->version = $defaultTranslation->version + 1;
+            // } else {
+            if($offer->translate($translationLanguage->language)->version)
+                $offer->translateOrNew($translationLanguage->language)->version = $offer->translate($translationLanguage->language)->version + 1;
+            else{
+              $offer->translateOrNew($translationLanguage->language)->version = 1;
             }
+            // }
             $offer->save();
         }
 
@@ -183,13 +187,13 @@ class OfferTranslationController extends AbstractTranslationController
                 if ($language->default_language) {
                     continue;
                 }
-                
+
                 if (!isset($stats[$language->language])) {
                     $this->translationService->translateLanguage($language, App::getLocale());
                     $stats[$language->language]['language'] = $language;
                     $stats[$language->language]['translated'] = 0;
                     $stats[$language->language]['untranslated'] = 0;
-                }   
+                }
 
                 $translation = $offer->translate($language->language);
                 if ($translation && $translation->version == $version) {
