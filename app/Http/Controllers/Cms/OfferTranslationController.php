@@ -98,7 +98,7 @@ class OfferTranslationController extends AbstractTranslationController
             'language' => 'required|min:2|max:2',
             'title' => 'required|string|min:1|max:255',
             'description' => 'required|string|min:1|max:10000',
-            'opening_hours' => 'string|max:10000',
+            // 'opening_hours' => 'string|max:10000',
         ]);
 
         $offer = \App\Offer::find((int)$id);
