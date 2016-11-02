@@ -47,12 +47,13 @@
         </md-input-container>
         <md-input-container class="md-block" flex-gt-sm>
             <label>{{ 'Kontakttelefon' | translate }}</label>
-            <input ng-model="vm.ngo.contact_phone" ng-pattern="/^(((?:00|\\+)\d{1,3}(-| )?\(?\d\)?(-| )?\d{1,5})|(\(?\d{2,6}\)?))(-| )?(\d{3,4})(-| )?(\d{4})(( x| ext)\d{1,5}){0,1}$/" placeholder="+43 660 12345678">
+             <!-- ng-pattern="/^(((?:00|\\+)\d{1,3}(-| )?\(?\d\)?(-| )?\d{1,5})|(\(?\d{2,6}\)?))(-| )?(\d{3,4})(-| )?(\d{4})(( x| ext)\d{1,5}){0,1}$/" -->
+            <input ng-model="vm.ngo.contact_phone" placeholder="+43 660 12345678">
         </md-input-container>
     </div>
     <div lyout-gt-sm="row">
         <md-autocomplete md-selected-item="vm.selectedItem" md-selected-item-change="vm.selectedItemChange(item)" md-search-text="vm.searchText" md-items="item in vm.querySearch(vm.searchText)" md-item-text="item.street+' '+item.number+', '+item.zip+' '+item.city"
-                         md-min-length="2" md-floating-label="{{ 'Adresssuche' | translate }}" placeholder="z.B. Stephansplatz 1, 1010 Wien">
+                         md-min-length="2" md-floating-label="{{ 'Adresssuche*' | translate }}" placeholder="z.B. Stephansplatz 1, 1010 Wien">
             <md-item-template>
                 <span md-highlight-text="vm.searchText">{{item.street+' '+item.number+', '+item.zip+' '+item.city}}</span>
             </md-item-template>

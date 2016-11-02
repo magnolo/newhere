@@ -11,6 +11,8 @@ use Illuminate\Http\Request;
 use Auth;
 use App\Http\Requests;
 use Illuminate\Support\Facades\DB;
+use Mail;
+use App\Logic\Mailers\UserMailer;
 
 class NgoController extends Controller
 {
@@ -90,11 +92,14 @@ class NgoController extends Controller
         $user->confirmation_code = $confirmation_code;
         $user->save();
 
+        $mailer = new UserMailer;
+        $mailer->verify($user);
 
-        Mail::send('email.verify', $confirmation_code, function($message) use($user) {
-            $message->to($user->email, $user->name)
-                ->subject('Verify your email address');
-        });
+        //$this->userRepository->verifyMail($user);
+        // Mail::send('email.verify', $confirmation_code, function($message) use($user) {
+        //     $message->to($user->email, $user->name)
+        //         ->subject('Verify your email address');
+        // });
 
 
         return $user;
@@ -139,9 +144,10 @@ class NgoController extends Controller
         $ngo = new Ngo();
         $ngo->organisation = $request->get('organisation');
         $ngo->website = $request->get('website');
-        $ngo->contact = $request->get('contact');
-        $ngo->contact_email = $request->get('contact_email');
-        $ngo->contact_phone = $request->get('contact_phone');
+
+        if($ngo->contact)$ngo->contact = $request->get('contact');
+        if($ngo->contact_email)$ngo->contact_email = $request->get('contact_email');
+        if($ngo->contact_phone)$ngo->contact_phone = $request->get('contact_phone');
         $ngo->street = $request->get('street');
         $ngo->street_number = $request->get('street_number');
         $ngo->zip = $request->get('zip');
