@@ -1,4 +1,4 @@
-<md-dialog>
+<md-dialog class="min-width-dialog">
     <form ng-submit="vm.save()">
         <md-toolbar>
             <div class="md-toolbar-tools">
@@ -11,36 +11,38 @@
         </md-toolbar>
 
         <md-dialog-content>
-            <div class="md-dialog-content" layout="row">
-                <div>
-                    <h3>{{ vm.sourceLanguage.i18n || 'de' }} ({{ vm.sourceLanguage.language || 'de' }})</h3>
+            <div class="md-dialog-content" layout="column" layout-gt-sm="row">
+                <div layout="column" flex-gt-sm="50" layout-margin>
+                    <h3>{{ vm.sourceLanguage.i18n || 'de' }}
+                        ({{ vm.sourceLanguage.language || 'de' }})</h3>
                     <md-input-container ng-if="vm.sourceTranslation.hasOwnProperty('title')" class="md-block">
                         <label>{{ 'Titel' | translate }}</label>
                         <input ng-model="vm.sourceTranslation.title" readonly>
                     </md-input-container>
-
-                    <h4 class="md-subhead">{{ 'Beschreibung' | translate }}</h4>
-                    <text-angular ng-model="vm.sourceTranslation.description" ta-disabled="true"></text-angular>
-
-                    <span ng-if="vm.sourceTranslation.hasOwnProperty('opening_hours')">
-                        <h4 class="md-subhead">{{ 'Öffnungszeiten' | translate }}</h4>
-                        <text-angular ng-model="vm.sourceTranslation.opening_hours" ta-disabled="true"></text-angular>
-                    </span>
+                    <md-input-container class="md-block">
+                        <label class="md-subhead">{{ 'Beschreibung' | translate }}</label>
+                        <textarea ng-model="vm.sourceTranslation.description" ta-disabled="true"></textarea>
+                    </md-input-container>
+                    <md-input-container class="md-block" ng-if="vm.sourceTranslation.hasOwnProperty('opening_hours')">
+                        <label>{{ 'Öffnungszeiten' | translate }}</label>
+                        <textarea ng-model="vm.sourceTranslation.opening_hours" ta-disabled="true"></textarea>
+                    </md-input-container>
                 </div>
-                <div>
-                    <h3>{{ vm.language.i18n || 'de' }} ({{ vm.language.language || 'de' }})</h3>
+                <div layout="column" flex-gt-sm="50" layout-margin>
+                    <h3>{{ vm.language.i18n || 'de' }}
+                        ({{ vm.language.language || 'de' }})</h3>
                     <md-input-container ng-if="vm.sourceTranslation.hasOwnProperty('title')" class="md-block">
                         <label>{{ 'Titel' | translate }}</label>
                         <input ng-model="vm.translation.title" required>
                     </md-input-container>
-
-                    <h4 class="md-subhead">{{ 'Beschreibung' | translate }}</h4>
-                    <text-angular ng-model="vm.translation.description"></text-angular>
-
-                    <span ng-if="vm.sourceTranslation.hasOwnProperty('opening_hours')">
-                        <h4 class="md-subhead">{{ 'Öffnungszeiten' | translate }}</h4>
-                        <text-angular ng-model="vm.translation.opening_hours"></text-angular>
-                    </span>
+                    <md-input-container>
+                        <label>{{ 'Beschreibung' | translate }}</label>
+                        <textarea ng-model="vm.translation.description"></textarea>
+                    </md-input-container>
+                    <md-input-container class="md-block" ng-if="vm.sourceTranslation.hasOwnProperty('opening_hours')">
+                        <label>{{ 'Öffnungszeiten' | translate }}</label>
+                        <textarea ng-model="vm.translation.opening_hours"></textarea>
+                    </md-input-container>
                 </div>
             </div>
         </md-dialog-content>
