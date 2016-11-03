@@ -59,9 +59,23 @@ class OfferController extends Controller
       return response()->success(compact('offers', 'count'));
    }
     public function search(Request $request) {
-      $offers = Offer::whereTranslationLike('title', '%'.$request->get('query').'%')
+      $offers = Offer::with(array('ngo', 'categories'))
+      ->whereTranslationLike('title', '%'.$request->get('query').'%')
+      // ->orWhereTranslationLike('description', '%'.$request->get('query').'%')
       ->orWhere('street', 'like', '%'.$request->get('query').'%')
       ->orWhere('zip', 'like', '%'.$request->get('query').'%')
+      ->orWhereHas('ngo', function($query) use ($request){
+        $query->where('organisation', 'like', '%'.$request->get('query').'%');
+      })
+      ->orWhereHas('categories', function($query) use ($request){
+        $query->whereTranslationLike('title', '%'.$request->get('query').'%');
+      })
+      ->orWhereHas('categories.parent', function($query) use ($request){
+        $query->whereTranslationLike('title', '%'.$request->get('query').'%');
+      })
+      ->orWhereHas('categories.parent.parent', function($query) use ($request){
+        $query->whereTranslationLike('title', '%'.$request->get('query').'%');
+      })
        ->get();
        $count = $offers->count();
       return response()->success(compact('offers', 'count'));

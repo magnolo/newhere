@@ -1,29 +1,36 @@
 <div layout="row" flex>
-        <md-icon>place</md-icon>
-        <md-input-container flex md-no-float class="md-primary md-block no-error no-margin">
+    <md-icon>place</md-icon>
+    <md-input-container flex md-no-float class="md-primary md-block no-error no-margin">
 
         <md-autocomplete
-        md-selected-item-change="vm.selectedItemChange(item)"
-        md-search-text="vm.searchText"
-        md-items="item in vm.searchPlaces(vm.searchText)"
-        md-item-text="item.title"
-          md-min-length="3"
-          placeholder="{{ 'nach einem Ort suchen' | translate }}"
-          md-menu-class="autocomplete-custom-template"
-          md-selected-item-change="vm.selectedItemChange(item)">
+            md-selected-item-change="vm.selectedItemChange(item)"
+            md-search-text="vm.searchText"
+            md-items="item in vm.searchPlaces(vm.searchText)"
+            md-item-text="item.title"
+            md-min-length="3"
+            md-delay="250"
+            md-no-cache="true"
+            placeholder="{{ 'nach einem Ort suchen' | translate }}"
+            md-menu-class="autocomplete-custom-template"
+            md-selected-item-change="vm.selectedItemChange(item)">
 
-           <md-item-template>
-             <span class="item-title">
-                <md-icon ng-if="item.street">place</md-icon>
-                <md-icon ng-if="!item.street">insert_link</md-icon>
-                <strong> {{item.title}} </strong>
-            </span>
-               <span class="item-description" md-highlight-text="vm.searchText" md-highlight-flags="i" ng-if="item.street != null && item.zip != null">{{item.street}} {{item.streetnumer}}, {{item.zip}} {{item.city}}</span>
-               <span class="item-description" ng-if="item.street == null || item.zip == null">{{item.website}}</span>
-           </md-item-template>
-           <md-not-found>
+            <md-item-template>
+                <span class="item-title">
+                    <md-icon ng-if="item.street">place</md-icon>
+                    <md-icon ng-if="!item.street">insert_link</md-icon>
+                    <strong>
+                        {{item.title}}
+                    </strong>
+                </span>
+                <span class="item-description" md-highlight-text="vm.searchText" md-highlight-flags="i" ng-if="item.street != null && item.zip != null">{{item.street}}
+                    {{item.streetnumer}},
+                    {{item.zip}}
+                    {{item.city}}</span>
+                <span class="item-description" ng-if="item.street == null || item.zip == null">{{item.website}}</span>
+            </md-item-template>
+            <md-not-found>
                 {{ 'Keine Adressen/Angebote gefunden' | translate }}
-           </md-not-found>
+            </md-not-found>
         </md-autocomplete>
 
     </md-input-container>
