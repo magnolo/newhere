@@ -1,64 +1,66 @@
 {
-  "name": "laravel5-angular-material-starter",
-  "authors": [
-    "Jad Joubran <jad@jadjoubran.com>"
-  ],
-  "ignore": [
-    "**/.*",
-    "node_modules",
-    "bower_components",
-    "test",
-    "tests"
-  ],
-  "dependencies": {
-    "angular": "~1.5",
-    "angular-ui-router": "~0.2.15",
-    "ngstorage": "~0.3.3",
-    "angular-material": "~1.1",
-    "restangular": "~1.5.2",
-    "angular-loading-bar": "~0.8.0",
-    "satellizer": "^0.14.0",
-    "angular-material-data-table": "~0.10.*",
-    "angular-ui-tree": "~2.15.*",
-    "angular-drag-and-drop-lists": "^1.4.0",
-    "angular-filter": "^0.5.8",
-    "textAngular": "^1.5.1",
-    "bootstrap-css-only": "^3.3.6",
-    "angular-sanitize": "^1.5.5",
-    "ng-flow": "~2",
-    "angular-wizard": "^0.6.1",
-    "ui-leaflet": "^1.0.1",
-    "leaflet-fullscreen": "^1.0.1",
-    "angular-paging": "^2.2.1",
-    "angular-translate": "2.11.x",
-    "angular-translate-loader-static-files": "2.11.x",
-    "sprintf": ">=1.0.0",
-    "leaflet-routing-machine": "https://github.com/perliedman/leaflet-routing-machine.git#^3.0.3",
-    "angular-translate-storage-local": "^2.11.0",
-    "angular-translate-storage-cookie": "^2.11.0",
-    "leaflet-icon-pulse": "leaflet-pulse-icon#^0.1.0",
-    "leaflet.markercluster": "https://github.com/Leaflet/Leaflet.markercluster.git#leaflet-0.7"
-  },
-  "overrides": {
-    "font-awesome": {
-      "main": [
-        "css/font-awesome.css"
-      ]
+    "name": "laravel5-angular-material-starter",
+    "authors": [
+        "Jad Joubran <jad@jadjoubran.com>"
+    ],
+    "ignore": [
+        "**/.*",
+        "node_modules",
+        "bower_components",
+        "test",
+        "tests"
+    ],
+    "dependencies": {
+        "angular": "~1.5",
+        "angular-ui-router": "~0.2.15",
+        "ngstorage": "~0.3.3",
+        "angular-material": "~1.1",
+        "angular-animate": "1.5.9",
+        "angular-aria": "1.5.9",
+        "restangular": "~1.5.2",
+        "angular-loading-bar": "~0.8.0",
+        "satellizer": "^0.14.0",
+        "angular-material-data-table": "~0.10.*",
+        "angular-ui-tree": "~2.15.*",
+        "angular-drag-and-drop-lists": "^1.4.0",
+        "angular-filter": "^0.5.8",
+        "textAngular": "^1.5.1",
+        "bootstrap-css-only": "^3.3.6",
+        "angular-sanitize": "^1.5.5",
+        "ng-flow": "~2",
+        "angular-wizard": "^0.6.1",
+        "ui-leaflet": "^1.0.1",
+        "leaflet-fullscreen": "^1.0.1",
+        "angular-paging": "^2.2.1",
+        "angular-translate": "2.11.x",
+        "angular-translate-loader-static-files": "2.11.x",
+        "sprintf": ">=1.0.0",
+        "leaflet-routing-machine": "https://github.com/perliedman/leaflet-routing-machine.git#^3.0.3",
+        "angular-translate-storage-local": "^2.11.0",
+        "angular-translate-storage-cookie": "^2.11.0",
+        "leaflet-icon-pulse": "leaflet-pulse-icon#^0.1.0",
+        "leaflet.markercluster": "https://github.com/Leaflet/Leaflet.markercluster.git#leaflet-0.7"
     },
-    "leaflet-fullscreen": {
-      "main": [
-        "dist/Leaflet.fullscreen.js",
-        "dist/leaflet.fullscreen.css"
-      ]
+    "overrides": {
+        "font-awesome": {
+            "main": [
+                "css/font-awesome.css"
+            ]
+        },
+        "leaflet-fullscreen": {
+            "main": [
+                "dist/Leaflet.fullscreen.js",
+                "dist/leaflet.fullscreen.css"
+            ]
+        },
+        "leaflet-icon-pulse": {
+            "main": [
+                "src/L.Icon.Pulse.js",
+                "src/L.Icon.Pulse.css"
+            ]
+        }
     },
-    "leaflet-icon-pulse": {
-      "main": [
-        "src/L.Icon.Pulse.js",
-        "src/L.Icon.Pulse.css"
-      ]
+    "resolutions": {
+        "angular": "~1.5"
     }
-  },
-  "resolutions": {
-    "angular": "~1.5"
-  }
 }
