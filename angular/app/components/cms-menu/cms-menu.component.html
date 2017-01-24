@@ -5,10 +5,10 @@
     <div class="md-tile-content">{{item.title}}</div>
 </md-button> -->
 <md-list>
-  <md-list-item ng-repeat="item in vm.items" ui-sref-active="md-warn" ui-sref="{{item.sref}}">
-      <md-icon>{{item.icon}}</md-icon>
+    <md-list-item ng-repeat="item in vm.items" ui-sref-active="md-warn" ui-sref="{{item.sref}}" ng-if="vm.allowed(item)">
+        <md-icon>{{item.icon}}</md-icon>
 
-         <p>{{ item.title }}</p>
+        <p>{{ item.title }}</p>
 
-  </md-list>
+</md-list>
 <md-list>

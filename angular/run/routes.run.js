@@ -17,9 +17,11 @@ export function RoutesRun($rootScope, $state, $auth, $window, $mdComponentRegist
 
                 if (toState.data.roles.indexOf(JSON.parse(roles)[0]) == -1) {
                     event.preventDefault();
+                    ToastService.error('You are not allowed to go there!');
                     $translate('Sie sind zum Aufruf dieser Seite nicht berechtigt!').then((msg) => {
                         ToastService.error(msg);
                     });
+                    $state.go('cms.dashboard');
                 }
             }
         }
@@ -28,14 +30,14 @@ export function RoutesRun($rootScope, $state, $auth, $window, $mdComponentRegist
         } else {
             $rootScope.isSplit = false;
         }
-        if($mdComponentRegistry.get('filter')){
-          $mdSidenav('filter').close()
+        if ($mdComponentRegistry.get('filter')) {
+            $mdSidenav('filter').close()
         }
-        if($mdComponentRegistry.get('main-menu')){
+        if ($mdComponentRegistry.get('main-menu')) {
             $mdSidenav('main-menu').close();
         }
-        if($mdComponentRegistry.get('left')){
-          $mdSidenav('left').close();
+        if ($mdComponentRegistry.get('left')) {
+            $mdSidenav('left').close();
         }
 
     });

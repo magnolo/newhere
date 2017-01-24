@@ -13,8 +13,7 @@
         <md-dialog-content>
             <div class="md-dialog-content" layout="column" layout-gt-sm="row">
                 <div layout="column" flex-gt-sm="50" layout-margin>
-                    <h3>{{ vm.sourceLanguage.i18n || 'de' }}
-                        ({{ vm.sourceLanguage.language || 'de' }})</h3>
+                    <h3>{{ vm.sourceLanguage.i18n || 'de' }} ({{ vm.sourceLanguage.language || 'de' }})</h3>
                     <md-input-container ng-if="vm.sourceTranslation.hasOwnProperty('title')" class="md-block">
                         <label>{{ 'Titel' | translate }}</label>
                         <input ng-model="vm.sourceTranslation.title" readonly>
@@ -29,19 +28,18 @@
                     </md-input-container>
                 </div>
                 <div layout="column" flex-gt-sm="50" layout-margin>
-                    <h3>{{ vm.language.i18n || 'de' }}
-                        ({{ vm.language.language || 'de' }})</h3>
+                    <h3>{{ vm.language.i18n || 'de' }} ({{ vm.language.language || 'de' }})</h3>
                     <md-input-container ng-if="vm.sourceTranslation.hasOwnProperty('title')" class="md-block">
                         <label>{{ 'Titel' | translate }}</label>
                         <input ng-model="vm.translation.title" required>
                     </md-input-container>
                     <md-input-container>
                         <label>{{ 'Beschreibung' | translate }}</label>
-                        <textarea ng-model="vm.translation.description"></textarea>
+                        <textarea ng-model="vm.translation.description" ta-disabled="true"></textarea>
                     </md-input-container>
                     <md-input-container class="md-block" ng-if="vm.sourceTranslation.hasOwnProperty('opening_hours')">
                         <label>{{ 'Öffnungszeiten' | translate }}</label>
-                        <textarea ng-model="vm.translation.opening_hours"></textarea>
+                        <textarea ng-model="vm.translation.opening_hours" ta-disabled="true"></textarea>
                     </md-input-container>
                 </div>
             </div>

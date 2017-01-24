@@ -5,8 +5,8 @@
     </md-button>
     <md-menu-content width="4">
         <md-content layout-padding>
-        <login-form></login-form>
-      </md-content>
+            <login-form></login-form>
+        </md-content>
     </md-menu-content>
 </md-menu>
 <md-menu ng-if="vm.isAuthenticated()">
@@ -14,28 +14,34 @@
         <md-icon md-menu-origin>menu</md-icon>
     </md-button>
     <md-menu-content width="3">
-        <md-menu-item>
+        <!--<md-menu-item>
             <md-button>
                 <md-icon md-menu-align-target>person</md-icon>
                 {{ 'Profil' | translate }}
             </md-button>
-        </md-menu-item>
+        </md-menu-item>-->
         <md-menu-item>
-            <md-button  ui-sref="app.offers">
+            <md-button ui-sref="app.landing">
+                <md-icon md-menu-align-target>map</md-icon>
+                Main Page
+            </md-button>
+        </md-menu-item>
+        <md-menu-item ng-if="vm.isAllowed(['admin', 'superadmin'])">
+            <md-button ui-sref="app.offers">
                 <md-icon>library_books</md-icon>
                 {{ 'Angebote' | translate }}
             </md-button>
         </md-menu-item>
-        <md-menu-item>
+        <md-menu-item ng-if="vm.isAllowed(['admin', 'superadmin'])">
             <md-button ui-sref="app.myngo">
-                <md-icon >business</md-icon>
+                <md-icon>business</md-icon>
                 {{ 'Organisation' | translate }}
             </md-button>
         </md-menu-item>
         <md-menu-divider></md-menu-divider>
         <md-menu-item>
             <md-button ng-click="vm.logout()">
-                <md-icon >power_settings_new</md-icon>
+                <md-icon>power_settings_new</md-icon>
                 {{'Abmelden' | translate }}
             </md-button>
         </md-menu-item>

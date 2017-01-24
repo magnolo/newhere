@@ -1,53 +1,75 @@
-class CmsMenuController{
-    constructor(){
+class CmsMenuController {
+    constructor($window) {
         'ngInject';
-
+        this.$window = $window;
         //
-        this.items = [
-          {
-            sref:'cms.dashboard',
-            icon:'dashboard',
-            title:'Dashboard'
-          },
-          {
-            sref:'cms.offers',
-            icon:'local_offer',
-            title:'Offers'
-          },
-          {
-            sref:'cms.ngos',
-            icon:'business',
-            title:'NGOs'
-          },
-          {
-            sref:'cms.translations',
-            icon:'translate',
-            title:'Translations'
-          },
-          {
-            sref:'cms.categories',
-            icon:'list',
-            title:'Categories'
-          },
-          {
-            sref:'cms.filters',
-            icon:'filter_list',
-            title:'Filters'
-          },
-          {
-            sref:'cms.languages',
-            icon:'font_download',
-            title:'Languages'
-          },
-          {
-            sref:'cms.users',
-            icon:'group',
-            title:'Users'
-          }
+        this.items = [{
+                sref: 'cms.dashboard',
+                icon: 'dashboard',
+                title: 'Dashboard',
+                roles: ['admin', 'superadmin']
+            },
+            {
+                sref: 'cms.offers',
+                icon: 'local_offer',
+                title: 'Offers',
+                roles: ['admin', 'superadmin']
+            },
+            {
+                sref: 'cms.ngos',
+                icon: 'business',
+                title: 'NGOs',
+                roles: ['admin', 'superadmin']
+            },
+            {
+                sref: 'cms.translations',
+                icon: 'translate',
+                title: 'Translations',
+                roles: ['admin', 'superadmin', 'moderator']
+            },
+            {
+                sref: 'cms.categories',
+                icon: 'list',
+                title: 'Categories',
+                roles: ['admin', 'superadmin']
+            },
+            {
+                sref: 'cms.filters',
+                icon: 'filter_list',
+                title: 'Filters',
+                roles: ['admin', 'superadmin']
+            },
+            {
+                sref: 'cms.languages',
+                icon: 'font_download',
+                title: 'Languages',
+                roles: ['admin', 'superadmin']
+            },
+            {
+                sref: 'cms.users',
+                icon: 'group',
+                title: 'Users',
+                roles: ['superadmin']
+            }
         ]
     }
 
-    $onInit(){
+    $onInit() {
+
+        this.roles = JSON.parse(this.$window.localStorage.roles);
+    }
+
+    allowed(item) {
+        let allowed = false;
+        angular.forEach(item.roles, (role) => {
+            angular.forEach(this.roles, (userRole) => {
+                if (role == userRole) {
+                    allowed = true;
+                }
+            });
+        });
+        console.log(item.roles, this.roles);
+        return allowed;
     }
 }
 

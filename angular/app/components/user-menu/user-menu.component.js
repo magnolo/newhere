@@ -1,5 +1,5 @@
-class UserMenuController{
-    constructor($auth, $state, $translate, ToastService){
+class UserMenuController {
+    constructor($auth, $state, $translate, ToastService, $window) {
         'ngInject';
 
         //
@@ -7,18 +7,34 @@ class UserMenuController{
         this.$state = $state;
         this.$translate = $translate;
         this.ToastService = ToastService;
+        this.$window = $window;
     }
 
-    logout(){
-      this.$auth.logout().then((response) => {
-          this.$translate('Erfolgreich abgemeldet.').then((msg) => {
-              this.ToastService.show(msg);
-          });
-          this.$state.go('app.landing');
-      });
+    logout() {
+        this.$auth.logout().then((response) => {
+            this.$translate('Erfolgreich abgemeldet.').then((msg) => {
+                this.ToastService.show(msg);
+            });
+            this.$state.go('app.landing');
+        });
     }
-    isAuthenticated(){
-      return this.$auth.isAuthenticated();
+    isAuthenticated() {
+        return this.$auth.isAuthenticated();
+    }
+    $onInit() {
+        this.roles = JSON.parse(this.$window.localStorage.roles);
+    }
+    isAllowed(types) {
+        let allowed = false;
+        angular.forEach(types, (role) => {
+            angular.forEach(this.roles, (userRole) => {
+                if (role == userRole) {
+                    allowed = true;
+                }
+            });
+        });
+        console.log(types, this.roles);
+        return allowed;
     }
 }
 
