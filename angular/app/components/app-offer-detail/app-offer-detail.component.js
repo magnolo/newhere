@@ -11,7 +11,7 @@ class AppOfferDetailController {
         this.CategoryService = CategoryService;
         OfferService.one($state.params.id, (offer) => {
             vm.offer = offer;
-            if (typeof this.CategoryService.category.id == "undefined") {
+            if (angular.isUndefined(this.CategoryService.category.id)) {
                 this.CategoryService.category = vm.offer.categories[0];
             }
             vm.MapService.highlightMarker(offer);
@@ -37,4 +37,4 @@ export const AppOfferDetailComponent = {
     controller: AppOfferDetailController,
     controllerAs: 'vm',
     bindings: {}
-}
+};
