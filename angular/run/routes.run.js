@@ -15,7 +15,7 @@ export function RoutesRun($rootScope, $state, $auth, $window, $mdComponentRegist
             } else if (toState.data.roles) {
                 var roles = $window.localStorage.roles;
 
-                if (toState.data.roles.indexOf(JSON.parse(roles)[0]) == -1) {
+                if (toState.data.roles.indexOf(angular.fromJson(roles)[0]) == -1) {
                     event.preventDefault();
                     ToastService.error('You are not allowed to go there!');
                     $translate('Sie sind zum Aufruf dieser Seite nicht berechtigt!').then((msg) => {
@@ -25,13 +25,13 @@ export function RoutesRun($rootScope, $state, $auth, $window, $mdComponentRegist
                 }
             }
         }
-        if (typeof toState.splitScreen != "undefined") {
+        if (angular.isDefined(toState.splitScreen)) {
             $rootScope.isSplit = toState.splitScreen;
         } else {
             $rootScope.isSplit = false;
         }
         if ($mdComponentRegistry.get('filter')) {
-            $mdSidenav('filter').close()
+            $mdSidenav('filter').close();
         }
         if ($mdComponentRegistry.get('main-menu')) {
             $mdSidenav('main-menu').close();
@@ -41,5 +41,5 @@ export function RoutesRun($rootScope, $state, $auth, $window, $mdComponentRegist
         }
 
     });
-    $rootScope.$on('$destroy', deregisterationCallback)
+    $rootScope.$on('$destroy', deregisterationCallback);
 }

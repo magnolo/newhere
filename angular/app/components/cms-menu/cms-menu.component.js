@@ -51,12 +51,12 @@ class CmsMenuController {
                 title: 'Users',
                 roles: ['superadmin']
             }
-        ]
+        ];
     }
 
     $onInit() {
 
-        this.roles = JSON.parse(this.$window.localStorage.roles);
+        this.roles = angular.fromJson(this.$window.localStorage.roles);
     }
 
     allowed(item) {
@@ -68,7 +68,7 @@ class CmsMenuController {
                 }
             });
         });
-        console.log(item.roles, this.roles);
+
         return allowed;
     }
 }
@@ -78,4 +78,4 @@ export const CmsMenuComponent = {
     controller: CmsMenuController,
     controllerAs: 'vm',
     bindings: {}
-}
+};

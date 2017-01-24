@@ -3,7 +3,7 @@ class ForgotpasswordFormController {
         'ngInject';
 
         //
-        this.email;
+        this.email = "";
         this.$state = $state;
         this.$translate = $translate;
         this.UserService = UserService;
@@ -12,7 +12,7 @@ class ForgotpasswordFormController {
     }
     resetPassword() {
         this.sending = true;
-        this.UserService.forgotpassword(this.email, (response) => {
+        this.UserService.forgotpassword(this.email, () => {
             this.sending = false;
             this.$state.go('app.login');
             this.$translate('Email wurde versendet').then((msg) => {

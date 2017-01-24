@@ -11,7 +11,7 @@ class UserMenuController {
     }
 
     logout() {
-        this.$auth.logout().then((response) => {
+        this.$auth.logout().then(() => {
             this.$translate('Erfolgreich abgemeldet.').then((msg) => {
                 this.ToastService.show(msg);
             });
@@ -22,7 +22,7 @@ class UserMenuController {
         return this.$auth.isAuthenticated();
     }
     $onInit() {
-        this.roles = JSON.parse(this.$window.localStorage.roles);
+        this.roles = angular.fromJson(this.$window.localStorage.roles);
     }
     isAllowed(types) {
         let allowed = false;
@@ -33,7 +33,7 @@ class UserMenuController {
                 }
             });
         });
-        console.log(types, this.roles);
+
         return allowed;
     }
 }
@@ -43,4 +43,4 @@ export const UserMenuComponent = {
     controller: UserMenuController,
     controllerAs: 'vm',
     bindings: {}
-}
+};
