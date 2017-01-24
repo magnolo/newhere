@@ -29,4 +29,4 @@ export const ForgotpasswordFormComponent = {
     controller: ForgotpasswordFormController,
     controllerAs: 'vm',
     bindings: {}
-}
+};
