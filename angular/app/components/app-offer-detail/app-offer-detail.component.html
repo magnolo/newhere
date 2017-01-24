@@ -11,9 +11,11 @@
             <md-icon>phone</md-icon><a href="tel:{{vm.offer.phone}}">{{vm.offer.phone}}</a></p>
 
         <p style="word-break: break-all" ng-if="vm.offer.website!=null">
-            <md-icon>insert_link</md-icon><a href="{{vm.offer.website}}" target="_blank">{{vm.offer.website}}</a></p>
+            <md-icon>insert_link</md-icon><a href="{{vm.offer.website}}" target="_blank">{{vm.offer.website}}</a>
+        </p>
         <p style="word-break: break-all" ng-if="vm.offer.facebook_url!=null">
-            <md-icon md-svg-src="/img/icons/facebook.svg" class="normal"></md-icon><a href="{{vm.offer.facebook_url}}" target="_blank">{{vm.offer.facebook_url}}</a></p>
+            <md-icon md-svg-src="/img/icons/facebook.svg" class="normal"></md-icon><a href="{{vm.offer.facebook_url}}" target="_blank">{{vm.offer.facebook_url}}</a>
+        </p>
 
         <p ng-if="vm.offer.email!=null">
             <md-icon>mail</md-icon><a href="mailto:{{vm.offer.email}}">{{vm.offer.email}}</a></p>
