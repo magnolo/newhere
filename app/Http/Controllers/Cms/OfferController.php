@@ -60,21 +60,33 @@ class OfferController extends Controller
    }
     public function search(Request $request) {
       $offers = Offer::with(array('ngo', 'categories'))
-      ->whereTranslationLike('title', '%'.$request->get('query').'%')
+      ->whereHas('translations', function($query) use ($request){
+         $query->where('title', 'ilike', '%'.$request->get('query').'%');
+      })
+      ->orWhereHas('translations', function($query) use ($request){
+         $query->where('description', 'ilike', '%'.$request->get('query').'%');
+      })
+      //->whereTranslationLike('title', '%'.$request->get('query').'%')
       // ->orWhereTranslationLike('description', '%'.$request->get('query').'%')
-      ->orWhere('street', 'like', '%'.$request->get('query').'%')
-      ->orWhere('zip', 'like', '%'.$request->get('query').'%')
+      ->orWhere('street', 'ilike', '%'.$request->get('query').'%')
+      ->orWhere('zip', 'ilike', '%'.$request->get('query').'%')
       ->orWhereHas('ngo', function($query) use ($request){
-        $query->where('organisation', 'like', '%'.$request->get('query').'%');
+        $query->where('organisation', 'ilike', '%'.$request->get('query').'%');
       })
       ->orWhereHas('categories', function($query) use ($request){
-        $query->whereTranslationLike('title', '%'.$request->get('query').'%');
+        $query->whereHas('translations', function($q) use ($request){
+         $q->where('title', 'ilike', '%'.$request->get('query').'%');
+        });
       })
       ->orWhereHas('categories.parent', function($query) use ($request){
-        $query->whereTranslationLike('title', '%'.$request->get('query').'%');
+        $query->whereHas('translations', function($q) use ($request){
+         $q->where('title', 'ilike', '%'.$request->get('query').'%');
+        });
       })
       ->orWhereHas('categories.parent.parent', function($query) use ($request){
-        $query->whereTranslationLike('title', '%'.$request->get('query').'%');
+        $query->whereHas('translations', function($q) use ($request){
+         $q->where('title', 'ilike', '%'.$request->get('query').'%');
+        });
       })
        ->get();
        $count = $offers->count();
