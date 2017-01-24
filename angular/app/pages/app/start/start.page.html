@@ -6,17 +6,18 @@
             <map></map>
         </md-content>
         <div layout="row" class="view-toggler" ng-if="$root.showMap && !$root.isSplit" hide-gt-sm>
-            <md-button  ng-click="$root.showMap = !$root.showMap" flex class="btn-bottom md-primary md-raised btn-big">
+            <md-button ng-click="$root.showMap = !$root.showMap" flex class="btn-bottom md-primary md-raised btn-big">
                 <md-icon>list</md-icon>
                 {{ 'Liste anzeigen' | translate }}
             </md-button>
         </div>
         <div ng-if="!$root.showMap && !$root.isSplit" layout="row" class="view-toggler" hide-gt-sm>
-            <md-button ng-click="$root.showMap = !$root.showMap"  flex class="md-primary md-raised btn-big">
+            <md-button ng-click="$root.showMap = !$root.showMap" flex class="md-primary md-raised btn-big">
                 <md-icon>map</md-icon>
                 {{ 'Karte erkunden' | translate }}
             </md-button>
         </div>
     </md-content>
-    <app-fiter-menu><app-fiter-menu>
+    <app-fiter-menu>
+        <app-fiter-menu>
 </md-content>

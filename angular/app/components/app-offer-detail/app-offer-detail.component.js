@@ -28,7 +28,6 @@ class AppOfferDetailController {
         this.$root.showDetails = !this.$root.showDetails;
     }
     showRouting() {
-        console.log(this.offer)
         this.MapService.showRoute([48.209206, 16.372778], [parseFloat(this.offer.longitude), parseFloat(this.offer.latitude)], 'auto');
     }
 }

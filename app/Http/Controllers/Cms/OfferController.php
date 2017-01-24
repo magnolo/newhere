@@ -127,6 +127,7 @@ class OfferController extends Controller
       $offer->description = $request->get('description');
       $offer->opening_hours = $request->get('opening_hours');
       $offer->website = $request->get('website');
+      $offer->facebook_url = $request->get('facebook_url');
       $offer->email = $request->get('email');
       $offer->phone = $request->get('phone');
        if ($hasAddress) {
@@ -141,6 +142,7 @@ class OfferController extends Controller
       $offer->valid_from = $request->get('valid_from');
       $offer->valid_until = $request->get('valid_until');
       $offer->image_id = $request->get('image_id');
+    
 
 
 
@@ -208,6 +210,7 @@ class OfferController extends Controller
      $offer->description = $request->get('description');
      $offer->opening_hours = $request->get('opening_hours');
      $offer->website = $request->get('website');
+     $offer->facebook_url = $request->get('facebook_url');
      $offer->email = $request->get('email');
      $offer->phone = $request->get('phone');
        if ($hasAddress) {
