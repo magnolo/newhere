@@ -26,13 +26,19 @@
                 Main Page
             </md-button>
         </md-menu-item>
-        <md-menu-item ng-if="vm.isAllowed(['admin', 'superadmin'])">
+        <md-menu-item ng-if="vm.isAllowed(['admin', 'superadmin',  'moderator'])">
+            <md-button ui-sref="cms.translations">
+                <md-icon md-menu-align-target>translate</md-icon>
+                Translations
+            </md-button>
+        </md-menu-item>
+        <md-menu-item ng-if="vm.isAllowed(['organisation-admin', 'organisation-user'])">
             <md-button ui-sref="app.offers">
                 <md-icon>library_books</md-icon>
                 {{ 'Angebote' | translate }}
             </md-button>
         </md-menu-item>
-        <md-menu-item ng-if="vm.isAllowed(['admin', 'superadmin'])">
+        <md-menu-item ng-if="vm.isAllowed(['organisation-admin', 'organisation-user'])">
             <md-button ui-sref="app.myngo">
                 <md-icon>business</md-icon>
                 {{ 'Organisation' | translate }}

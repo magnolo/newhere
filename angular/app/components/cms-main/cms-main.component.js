@@ -1,15 +1,25 @@
-class CmsMainController{
-    constructor($mdSidenav){
+class CmsMainController {
+    constructor($mdSidenav, $window) {
         'ngInject';
 
         //
         this.mdSidenav = $mdSidenav;
-
+        this.$window = $window;
     }
     toggleItemsList() {
-      this.mdSidenav('left').toggle();
+        this.mdSidenav('left').toggle();
     }
-    $onInit(){
+    $onInit() {
+        this.roles = angular.fromJson(this.$window.localStorage.roles);
+    }
+    allowed(role) {
+        let allowed = false;
+
+        if (this.roles.indexOf(role) > -1) {
+            allowed = true;
+        }
+
+        return allowed;
     }
 }
 
