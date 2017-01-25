@@ -20,11 +20,11 @@
                     </md-input-container>
                     <md-input-container class="md-block">
                         <label class="md-subhead">{{ 'Beschreibung' | translate }}</label>
-                        <textarea ng-model="vm.sourceTranslation.description" ta-disabled="true"></textarea>
+                        <textarea ng-model="vm.sourceTranslation.description" ta-disabled="true" ng-model-options="{ debounce: 1000 }"></textarea>
                     </md-input-container>
                     <md-input-container class="md-block" ng-if="vm.sourceTranslation.hasOwnProperty('opening_hours')">
                         <label>{{ 'Öffnungszeiten' | translate }}</label>
-                        <textarea ng-model="vm.sourceTranslation.opening_hours" ta-disabled="true"></textarea>
+                        <textarea ng-model="vm.sourceTranslation.opening_hours" ta-disabled="true" ng-model-options="{ debounce: 1000 }"></textarea>
                     </md-input-container>
                 </div>
                 <div layout="column" flex-gt-sm="50" layout-margin>
@@ -35,11 +35,11 @@
                     </md-input-container>
                     <md-input-container>
                         <label>{{ 'Beschreibung' | translate }}</label>
-                        <textarea ng-model="vm.translation.description" ta-disabled="true"></textarea>
+                        <textarea ng-model="vm.translation.description" ng-model-options="{ debounce: 1000 }"></textarea>
                     </md-input-container>
                     <md-input-container class="md-block" ng-if="vm.sourceTranslation.hasOwnProperty('opening_hours')">
                         <label>{{ 'Öffnungszeiten' | translate }}</label>
-                        <textarea ng-model="vm.translation.opening_hours" ta-disabled="true"></textarea>
+                        <textarea ng-model="vm.translation.opening_hours" ng-model-options="{ debounce: 1000 }"></textarea>
                     </md-input-container>
                 </div>
             </div>
