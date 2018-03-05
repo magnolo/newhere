@@ -1,5 +1,4 @@
 ## New Here
 
-Here we gonna start staring at our product, where refugees can get all the information for their orientation
-
-for all of you, who will help us moving forward please visit [respekt.net](http://www.respekt.net/projekte-unterstuetzen/details/projekt/1231/)
+This project has been moved to: https://github.com/newhere-team/nh-website  
+Please contribute in the fork as this repository is no longer maintained.
